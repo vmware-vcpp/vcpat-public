@@ -2,23 +2,21 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Operations #  Your content comes here!
-API Tokens in VMware Cloud Director #  VMware Cloud Director 10.3.1 introduced API Tokens. This allows a user to generate API tokens for programmatic access to VCD. It works for both, provider, and tenant users. An automation script or 3rd-party solution can then use the API token to make API requests to Cloud Director on behalf of the user.
+<meta name=description content="Operations #  API Tokens in Cloud Director #  VMware Cloud Director 10.3.1 introduced API Tokens. This allows a user to generate API tokens for programmatic access to VCD. It works for both, provider, and tenant users. An automation script or 3rd-party solution can then use the API token to make API requests to Cloud Director on behalf of the user.
 These steps are used to create API tokens:">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Operations">
-<meta property="og:description" content="Operations #  Your content comes here!
-API Tokens in VMware Cloud Director #  VMware Cloud Director 10.3.1 introduced API Tokens. This allows a user to generate API tokens for programmatic access to VCD. It works for both, provider, and tenant users. An automation script or 3rd-party solution can then use the API token to make API requests to Cloud Director on behalf of the user.
+<meta property="og:description" content="Operations #  API Tokens in Cloud Director #  VMware Cloud Director 10.3.1 introduced API Tokens. This allows a user to generate API tokens for programmatic access to VCD. It works for both, provider, and tenant users. An automation script or 3rd-party solution can then use the API token to make API requests to Cloud Director on behalf of the user.
 These steps are used to create API tokens:">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/developer-ready-cloud/operations/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-03-28T22:12:44+02:00">
+<meta property="article:modified_time" content="2022-03-30T10:44:14+02:00">
 <title>Operations | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.97cfda4f5e3c9fa49a2bf8d401f4ddc0eec576c99cdcf6afbec19173200c37db.css integrity="sha256-l8/aT148n6SaK/jUAfTdwO7Fdsmc3PavvsGRcyAMN9s=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.52928f0b292159016bad9831d7129a8ad2a76b318156f627507d0fcd2854c5d9.js integrity="sha256-UpKPCykhWQFrrZgx1xKaitKnazGBVvYnUH0PzShUxdk=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.c3d6f6bf64e10c1e41b9c4d1ce7cf8b007e9c328a29592152b0e661c27da4a69.js integrity="sha256-w9b2v2ThDB5BucTRznz4sAfpwyiilZIVKw5mHCfaSmk=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -103,7 +101,17 @@ These steps are used to create API tokens:">
 <ul>
 <li><a href=#operations>Operations</a>
 <ul>
-<li><a href=#api-tokens-in-vmware-cloud-director>API Tokens in VMware Cloud Director</a></li>
+<li><a href=#api-tokens-in-cloud-director>API Tokens in Cloud Director</a></li>
+<li><a href=#preparation>Preparation</a></li>
+<li><a href=#create-the-api-token>Create the API Token</a></li>
+<li><a href=#revoke-the-api-token>Revoke the API Token</a></li>
+<li><a href=#use-the-api-token>Use the API Token</a>
+<ul>
+<li><a href=#api-client-example>API Client Example</a></li>
+</ul>
+</li>
+<li><a href=#notes>Notes</a></li>
+<li><a href=#reference-links>Reference links:</a></li>
 </ul>
 </li>
 </ul>
@@ -114,22 +122,111 @@ These steps are used to create API tokens:">
 Operations
 <a class=anchor href=#operations>#</a>
 </h1>
-<p>Your content comes here!</p>
-<h2 id=api-tokens-in-vmware-cloud-director>
-API Tokens in VMware Cloud Director
-<a class=anchor href=#api-tokens-in-vmware-cloud-director>#</a>
+<h2 id=api-tokens-in-cloud-director>
+API Tokens in Cloud Director
+<a class=anchor href=#api-tokens-in-cloud-director>#</a>
 </h2>
-<p>VMware Cloud Director 10.3.1 introduced API Tokens.
-This allows a user to generate API tokens for programmatic access to VCD. It works for both, provider, and tenant users.
-An automation script or 3rd-party solution can then use the API token to make API requests to Cloud Director
-on behalf of the user.</p>
+<p>VMware Cloud Director 10.3.1 introduced API Tokens. This allows a user to generate API tokens for programmatic access to VCD. It works for both, provider, and tenant users. An automation script or 3rd-party solution can then use the API token to make API requests to Cloud Director on behalf of the user.</p>
 <p>These steps are used to create API tokens:</p>
 <ul>
 <li>The provider propagates the right to use and manage API token to the tenant</li>
 <li>The Cloud Director user (provider as well as tenant user) creates an API token</li>
 <li>An API client (e.g. an automation script) uses the API token to make requests</li>
-<li>(If needed) the user revokes the API token</li>
+<li>(If needed) The user revokes the API token</li>
 </ul>
+<h2 id=preparation>
+Preparation
+<a class=anchor href=#preparation>#</a>
+</h2>
+<p>As for most new features, fine-grained access control through rights bundles is possible. To enable a tenant to use API token, the provider must publish a rights bundle to the tenant. Privileges can be defined for a user to manage the user’s own tokens, and to manage all Organization user’s token (for example for an Organization Administrator).</p>
+<p><img src=/images/drc-apiToken1.png alt="Cloud Director Rights Bundles"></p>
+<h2 id=create-the-api-token>
+Create the API Token
+<a class=anchor href=#create-the-api-token>#</a>
+</h2>
+<p>As provider or tenant user with proper privileges you can use the “User Preferences” menu to create the API token. Each token can be labeled with a name. Be aware that the actual token key is only visible once in the creation wizard and cannot be retrieved afterwards.</p>
+<p><img src=/images/drc-apiToken2.png alt="Cloud Director User Preferences"> <img src=/images/drc-apiToken3.png alt="Cloud Director New Api Token"></p>
+<p><img src=/images/drc-apiToken4.png alt="Cloud Director Generate API Token"></p>
+<h2 id=revoke-the-api-token>
+Revoke the API Token
+<a class=anchor href=#revoke-the-api-token>#</a>
+</h2>
+<p>API tokens do not expire, but existing API tokens can be revoked. This also invalidates active API client sessions that used the token to authenticate. All users can revoke their own tokens. Administrators (those with &lsquo;manage all user&rsquo;s API tokens&rsquo; right) can revoke other user&rsquo;s tokens. Tenant administrators can do so within their own Organization, while system administrators can do so for any user.</p>
+<p><img src=/images/drc-apiToken5.png alt="Cloud Director Revoke API Token"></p>
+<h2 id=use-the-api-token>
+Use the API Token
+<a class=anchor href=#use-the-api-token>#</a>
+</h2>
+<p>Semantically the API token usage follows the OAuth 2.0 specification (RFC 6749, section 6).</p>
+<p>The API token can then be used by a 3rd-party solution or custom API client to access the VCD API as the user, without the need to authenticate with username and password credentials.</p>
+<h3 id=api-client-example>
+API Client Example
+<a class=anchor href=#api-client-example>#</a>
+</h3>
+<p>Request the bearer token for subsequent calls using the API token:</p>
+<pre><code>POST https://host_name/oauth/provider/token  
+Accept: application/json  
+Content-Type: application/x-www-form-urlencoded  
+Body:  
+grant\_type=refresh\_token&amp;refresh\_token=Generated\_API_Token
+</code></pre>
+<p>Security note: It’s recommended to send the API Token as part of the request body (and not as part of the URL, even if that technically works for x-www-form-urlencoded type requests), to avoid it being logged in transit.</p>
+<p>Response containing the Bearer token:</p>
+<pre><code>HTTP/1.1 200 OK  
+Content-Type: application/json  
+Body:  
+{  
+&quot;access\_token&quot;:&quot;Generated\_Access_Token&quot;,  
+&quot;token_type&quot;:&quot;Bearer&quot;,  
+&quot;expires_in&quot;:86400,  
+&quot;refresh_token&quot;:null  
+}
+</code></pre>
+<p>Subsequent API call now can use the returned Bearer token in the &ldquo;access_token&rdquo; field as usual. There is no need for any changes in the client code.</p>
+<p>Subsequent Call using the Bearer token:</p>
+<pre><code>GET https://host_name/api/org  
+Accept: application/*+xml;version=36.1  
+Authorization: Bearer Generated\_Access\_Token
+</code></pre>
+<h2 id=notes>
+Notes
+<a class=anchor href=#notes>#</a>
+</h2>
+<p>The session expiration can be configured in the provider portal under General > Timeouts.</p>
+<p><img src=/images/drc-apiToken6.png alt="Cloud Director Session Timeout Settings"></p>
+<p>The VCD Provider for Terraform for example supports API Token authentication as of version 3.5:</p>
+<pre><code>provider &quot;vcd&quot; {  
+user = &quot;none&quot;  
+password = &quot;none&quot;  
+auth\_type = &quot;api\_token&quot;  
+api_token = Generated API token  
+sysorg = &quot;System&quot;  
+...
+</code></pre>
+<p>For security reasons, certain tasks are not possible when authenticated through an API token:</p>
+<ul>
+<li>Change the user password</li>
+<li>Perform user management tasks</li>
+<li>Create more tokens</li>
+<li>View or revoke other tokens</li>
+</ul>
+<p>When accessing VMware Cloud Director by using an API access token, applications have only view rights for the following resources.</p>
+<ul>
+<li>User</li>
+<li>Group</li>
+<li>Roles</li>
+<li>Global roles</li>
+<li>Rights bundles</li>
+</ul>
+<p>The API Token feature in VMware Cloud Director offers a secure way for automation solutions to access its API, even in environments that enforce Multi-factor Authentication for user logins.</p>
+<h2 id=reference-links>
+Reference links:
+<a class=anchor href=#reference-links>#</a>
+</h2>
+<p>VCD Tenant Portal Documentation: <a href=https://docs.vmware.com/en/VMware-Cloud-Director/10.3/VMware-Cloud-Director-Tenant-Portal-Guide/GUID-A1B3B2FA-7B2C-4EE1-9D1B-188BE703EEDE.html>https://docs.vmware.com/en/VMware-Cloud-Director/10.3/VMware-Cloud-Director-Tenant-Portal-Guide/GUID-A1B3B2FA-7B2C-4EE1-9D1B-188BE703EEDE.html</a></p>
+<p>VCD Provider Portal Documentation: <a href=https://docs.vmware.com/en/VMware-Cloud-Director/10.3/VMware-Cloud-Director-Service-Provider-Admin-Portal-Guide/GUID-A1B3B2FA-7B2C-4EE1-9D1B-188BE703EEDE.html>https://docs.vmware.com/en/VMware-Cloud-Director/10.3/VMware-Cloud-Director-Service-Provider-Admin-Portal-Guide/GUID-A1B3B2FA-7B2C-4EE1-9D1B-188BE703EEDE.html</a></p>
+<p>OAuth 2.0 Specification (RFC 6749): <a href=https://datatracker.ietf.org/doc/html/rfc6749#section-6>https://datatracker.ietf.org/doc/html/rfc6749#section-6</a></p>
+<p>VCD Provider for Terraform 3.5.1 Documentation: <a href=https://registry.terraform.io/providers/vmware/vcd/latest/docs>https://registry.terraform.io/providers/vmware/vcd/latest/docs</a></p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
@@ -146,7 +243,17 @@ on behalf of the user.</p>
 <ul>
 <li><a href=#operations>Operations</a>
 <ul>
-<li><a href=#api-tokens-in-vmware-cloud-director>API Tokens in VMware Cloud Director</a></li>
+<li><a href=#api-tokens-in-cloud-director>API Tokens in Cloud Director</a></li>
+<li><a href=#preparation>Preparation</a></li>
+<li><a href=#create-the-api-token>Create the API Token</a></li>
+<li><a href=#revoke-the-api-token>Revoke the API Token</a></li>
+<li><a href=#use-the-api-token>Use the API Token</a>
+<ul>
+<li><a href=#api-client-example>API Client Example</a></li>
+</ul>
+</li>
+<li><a href=#notes>Notes</a></li>
+<li><a href=#reference-links>Reference links:</a></li>
 </ul>
 </li>
 </ul>
