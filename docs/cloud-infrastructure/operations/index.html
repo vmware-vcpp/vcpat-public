@@ -12,13 +12,13 @@ Note: Usage Meter does not traverse Enhanced Linked Mode, and it requires regist
 VMware Cloud Provider Program partners should utilize VCPP licenses for all servers used in the service delivery path or admi nistration control plane.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/operations/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-04-19T15:40:43+03:00">
+<meta property="article:modified_time" content="2022-04-19T16:09:06+03:00">
 <title>Operations | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.97cfda4f5e3c9fa49a2bf8d401f4ddc0eec576c99cdcf6afbec19173200c37db.css integrity="sha256-l8/aT148n6SaK/jUAfTdwO7Fdsmc3PavvsGRcyAMN9s=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.ba3872b2c9ed75c210f0045443e0d8308f5308a3688987423fa9898cd8117274.js integrity="sha256-ujhyssntdcIQ8ARUQ+DYMI9TCKNoiYdCP6mJjNgRcnQ=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.bb6fa1b1603361beb47e64a600ec64b432481d104bb7c8e5b4477a6867e18bab.js integrity="sha256-u2+hsWAzYb60fmSmAOxktDJIHRBLt8jltEd6aGfhi6s=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -159,36 +159,7 @@ Inventory collections
 vCenter Reporting
 <a class=anchor href=#vcenter-reporting>#</a>
 </h2>
-<p>The vCenter Server Standard edition is part of the Flex Core bundle and therefore reported as part of that bundle. vCenter usage is bundled by default and cannot be reported standalone.
-vCenter
-Usage Meter collects product usage information from all vCenter servers that are registered with Usage Meter.
-Note: Usage Meter does not traverse Enhanced Linked Mode, and it requires registering all vCenter servers, part of this mode, to me ter their usage data.
-VMware Cloud Provider Program partners should utilize VCPP licenses for all servers used in the service delivery path or admi nistration control plane. VMware perpetual licenses, including OEM versions, can only be utilized to support internal IT operations that are not part of service delivery. In addition, VMware perpetual licenses may not be used to support the management or operations of an environment utilized to host unaffiliated third parties. Virtual machines running on hosts with perpetual or demo license keys are metered by Usage Meter.
-Configuration
-The Usage Meter administrator must configure the endpoint and credentials for each vCenter server to be metered using the Usage Meter web application.
-Feature Detection
-When metering vCenter, Usage Meter performs two types of usage collections: event-based and inventory collections.
-Event history collections
-Usage meter subscribes to vCenter events to detect changes in a virtual machine and host state. Changes in a virtual machine state are delivered every hour to Usage Meter and recorded.
-Note: Usage Meter collects data from hosts and VMs in an active state. Even when there is a connectivity issue with a host, Usage Meter will still report metering data if the host VMs are in a powered-on state. This means that providers will be billed for VMs even when there are temporary interruptions in host connectivity. If providers want to be sure they are not being billed for VMs, they need to turn those VMs off.
-Inventory collections
-Usage Meter queries vCenter servers every eight hours to collect full inventory information.
-vCenter Reporting
-The vCenter Server Standard edition is part of the Flex Core bundle and therefore reported as part of that bundle. vCenter usage is bundled by default and cannot be reported standalone.vCenter
-Usage Meter collects product usage information from all vCenter servers that are registered with Usage Meter.
-Note: Usage Meter does not traverse Enhanced Linked Mode, and it requires registering all vCenter servers, part of this mode, to me ter their usage data.
-VMware Cloud Provider Program partners should utilize VCPP licenses for all servers used in the service delivery path or admi nistration control plane. VMware perpetual licenses, including OEM versions, can only be utilized to support internal IT operations that are not part of service delivery. In addition, VMware perpetual licenses may not be used to support the management or operations of an environment utilized to host unaffiliated third parties. Virtual machines running on hosts with perpetual or demo license keys are metered by Usage Meter.
-Configuration
-The Usage Meter administrator must configure the endpoint and credentials for each vCenter server to be metered using the Usage Meter web application.
-Feature Detection
-When metering vCenter, Usage Meter performs two types of usage collections: event-based and inventory collections.
-Event history collections
-Usage meter subscribes to vCenter events to detect changes in a virtual machine and host state. Changes in a virtual machine state are delivered every hour to Usage Meter and recorded.
-Note: Usage Meter collects data from hosts and VMs in an active state. Even when there is a connectivity issue with a host, Usage Meter will still report metering data if the host VMs are in a powered-on state. This means that providers will be billed for VMs even when there are temporary interruptions in host connectivity. If providers want to be sure they are not being billed for VMs, they need to turn those VMs off.
-Inventory collections
-Usage Meter queries vCenter servers every eight hours to collect full inventory information.
-vCenter Reporting
-The vCenter Server Standard edition is part of the Flex Core bundle and therefore reported as part of that bundle. vCenter usage is bundled by default and cannot be reported standalone.</p>
+<p>The vCenter Server Standard edition is part of the Flex Core bundle and therefore reported as part of that bundle. vCenter usage is bundled by default and cannot be reported standalone.</p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
