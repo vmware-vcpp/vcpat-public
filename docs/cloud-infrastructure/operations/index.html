@@ -2,23 +2,23 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Operations #  Usage Meter #  vCenter Server Metering and Reporting #  Usage Meter collects product usage information from all vCenter servers that are registered with Usage Meter.
+<meta name=description content="Operations #  vCenter Server Metering and Reporting #  vCenter Server Metering #  Usage Meter collects product usage information from all vCenter servers that are registered with Usage Meter.
 Note: Usage Meter does not traverse Enhanced Linked Mode, and it requires registering all vCenter servers, part of this mode, to meter their usage data.
-VMware Cloud Provider Program partners should utilize VCPP licenses for all servers used in the service delivery path or admi nistration control plane.">
+VMware Cloud Provider Program partners should utilize VCPP licenses for all servers used in the service delivery path or administration control plane.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Operations">
-<meta property="og:description" content="Operations #  Usage Meter #  vCenter Server Metering and Reporting #  Usage Meter collects product usage information from all vCenter servers that are registered with Usage Meter.
+<meta property="og:description" content="Operations #  vCenter Server Metering and Reporting #  vCenter Server Metering #  Usage Meter collects product usage information from all vCenter servers that are registered with Usage Meter.
 Note: Usage Meter does not traverse Enhanced Linked Mode, and it requires registering all vCenter servers, part of this mode, to meter their usage data.
-VMware Cloud Provider Program partners should utilize VCPP licenses for all servers used in the service delivery path or admi nistration control plane.">
+VMware Cloud Provider Program partners should utilize VCPP licenses for all servers used in the service delivery path or administration control plane.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/operations/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-04-19T16:10:37+03:00">
+<meta property="article:modified_time" content="2022-04-19T16:25:07+03:00">
 <title>Operations | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.97cfda4f5e3c9fa49a2bf8d401f4ddc0eec576c99cdcf6afbec19173200c37db.css integrity="sha256-l8/aT148n6SaK/jUAfTdwO7Fdsmc3PavvsGRcyAMN9s=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.af6eb3d8a22c699082bc1cf265990527c65774c9f1e439cfa269a97e51494345.js integrity="sha256-r26z2KIsaZCCvBzyZZkFJ8ZXdMnx5DnPommpflFJQ0U=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.6f54c591729476960ae5b89770ff075ef86a0f1969d863d77b7036e6362e2c44.js integrity="sha256-b1TFkXKUdpYK5biXcP8HXvhqDxlp2GPXe3A25jYuLEQ=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -102,9 +102,9 @@ VMware Cloud Provider Program partners should utilize VCPP licenses for all serv
 <nav id=TableOfContents>
 <ul>
 <li><a href=#operations>Operations</a></li>
-<li><a href=#usage-meter>Usage Meter</a></li>
 <li><a href=#vcenter-server-metering-and-reporting>vCenter Server Metering and Reporting</a>
 <ul>
+<li><a href=#vcenter-server-metering>vCenter Server Metering</a></li>
 <li><a href=#configuration>Configuration</a>
 <ul>
 <li><a href=#feature-detection>Feature Detection</a></li>
@@ -123,17 +123,17 @@ VMware Cloud Provider Program partners should utilize VCPP licenses for all serv
 Operations
 <a class=anchor href=#operations>#</a>
 </h1>
-<h1 id=usage-meter>
-Usage Meter
-<a class=anchor href=#usage-meter>#</a>
-</h1>
 <h1 id=vcenter-server-metering-and-reporting>
 vCenter Server Metering and Reporting
 <a class=anchor href=#vcenter-server-metering-and-reporting>#</a>
 </h1>
+<h2 id=vcenter-server-metering>
+vCenter Server Metering
+<a class=anchor href=#vcenter-server-metering>#</a>
+</h2>
 <p>Usage Meter collects product usage information from all vCenter servers that are registered with Usage Meter.</p>
 <p><strong>Note:</strong> Usage Meter does not traverse Enhanced Linked Mode, and it requires registering all vCenter servers, part of this mode, to meter their usage data.</p>
-<p>VMware Cloud Provider Program partners should utilize VCPP licenses for all servers used in the service delivery path or admi nistration control plane. VMware perpetual licenses, including OEM versions, can only be utilized to support internal IT operations that are not part of service delivery. In addition, VMware perpetual licenses may not be used to support the management or operations of an environment utilized to host unaffiliated third parties. Virtual machines running on hosts with perpetual or demo license keys are metered by Usage Meter.</p>
+<p>VMware Cloud Provider Program partners should utilize VCPP licenses for all servers used in the service delivery path or administration control plane. VMware perpetual licenses, including OEM versions, can only be utilized to support internal IT operations that are not part of service delivery. In addition, VMware perpetual licenses may not be used to support the management or operations of an environment utilized to host unaffiliated third parties. Virtual machines running on hosts with perpetual or demo license keys are metered by Usage Meter.</p>
 <h2 id=configuration>
 Configuration
 <a class=anchor href=#configuration>#</a>
@@ -148,8 +148,8 @@ Feature Detection
 Event history collections
 <a class=anchor href=#event-history-collections>#</a>
 </h3>
-<p>Usage meter subscribes to vCenter events to detect changes in a virtual machine and host state. Changes in a virtual machine state are delivered every hour to Usage Meter and recorded.
-<strong>Note:</strong> Usage Meter collects data from hosts and VMs in an active state. Even when there is a connectivity issue with a host, Usage Meter will still report metering data if the host VMs are in a powered-on state. This means that providers will be billed for VMs even when there are temporary interruptions in host connectivity. If providers want to be sure they are not being billed for VMs, they need to turn those VMs off.</p>
+<p>Usage meter subscribes to vCenter events to detect changes in a virtual machine and host state. Changes in a virtual machine state are delivered every hour to Usage Meter and recorded.</p>
+<p><strong>Note:</strong> Usage Meter collects data from hosts and VMs in an active state. Even when there is a connectivity issue with a host, Usage Meter will still report metering data if the host VMs are in a powered-on state. This means that providers will be billed for VMs even when there are temporary interruptions in host connectivity. If providers want to be sure they are not being billed for VMs, they need to turn those VMs off.</p>
 <h3 id=inventory-collections>
 Inventory collections
 <a class=anchor href=#inventory-collections>#</a>
@@ -175,9 +175,9 @@ vCenter Reporting
 <nav id=TableOfContents>
 <ul>
 <li><a href=#operations>Operations</a></li>
-<li><a href=#usage-meter>Usage Meter</a></li>
 <li><a href=#vcenter-server-metering-and-reporting>vCenter Server Metering and Reporting</a>
 <ul>
+<li><a href=#vcenter-server-metering>vCenter Server Metering</a></li>
 <li><a href=#configuration>Configuration</a>
 <ul>
 <li><a href=#feature-detection>Feature Detection</a></li>
