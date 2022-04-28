@@ -2,43 +2,19 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Table of contents #  Introduction 3
-Prepare a VMware Cloud Partner Navigator Provider Organization 3
-Deploy a SDDC 5
-Deploy VMware Cloud Director service Instance 6
-Generate API Token 8
-Create a DHCP Network 9
-S3 Configuration 11
-Disable S3 12
-Configure S3 VPC endpoint 12
-Associate VMware Cloud Director service Instance 13
-Associate Custom Domain (Optional) 14
-VMware Cloud Director service Instance Configuration 14
-Launch the Provider Portal 14">
+<meta name=description content="VMware Cloud Director Service for VMware Cloud on AWS Deployment Guide #  VMware Cloud Director™ service enables cloud providers to use VMware Cloud on AWS in multi-tenant modality with enhanced VMware NSX-T support, allowing provisioning of custom-sized, tenant-based, isolated, and secure VMware Cloud resources. This ability to service multiple smaller and medium sized tenants on the same infrastructure, offers flexibility to right-size the VMware Cloud on AWS environments to meet customer needs and requirements of all customer tiers.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content>
-<meta property="og:description" content="Table of contents #  Introduction 3
-Prepare a VMware Cloud Partner Navigator Provider Organization 3
-Deploy a SDDC 5
-Deploy VMware Cloud Director service Instance 6
-Generate API Token 8
-Create a DHCP Network 9
-S3 Configuration 11
-Disable S3 12
-Configure S3 VPC endpoint 12
-Associate VMware Cloud Director service Instance 13
-Associate Custom Domain (Optional) 14
-VMware Cloud Director service Instance Configuration 14
-Launch the Provider Portal 14">
+<meta property="og:description" content="VMware Cloud Director Service for VMware Cloud on AWS Deployment Guide #  VMware Cloud Director™ service enables cloud providers to use VMware Cloud on AWS in multi-tenant modality with enhanced VMware NSX-T support, allowing provisioning of custom-sized, tenant-based, isolated, and secure VMware Cloud resources. This ability to service multiple smaller and medium sized tenants on the same infrastructure, offers flexibility to right-size the VMware Cloud on AWS environments to meet customer needs and requirements of all customer tiers.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/cds-vmc-deployment-guide-msp/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-04-28T10:58:59-07:00">
+<meta property="article:modified_time" content="2022-04-28T11:14:24-07:00">
 <title>Cds Vmc Deployment Guide Msp | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.97cfda4f5e3c9fa49a2bf8d401f4ddc0eec576c99cdcf6afbec19173200c37db.css integrity="sha256-l8/aT148n6SaK/jUAfTdwO7Fdsmc3PavvsGRcyAMN9s=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.8795eaba65744fb1fc58b48c51a5a3c32f766f7f5d1d5e0da2ab9d96fd777ef0.js integrity="sha256-h5XqumV0T7H8WLSMUaWjwy92b39dHV4Noqudlv13fvA=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.1e3e3c9539fd8df22b0725f5e0e8c135b987787130f93cb3d2418172aeb084c4.js integrity="sha256-Hj48lTn9jfIrByX14OjBNbmHeHEw+Tyz0kGBcq6whMQ=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -121,8 +97,7 @@ Launch the Provider Portal 14">
 <aside class="hidden clearfix">
 <nav id=TableOfContents>
 <ul>
-<li><a href=#table-of-contents>Table of contents</a></li>
-<li><a href=#introduction>Introduction</a></li>
+<li><a href=#vmware-cloud-director-service-for-vmware-cloud-on-aws-deployment-guide>VMware Cloud Director Service for VMware Cloud on AWS Deployment Guide</a></li>
 <li><a href=#prepare-a-vmware-cloud-partner-navigator-provider-organization>Prepare a VMware Cloud Partner Navigator Provider Organization</a></li>
 <li><a href=#deploy-a-sddc>Deploy a SDDC</a></li>
 <li><a href=#deploy-vmware-cloud-director-service-instance>Deploy VMware Cloud Director service Instance</a></li>
@@ -161,51 +136,9 @@ Launch the Provider Portal 14">
 </nav>
 </aside>
 </header>
-<article class=markdown><h1 id=table-of-contents>
-Table of contents
-<a class=anchor href=#table-of-contents>#</a>
-</h1>
-<p>Introduction <a href=#introduction>3</a></p>
-<p>Prepare a VMware Cloud Partner Navigator Provider Organization
-<a href=#prepare-a-vmware-cloud-partner-navigator-provider-organization>3</a></p>
-<p>Deploy a SDDC <a href=#deploy-a-sddc>5</a></p>
-<p>Deploy VMware Cloud Director service Instance
-<a href=#deploy-vmware-cloud-director-service-instance>6</a></p>
-<p>Generate API Token <a href=#generate-api-token>8</a></p>
-<p>Create a DHCP Network <a href=#create-a-dhcp-network>9</a></p>
-<p>S3 Configuration <a href=#s3-configuration>11</a></p>
-<p>Disable S3 <a href=#disable-s3>12</a></p>
-<p>Configure S3 VPC endpoint <a href=#configure-s3-vpc-endpoint>12</a></p>
-<p>Associate VMware Cloud Director service Instance
-<a href=#associate-vmware-cloud-director-service-instance>13</a></p>
-<p>Associate Custom Domain (Optional)
-<a href=#associate-custom-domain-optional>14</a></p>
-<p>VMware Cloud Director service Instance Configuration
-<a href=#vmware-cloud-director-service-instance-configuration>14</a></p>
-<p>Launch the Provider Portal <a href=#launch-the-provider-portal>14</a></p>
-<p>Create Provider VDC <a href=#create-provider-vdc>15</a></p>
-<p>Update External Network with valid IP range
-<a href=#update-external-network-with-valid-ip-range>18</a></p>
-<p>Create Inventory Group for External Networks
-<a href=#create-inventory-group-for-external-networks>20</a></p>
-<p>Create Firewall Rule to Allow VMware Cloud Director service Tenant
-Traffic
-<a href=#create-firewall-rule-to-allow-vmware-cloud-director-service-tenant-traffic>21</a></p>
-<p>Create First Tenant <a href=#create-first-tenant>22</a></p>
-<p>Create Organization <a href=#create-organization>22</a></p>
-<p>Create Organization VDC <a href=#create-organization-vdc>22</a></p>
-<p>Create Edge Gateway <a href=#create-edge-gateway>26</a></p>
-<p>Request a public IP for Tenant&rsquo;s edge
-<a href=#request-a-public-ip-for-tenants-edge>28</a></p>
-<p>Create a NAT pointing to the tenant&rsquo;s edge gateway
-<a href=#create-a-nat-pointing-to-the-tenants-edge-gateway>29</a></p>
-<p>Create Organization network <a href=#create-organization-network>29</a></p>
-<p>Create SNAT to allow outbound traffic
-<a href=#create-snat-to-allow-outbound-traffic>32</a></p>
-<p>Conclusion <a href=#conclusion>32</a></p>
-<h1 id=introduction>
-Introduction
-<a class=anchor href=#introduction>#</a>
+<article class=markdown><h1 id=vmware-cloud-director-service-for-vmware-cloud-on-aws-deployment-guide>
+VMware Cloud Director Service for VMware Cloud on AWS Deployment Guide
+<a class=anchor href=#vmware-cloud-director-service-for-vmware-cloud-on-aws-deployment-guide>#</a>
 </h1>
 <p>VMware Cloud Director™ service enables cloud providers to use VMware
 Cloud on AWS in multi-tenant modality with enhanced VMware NSX-T
@@ -243,7 +176,7 @@ Prepare a VMware Cloud Partner Navigator Provider Organization
 <ol>
 <li>
 <p>Click on <strong>Administration</strong>, then <strong>Add Organization</strong></p>
-<p><img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc1.png alt></p>
+<p><img src=/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc1.png alt></p>
 </li>
 <li>
 <p>Fill out the Add Organization form and click <strong>Add Organization</strong></p>
@@ -929,8 +862,7 @@ Director</a>.</p>
 <div class=book-toc-content>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#table-of-contents>Table of contents</a></li>
-<li><a href=#introduction>Introduction</a></li>
+<li><a href=#vmware-cloud-director-service-for-vmware-cloud-on-aws-deployment-guide>VMware Cloud Director Service for VMware Cloud on AWS Deployment Guide</a></li>
 <li><a href=#prepare-a-vmware-cloud-partner-navigator-provider-organization>Prepare a VMware Cloud Partner Navigator Provider Organization</a></li>
 <li><a href=#deploy-a-sddc>Deploy a SDDC</a></li>
 <li><a href=#deploy-vmware-cloud-director-service-instance>Deploy VMware Cloud Director service Instance</a></li>
