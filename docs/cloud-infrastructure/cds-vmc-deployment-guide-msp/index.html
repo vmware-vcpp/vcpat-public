@@ -8,13 +8,13 @@
 <meta property="og:description" content="VMware Cloud Director Service for VMware Cloud on AWS Deployment Guide #  VMware Cloud Director™ service enables cloud providers to use VMware Cloud on AWS in multi-tenant modality with enhanced VMware NSX-T support, allowing provisioning of custom-sized, tenant-based, isolated, and secure VMware Cloud resources. This ability to service multiple smaller and medium sized tenants on the same infrastructure, offers flexibility to right-size the VMware Cloud on AWS environments to meet customer needs and requirements of all customer tiers.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/cds-vmc-deployment-guide-msp/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-05-05T15:40:39+02:00">
+<meta property="article:modified_time" content="2022-05-10T15:14:43+02:00">
 <title>VMware Cloud Director Service for VMware Cloud on AWS Deployment Guide | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.97cfda4f5e3c9fa49a2bf8d401f4ddc0eec576c99cdcf6afbec19173200c37db.css integrity="sha256-l8/aT148n6SaK/jUAfTdwO7Fdsmc3PavvsGRcyAMN9s=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.5f39482b9fad97d8cfaac4f6305bf5e2d1b4c4cede1924ef2aa4aa3a4d0dc515.js integrity="sha256-XzlIK5+tl9jPqsT2MFv14tG0xM7eGSTvKqSqOk0NxRU=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.816bbec3c1f32f8e7d4c8945cfe26938213b9b5fe2cc8a6b04475f4885e3a012.js integrity="sha256-gWu+w8HzL459TIlFz+JpOCE7m1/izIprBEdfSIXjoBI=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -100,7 +100,8 @@ VMware Cloud Solutions
 <aside class="hidden clearfix">
 <nav id=TableOfContents>
 <ul>
-<li><a href=#vmware-cloud-director-service-for-vmware-cloud-on-aws-deployment-guide>VMware Cloud Director Service for VMware Cloud on AWS Deployment Guide</a></li>
+<li><a href=#vmware-cloud-director-service-for-vmware-cloud-on-aws-deployment-guide>VMware Cloud Director Service for VMware Cloud on AWS Deployment Guide</a>
+<ul>
 <li><a href=#prepare-a-vmware-cloud-partner-navigator-provider-organization>Prepare a VMware Cloud Partner Navigator Provider Organization</a></li>
 <li><a href=#deploy-a-sddc>Deploy a SDDC</a></li>
 <li><a href=#deploy-vmware-cloud-director-service-instance>Deploy VMware Cloud Director service Instance</a></li>
@@ -135,6 +136,8 @@ VMware Cloud Solutions
 </ul>
 </li>
 <li><a href=#conclusion>Conclusion</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
@@ -171,10 +174,10 @@ Handbook</a>
 and the <a href=https://vmstarcommunity.force.com/partnerconnect/s/contentdocument/0692H0000056Kvb>Cloud Director service Operations
 Handbook</a>
 for more details.</p>
-<h1 id=prepare-a-vmware-cloud-partner-navigator-provider-organization>
+<h2 id=prepare-a-vmware-cloud-partner-navigator-provider-organization>
 Prepare a VMware Cloud Partner Navigator Provider Organization
 <a class=anchor href=#prepare-a-vmware-cloud-partner-navigator-provider-organization>#</a>
-</h1>
+</h2>
 <p>Provision a new VMware Cloud Partner Navigator Organization</p>
 <ol>
 <li>
@@ -183,14 +186,14 @@ Prepare a VMware Cloud Partner Navigator Provider Organization
 </li>
 <li>
 <p>Fill out the Add Organization form and click <strong>Add Organization</strong></p>
-<p><img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc2.png alt></p>
+<p><img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc2.png alt></p>
 <p>Request access to VMware Cloud Director service by emailing:
 <a href=mailto:ask_cloud_director_service@VMware.com>ask_cloud_director_service@VMware.com</a></p>
 </li>
 <li>
 <p>Supply the Long ID of the Organization that will be used.</p>
-<p><img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc3.png alt="Graphical user interface, application Description automatically
-generated"> <img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc4.png alt="Graphical user interface,
+<p><img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc3.png alt="Graphical user interface, application Description automatically
+generated"> <img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc4.png alt="Graphical user interface,
 application Description automatically
 generated"></p>
 </li>
@@ -202,43 +205,43 @@ services in the new Organization</p>
 </li>
 <li>
 <p>Select the new Provider Organization and click <strong>Manage Services</strong></p>
-<p><img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc5.png alt="A screenshot of a computer Description automatically generated
+<p><img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc5.png alt="A screenshot of a computer Description automatically generated
 with medium confidence"></p>
 </li>
 <li>
 <p>Click <strong>Continue</strong></p>
-<p><img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc6.png alt="Graphical user interface, text, application, website Description
+<p><img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc6.png alt="Graphical user interface, text, application, website Description
 automatically generated"></p>
 </li>
 <li>
 <p>Click <strong>Open</strong> on both service tiles to activate the services
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc7.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc7.png alt="Graphical user interface, application Description automatically
 generated"></p>
 </li>
 <li>
 <p>Click <strong>Open</strong> to continue</p>
-<p><img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc8.png alt="Graphical user interface, text Description automatically
+<p><img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc8.png alt="Graphical user interface, text Description automatically
 generated"></p>
 </li>
 </ol>
 <p>NOTE: It is also acceptable to use an existing Provider Organization
 enabled for VMware Cloud on AWS [which has no SDDCs currently
 deployed.]{.underline}</p>
-<h1 id=deploy-a-sddc>
+<h2 id=deploy-a-sddc>
 Deploy a SDDC
 <a class=anchor href=#deploy-a-sddc>#</a>
-</h1>
+</h2>
 <p>Deploy the SDDC in the same VMware Cloud Partner Navigator Organization
 activated above.</p>
 <ol>
 <li>
-<p>Select the VMware Cloud on AWS service tile <img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc9.png alt="Graphical user
+<p>Select the VMware Cloud on AWS service tile <img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc9.png alt="Graphical user
 interface Description automatically generated with medium
 confidence"></p>
 </li>
 <li>
 <p>Select SDDCs and click Create SDDC</p>
-<p><img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc10.png alt="Graphical user interface, text, application Description
+<p><img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc10.png alt="Graphical user interface, text, application Description
 automatically generated"></p>
 </li>
 <li>
@@ -252,13 +255,13 @@ Console</a>.</p>
 service must be deployed in Organizations that have been enabled for
 VMware Cloud Director service. SDDCs deployed in other Organizations are
 not compatible with VMware Cloud Director service.</p>
-<h1 id=deploy-vmware-cloud-director-service-instance>
+<h2 id=deploy-vmware-cloud-director-service-instance>
 Deploy VMware Cloud Director service Instance
 <a class=anchor href=#deploy-vmware-cloud-director-service-instance>#</a>
-</h1>
+</h2>
 <ol>
 <li>
-<p>Select the VMware Cloud Director service tile<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc9.png alt="Graphical user
+<p>Select the VMware Cloud Director service tile<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc9.png alt="Graphical user
 interface Description automatically generated with medium
 confidence"></p>
 </li>
@@ -268,22 +271,22 @@ VMware Cloud Director service Instances the Organization Owner must
 first establish a trust relationship between VMware Cloud services
 and VMware Cloud Director service.</p>
 <p>a. In the Cloud Director Instances screen select <strong>Configuration</strong>
-then <strong>Configure OAuth Trust Relationship</strong><img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc11.png alt="Graphical user
+then <strong>Configure OAuth Trust Relationship</strong><img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc11.png alt="Graphical user
 interface, text, application, email Description automatically
 generated"></p>
 <p>b. Select Dismiss once the trust is established</p>
 <pre><code>![Graphical user interface, text, application Description
-automatically generated](../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc12.png)
+automatically generated](/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc12.png)
 </code></pre>
 </li>
 <li>
 <p>Select <strong>Create Instance</strong> to begin the instance deployment process.
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc13.png alt="Graphical user interface, text Description automatically generated
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc13.png alt="Graphical user interface, text Description automatically generated
 with medium confidence"></p>
 </li>
 <li>
 <p>Enter the data needed in the form and click on <strong>NEXT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc14.png alt="Graphical user interface, text, application, email Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc14.png alt="Graphical user interface, text, application, email Description
 automatically generated"></p>
 </li>
 </ol>
@@ -295,7 +298,7 @@ after deployment.</p>
 <ol start=8>
 <li>
 <p>Acknowledge costs and then click on <strong>CREATE INSTANCE</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc15.png alt="Graphical user interface, text, application, email Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc15.png alt="Graphical user interface, text, application, email Description
 automatically generated"></p>
 </li>
 <li>
@@ -305,33 +308,33 @@ progress.</p>
 </ol>
 <p>When theÂ VMware Cloud DirectorÂ instance deployment is complete, its card
 displays aÂ <strong>Ready</strong>Â status.</p>
-<h1 id=generate-api-token>
+<h2 id=generate-api-token>
 Generate API Token
 <a class=anchor href=#generate-api-token>#</a>
-</h1>
+</h2>
 <p>An API token for the Organization holding the SDDC is used to associate
 the SDDC with VMware Cloud Director service.</p>
 <ol>
 <li>
 <p>Click on your name in the top right and then click on <strong>My
 Account</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc3.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc3.png alt="Graphical user interface, application Description automatically
 generated"></p>
 </li>
 <li>
 <p>Click on <strong>API Tokens</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc16.png alt="Graphical user interface, application, Teams Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc16.png alt="Graphical user interface, application, Teams Description
 automatically
 generated"></p>
 </li>
 <li>
 <p>Click on GENERATE TOKEN<br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc17.png alt="Graphical user interface, text, application Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc17.png alt="Graphical user interface, text, application Description
 automatically generated"></p>
 </li>
 <li>
 <p>Enter form fields and then click on <strong>GENERATE</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc18.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc18.png alt="Graphical user interface, application Description automatically
 generated"></p>
 </li>
 </ol>
@@ -340,10 +343,10 @@ Token TTL should be short. Minimum required Organization Role is
 Organization Member. Minimum required Service Roles are VMware Cloud on
 AWS - Administrator and VMware Cloud on AWS - NSX Cloud Admin. Make sure
 to store the generated token in a safe place.</p>
-<h1 id=create-a-dhcp-network>
+<h2 id=create-a-dhcp-network>
 Create a DHCP Network
 <a class=anchor href=#create-a-dhcp-network>#</a>
-</h1>
+</h2>
 <p>Need to create a network segment that has routed access to the SDDC
 management network, provides DHCP service and has a DNS server
 configured. Note: This step can be skipped if you only have one host in
@@ -351,29 +354,29 @@ your SDDC.</p>
 <ol>
 <li>
 <p>Click on <strong>ADD SEGMENT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc19.png alt="Graphical user interface, text, application, email Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc19.png alt="Graphical user interface, text, application, email Description
 automatically generated"></p>
 </li>
 <li>
 <p>Enter segment details and then click on <strong>SET DHCP CONFIG</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc20.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc20.png alt="Graphical user interface, application Description automatically
 generated"></p>
 </li>
 <li>
 <p>Enter details and then click on <strong>APPLY</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc21.png alt="Graphical user interface, text, application, email Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc21.png alt="Graphical user interface, text, application, email Description
 automatically generated"></p>
 </li>
 <li>
 <p>Click <strong>SAVE</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc22.png alt="Graphical user interface, application, Teams Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc22.png alt="Graphical user interface, application, Teams Description
 automatically generated"></p>
 </li>
 </ol>
-<h1 id=s3-configuration>
+<h2 id=s3-configuration>
 S3 Configuration
 <a class=anchor href=#s3-configuration>#</a>
-</h1>
+</h2>
 <p><strong>If your SDDC is in Oregon (us-west-2)</strong>, you will need to either
 disable S3 or configure a S3 VPC endpoint prior to associating the SDDC.
 If your SDDC is in any other region, this step can be skipped. By
@@ -382,53 +385,53 @@ endpoint is configured or S3 is disabled. Part of the associate process
 automatically deploys a proxy appliance into the SDDC. That proxy
 appliance currently is stored on an S3 bucket in Oregon (us-west-2),
 which given the default configuration makes it inaccessible.</p>
-<h2 id=disable-s3>
+<h3 id=disable-s3>
 Disable S3
 <a class=anchor href=#disable-s3>#</a>
-</h2>
+</h3>
 <ol>
 <li>Click <strong>DISABLE</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc23.png alt="Graphical user interface, text, application, email Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc23.png alt="Graphical user interface, text, application, email Description
 automatically
 generated"></li>
 </ol>
-<h2 id=configure-s3-vpc-endpoint>
+<h3 id=configure-s3-vpc-endpoint>
 Configure S3 VPC endpoint
 <a class=anchor href=#configure-s3-vpc-endpoint>#</a>
-</h2>
+</h3>
 <p>See the Amazon Virtual Private Cloud AWS PrivateLink documentation:
 <a href=https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html>Endpoints for Amazon
 S3</a></p>
-<h1 id=associate-vmware-cloud-director-service-instance>
+<h2 id=associate-vmware-cloud-director-service-instance>
 Associate VMware Cloud Director service Instance
 <a class=anchor href=#associate-vmware-cloud-director-service-instance>#</a>
-</h1>
+</h2>
 <ol>
 <li>
 <p>Click Associate a VMC SDDC<br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc24.png alt="Graphical user interface, text, application Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc24.png alt="Graphical user interface, text, application Description
 automatically generated"></p>
 </li>
 <li>
 <p>Enter fields and then click on <strong>ASSOCIATE a VMC SDDC</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc25.png alt="Graphical user interface, text, application Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc25.png alt="Graphical user interface, text, application Description
 automatically
 generated"></p>
 </li>
 </ol>
 <p>Note: If you only have one host in your SDDC, you can use the predefined
 network named &ldquo;sddc-cgw-network-1&rdquo; for the Proxy VM Network field.</p>
-<h1 id=associate-custom-domain-optional>
+<h2 id=associate-custom-domain-optional>
 Associate Custom Domain (Optional)
 <a class=anchor href=#associate-custom-domain-optional>#</a>
-</h1>
+</h2>
 <p>Allows the provider to use their own domain name for VMware Cloud
 Director service Instances.</p>
 <ol>
 <li>
-<p><img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc26.png alt>Click on <strong>ACTIONS</strong> and then click on
+<p><img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc26.png alt>Click on <strong>ACTIONS</strong> and then click on
 <strong>Associate Custom Domain</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc27.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc27.png alt="Graphical user interface, application Description automatically
 generated"></p>
 <p>See the VMware Cloud Director service documentation <a href=https://docs.vmware.com/en/VMware-Cloud-Director-service/services/using-vmware-cloud-director-service/GUID-22AAE8E1-3366-418C-96AA-287F59C628D3.html>Customize the
 DNS and Certificate
@@ -436,32 +439,32 @@ Settings</a>
 for more details.</p>
 </li>
 </ol>
-<h1 id=vmware-cloud-director-service-instance-configuration>
+<h2 id=vmware-cloud-director-service-instance-configuration>
 VMware Cloud Director service Instance Configuration
 <a class=anchor href=#vmware-cloud-director-service-instance-configuration>#</a>
-</h1>
-<h2 id=launch-the-provider-portal>
+</h2>
+<h3 id=launch-the-provider-portal>
 Launch the Provider Portal
 <a class=anchor href=#launch-the-provider-portal>#</a>
-</h2>
+</h3>
 <ol>
 <li>
 <p>To use VMware Cloud Services as an Identity Provider for VMware
 Cloud Director service Instances, select Configure VMware Cloud
 Services as instance IDP from the Actions menu of each VMware Cloud
-Director service Instance. <img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc28.png alt="Graphical user interface, application
+Director service Instance. <img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc28.png alt="Graphical user interface, application
 Description automatically
 generated"></p>
 </li>
 <li>
 <p>Select <strong>Configure IDP</strong></p>
-<p><img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc29.png alt="Graphical user interface, text, application Description
+<p><img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc29.png alt="Graphical user interface, text, application Description
 automatically generated"></p>
 </li>
 <li>
-<p><img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc26.png alt>Click on
+<p><img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc26.png alt>Click on
 <strong>OPEN INSTANCE</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc30.png alt="Graphical user interface, text, application Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc30.png alt="Graphical user interface, text, application Description
 automatically generated"></p>
 </li>
 </ol>
@@ -472,33 +475,33 @@ Only or No Access roles to all IDP enabled VMware Cloud Director service
 Instances. The Admin role will login to instances with the CDS Provider
 Admin role. The Read Only role will login to instances with the CDS
 Provider Admin Read Only role.</p>
-<h2 id=create-provider-vdc>
+<h3 id=create-provider-vdc>
 Create Provider VDC
 <a class=anchor href=#create-provider-vdc>#</a>
-</h2>
+</h3>
 <ol>
 <li>
 <p>Click on <strong>NEW</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc31.png alt="Graphical user interface, text Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc31.png alt="Graphical user interface, text Description automatically
 generated"></p>
 </li>
 <li>
 <p>Enter details and then click on <strong>NEXT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc32.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc32.png alt="Graphical user interface, application Description automatically
 generated"></p>
 </li>
 <li>
 <p>Select vCenter and then click on <strong>NEXT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc33.png alt="Graphical user interface, text, application, email Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc33.png alt="Graphical user interface, text, application, email Description
 automatically generated"></p>
 </li>
 <li>
 <p>Select Resource Pool, Hardware version and then click on <strong>NEXT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc34.png alt></p>
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc34.png alt></p>
 </li>
 <li>
 <p>Select the VMC Workload Storage Policy &ndash; Cluster-1 and then click
-on NEXT. <img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc35.png alt></p>
+on NEXT. <img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc35.png alt></p>
 </li>
 </ol>
 <p>Note: Make sure that the other storage policies are left unselected.</p>
@@ -506,45 +509,45 @@ on NEXT. <img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infr
 <li>
 <p>Select NSX-T manager and Geneve Network pool and then click on
 Next.<br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc36.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc36.png alt="Graphical user interface, application Description automatically
 generated"></p>
 </li>
 <li>
 <p>Click on <strong>FINISH</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc37.png alt="Graphical user interface, application, email Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc37.png alt="Graphical user interface, application, email Description
 automatically generated"></p>
 </li>
 </ol>
-<h2 id=update-external-network-with-valid-ip-range>
+<h3 id=update-external-network-with-valid-ip-range>
 Update External Network with valid IP range
 <a class=anchor href=#update-external-network-with-valid-ip-range>#</a>
-</h2>
+</h3>
 <ol>
 <li>
 <p>Click on Tier-0 Gateways in the left pane and then click the name of
 the pre-existing External Network.<br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc38.png alt="Graphical user interface, text, application Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc38.png alt="Graphical user interface, text, application Description
 automatically generated"></p>
 </li>
 <li>
 <p>Click on Network specification and then <strong>Edit</strong>.<br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc39.png alt="Graphical user interface, text, application Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc39.png alt="Graphical user interface, text, application Description
 automatically generated"></p>
 </li>
 <li>
 <p>Delete existing network spec by selecting it and then clicking on
 <strong>DELETE</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc40.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc40.png alt="Graphical user interface, application Description automatically
 generated"></p>
 </li>
 <li>
 <p>Click on <strong>NEW</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc41.png alt="Graphical user interface, text, application Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc41.png alt="Graphical user interface, text, application Description
 automatically generated"></p>
 </li>
 <li>
 <p>Enter <strong>Gateway CIDR</strong> and click on the pencil.<br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc42.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc42.png alt="Graphical user interface, application Description automatically
 generated"></p>
 </li>
 </ol>
@@ -559,120 +562,120 @@ for use in an NSX-T environment like VMware Cloud on AWS.</p>
 <ol start=27>
 <li>
 <p>Enter <strong>Static IP Pools</strong>, click <strong>ADD</strong> and then click on <strong>SAVE</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc43.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc43.png alt="Graphical user interface, application Description automatically
 generated"></p>
 </li>
 <li>
 <p>Click on **Save<br>
-**<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc44.png alt="Graphical user interface, text, application Description
+**<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc44.png alt="Graphical user interface, text, application Description
 automatically generated"></p>
 </li>
 </ol>
-<h1 id=create-inventory-group-for-external-networks>
+<h2 id=create-inventory-group-for-external-networks>
 Create Inventory Group for External Networks
 <a class=anchor href=#create-inventory-group-for-external-networks>#</a>
-</h1>
+</h2>
 <ol>
 <li>
 <p>Click Add Group<br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc45.png alt="Graphical user interface, text, application, email Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc45.png alt="Graphical user interface, text, application, email Description
 automatically generated"></p>
 </li>
 <li>
 <p>Enter Name and click on <strong>Set Members</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc46.png alt="Graphical user interface, application, Teams Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc46.png alt="Graphical user interface, application, Teams Description
 automatically generated"></p>
 </li>
 <li>
 <p>Click on <strong>IP Addresses</strong>, enter the range associated with the
 external network previously specified and then click on <strong>APPLY</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc47.png alt="Graphical user interface, text, application, email, Teams
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc47.png alt="Graphical user interface, text, application, email, Teams
 Description automatically
 generated"></p>
 </li>
 <li>
 <p>Click on SAVE<br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc48.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc48.png alt="Graphical user interface, application Description automatically
 generated"></p>
 </li>
 </ol>
-<h1 id=create-firewall-rule-to-allow-vmware-cloud-director-service-tenant-traffic>
+<h2 id=create-firewall-rule-to-allow-vmware-cloud-director-service-tenant-traffic>
 Create Firewall Rule to Allow VMware Cloud Director service Tenant Traffic
 <a class=anchor href=#create-firewall-rule-to-allow-vmware-cloud-director-service-tenant-traffic>#</a>
-</h1>
+</h2>
 <ol>
 <li>
 <p>Click <strong>Add Rule</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc49.png alt="Graphical user interface, text, application, email Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc49.png alt="Graphical user interface, text, application, email Description
 automatically
 generated"></p>
 </li>
 <li>
 <p>Add rule details and then click on <strong>PUBLISH.</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc50.png alt="Graphical user interface, text, application Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc50.png alt="Graphical user interface, text, application Description
 automatically generated"></p>
 </li>
 </ol>
 <p>Notes: For Sources, make sure to select the Group created previously
 (VMware Cloud Director service External Network Ips). For Applied To,
 make sure to select Internet Interface.</p>
-<h1 id=create-first-tenant>
+<h2 id=create-first-tenant>
 Create First Tenant
 <a class=anchor href=#create-first-tenant>#</a>
-</h1>
-<h2 id=create-organization>
+</h2>
+<h3 id=create-organization>
 Create Organization
 <a class=anchor href=#create-organization>#</a>
-</h2>
+</h3>
 <ol>
 <li>Click on <strong>New</strong></li>
 </ol>
-<p><img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc51.png alt="Graphical user interface, text, application Description automatically
+<p><img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc51.png alt="Graphical user interface, text, application Description automatically
 generated"></p>
 <ol start=33>
 <li>Fill in details and click on <strong>CREATE</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc52.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc52.png alt="Graphical user interface, application Description automatically
 generated"></li>
 </ol>
-<h2 id=create-organization-vdc>
+<h3 id=create-organization-vdc>
 Create Organization VDC
 <a class=anchor href=#create-organization-vdc>#</a>
-</h2>
+</h3>
 <ol>
 <li>
 <p>Click on <strong>NEW</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc53.png alt="Graphical user interface, text Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc53.png alt="Graphical user interface, text Description automatically
 generated"></p>
 </li>
 <li>
 <p>Fill in General details and click <strong>NEXT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc54.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc54.png alt="Graphical user interface, application Description automatically
 generated"></p>
 </li>
 <li>
 <p>Select Organization and click <strong>NEXT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc55.png alt="Background pattern Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc55.png alt="Background pattern Description automatically
 generated"></p>
 </li>
 <li>
 <p>Select Provider VDC and click <strong>NEXT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc56.png alt="Graphical user interface, text, application, email Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc56.png alt="Graphical user interface, text, application, email Description
 automatically
 generated"></p>
 </li>
 <li>
 <p>Select Allocation Model and click <strong>NEXT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc57.png alt="Graphical user interface, text, application, email Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc57.png alt="Graphical user interface, text, application, email Description
 automatically generated"></p>
 </li>
 <li>
 <p>Enter details and click <strong>NEXT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc58.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc58.png alt="Graphical user interface, application Description automatically
 generated"></p>
 </li>
 <li>
 <p>Select Storage Policy and click <strong>NEXT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc59.png alt="Graphical user interface, text, application Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc59.png alt="Graphical user interface, text, application Description
 automatically generated"></p>
 </li>
 </ol>
@@ -681,77 +684,77 @@ required.</p>
 <ol start=40>
 <li>
 <p>Select Network Pool and click <strong>NEXT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc60.png alt="Graphical user interface, text, application, email Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc60.png alt="Graphical user interface, text, application, email Description
 automatically generated"></p>
 </li>
 <li>
 <p>Confirm and click <strong>FINISH</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc61.png alt="Graphical user interface, text, application Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc61.png alt="Graphical user interface, text, application Description
 automatically generated"></p>
 </li>
 </ol>
-<h2 id=create-edge-gateway>
+<h3 id=create-edge-gateway>
 Create Edge Gateway
 <a class=anchor href=#create-edge-gateway>#</a>
-</h2>
+</h3>
 <ol>
 <li>
 <p>Click on <strong>NEW</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc62.png alt="Graphical user interface, text, application Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc62.png alt="Graphical user interface, text, application Description
 automatically generated"></p>
 </li>
 <li>
 <p>Select Organization VDC and click on <strong>NEXT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc63.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc63.png alt="Graphical user interface, application Description automatically
 generated"></p>
 </li>
 <li>
 <p>Enter <strong>Name</strong> and click on <strong>NEXT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc64.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc64.png alt="Graphical user interface, application Description automatically
 generated"></p>
 </li>
 <li>
 <p>Select External Network and click on <strong>NEXT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc65.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc65.png alt="Graphical user interface, application Description automatically
 generated"></p>
 </li>
 <li>
 <p>Select Edge Cluster and click on <strong>NEXT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc66.png alt="Graphical user interface, text, application, email Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc66.png alt="Graphical user interface, text, application, email Description
 automatically
 generated"></p>
 </li>
 <li>
 <p>Add IP Allocation, click <strong>ADD,</strong> then click on <strong>NEXT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc67.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc67.png alt="Graphical user interface, application Description automatically
 generated"></p>
 </li>
 <li>
 <p>Review and click <strong>FINISH</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc68.png alt="Graphical user interface, text, application, email Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc68.png alt="Graphical user interface, text, application, email Description
 automatically generated"></p>
 </li>
 </ol>
-<h2 id=request-a-public-ip-for-tenants-edge>
+<h3 id=request-a-public-ip-for-tenants-edge>
 Request a public IP for Tenant&rsquo;s edge
 <a class=anchor href=#request-a-public-ip-for-tenants-edge>#</a>
-</h2>
+</h3>
 <ol>
 <li>
 <p>Click REQUEST NEW IP<br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc69.png alt="Graphical user interface, text, application, email Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc69.png alt="Graphical user interface, text, application, email Description
 automatically generated"></p>
 </li>
 <li>
 <p>Enter <strong>Notes</strong> and then click <strong>SAVE</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc70.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc70.png alt="Graphical user interface, application Description automatically
 generated"></p>
 </li>
 </ol>
-<h2 id=create-a-nat-pointing-to-the-tenants-edge-gateway>
+<h3 id=create-a-nat-pointing-to-the-tenants-edge-gateway>
 Create a NAT pointing to the tenant&rsquo;s edge gateway
 <a class=anchor href=#create-a-nat-pointing-to-the-tenants-edge-gateway>#</a>
-</h2>
+</h3>
 <ol>
 <li>
 <p>Click on <strong>ADD NAT RULE</strong>.</p>
@@ -762,87 +765,87 @@ IP matches the IP assigned to the edge gateway.</p>
 </li>
 <li>
 <p>Click <strong>SAVE</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc71.png alt="Graphical user interface Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc71.png alt="Graphical user interface Description automatically
 generated"></p>
 </li>
 </ol>
-<h2 id=create-organization-network>
+<h3 id=create-organization-network>
 Create Organization network
 <a class=anchor href=#create-organization-network>#</a>
-</h2>
+</h3>
 <ol>
 <li>
 <p>Open Tenant portal by click on the box with the arrow next to the
 selected organization<br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc72.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc72.png alt="Graphical user interface, application Description automatically
 generated"></p>
 </li>
 <li>
 <p>Click on <strong>NEW</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc73.png alt="Graphical user interface, application, website Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc73.png alt="Graphical user interface, application, website Description
 automatically generated"></p>
 </li>
 <li>
 <p>Select Scope and then click <strong>NEXT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc74.png alt="Graphical user interface, text, application Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc74.png alt="Graphical user interface, text, application Description
 automatically generated"></p>
 </li>
 <li>
 <p>Select Routed and then click <strong>NEXT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc75.png alt="Graphical user interface, text, application, email Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc75.png alt="Graphical user interface, text, application, email Description
 automatically
 generated"></p>
 </li>
 <li>
 <p>Select edge and the click <strong>NEXT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc76.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc76.png alt="Graphical user interface, application Description automatically
 generated"></p>
 </li>
 <li>
 <p>Enter name and CIDR and then click on <strong>NEXT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc77.png alt="Graphical user interface, text, application Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc77.png alt="Graphical user interface, text, application Description
 automatically
 generated"></p>
 </li>
 <li>
 <p>Enter <strong>Static IP Pool</strong> and then click on <strong>NEXT</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc78.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc78.png alt="Graphical user interface, application Description automatically
 generated"></p>
 </li>
 <li>
-<p>Enter DNS and then click on <strong>NEXT</strong><img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc79.png alt="Graphical user interface,
+<p>Enter DNS and then click on <strong>NEXT</strong><img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc79.png alt="Graphical user interface,
 text, application Description automatically
 generated"></p>
 </li>
 <li>
 <p>Review and click <strong>FINISH</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc80.png alt="Graphical user interface, text, application, email Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc80.png alt="Graphical user interface, text, application, email Description
 automatically generated"></p>
 </li>
 </ol>
-<h2 id=create-snat-to-allow-outbound-traffic>
+<h3 id=create-snat-to-allow-outbound-traffic>
 Create SNAT to allow outbound traffic
 <a class=anchor href=#create-snat-to-allow-outbound-traffic>#</a>
-</h2>
+</h3>
 <ol>
 <li>
 <p>Select proper edge gateway and then under NAT click on <strong>NEW</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc81.png alt="Graphical user interface, text, application, email Description
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc81.png alt="Graphical user interface, text, application, email Description
 automatically
 generated"></p>
 </li>
 <li>
 <p>Enter SNAT information and then click on <strong>SAVE.</strong><br>
-<img src=../../../static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc82.png alt="Graphical user interface, application Description automatically
+<img src=/static/images/cloud-infrastructure-cds-vmc/cloud-infrastructure-cds-vmc82.png alt="Graphical user interface, application Description automatically
 generated"></p>
 </li>
 </ol>
 <p>Note: Make sure External IP is on the Edge and that the Internal IP
 matches the org network subnet</p>
-<h1 id=conclusion>
+<h2 id=conclusion>
 Conclusion
 <a class=anchor href=#conclusion>#</a>
-</h1>
+</h2>
 <p>At this point, the VMware Cloud Director service Instance is ready to
 deploy tenant VMs. For more information see the documentation for
 <a href=https://docs.vmware.com/en/VMware-Cloud-on-AWS/index.html>VMware Cloud on
@@ -865,7 +868,8 @@ Director</a>.</p>
 <div class=book-toc-content>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#vmware-cloud-director-service-for-vmware-cloud-on-aws-deployment-guide>VMware Cloud Director Service for VMware Cloud on AWS Deployment Guide</a></li>
+<li><a href=#vmware-cloud-director-service-for-vmware-cloud-on-aws-deployment-guide>VMware Cloud Director Service for VMware Cloud on AWS Deployment Guide</a>
+<ul>
 <li><a href=#prepare-a-vmware-cloud-partner-navigator-provider-organization>Prepare a VMware Cloud Partner Navigator Provider Organization</a></li>
 <li><a href=#deploy-a-sddc>Deploy a SDDC</a></li>
 <li><a href=#deploy-vmware-cloud-director-service-instance>Deploy VMware Cloud Director service Instance</a></li>
@@ -900,6 +904,8 @@ Director</a>.</p>
 </ul>
 </li>
 <li><a href=#conclusion>Conclusion</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </div>
