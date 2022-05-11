@@ -2,19 +2,21 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Planning and Preparation #  Your content comes here!">
+<meta name=description content="Planning and Preparation #  Everything you need to know before deploying VMware Cloud Director Availability.
+Hardware Requirements #     Appliance Type Description and Services Hardware Requirements     Cloud Replication Management Appliance A dedicated appliance, that runs the following VMware Cloud Director Availability services: * Manager Service * Cloud Service with embedded VMware Cloud Director Availability Tenant Portal - 2 vCPUs - 4 GB RAM">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Planning and Preparation">
-<meta property="og:description" content="Planning and Preparation #  Your content comes here!">
+<meta property="og:description" content="Planning and Preparation #  Everything you need to know before deploying VMware Cloud Director Availability.
+Hardware Requirements #     Appliance Type Description and Services Hardware Requirements     Cloud Replication Management Appliance A dedicated appliance, that runs the following VMware Cloud Director Availability services: * Manager Service * Cloud Service with embedded VMware Cloud Director Availability Tenant Portal - 2 vCPUs - 4 GB RAM">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/planning/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-05-10T15:14:43+02:00">
+<meta property="article:modified_time" content="2022-05-11T14:02:48+02:00">
 <title>Planning and Preparation | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.97cfda4f5e3c9fa49a2bf8d401f4ddc0eec576c99cdcf6afbec19173200c37db.css integrity="sha256-l8/aT148n6SaK/jUAfTdwO7Fdsmc3PavvsGRcyAMN9s=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.816bbec3c1f32f8e7d4c8945cfe26938213b9b5fe2cc8a6b04475f4885e3a012.js integrity="sha256-gWu+w8HzL459TIlFz+JpOCE7m1/izIprBEdfSIXjoBI=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.8ab9943c318020cb976ceb6a1d0a0f683c8225881247c986193d0098f5d53b72.js integrity="sha256-irmUPDGAIMuXbOtqHQoPaDyCJYgSR8mGGT0AmPXVO3I=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -100,7 +102,19 @@ VMware Cloud Solutions
 <aside class="hidden clearfix">
 <nav id=TableOfContents>
 <ul>
-<li><a href=#planning-and-preparation>Planning and Preparation</a></li>
+<li><a href=#planning-and-preparation>Planning and Preparation</a>
+<ul>
+<li><a href=#hardware-requirements>Hardware Requirements</a></li>
+<li><a href=#other-requirements>Other Requirements</a></li>
+<li><a href=#network-ports>Network Ports</a></li>
+<li><a href=#important-considerations>Important Considerations</a>
+<ul>
+<li><a href=#replication-traffic>Replication Traffic</a></li>
+<li><a href=#storage-requirements>Storage Requirements</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
@@ -109,7 +123,182 @@ VMware Cloud Solutions
 Planning and Preparation
 <a class=anchor href=#planning-and-preparation>#</a>
 </h1>
-<p>Your content comes here!</p>
+<p>Everything you need to know before deploying VMware Cloud Director Availability.</p>
+<h2 id=hardware-requirements>
+Hardware Requirements
+<a class=anchor href=#hardware-requirements>#</a>
+</h2>
+<table>
+<thead>
+<tr>
+<th>Appliance Type</th>
+<th>Description and Services</th>
+<th>Hardware Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cloud Replication Management Appliance</td>
+<td>A dedicated appliance, that runs the following VMware Cloud Director Availability services: * Manager Service * Cloud Service with embedded VMware Cloud Director Availability Tenant Portal</td>
+<td>- 2 vCPUs <br>- 4 GB RAM<br>- 10 GB Storage</td>
+</tr>
+<tr>
+<td>Cloud Replicator Appliance</td>
+<td>A dedicated appliance for the Replicator Service that handles the replication traffic for a site. For large-scale environments, you can deploy more than one Cloud Replicator Appliance per cloud site.</td>
+<td>- 4 vCPUs <br>- 6 GB RAM <br>- 10 GB Storage</td>
+</tr>
+<tr>
+<td>Cloud Tunnel Appliance</td>
+<td>A dedicated appliance for the Tunnel Service.</td>
+<td>- 2 vCPUs <br>- 2 GB RAM<br>- 10 GB Storage</td>
+</tr>
+</tbody>
+</table>
+<h2 id=other-requirements>
+Other Requirements
+<a class=anchor href=#other-requirements>#</a>
+</h2>
+<p>The resource vCenter Server instances within a VMware Cloud Director site must be within the same single sign-on domain. All Replicator Service, Manager Service, Cloud Service, and Tunnel Service instances within the respective site must be configured with that same single sign-on domain.</p>
+<h2 id=network-ports>
+Network Ports
+<a class=anchor href=#network-ports>#</a>
+</h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Destination</th>
+<th>Port Number</th>
+<th>Protocol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VMware Cloud Director Availability Replicator</td>
+<td>ESXi Hosts</td>
+<td>902</td>
+<td>TCP and UDP</td>
+<td>Used by the VMware Cloud Director Availability Replicator service for replication traffic to the destination ESXi hosts.</td>
+</tr>
+<tr>
+<td>VMware Cloud Director Availability Replicator</td>
+<td>VMware Platform Services Controller®</td>
+<td>443</td>
+<td>TCP</td>
+<td>Used for single sign-on and Lookup Service communication.</td>
+</tr>
+<tr>
+<td>VMware Cloud Director Availability Replicator</td>
+<td>vCenter Server</td>
+<td>443</td>
+<td>TCP</td>
+<td>Used by the local VMware Cloud Director Availability vApp Replication Manager service or the VMware Cloud Director Availability Replicator service for communication with the local vCenter Server.</td>
+</tr>
+<tr>
+<td>VMware Cloud Director Availability Replicator</td>
+<td>VMware Cloud Director Availability vApp Replication Manager</td>
+<td>8044</td>
+<td>TCP</td>
+<td>Used for vCloud Availability vApp Replication Manager management from the vCloud Availability Replicator.</td>
+</tr>
+<tr>
+<td>VMware Cloud Director Availability Replicator</td>
+<td>VMware Cloud Director Availability Tunnel</td>
+<td>8048</td>
+<td>TCP</td>
+<td>Used for VMware Cloud Director Availability vApp Replication Manager management from the VMware Cloud Director Availability Replicator.</td>
+</tr>
+<tr>
+<td>VMware Cloud Director Availability vApp Replication Manager</td>
+<td>VMware Platform Services Controller®</td>
+<td>443</td>
+<td>TCP</td>
+<td>Used for single sign-on and Lookup Service communication.</td>
+</tr>
+<tr>
+<td>VMware Cloud Director Availability vApp Replication Manager</td>
+<td>VMware Cloud Director service</td>
+<td>443</td>
+<td>TCP</td>
+<td>Used for VMware Cloud Director Director management from the VMware Cloud Director Availability vApp Replication Manager. </td>
+</tr>
+<tr>
+<td>VMware Cloud Director Availability vApp Replication Manager</td>
+<td>VMware Cloud Director Availability Replicator</td>
+<td>8043</td>
+<td>TCP</td>
+<td>Used for VMware Cloud Director Availability Replicator management from the VMware Cloud Director Availability vApp Replication Manager. </td>
+</tr>
+<tr>
+<td>VMware Cloud Director Availability vApp Replication Manager</td>
+<td>VMware Cloud Director Availability Tunnel</td>
+<td>8047, 8048</td>
+<td>TCP</td>
+<td>Used for VMware Cloud Director Availability Tunnel management from the VMware Cloud Director Availability vApp Replication Manager. </td>
+</tr>
+<tr>
+<td>VMware Cloud Director Availability Tunnel</td>
+<td>VMware Cloud Director Availability Replicator</td>
+<td>8043, 44045</td>
+<td>TCP</td>
+<td>Used for VMware Cloud Director Availability Replicator management from the VMware Cloud Director Availability Tunnel. </td>
+</tr>
+<tr>
+<td>VMware Cloud Director Availability Tunnel</td>
+<td>VMware Cloud Director Availability vApp Replication Manager</td>
+<td>8044, 8046</td>
+<td>TCP</td>
+<td>Used for VMware Cloud Director Availability vApp Replication Manager service management from the VMware Cloud Director Availability Tunnel appliance. </td>
+</tr>
+<tr>
+<td>VMware Cloud Director Availability Tunnel</td>
+<td>VMware Platform Services Controller®</td>
+<td>443</td>
+<td>TCP</td>
+<td>Used for VMware Platform Services Controller® communication management from the VMware Cloud Director Availability vApp Replication Manager and VMware Cloud Director Availability Replicator. </td>
+</tr>
+<tr>
+<td>ESXi Hosts</td>
+<td>VMware Cloud Director Availability Replicator</td>
+<td>31031, 44045, 44046</td>
+<td>TCP</td>
+<td>Used by the ESXi hosts for replication traffic to the destination VMware Cloud Director Availability Replicator service. </td>
+</tr>
+<tr>
+<td>Firewall</td>
+<td>VMware Cloud Director Availability Tunnel</td>
+<td>8048</td>
+<td>TCP</td>
+<td>Used for redirecting external traffic management to the VMware Cloud Director Availability Tunnel service. </td>
+</tr>
+</tbody>
+</table>
+<h2 id=important-considerations>
+Important Considerations
+<a class=anchor href=#important-considerations>#</a>
+</h2>
+<h3 id=replication-traffic>
+Replication Traffic
+<a class=anchor href=#replication-traffic>#</a>
+</h3>
+<p>A typical good practice is to separate the management and resource vCenters/clusters. The number of hosts in resource vCenters/clusters is significantly higher than the number in the management cluster.
+A recommendation is to deploy Replicators on resource hosts and not in the management cluster so more Replicators can be deployed and a DRS rule can be created to keep the Replicator VMs on different hosts for better load distribution.
+Also, the replication traffic path from the Replicator appliances to the replication network on the resource hosts will be enhanced.
+The hosts can use the management vmkernel interface to communicate with the Replicator. Another option is to have a dedicated vmkernel interface for replication purposes only.
+Using the management vmkernel simplifies the configuration but significantly reduces the control options available to the administrator and can lead to a risk for routing uncompressed replication traffic, which is highly non-desired.
+The general recommendation is to use a dedicated vmkernel for the replication traffic. In this case, the administrator will have better control over the infrastructure.
+Using NIOC, the administrator will be able to set shares for different types of vmkernel traffic. It enables carrying the replication traffic over dedicated uplinks.</p>
+<p><strong>Note</strong>: If any other VMware HBR-based replication products (vSphere Replication, VMware Site Recovery Manager or VMware HCX) are used in this cloud, configuring a dedicated vmkernel interface marked with “vSphere Replication” and “vSphere NFC Replication” will lead to all of these products try to use it. This means the network connectivity between their appliances and the replication vmkernel interfaces will be required to enable all of these products to operate successfully. For more information, please consult with respective product documentation.</p>
+<h3 id=storage-requirements>
+Storage Requirements
+<a class=anchor href=#storage-requirements>#</a>
+</h3>
+<p>For a successful test failover, the destination storage must accommodate double the source virtual machine disk size. VMware Cloud Director Availability 4.2 and later do not consume double the disk size during failover.</p>
+<ul>
+<li>Example required space in the datastore, for a source virtual machine with a 2 TB virtual disk. When the replication is created, VMware Cloud Director Availability allocates 2 TB in the destination storage. VMware Cloud Director Availability allocates additional 2 TB when starting a test failover task. After finishing the test failover task, the additional 2 TB space is unallocated.</li>
+<li>Example for a VMware vSAN storage, with the same virtual machine. The same storage implication applies, where the vSAN must accommodate double the virtual machine disk size. When the replication is created in this example, VMware Cloud Director Availability allocates 2 TB multiplied by the vSAN_Protection_Level_Disk_Space_Penalty. When starting a test failover task, additional 2 TB are allocated multiplied by the vSAN_Protection_Level_Disk_Space_Penalty.</li>
+</ul>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
@@ -124,7 +313,19 @@ Planning and Preparation
 <div class=book-toc-content>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#planning-and-preparation>Planning and Preparation</a></li>
+<li><a href=#planning-and-preparation>Planning and Preparation</a>
+<ul>
+<li><a href=#hardware-requirements>Hardware Requirements</a></li>
+<li><a href=#other-requirements>Other Requirements</a></li>
+<li><a href=#network-ports>Network Ports</a></li>
+<li><a href=#important-considerations>Important Considerations</a>
+<ul>
+<li><a href=#replication-traffic>Replication Traffic</a></li>
+<li><a href=#storage-requirements>Storage Requirements</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </nav>
 </div>
