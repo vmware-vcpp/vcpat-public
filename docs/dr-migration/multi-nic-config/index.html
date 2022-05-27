@@ -1,0 +1,555 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="VMware Cloud Director Availability Multi-NIC Configuration #  Overview #  Placing the VMware Cloud Director Availability appliances in different networks is something common for Service Providers. This leads to the need to use multiple network interfaces to support that scenario and guarantee the product will continue operating as per design.
+There are a few main reasons that lead to this design:
+  Bypass a router
+  Port forwarding is not possible">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="VMware Cloud Director Availability Multi-NIC Configuration">
+<meta property="og:description" content="VMware Cloud Director Availability Multi-NIC Configuration #  Overview #  Placing the VMware Cloud Director Availability appliances in different networks is something common for Service Providers. This leads to the need to use multiple network interfaces to support that scenario and guarantee the product will continue operating as per design.
+There are a few main reasons that lead to this design:
+  Bypass a router
+  Port forwarding is not possible">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/multi-nic-config/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-05-27T13:43:46+02:00">
+<title>VMware Cloud Director Availability Multi-NIC Configuration | VMware Cloud Provider Architecture Toolkit</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.97cfda4f5e3c9fa49a2bf8d401f4ddc0eec576c99cdcf6afbec19173200c37db.css integrity="sha256-l8/aT148n6SaK/jUAfTdwO7Fdsmc3PavvsGRcyAMN9s=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.4ee2ace9a907b26ef922b5f2519cb7d9fb46a839a5de5ef61588bc0a0b241ed7.js integrity="sha256-TuKs6akHsm75IrXyUZy32ftGqDml3l72FYi8CgskHtc=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>VMware Cloud Provider Architecture Toolkit</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li><a href=/docs/cloud-infrastructure/><strong>Cloud Infrastructure</strong></a>
+<ul>
+<li><a href=/docs/cloud-infrastructure/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/cloud-infrastructure/design/>Design</a></li>
+<li><a href=/docs/cloud-infrastructure/implementation/>Implementation</a></li>
+<li><a href=/docs/cloud-infrastructure/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/networking-security/><strong>Networking & Security</strong></a>
+<ul>
+<li><a href=/docs/networking-security/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/networking-security/design/>Design</a></li>
+<li><a href=/docs/networking-security/implementation/>Implementation</a></li>
+<li><a href=/docs/networking-security/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/dr-migration/><strong>DR & Migration</strong></a>
+<ul>
+<li><a href=/docs/dr-migration/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/dr-migration/design/>Design</a></li>
+<li><a href=/docs/dr-migration/implementation/>Implementation</a></li>
+<li><a href=/docs/dr-migration/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/developer-ready-cloud/><strong>Developer Ready Cloud</strong></a>
+<ul>
+<li><a href=/docs/developer-ready-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/developer-ready-cloud/design/>Design</a></li>
+<li><a href=/docs/developer-ready-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/developer-ready-cloud/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/sovereign-cloud/><strong>Sovereign Cloud</strong></a>
+<ul>
+<li><a href=/docs/sovereign-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/sovereign-cloud/design/>Design</a></li>
+<li><a href=/docs/sovereign-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/sovereign-cloud/operations/>Operations</a>
+<br></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://cloudsolutions.vmware.com target=_blank rel=noopener>
+VMware Cloud Solutions
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>VMware Cloud Director Availability Multi-NIC Configuration</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#vmware-cloud-director-availability-multi-nic-configuration>VMware Cloud Director Availability Multi-NIC Configuration</a>
+<ul>
+<li><a href=#overview>Overview</a></li>
+<li><a href=#design>Design</a></li>
+<li><a href=#moving-the-default-gateway>Moving the Default Gateway</a></li>
+<li><a href=#reconfigure-the-vmware-cloud-director-availability-appliances>Reconfigure the VMware Cloud Director Availability Appliances</a>
+<ul>
+<li><a href=#cloud-tunnel>Cloud Tunnel</a></li>
+<li><a href=#cloud-replication-manager>Cloud Replication Manager</a></li>
+<li><a href=#cloud-replicators>Cloud Replicator(s)</a></li>
+</ul>
+</li>
+<li><a href=#upgrade>Upgrade</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=vmware-cloud-director-availability-multi-nic-configuration>
+VMware Cloud Director Availability Multi-NIC Configuration
+<a class=anchor href=#vmware-cloud-director-availability-multi-nic-configuration>#</a>
+</h1>
+<h2 id=overview>
+Overview
+<a class=anchor href=#overview>#</a>
+</h2>
+<p>Placing the VMware Cloud Director Availability appliances in different networks is something common for Service Providers. This leads to the need to use multiple network interfaces to support that scenario and guarantee the product will continue operating as per design.</p>
+<p>There are a few main reasons that lead to this design:</p>
+<ul>
+<li>
+<p>Bypass a router</p>
+</li>
+<li>
+<p>Port forwarding is not possible</p>
+</li>
+<li>
+<p>Inability to route the replication traffic</p>
+</li>
+<li>
+<p>Separation of the incoming replications to different isolated networks</p>
+</li>
+</ul>
+<h2 id=design>
+Design
+<a class=anchor href=#design>#</a>
+</h2>
+<p>You need to take two considerations before the implementation of VMware Cloud Director Availability appliances that will have multiple NICs:</p>
+<ul>
+<li>
+<p>Which interface will be used for the communication with the rest of the VMware Cloud Director Availability appliances?</p>
+</li>
+<li>
+<p>How will the routing be organized - to which interface the default gateway will be configured and what static routes will be required?</p>
+</li>
+</ul>
+<p>The <strong>General recommendation (GR01)</strong> is to deploy the appliances with the interfaces that will be used for communicating with each other. When following this recommendation, the VMware Cloud Director Availability services will discover and set to use the first NIC (ens160) and its first IP address. The only additional change that might be required is to move the default gateway to a different NIC and configure one or more static routes on ens160.</p>
+<p><img src=/images/dr-migration/operations/multi-nic-config/example-network-diagram.png alt="Example Network Diagram"></p>
+<h2 id=moving-the-default-gateway>
+Moving the Default Gateway
+<a class=anchor href=#moving-the-default-gateway>#</a>
+</h2>
+<p>To perform the necessary steps, you have to connect to the appliance. The recommended way is to use DCUI because the configuration changes might lead to losing network connectivity.</p>
+<ol>
+<li>First, you need to unconfigure ens160. Example command:</li>
+</ol>
+<p><em><code>/opt/vmware/h4/bin/net.py unconfigure-nic ens160</code></em></p>
+<ol start=2>
+<li>Then configure only the IP address of ens160 without setting a default gateway on it. Example command:</li>
+</ol>
+<p><em><code> /opt/vmware/h4/bin/net.py configure-nic --static -a 192.168.10.10/24 ens160</code></em></p>
+<ol start=3>
+<li>Configure the static route(s) for ens160. Example command:</li>
+</ol>
+<p><em><code> /opt/vmware/h4/bin/net.py add-route ens160 destination_subnet gateway metric</code></em></p>
+<p><strong>Note</strong>: You can use this command multiple times for setting more than one static route.</p>
+<ol start=4>
+<li>(Optional) Configure the name servers. Example command:</li>
+</ol>
+<p><em><code> /opt/vmware/h4/bin/net.py configure-dns --servers ns01_ip ns02_ip --search-domain domain1 domain2 </code></em></p>
+<p>Once you finish the configuration and the appliance is accessible over the network, you can connect through SSH or use the UI.</p>
+<h2 id=reconfigure-the-vmware-cloud-director-availability-appliances>
+Reconfigure the VMware Cloud Director Availability Appliances
+<a class=anchor href=#reconfigure-the-vmware-cloud-director-availability-appliances>#</a>
+</h2>
+<p>For cases where <strong>GR01</strong> is not followed, some actions need to be taken so the VMware Cloud Director Availability appliances can use the IP address set to an interface different from ens160.</p>
+<h3 id=cloud-tunnel>
+Cloud Tunnel
+<a class=anchor href=#cloud-tunnel>#</a>
+</h3>
+<p>It is essential to know that only one of the Cloud Tunnel interfaces can be used for communication with the rest of the VMware Cloud Director Availability appliances in the local site. For pairing purposes all the interfaces of the tunnel appliance can be used.</p>
+<p>To reconfigure the Cloud Tunnel, you need to:</p>
+<ol>
+<li>
+<p>Set IP addresses to all interfaces and configure the static routes.</p>
+</li>
+<li>
+<p>Log in as <strong>root</strong> through SSH to the Tunnel appliance.</p>
+</li>
+<li>
+<p>Authenticate as <strong>root</strong> to the Tunnel service via CLI. Example command:</p>
+</li>
+</ol>
+<p><em><code> h4 -k tunloginroot 'r00t_Password'</code></em></p>
+<ol start=4>
+<li>Check the current service configuration. Example command:</li>
+</ol>
+<p><em><code> h4 -k tunendpoints</code></em></p>
+<p>Expected output:</p>
+<pre tabindex=0><code>{
+    &quot;configured&quot;: {
+        &quot;mgmtAddress&quot;: &quot;192.168.1.2&quot;,
+        &quot;mgmtPort&quot;: 8047,
+        &quot;mgmtPublicAddress&quot;: &quot;192.168.1.2&quot;,
+        &quot;mgmtPublicPort&quot;: 8047,
+        &quot;tunnelAddress&quot;: &quot;192.168.1.2&quot;,
+        &quot;tunnelPort&quot;: 8048,
+        &quot;tunnelPublicAddress&quot;: &quot;vcav01.ber.cloudprovider.pub&quot;,
+        &quot;tunnelPublicPort&quot;: 443
+    },
+    &quot;effective&quot;: {
+        &quot;mgmtAddress&quot;: &quot;192.168.1.2&quot;,
+        &quot;mgmtPort&quot;: 8047,
+        &quot;mgmtPublicAddress&quot;: &quot;192.168.1.2&quot;,
+        &quot;mgmtPublicPort&quot;: 8047,
+        &quot;tunnelAddress&quot;: &quot;192.168.1.2&quot;,
+        &quot;tunnelPort&quot;: 8048,
+        &quot;tunnelPublicAddress&quot;: &quot;vcav01.ber.cloudprovider.pub&quot;,
+        &quot;tunnelPublicPort&quot;: 443
+    }
+}
+</code></pre><p>The important parameter is tunnelAddress. The value of this parameter will be used to configure the other local VMware Cloud Director Availability appliances – Cloud Replication Manager and Cloud Replicator(s) - when they are prepared to communicate with the tunnel. This parameter can be set to a specific IP address or null. Setting it to null will lead to the service discovering the first IP address in the system and use it. In this example, the <strong>ens160</strong> IP address is 192.168.1.2, and the <strong>ens192</strong> IP address is 172.18.24.4.</p>
+<ol start=5>
+<li>Next, we need to configure the Tunnel service to use the IP address of <strong>ens192</strong>. Example command:</li>
+</ol>
+<p><em><code> h4 -k tunsetendpoints "192.168.1.2" "8047" "192.168.1.2" "8047" "172.18.24.4" "8048" "vcav01.ber.cloudprovider.pub" "443"</code></em></p>
+<p>Expected output:</p>
+<pre tabindex=0><code>{
+    &quot;configured&quot;: {
+        &quot;mgmtAddress&quot;: &quot;192.168.1.2&quot;,
+        &quot;mgmtPort&quot;: 8047,
+        &quot;mgmtPublicAddress&quot;: &quot;192.168.1.2&quot;,
+        &quot;mgmtPublicPort&quot;: 8047,
+        &quot;tunnelAddress&quot;: &quot;172.18.24.4&quot;,
+        &quot;tunnelPort&quot;: 8048,
+        &quot;tunnelPublicAddress&quot;: &quot;vcav01.ber.cloudprovider.pub&quot;,
+        &quot;tunnelPublicPort&quot;: 443
+    },
+    &quot;effective&quot;: {
+        &quot;mgmtAddress&quot;: &quot;192.168.1.2&quot;,
+        &quot;mgmtPort&quot;: 8047,
+        &quot;mgmtPublicAddress&quot;: &quot;192.168.1.2&quot;,
+        &quot;mgmtPublicPort&quot;: 8047,
+        &quot;tunnelAddress&quot;: &quot;172.18.24.4&quot;,
+        &quot;tunnelPort&quot;: 8048,
+        &quot;tunnelPublicAddress&quot;: &quot;vcav01.ber.cloudprovider.pub&quot;,
+        &quot;tunnelPublicPort&quot;: 443
+    }
+}
+
+</code></pre><p><strong>Note</strong>: Make sure the parameters are provided in the correct order.</p>
+<p>With this, the Cloud Tunnel is properly configured to use a non-default IP address.</p>
+<p>Once the <strong>tunnelAddress</strong> has its new value, please navigate to the VMware Cloud Director Availability Portal (&lt;https://manager_appliance_IP_address/ui/admin) and re-enable the tunneling to propagate the change to all local components – Cloud Replication Manager and Cloud Replicator(s).</p>
+<h3 id=cloud-replication-manager>
+Cloud Replication Manager
+<a class=anchor href=#cloud-replication-manager>#</a>
+</h3>
+<p>The Cloud Replication Manager runs two services (Cloud service and Manager service) that require reconfiguration as both need to use the same interface to communicate with the rest of the appliances. For communication with the VMware Cloud Director cells and vCenters, the services can use any interface.</p>
+<h4 id=cloud-service>
+Cloud service
+<a class=anchor href=#cloud-service>#</a>
+</h4>
+<ol>
+<li>
+<p>Set IP addresses to all interfaces and configure the static routes.</p>
+</li>
+<li>
+<p>Log in as <strong>root</strong> through SSH to the Cloud Replication Manager appliance.</p>
+</li>
+<li>
+<p>Authenticate as <strong>root</strong> to the Cloud service via CLI. Example command:</p>
+</li>
+</ol>
+<p><em><code>c4 loginroot 'r00t_Password'</code></em></p>
+<ol start=4>
+<li>Check the current service configuration. Example command:</li>
+</ol>
+<p><em><code>c4 endpoints</code></em></p>
+<p>Expected output:</p>
+<pre tabindex=0><code>{
+   &quot;configured&quot;: {
+       &quot;mgmtAddress&quot;: null,
+       &quot;mgmtPort&quot;: 8046,
+       &quot;mgmtPublicAddress&quot;: &quot;tn-e2eecba4-8381-4799-a39a-0ec4eca105bb.tnexus.io&quot;,
+       &quot;mgmtPublicPort&quot;: 8048,
+       &quot;apiAddress&quot;: null,
+       &quot;apiPort&quot;: 8443,
+       &quot;apiPublicAddress&quot;: &quot;vcav01.ber.cloudprovider.pub&quot;,
+       &quot;apiPublicPort&quot;: 443
+   },
+   &quot;effective&quot;: {
+       &quot;mgmtAddress&quot;: &quot;192.168.2.81&quot;,
+       &quot;mgmtPort&quot;: 8046,
+       &quot;mgmtPublicAddress&quot;: &quot;tn-e2eecba4-8381-4799-a39a-0ec4eca105bb.tnexus.io&quot;,
+       &quot;mgmtPublicPort&quot;: 8048,
+       &quot;apiAddress&quot;: &quot;vcavm1.ber.cloudprovider.local&quot;,
+       &quot;apiPort&quot;: 8443,
+       &quot;apiPublicAddress&quot;: &quot;vcav01.ber.cloudprovider.pub&quot;,
+       &quot;apiPublicPort&quot;: 443
+   }
+}
+</code></pre><p><strong>Note</strong>: Because the Cloud Replication Manager appliance is already prepared for tunneling, the <strong>mgmtPublicAddress</strong> parameter has this value <strong>tn-&lt;&lt;uuid\.tnexus.io</strong>. It should NOT be changed in the next step but should be used as it is.</p>
+<p>The parameter that has to be changed is <strong>mgmtAddress</strong>. In the Configured section it is set to <strong>null</strong> which means the service will try to discover an interface with a successfully configured IP address and bind itself to this address.</p>
+<p>In this example, the <strong>ens160</strong> IP address is 192.168.2.81, and the service currently uses this interface. The IP address of the <strong>ens192</strong> interface is 172.17.31.81.</p>
+<ol start=5>
+<li>We will configure <strong>mgmtAddress</strong> to use ens192 with IP address 172.17.31.81. Example command:</li>
+</ol>
+<p><em><code> c4 -k setendpoints "172.17.31.81" "8046" "tn-e2eecba4-8381-4799-a39a-0ec4eca105bb.tnexus.io" "8048" "vcavm1.ber.cloudprovider.local" "8443" "vcav01.ber.cloudprovider.pub" "443"</code></em></p>
+<p>Expected output:</p>
+<pre tabindex=0><code>{
+   &quot;configured&quot;: {
+       &quot;mgmtAddress&quot;: &quot;172.17.31.81&quot;,
+       &quot;mgmtPort&quot;: 8046,
+       &quot;mgmtPublicAddress&quot;: &quot;tn-e2eecba4-8381-4799-a39a-0ec4eca105bb.tnexus.io&quot;,
+       &quot;mgmtPublicPort&quot;: 8048,
+       &quot;apiAddress&quot;: &quot;vcavm1.ber.cloudprovider.local&quot;,
+       &quot;apiPort&quot;: 8443,
+       &quot;apiPublicAddress&quot;: &quot;vcav01.ber.cloudprovider.pub&quot;,
+       &quot;apiPublicPort&quot;: 443
+   },
+   &quot;effective&quot;: {
+       &quot;mgmtAddress&quot;: &quot;172.17.31.81&quot;,
+       &quot;mgmtPort&quot;: 8046,
+       &quot;mgmtPublicAddress&quot;: &quot;tn-e2eecba4-8381-4799-a39a-0ec4eca105bb.tnexus.io&quot;,
+       &quot;mgmtPublicPort&quot;: 8048,
+       &quot;apiAddress&quot;: &quot;vcavm1.ber.cloudprovider.local&quot;,
+       &quot;apiPort&quot;: 8443,
+       &quot;apiPublicAddress&quot;: &quot;vcav01.ber.cloudprovider.pub&quot;,
+       &quot;apiPublicPort&quot;: 443
+   }
+}
+</code></pre><ol start=6>
+<li>Restart the Cloud service. Example command:</li>
+</ol>
+<p><em><code>systemctl restart manager</code></em></p>
+<p><strong>Note</strong>: This operation won’t break any of the running replication tasks but will only reload the Cloud Replicator configuration and ensure all paired on-premises and remote cloud appliances receive the correct information for the replicator configuration in the local site.</p>
+<p>Once you perform these steps, the Cloud service is configured, and you can proceed to the steps for the Manager service.</p>
+<h4 id=manager-service>
+Manager service
+<a class=anchor href=#manager-service>#</a>
+</h4>
+<ol>
+<li>
+<p>Log in as <strong>root</strong> through SSH to the Cloud Replication Manager appliance.</p>
+</li>
+<li>
+<p>Authenticate as <strong>root</strong> to the Manager service via CLI. Example command:</p>
+</li>
+</ol>
+<p><em><code>h4 loginroot 'r00t_Password'</code></em></p>
+<ol start=3>
+<li>Check the current service configuration. Example command:</li>
+</ol>
+<p><em><code>h4 endpoints</code></em></p>
+<p>Expected output:</p>
+<pre tabindex=0><code>{
+   &quot;configured&quot;: {
+       &quot;mgmtAddress&quot;: null,
+       &quot;mgmtPort&quot;: 8044,
+       &quot;mgmtPublicAddress&quot;: &quot;tn-853bd005-b905-4da1-bb75-e17996efb5df.tnexus.io&quot;,
+       &quot;mgmtPublicPort&quot;: 8048
+   },
+   &quot;effective&quot;: {
+       &quot;mgmtAddress&quot;: &quot;192.168.2.81&quot;,
+       &quot;mgmtPort&quot;: 8044,
+       &quot;mgmtPublicAddress&quot;: &quot;tn-853bd005-b905-4da1-bb75-e17996efb5df.tnexus.io&quot;,
+       &quot;mgmtPublicPort&quot;: 8048
+   }
+}
+</code></pre><p><strong>Note</strong>: The <strong>mgmtAddress</strong> has <strong>null</strong> value. This is the parameter that will be changed in the next step.</p>
+<ol start=4>
+<li>Change the <strong>mgmtAddress</strong>. Example command:</li>
+</ol>
+<p><em><code>h4 setendpoints "172.17.31.81" "8044" "tn-853bd005-b905-4da1-bb75-e17996efb5df.tnexus.io" "8048"</code></em></p>
+<p>Expected output:</p>
+<pre tabindex=0><code>{
+    &quot;configured&quot;: {
+        &quot;mgmtAddress&quot;: &quot;172.17.31.81&quot;,
+        &quot;mgmtPort&quot;: 8044,
+        &quot;mgmtPublicAddress&quot;: &quot;tn-853bd005-b905-4da1-bb75-e17996efb5df.tnexus.io&quot;,
+        &quot;mgmtPublicPort&quot;: 8048
+    },
+    &quot;effective&quot;: {
+        &quot;mgmtAddress&quot;: &quot;172.17.31.81&quot;,
+        &quot;mgmtPort&quot;: 8044,
+        &quot;mgmtPublicAddress&quot;: &quot;tn-853bd005-b905-4da1-bb75-e17996efb5df.tnexus.io&quot;,
+        &quot;mgmtPublicPort&quot;: 8048
+    }
+}
+</code></pre><p>With this, the configuration of the Replication Manager is completed.</p>
+<p>To restore the regular operation of VMware Cloud Director Availability, you will need to:</p>
+<ul>
+<li>
+<p>Re-register all the Cloud Replicators via the Manager service UI (&lt;https://manager_appliance_IP_address:8441)</p>
+</li>
+<li>
+<p>Enable tunneling via the VMware Cloud Director Availability Portal (&lt;https://manager_appliance_IP_address/ui/admin)</p>
+</li>
+</ul>
+<h3 id=cloud-replicators>
+Cloud Replicator(s)
+<a class=anchor href=#cloud-replicators>#</a>
+</h3>
+<p>The idea behind having multiple interfaces for the Cloud Replicator is to optimize replication traffic flow. When the Cloud Replicator has more than one NIC, one of the interfaces should be able to communicate with the rest of the VMware Cloud Director Availability appliances and the other one should be in the same Layer 2 broadcast domain as the ESXi vmkernel interface. The Cloud Replicator can&rsquo;t use one interface to communicate with the Cloud Tunnel and another interface to communicate with the Cloud Replication Manager.</p>
+<ol>
+<li>
+<p>Set IP addresses to all interfaces and configure the static routes.</p>
+</li>
+<li>
+<p>Log in as <strong>root</strong> through SSH to the Cloud Replicator appliance.</p>
+</li>
+<li>
+<p>Authenticate as <strong>root</strong> to the Replicator service via CLI. Example command:</p>
+</li>
+</ol>
+<p><em><code>h4 rtrloginroot 'r00t_Password'</code></em></p>
+<ol start=4>
+<li>Check the current service configuration. Example command:</li>
+</ol>
+<p><em><code>h4 rtrendpoints</code></em></p>
+<p>Expected output:</p>
+<pre tabindex=0><code>{
+   &quot;configured&quot;: {
+       &quot;mgmtAddress&quot;: null,
+       &quot;mgmtPort&quot;: 8043,
+       &quot;mgmtPublicAddress&quot;: &quot;tn-f9abd9de-3978-4383-a951-514deaec522f.tnexus.io&quot;,
+       &quot;mgmtPublicPort&quot;: 8048,
+       &quot;nfcAddress&quot;: null,
+       &quot;lwdAddress&quot;: null,
+       &quot;lwdPort&quot;: null,
+       &quot;lwdPublicAddress&quot;: &quot;lw-f9abd9de-3978-4383-a951-514deaec522f.tnexus.io&quot;,
+       &quot;lwdPublicPort&quot;: 8048
+   },
+   &quot;effective&quot;: {
+       &quot;mgmtAddress&quot;: &quot;172.17.33.1&quot;,
+       &quot;mgmtPort&quot;: 8043,
+       &quot;mgmtPublicAddress&quot;: &quot;tn-f9abd9de-3978-4383-a951-514deaec522f.tnexus.io&quot;,
+       &quot;mgmtPublicPort&quot;: 8048,
+       &quot;nfcAddress&quot;: null,
+       &quot;lwdAddress&quot;: &quot;172.17.33.1&quot;,
+       &quot;lwdPort&quot;: 44045,
+       &quot;lwdPublicAddress&quot;: &quot;lw-f9abd9de-3978-4383-a951-514deaec522f.tnexus.io&quot;,
+       &quot;lwdPublicPort&quot;: 8048
+   }
+}
+</code></pre><p><strong>Note</strong>: Because the Cloud Replicator appliance is already prepared for tunneling, the <strong>mgmtPublicAddress</strong> parameter has this value <strong>tn-&lt;&lt;uuid\.tnexus.io</strong>. It should NOT be changed in the next step but should be used as it is.</p>
+<p>Two parameters require changing:</p>
+<ul>
+<li>
+<p><strong>mgmtAddress</strong> – this is the IP address of the interface that will be used for communicating with the other VMware Cloud Director Availability appliances in the local site</p>
+</li>
+<li>
+<p><strong>lwdAddress</strong> – this is the IP address of the interface that will be used for communicating with the replication vmkernel interface of the ESXi host(s).</p>
+</li>
+</ul>
+<ol start=5>
+<li>Change the <strong>mgmtAddress</strong> and <strong>lwdAddress</strong>. Example command:</li>
+</ol>
+<p><em><code>h4 rtrsetendpoints "172.17.33.1" "8043" "tn-f9abd9de-3978-4383-a951-514deaec522f.tnexus.io" "8048" "" "192.168.3.1" "lw-f9abd9de-3978-4383-a951-514deaec522f.tnexus.io" "8048"</code></em></p>
+<p><strong>Note</strong>: The parameters need to be in this exact order:</p>
+<p><code>h4 rtrsetendpoints **mgmtAddress** mgmtPort mgmtPublicAddress mgmtPublicPort nfcAddress **lwdAddress** lwdPublicAddress lwdPublicPort</code></p>
+<p>Expected output:</p>
+<pre tabindex=0><code>{
+   &quot;configured&quot;: {
+       &quot;mgmtAddress&quot;: &quot;172.17.33.1&quot;,
+       &quot;mgmtPort&quot;: 8043,
+       &quot;mgmtPublicAddress&quot;: &quot;tn-f9abd9de-3978-4383-a951-514deaec522f.tnexus.io&quot;,
+       &quot;mgmtPublicPort&quot;: 8048,
+       &quot;nfcAddress&quot;: null,
+       &quot;lwdAddress&quot;: &quot;192.168.3.1&quot;,
+       &quot;lwdPort&quot;: null,
+       &quot;lwdPublicAddress&quot;: &quot;lw-f9abd9de-3978-4383-a951-514deaec522f.tnexus.io&quot;,
+       &quot;lwdPublicPort&quot;: 8048
+   },
+   &quot;effective&quot;: {
+       &quot;mgmtAddress&quot;: &quot;172.17.33.1&quot;,
+       &quot;mgmtPort&quot;: 8043,
+       &quot;mgmtPublicAddress&quot;: &quot;tn-f9abd9de-3978-4383-a951-514deaec522f.tnexus.io&quot;,
+       &quot;mgmtPublicPort&quot;: 8048,
+       &quot;nfcAddress&quot;: null,
+       &quot;lwdAddress&quot;: &quot;192.168.3.1&quot;,
+       &quot;lwdPort&quot;: 44045,
+       &quot;lwdPublicAddress&quot;: &quot;lw-f9abd9de-3978-4383-a951-514deaec522f.tnexus.io&quot;,
+       &quot;lwdPublicPort&quot;: 8048
+   }
+}
+</code></pre><p><strong>Note</strong>: You might get the following output:</p>
+<pre tabindex=0><code>
+&quot;code&quot;: &quot;TrafficIsolationConfigurationFailure&quot;,
+    &quot;msg&quot;: &quot;Traffic isolation configuration could not be applied to hbr server.&quot;,
+    &quot;args&quot;: [],
+    &quot;stacktrace&quot;:
+</code></pre><p>In such cases, just check if the configuration has been updated correctly using:</p>
+<p><em><code>h4 rtrendpoints</code></em></p>
+<p>With this, the configuration of the Cloud Replicator is completed.</p>
+<p>When the <strong>mgmtAddress</strong> parameter is changed, the Cloud Replicator needs to be re-registered in the Cloud Replication Manager via the Manager service UI (&lt;https://manager_appliance_IP_address:8441).</p>
+<h2 id=upgrade>
+Upgrade
+<a class=anchor href=#upgrade>#</a>
+</h2>
+<p>Upgrading the VMware Cloud Director Availability appliances will not affect the network interface configuration.</p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#vmware-cloud-director-availability-multi-nic-configuration>VMware Cloud Director Availability Multi-NIC Configuration</a>
+<ul>
+<li><a href=#overview>Overview</a></li>
+<li><a href=#design>Design</a></li>
+<li><a href=#moving-the-default-gateway>Moving the Default Gateway</a></li>
+<li><a href=#reconfigure-the-vmware-cloud-director-availability-appliances>Reconfigure the VMware Cloud Director Availability Appliances</a>
+<ul>
+<li><a href=#cloud-tunnel>Cloud Tunnel</a></li>
+<li><a href=#cloud-replication-manager>Cloud Replication Manager</a></li>
+<li><a href=#cloud-replicators>Cloud Replicator(s)</a></li>
+</ul>
+</li>
+<li><a href=#upgrade>Upgrade</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

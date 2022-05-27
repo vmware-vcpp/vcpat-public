@@ -1,0 +1,487 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="VMware Cloud Director Availability Certificate Management #  The SSL certificates are essential for establishing a trusted connection between the different VMware Cloud Director Availability appliances and their proper service.
+Each of them comes with their unique self-signed SSL certificate during the deployment. But still, these certificates need to be replaced when they expire, or if the providers prefer to use CA-signed ones to make sure there will be no browser warnings, for example.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="VMware Cloud Director Availability Certificate Management">
+<meta property="og:description" content="VMware Cloud Director Availability Certificate Management #  The SSL certificates are essential for establishing a trusted connection between the different VMware Cloud Director Availability appliances and their proper service.
+Each of them comes with their unique self-signed SSL certificate during the deployment. But still, these certificates need to be replaced when they expire, or if the providers prefer to use CA-signed ones to make sure there will be no browser warnings, for example.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/certificate-management/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-05-27T13:43:46+02:00">
+<title>VMware Cloud Director Availability Certificate Management | VMware Cloud Provider Architecture Toolkit</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.97cfda4f5e3c9fa49a2bf8d401f4ddc0eec576c99cdcf6afbec19173200c37db.css integrity="sha256-l8/aT148n6SaK/jUAfTdwO7Fdsmc3PavvsGRcyAMN9s=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.4ee2ace9a907b26ef922b5f2519cb7d9fb46a839a5de5ef61588bc0a0b241ed7.js integrity="sha256-TuKs6akHsm75IrXyUZy32ftGqDml3l72FYi8CgskHtc=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>VMware Cloud Provider Architecture Toolkit</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li><a href=/docs/cloud-infrastructure/><strong>Cloud Infrastructure</strong></a>
+<ul>
+<li><a href=/docs/cloud-infrastructure/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/cloud-infrastructure/design/>Design</a></li>
+<li><a href=/docs/cloud-infrastructure/implementation/>Implementation</a></li>
+<li><a href=/docs/cloud-infrastructure/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/networking-security/><strong>Networking & Security</strong></a>
+<ul>
+<li><a href=/docs/networking-security/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/networking-security/design/>Design</a></li>
+<li><a href=/docs/networking-security/implementation/>Implementation</a></li>
+<li><a href=/docs/networking-security/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/dr-migration/><strong>DR & Migration</strong></a>
+<ul>
+<li><a href=/docs/dr-migration/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/dr-migration/design/>Design</a></li>
+<li><a href=/docs/dr-migration/implementation/>Implementation</a></li>
+<li><a href=/docs/dr-migration/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/developer-ready-cloud/><strong>Developer Ready Cloud</strong></a>
+<ul>
+<li><a href=/docs/developer-ready-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/developer-ready-cloud/design/>Design</a></li>
+<li><a href=/docs/developer-ready-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/developer-ready-cloud/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/sovereign-cloud/><strong>Sovereign Cloud</strong></a>
+<ul>
+<li><a href=/docs/sovereign-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/sovereign-cloud/design/>Design</a></li>
+<li><a href=/docs/sovereign-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/sovereign-cloud/operations/>Operations</a>
+<br></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://cloudsolutions.vmware.com target=_blank rel=noopener>
+VMware Cloud Solutions
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>VMware Cloud Director Availability Certificate Management</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#vmware-cloud-director-availability-certificate-management>VMware Cloud Director Availability Certificate Management</a>
+<ul>
+<li><a href=#prerequisites-for-the-ca-signed-certificate>Prerequisites for the CA-signed certificate</a></li>
+<li><a href=#useful-commands>Useful commands</a></li>
+<li><a href=#usual-scenario>Usual scenario</a>
+<ul>
+<li><a href=#steps>Steps</a></li>
+</ul>
+</li>
+<li><a href=#affected-services>Affected services</a>
+<ul>
+<li><a href=#procedure-1>Procedure 1:</a></li>
+</ul>
+</li>
+<li><a href=#affected-paired-sites>Affected paired sites</a>
+<ul>
+<li><a href=#on-premises>On-premises</a></li>
+<li><a href=#cloud>Cloud</a></li>
+</ul>
+</li>
+<li><a href=#other-appliances>Other appliances</a></li>
+<li><a href=#backup-and-restore> Backup and restore</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=vmware-cloud-director-availability-certificate-management>
+VMware Cloud Director Availability Certificate Management
+<a class=anchor href=#vmware-cloud-director-availability-certificate-management>#</a>
+</h1>
+<p>The SSL certificates are essential for establishing a trusted connection between the different VMware Cloud Director Availability appliances and their proper service.</p>
+<p>Each of them comes with their unique self-signed SSL certificate during the deployment. But still, these certificates need to be replaced when they expire, or if the providers prefer to use CA-signed ones to make sure there will be no browser warnings, for example. </p>
+<p>This post will review the necessary steps to replace the Cloud Service, Manager Service, Replicator Service, and the Tunnel Service certificates with CA-signed ones. </p>
+<h2 id=prerequisites-for-the-ca-signed-certificate>
+Prerequisites for the CA-signed certificate
+<a class=anchor href=#prerequisites-for-the-ca-signed-certificate>#</a>
+</h2>
+<ul>
+<li>
+<p>PKCS#12 (.pfx) certificate and the private key should use the same password</p>
+</li>
+<li>
+<p>PKCS#12 file should contain only one
+entry - the private key and its corresponding certificate and, optionally, the certificate trust chain</p>
+</li>
+<li>
+<p>RSA key size should be 2048-bit or larger</p>
+</li>
+<li>
+<p>The certificate should not use insecure hash algorithms like SHA1 or MD5</p>
+</li>
+</ul>
+<h2 id=useful-commands>
+Useful commands
+<a class=anchor href=#useful-commands>#</a>
+</h2>
+<p>Command 1: Generate a new private key and Certificate Signing Request:</p>
+<p><em><code> openssl req -out CSR.csr -new -newkey rsa:2048 -nodes -keyout privateKey.key</code></em></p>
+<p>Command 2: Convert .crt to .pem</p>
+<p><em><code> openssl x509 -inform der -in certificate.cer -out certificate.pem</code></em></p>
+<p>Command 3: Prepare a PKCS#12 (.pfx) from a .pem (in case your CA didn&rsquo;t provide it to you)</p>
+<p><em><code> openssl pkcs12 -export -out certificate.pfx -inkey privateKey.key -in certificate.crt -certfile CACert.crt</code></em></p>
+<h2 id=usual-scenario>
+Usual scenario
+<a class=anchor href=#usual-scenario>#</a>
+</h2>
+<p>It is sufficient for most providers to use a CA-signed certificate for the Cloud Service only and self-signed certificates for all other services. This CA-signed certificate has to be generated for the public address of VMware Cloud Director Availability. </p>
+<h3 id=steps>
+Steps
+<a class=anchor href=#steps>#</a>
+</h3>
+<ol>
+<li>
+<p>Login through SSH with the root user to the VMware Cloud Director Availability Cloud Service host.</p>
+</li>
+<li>
+<p> Generate a new private key and Certificate Signing Request using the following command:</p>
+</li>
+</ol>
+<p><em><code> openssl req -out CSR.csr -new -newkey rsa:2048 -nodes -keyout privateKey.key</code></em></p>
+<ol start=3>
+<li>Fill in the necessary data similar to this example</li>
+</ol>
+<p><img src=/images/dr-migration/operations/certificate-management/cert-signing-request.png alt="Generating a Certificate Signing Request"></p>
+<ol start=4>
+<li>
+<p>Once the CSR is generated, you need to transfer it to the CA for signing.</p>
+</li>
+<li>
+<p>If the received CA-signed certificate is not in PKCS#12 format (.pfx), please use the following command to prepare it:</p>
+</li>
+</ol>
+<p><em><code> openssl pkcs12 -export -out certificate.pfx -inkey privateKey.key -in certificate.crt -certfile CACert.crt</code></em></p>
+<p>(where privateKey.key is the private key used for the CSR and CACert.crt is the CA certificate)</p>
+<ol start=6>
+<li>
+<p>Load the certificate to the Cloud Service using:</p>
+<blockquote>
+<ul>
+<li><strong>VMware Cloud Director Availability UI:</strong></li>
+</ul>
+</blockquote>
+<blockquote>
+<ol>
+<li>Navigate to the VMware Cloud Director Availability Cloud Service URL (<em>https://Appliance-IP-Address/ui/admin</em>.)</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start=2>
+<li>Log in as <strong>root</strong>.</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start=3>
+<li>Select <strong>Settings</strong> from the left pane called <strong>Configuration</strong>.</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><img src=/images/dr-migration/operations/certificate-management/settings.png alt="Settings in Configuration menu"></p>
+</blockquote>
+<blockquote>
+<ol start=4>
+<li>Under <strong>Appliance Settings</strong>, you will find <strong>Certificate</strong>.</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><img src=/images/dr-migration/operations/certificate-management/cert-info.png alt="Certificate information in Settings"></p>
+</blockquote>
+<blockquote>
+<ol start=5>
+<li>Click <strong>Import</strong>.</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start=6>
+<li>Fill in the Export Password (specified while creating the .pfx).</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><img src=/images/dr-migration/operations/certificate-management/import-cert.png alt="Importing a certificate"></p>
+</blockquote>
+<blockquote>
+<ol start=7>
+<li>Click <strong>Apply</strong>.</li>
+</ol>
+</blockquote>
+<blockquote>
+<ul>
+<li><strong>VMware Cloud Director Availability API through command-line:</strong></li>
+</ul>
+</blockquote>
+<blockquote>
+<ol>
+<li>Transfer the .pfx file to the VMware Cloud Director Availability Cloud Service host.</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start=2>
+<li>Log in as <strong>root</strong> through SSH to the VMware Cloud Director Availability Cloud Service host.</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start=3>
+<li>Log in as root to the VMware Cloud Director Availability API through the command-line using:</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><em><code>c4 loginroot 'password'</code></em></p>
+</blockquote>
+<blockquote>
+<p><img src=/images/dr-migration/operations/certificate-management/cmd-auth.png alt="Authenticating through the command-line"></p>
+</blockquote>
+<blockquote>
+<ol start=4>
+<li>Upload the new certificate using:</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><em><code>c4 upload_certificate /path/to/cert/cert.pfx 'Export password'</code></em></p>
+</blockquote>
+<blockquote>
+<p><img src=/images/dr-migration/operations/certificate-management/cmd-cert-import.png alt="Importing a certificate through the command-line"></p>
+</blockquote>
+</li>
+<li>
+<p>The VMware Cloud Director Availability Cloud Service will be restarted after the certificate change.</p>
+</li>
+<li>
+<p>You will no longer see any warnings in the browser.</p>
+</li>
+</ol>
+<p><img src=/images/dr-migration/operations/certificate-management/browser.png alt="Browser view of the newly imported certificate"></p>
+<h2 id=affected-services>
+Affected services
+<a class=anchor href=#affected-services>#</a>
+</h2>
+<p>To see what other services are affected by the change and fix, you can open System Health under Monitoring in the left pane.</p>
+<p><img src=/images/dr-migration/operations/certificate-management/system-health.png alt="System Health in the Monitoring Menu"></p>
+<p>You can see that the connectivity to the Tunnel Service is showing failure.</p>
+<p><img src=/images/dr-migration/operations/certificate-management/tunnel-connectivity.png alt="Tunnel Service connectivity issue"></p>
+<p>To fix it, you need to perform the steps in <strong>Procedure 1</strong>.</p>
+<h3 id=procedure-1>
+Procedure 1:
+<a class=anchor href=#procedure-1>#</a>
+</h3>
+<ol>
+<li>
+<p>Click on <strong>Settings</strong> under <strong>Configuration</strong>.</p>
+</li>
+<li>
+<p>Find <strong>Tunnel Service</strong> address in <strong>Service Endpoints</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Edit</strong>.</p>
+</li>
+<li>
+<p>Enter the <strong>root</strong> password.</p>
+</li>
+</ol>
+<p><img src=/images/dr-migration/operations/certificate-management/repair-tunnel.png alt="Repairing the connectivity to the Tunnel Service"></p>
+<ol start=5>
+<li>
+<p>Click <strong>Apply</strong>.</p>
+</li>
+<li>
+<p>Accept the certificate request.</p>
+</li>
+<li>
+<p>Go back to <strong>System Health</strong> and check that the connectivity to the <strong>Tunnel Service</strong> is okay.</p>
+</li>
+</ol>
+<p><img src=/images/dr-migration/operations/certificate-management/system-health-tunnel.png alt="System Health status of Tunnel Service back to OK"></p>
+<h2 id=affected-paired-sites>
+Affected paired sites
+<a class=anchor href=#affected-paired-sites>#</a>
+</h2>
+<p>Such a certificate change impacts both cloud and on-premises sites that are paired to this Cloud Service. In order to restore the regular operation, you will need to re-pair all connected sites.</p>
+<h3 id=on-premises>
+On-premises
+<a class=anchor href=#on-premises>#</a>
+</h3>
+<p>To re-pair with an on-premises site, your tenant needs to:</p>
+<ol>
+<li>
+<p>Open the VMware Cloud Director Availability on-premises appliance URL.</p>
+</li>
+<li>
+<p>Log in as <strong>root</strong>.</p>
+</li>
+</ol>
+<p><img src=/images/dr-migration/operations/certificate-management/system-health-on-prem.png alt="System Health in the on-premises appliance UI"></p>
+<ol start=3>
+<li>Click on <strong>Settings</strong> in the left pane.</li>
+</ol>
+<p><img src=/images/dr-migration/operations/certificate-management/settings-on-prem.png alt="Settings in the on-premises appliance UI"></p>
+<ol start=4>
+<li>
+<p>Find <strong>Pairing</strong> under <strong>Site Details</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Repair</strong>.</p>
+</li>
+</ol>
+<p><img src=/images/dr-migration/operations/certificate-management/repair-on-prem.png alt="Repairing the trusted connectivity to the cloud site"></p>
+<ol start=6>
+<li>
+<p>Enter all information in the wizard and accept the certificate request.</p>
+</li>
+<li>
+<p>Finish the wizard.</p>
+</li>
+</ol>
+<p><img src=/images/dr-migration/operations/certificate-management/connectivity-to-cloud.png alt="Connectivity to the cloud site restored"></p>
+<h3 id=cloud>
+Cloud
+<a class=anchor href=#cloud>#</a>
+</h3>
+<p>To re-pair with a cloud site, the remote cloud site admin needs to:</p>
+<ol>
+<li>
+<p>Open the VMware Cloud Director Availability UI of the remote site.</p>
+</li>
+<li>
+<p>Log in as <strong>root</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Peer Sites</strong> under <strong>Configuration</strong> in the left pane.</p>
+</li>
+</ol>
+<p><img src=/images/dr-migration/operations/certificate-management/peer-sites.png alt="Peer Sites"></p>
+<ol start=4>
+<li>Select the cloud site with the changed certificate (marked with an error).</li>
+</ol>
+<p><img src=/images/dr-migration/operations/certificate-management/pairing-error.png alt="Pairing error in the remote cloud site"></p>
+<ol start=5>
+<li>
+<p>Click <strong>Repair</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Update</strong> and accept the certificate request.</p>
+</li>
+</ol>
+<p><img src=/images/dr-migration/operations/certificate-management/updating-pairing-conf.png alt="Updating the pairing configuration"></p>
+<ol start=7>
+<li>A message indicates there are actions to be performed on the other site.</li>
+</ol>
+<p><img src=/images/dr-migration/operations/certificate-management/additional-actions.png alt="Additional actions required message"></p>
+<p>Once these steps are performed, you need to do the same at the local site. </p>
+<h2 id=other-appliances>
+Other appliances
+<a class=anchor href=#other-appliances>#</a>
+</h2>
+<p>If you plan to replace all self-signed certificates with CA-signed ones, you can follow the steps described for the Cloud Service. The only difference is in the affected services as follows:</p>
+<ul>
+<li>
+<p>When changing the SSL certificate of a Manager Service, the trust between all Replicator Service instances is invalidated. To re-establish it, you need to register all Replicator Service instances by performing Repair from their UI and re-pair the cloud sites.</p>
+</li>
+<li>
+<p>When changing the SSL certificate of a Replicator Service, it leads to a paring problem with Manager Service. You need to re-pair to the Manager Service on the local site and re-establish the trust between all cloud sites.</p>
+</li>
+<li>
+<p>When changing the SSL certificate of a Tunnel Service, you need to re-establish the connectivity between it and the Cloud Service. To do so, you can perform <a href=#procedure-1><strong>Procedure 1</strong></a>. For about 30 minutes, you might see a Generic error occurred during TLS handshake message, but you do not need to perform any actions to fix it. The reason is that the certificate replacement restarts the service, which breaks the sessions with the remote cloud or on-premises replicator. The session initiation happens every 30 minutes, which means that all remote sites should auto-recover pairing in no longer than 30 min.</p>
+</li>
+<li>
+<p>When changing the VMware Cloud Director SSL certificate, you need to re-establish the trust connection from the VMware Cloud Director Availability Cloud Service UI.</p>
+</li>
+<li>
+<p>When changing the Lookup Service SSL certificate, all VMware Cloud Director Availability appliances need to trust the Lookup Service certificate once again.</p>
+</li>
+</ul>
+<h2 id=backup-and-restore>
+ Backup and restore
+<a class=anchor href=#backup-and-restore>#</a>
+</h2>
+<p>One of the features in VMware Cloud Director Availability, which enables backing-up all appliances, is very useful when planning to perform changes to any of the services.</p>
+<p>Considering that replacing the certificates impacts the operation of VMware Cloud Director Availability, we always recommend generating a backup before proceeding with any of the steps for updating the SSL certificates. You can see how in this <a href=https://blogs.vmware.com/cloudprovider/2020/12/vmware-cloud-director-availability-4-1-backup-and-restore-appliances.html>blog post</a>.</p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#vmware-cloud-director-availability-certificate-management>VMware Cloud Director Availability Certificate Management</a>
+<ul>
+<li><a href=#prerequisites-for-the-ca-signed-certificate>Prerequisites for the CA-signed certificate</a></li>
+<li><a href=#useful-commands>Useful commands</a></li>
+<li><a href=#usual-scenario>Usual scenario</a>
+<ul>
+<li><a href=#steps>Steps</a></li>
+</ul>
+</li>
+<li><a href=#affected-services>Affected services</a>
+<ul>
+<li><a href=#procedure-1>Procedure 1:</a></li>
+</ul>
+</li>
+<li><a href=#affected-paired-sites>Affected paired sites</a>
+<ul>
+<li><a href=#on-premises>On-premises</a></li>
+<li><a href=#cloud>Cloud</a></li>
+</ul>
+</li>
+<li><a href=#other-appliances>Other appliances</a></li>
+<li><a href=#backup-and-restore> Backup and restore</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>
