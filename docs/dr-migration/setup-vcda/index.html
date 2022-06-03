@@ -1,0 +1,267 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Setting Up VMware Cloud Director Availability #  Port mapping #  The communication between the different appliances occurs at the following ports as shown on the diagram.
+Requirements #  Here is a high-level list of the requirements to deploy VMware Cloud Director Availability. For more details, please refer to the official documentation.
+  DNS and NTP server
+  SSO Lookup Service Address
+  Routing and Firewall Ports in place">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Setting Up VMware Cloud Director Availability">
+<meta property="og:description" content="Setting Up VMware Cloud Director Availability #  Port mapping #  The communication between the different appliances occurs at the following ports as shown on the diagram.
+Requirements #  Here is a high-level list of the requirements to deploy VMware Cloud Director Availability. For more details, please refer to the official documentation.
+  DNS and NTP server
+  SSO Lookup Service Address
+  Routing and Firewall Ports in place">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/setup-vcda/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-06-03T17:56:32+02:00">
+<title>Setting Up VMware Cloud Director Availability | VMware Cloud Provider Architecture Toolkit</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.97cfda4f5e3c9fa49a2bf8d401f4ddc0eec576c99cdcf6afbec19173200c37db.css integrity="sha256-l8/aT148n6SaK/jUAfTdwO7Fdsmc3PavvsGRcyAMN9s=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.436eecbd9236313340012bfdbe0de273f88df7d80bed58ed827d4fc69fa66ca6.js integrity="sha256-Q27svZI2MTNAASv9vg3ic/iN99gL7Vjtgn1Pxp+mbKY=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>VMware Cloud Provider Architecture Toolkit</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li><a href=/docs/cloud-infrastructure/><strong>Cloud Infrastructure</strong></a>
+<ul>
+<li><a href=/docs/cloud-infrastructure/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/cloud-infrastructure/design/>Design</a></li>
+<li><a href=/docs/cloud-infrastructure/implementation/>Implementation</a></li>
+<li><a href=/docs/cloud-infrastructure/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/networking-security/><strong>Networking & Security</strong></a>
+<ul>
+<li><a href=/docs/networking-security/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/networking-security/design/>Design</a></li>
+<li><a href=/docs/networking-security/implementation/>Implementation</a></li>
+<li><a href=/docs/networking-security/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/dr-migration/><strong>DR & Migration</strong></a>
+<ul>
+<li><a href=/docs/dr-migration/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/dr-migration/design/>Design</a></li>
+<li><a href=/docs/dr-migration/implementation/>Implementation</a></li>
+<li><a href=/docs/dr-migration/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/developer-ready-cloud/><strong>Developer Ready Cloud</strong></a>
+<ul>
+<li><a href=/docs/developer-ready-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/developer-ready-cloud/design/>Design</a></li>
+<li><a href=/docs/developer-ready-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/developer-ready-cloud/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/sovereign-cloud/><strong>Sovereign Cloud</strong></a>
+<ul>
+<li><a href=/docs/sovereign-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/sovereign-cloud/design/>Design</a></li>
+<li><a href=/docs/sovereign-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/sovereign-cloud/operations/>Operations</a>
+<br></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://cloudsolutions.vmware.com target=_blank rel=noopener>
+VMware Cloud Solutions
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Setting Up VMware Cloud Director Availability</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#setting-up-vmware-cloud-director-availability>Setting Up VMware Cloud Director Availability</a>
+<ul>
+<li><a href=#port-mapping>Port mapping</a></li>
+<li><a href=#requirements>Requirements</a></li>
+<li><a href=#vmware-cloud-director-availability-initial-configuration>VMware Cloud Director Availability initial configuration</a></li>
+<li><a href=#a-detailed-look-at-the-initial-setup-wizard>A detailed look at the initial setup wizard</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=setting-up-vmware-cloud-director-availability>
+Setting Up VMware Cloud Director Availability
+<a class=anchor href=#setting-up-vmware-cloud-director-availability>#</a>
+</h1>
+<h2 id=port-mapping>
+Port mapping
+<a class=anchor href=#port-mapping>#</a>
+</h2>
+<p>The communication between the different appliances occurs at the following ports as shown on the diagram.</p>
+<p><img src=images/dr-migration/implementation/setup-vcda/port-mapping.png alt="VMware Cloud Director Availability Port mapping diagram"></p>
+<h2 id=requirements>
+Requirements
+<a class=anchor href=#requirements>#</a>
+</h2>
+<p>Here is a high-level list of the requirements to deploy VMware Cloud Director Availability. For more details, please refer to the <a href=https://docs.vmware.com/en/VMware-Cloud-Director-Availability/index.html>official documentation</a>.</p>
+<ol>
+<li>
+<p>DNS and NTP server</p>
+</li>
+<li>
+<p>SSO Lookup Service Address</p>
+</li>
+<li>
+<p>Routing and Firewall Ports in place</p>
+</li>
+<li>
+<p>Compatible versions of vCenter and VMware Cloud Director – <a href="https://interopmatrix.vmware.com/Interoperability?col=570,&row=0,">open the VMware Product Interoperability Matrices</a></p>
+</li>
+</ol>
+<h2 id=vmware-cloud-director-availability-initial-configuration>
+VMware Cloud Director Availability initial configuration
+<a class=anchor href=#vmware-cloud-director-availability-initial-configuration>#</a>
+</h2>
+<p>The deployment of the VMware Cloud Director Availability appliances in the vCenter Server is done by following these steps:</p>
+<ol>
+<li>
+<p>Select the OVF template.</p>
+</li>
+<li>
+<p>Name the virtual machine.</p>
+</li>
+<li>
+<p>Select a destination compute resource.</p>
+</li>
+<li>
+<p>Review the virtual machine details.</p>
+</li>
+<li>
+<p>Read and accept the license agreement.</p>
+</li>
+<li>
+<p>Select the appliance that we are going to deploy.</p>
+</li>
+<li>
+<p>Pick the storage for the disk files.</p>
+</li>
+<li>
+<p>Specify the network.</p>
+</li>
+<li>
+<p>Enter the deployment properties such as root password, NTP server, IP address, gateway, DNS, and more.</p>
+</li>
+<li>
+<p>Validate that all the details are correctly entered on the summary screen, and deploy the virtual machine.</p>
+</li>
+</ol>
+<p>After the deployment of the appliances, you need to run the initial setup wizard. It is designed to guide you through the essential steps to configure all the appliances at the same time, no matter if it is a combined or a distributed environment (only the distributed setup is recommended for production).</p>
+<p>For example, you can define the Lookup service, attach a Cloud Replicator Appliance or a Cloud Tunnel Appliance, and even change the root password for of all appliances, without any necessity to log in to each of them and change it in their UI.</p>
+<h2 id=a-detailed-look-at-the-initial-setup-wizard>
+A detailed look at the initial setup wizard
+<a class=anchor href=#a-detailed-look-at-the-initial-setup-wizard>#</a>
+</h2>
+<p><a href=https://youtu.be/NGelWcU_clQ>YouTube video showing the exact steps</a></p>
+<p>After you successfully deploy the OVA templates for all the appliances, the next step is to run the initial setup wizard.</p>
+<p>First, you need to login to the appliance by opening your browser and entering the following URL: https://&lt;Cloud-Replication-Management-Appliance-URL>/ui/admin.</p>
+<p>You will see the login screen of the VMware Cloud Director Availability Cloud Service admin UI. There, you have to enter the password defined during the deployment process.</p>
+<p><img src=images/dr-migration/implementation/setup-vcda/login-screen.png alt="VMware Cloud Director Availability login screen"></p>
+<img src=./media/image2.png style=width:6.26806in;height:3.00347in>
+<p><em>Picture 1 – VMware Cloud Director Availability login screen</em></p>
+<p>Since it is the first login to the system, you will be prompted to change the password.</p>
+<p><img src=images/dr-migration/implementation/setup-vcda/change-password.png alt="Change the appliance root password"></p>
+<p>After you enter a new password that matches the password policy (it should be at least 8 symbols and contain at least one uppercase, lowercase, number, and special character), you will see the welcome screen (Picture 3).</p>
+<p><img src=images/dr-migration/implementation/setup-vcda/initial-setup-wizard.png alt="VMware Cloud Director Availability initial wizard screen"></p>
+<p>After reading and complying with the information on the welcome screen, proceed with the configuration of the Cloud Director Availability, by clicking Run Initial Setup Wizard. Note that all the steps are mandatory, and you cannot skip any of them.</p>
+<p>The first thing to do is to enter your license key.</p>
+<p><img src=images/dr-migration/implementation/setup-vcda/license-key.png alt="Step 1 – enter the license key"></p>
+<p>Next, you need to give your site a name and provide the Service Endpoint address. In case you are not sure about the address at the moment of setup, you can leave it empty and fill it later in the VMware Cloud Director Availability portal (Configuration menu).</p>
+<p><img src=images/dr-migration/implementation/setup-vcda/site-details.png alt="Step 2 – Site details"></p>
+<p>On the next screen, you have to fill in your VMware Cloud Director Endpoint address and an administrator’s credentials. Note that you only need to type the Endpoint URL, and the wizard will automatically add the https:// prefix and /api suffix.</p>
+<p><img src=images/dr-migration/implementation/setup-vcda/cloud-director-details.png alt="Step 3 – VMware Cloud Director details"></p>
+<p>By clicking Next, you are prompted to reject or accept the VMware Cloud Director certificate. To proceed further, you need to accept it.</p>
+<p><img src=images/dr-migration/implementation/setup-vcda/accept-vcd-cert.png alt="Accepting the certificate of the VMware Cloud Director"></p>
+<p>After accepting the certificate, you will be asked for your consent to participate in the VMware&rsquo;s Customer Experience Improvement Program (&ldquo;CEIP&rdquo;). By default, it is checked, but you can uncheck it and proceed with the wizard.</p>
+<p><img src=images/dr-migration/implementation/setup-vcda/ceip.png alt="Participation in the VMware&amp;rsquo;s Customer Experience Improvement Program"></p>
+<p>The penultimate step is to connect your Cloud Replicator Appliance(s) (if you have more than one). An important note - on this step, you enter the Lookup Service Address. It is used for all your replicators and the tunnel.</p>
+<p><img src=images/dr-migration/implementation/setup-vcda/replicator.png alt="Step 5 – Configure the Cloud Replicator Appliance(s)"></p>
+<p>After entering all the Lookup Service Address, Replicator Service Address, and root password, you need to click TEST CONNECTION to verify the connectivity and connect to the Cloud Replicator Appliance. Similarly, to the VMware Cloud Director Service Endpoint, you only need to put the IP/URL, and the port, prefix, and suffix are added automatically. You need to perform the same set of actions for all the Cloud Replicator Appliances you want to attach.</p>
+<p><img src=images/dr-migration/implementation/setup-vcda/replicator-details.png alt="Submit the Cloud Replicator Appliance details"></p>
+<p>Right after clicking the TEST CONNECTION button, you will be prompted to reject or accept the Cloud Replicator Appliance certificate. To proceed, accept the certificate.</p>
+<p><img src=images/dr-migration/implementation/setup-vcda/replicator-cert.png alt="Accept the certificate of the Cloud Replicator Appliance"></p>
+<p>If you haven&rsquo;t logged in the Cloud Replicator Appliance UI so far, you will see a message that the root password has expired. You can directly set a new root password from the wizard. The password policy is the same as for the Cloud Replication Management Appliance. If you change the password before running the wizard, you will proceed directly to the last step without being asked to change the root password.</p>
+<p>You also need to provide the SSO administrator credentials.</p>
+<p>The ADD A REPLICATOR SERVICE INSTANCE button will let you connect additional Replicator Services if wanted.</p>
+<p><img src=images/dr-migration/implementation/setup-vcda/replicator-change-pass.png alt="Change the root password of the Cloud Replicator Appliance"></p>
+<p>If all the details are entered correctly, you will be prompted to reject or accept the Lookup Service certificate. To proceed, accept the certificate.</p>
+<p><img src=images/dr-migration/implementation/setup-vcda/replicator-accept-cert.png alt="Accept the certificate of the Cloud Replicator Appliance"></p>
+<p>The very last step of the setup process is to connect to the Cloud Tunnel Appliance. You don&rsquo;t need to define the Lookup Service Address again as the wizard uses the one set on the previous step. You only need to enter the API URL and the root password. Note that the prefix and port are added automatically.</p>
+<p><img src=images/dr-migration/implementation/setup-vcda/tunnel-details.png alt="Step 6 – Configure the Cloud Tunnel Appliance"></p>
+<p>Similarly, to the previous step where we connected to the Cloud Replicator Appliance(s), if you haven&rsquo;t changed the root password yet, you could do it after clicking the CHECK PASSWORD button. Note that if you have already changed the password, the UI will direct you to the next action.</p>
+<p><img src=images/dr-migration/implementation/setup-vcda/tunnel-change-pass.png alt="Change the root password of the Cloud Tunnel Appliance"></p>
+<p>By clicking Next, you will be prompted to reject or accept the Cloud Tunnel Appliance certificate. To go through, you need to accept it.</p>
+<p><img src=images/dr-migration/implementation/setup-vcda/tunnel-accept-cert.png alt="Accept the certificate of the Cloud Tunnel Appliance"></p>
+<p>The last stage of the wizard is a summary that will show you some of the details you entered. Use the Finish button to close the initial setup wizard and start using your newly configured VMware Cloud Director Availability.</p>
+<p><img src=images/dr-migration/implementation/setup-vcda/summary.png alt="Step 7 - Summary"></p>
+<p>On Picture 17, you can see how the home screen looks like after performing a successful configuration.</p>
+<p><img src=images/dr-migration/implementation/setup-vcda/vcda-home-screen.png alt="VMware Cloud Director Availability home screen"></p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#setting-up-vmware-cloud-director-availability>Setting Up VMware Cloud Director Availability</a>
+<ul>
+<li><a href=#port-mapping>Port mapping</a></li>
+<li><a href=#requirements>Requirements</a></li>
+<li><a href=#vmware-cloud-director-availability-initial-configuration>VMware Cloud Director Availability initial configuration</a></li>
+<li><a href=#a-detailed-look-at-the-initial-setup-wizard>A detailed look at the initial setup wizard</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

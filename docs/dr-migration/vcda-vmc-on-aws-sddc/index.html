@@ -1,0 +1,475 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Setting Up VMware Cloud Director Availability at a VMC on AWS SDDC #  Prerequisites #  To be able to successfully deploy and run VMware Cloud Director Availability in your VMC on AWS environment, you will need to make sure the following requirements are met:
+ Have a properly deployed Software-Defined Data Center (SDDC). Have a VMware Cloud Director deployed at VMC on AWS (Cloud Director service) that is linked to the SDDC.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Setting Up VMware Cloud Director Availability at a VMC on AWS SDDC">
+<meta property="og:description" content="Setting Up VMware Cloud Director Availability at a VMC on AWS SDDC #  Prerequisites #  To be able to successfully deploy and run VMware Cloud Director Availability in your VMC on AWS environment, you will need to make sure the following requirements are met:
+ Have a properly deployed Software-Defined Data Center (SDDC). Have a VMware Cloud Director deployed at VMC on AWS (Cloud Director service) that is linked to the SDDC.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/vcda-vmc-on-aws-sddc/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-06-03T17:56:32+02:00">
+<title>Setting Up VMware Cloud Director Availability at a VMC on AWS SDDC | VMware Cloud Provider Architecture Toolkit</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.97cfda4f5e3c9fa49a2bf8d401f4ddc0eec576c99cdcf6afbec19173200c37db.css integrity="sha256-l8/aT148n6SaK/jUAfTdwO7Fdsmc3PavvsGRcyAMN9s=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.436eecbd9236313340012bfdbe0de273f88df7d80bed58ed827d4fc69fa66ca6.js integrity="sha256-Q27svZI2MTNAASv9vg3ic/iN99gL7Vjtgn1Pxp+mbKY=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>VMware Cloud Provider Architecture Toolkit</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li><a href=/docs/cloud-infrastructure/><strong>Cloud Infrastructure</strong></a>
+<ul>
+<li><a href=/docs/cloud-infrastructure/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/cloud-infrastructure/design/>Design</a></li>
+<li><a href=/docs/cloud-infrastructure/implementation/>Implementation</a></li>
+<li><a href=/docs/cloud-infrastructure/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/networking-security/><strong>Networking & Security</strong></a>
+<ul>
+<li><a href=/docs/networking-security/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/networking-security/design/>Design</a></li>
+<li><a href=/docs/networking-security/implementation/>Implementation</a></li>
+<li><a href=/docs/networking-security/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/dr-migration/><strong>DR & Migration</strong></a>
+<ul>
+<li><a href=/docs/dr-migration/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/dr-migration/design/>Design</a></li>
+<li><a href=/docs/dr-migration/implementation/>Implementation</a></li>
+<li><a href=/docs/dr-migration/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/developer-ready-cloud/><strong>Developer Ready Cloud</strong></a>
+<ul>
+<li><a href=/docs/developer-ready-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/developer-ready-cloud/design/>Design</a></li>
+<li><a href=/docs/developer-ready-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/developer-ready-cloud/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/sovereign-cloud/><strong>Sovereign Cloud</strong></a>
+<ul>
+<li><a href=/docs/sovereign-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/sovereign-cloud/design/>Design</a></li>
+<li><a href=/docs/sovereign-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/sovereign-cloud/operations/>Operations</a>
+<br></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://cloudsolutions.vmware.com target=_blank rel=noopener>
+VMware Cloud Solutions
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Setting Up VMware Cloud Director Availability at a VMC on AWS SDDC</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#setting-up-vmware-cloud-director-availability-at-a-vmc-on-aws-sddc>Setting Up VMware Cloud Director Availability at a VMC on AWS SDDC</a>
+<ul>
+<li><a href=#prerequisites>Prerequisites</a></li>
+<li><a href=#deployment>Deployment</a></li>
+<li><a href=#additional-sddc-configuration>Additional SDDC configuration</a>
+<ul>
+<li><a href=#add-inventory-services>Add Inventory Services</a></li>
+<li><a href=#request-public-ips>Request Public IPs</a></li>
+<li><a href=#create-a-compute-group>Create a Compute Group</a></li>
+<li><a href=#create-management-groups>Create Management Groups</a></li>
+<li><a href=#configure-the-compute-gateway-firewall>Configure the Compute Gateway Firewall</a></li>
+<li><a href=#configure-the-management-gateway-firewall>Configure the Management Gateway Firewall</a></li>
+<li><a href=#add-nat-rules>Add NAT rules</a></li>
+</ul>
+</li>
+<li><a href=#initial-setup>Initial setup</a></li>
+<li><a href=#pairing-with-another-cloud>Pairing with another Cloud</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=setting-up-vmware-cloud-director-availability-at-a-vmc-on-aws-sddc>
+Setting Up VMware Cloud Director Availability at a VMC on AWS SDDC
+<a class=anchor href=#setting-up-vmware-cloud-director-availability-at-a-vmc-on-aws-sddc>#</a>
+</h1>
+<h2 id=prerequisites>
+Prerequisites
+<a class=anchor href=#prerequisites>#</a>
+</h2>
+<p>To be able to successfully deploy and run VMware Cloud Director Availability in your VMC on AWS environment, you will need to make sure the following requirements are met:</p>
+<ol>
+<li>Have a properly deployed Software-Defined Data Center (SDDC).</li>
+<li>Have a VMware Cloud Director deployed at VMC on AWS (Cloud Director service) that is linked to the SDDC.</li>
+<li>Have defined at least one Organization, OrgVDC with <a href=https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-789C3913-1053-4850-A0F0-E29C3D32B6DA.html>Hardware Version</a> (Default is Hardware Version 14 – vCenter 6.7.0) higher than one you have in the vCenter you would like to use as a source location</li>
+<li>Have defined at least one tenant admin user.</li>
+<li>(Recommended) Have a dedicated routed network for the VMware Cloud Director Availability appliances. (You can still use any existing routed network). Obtain its CIDR from <strong>Networking & Security</strong> > <strong>Network</strong> > <strong>Segments</strong>.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/sddc-network-segments.png alt="SDDC Network Segments"></p>
+<ol start=6>
+<li>Obtain the proper Source NAT Public IP of your SDDC from <strong>Networking & Security</strong> > <strong>Overview</strong>.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/sddc-network-overview.png alt="SDDC Network Overview"></p>
+<ol start=7>
+<li>Obtain the proper DNS Service IP of your SDDC from <strong>Networking & Security</strong> > <strong>System</strong> > <strong>DNS</strong>.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/sddc-dns-services.png alt="SDDC DNS Services"></p>
+<ol start=8>
+<li>Create a Trusted IPs group from <strong>Network & Security</strong> > <strong>Inventory</strong> > <strong>Group</strong> > <strong>Compute Groups</strong> where you will add your public IP address so you can access the VMware Cloud Director Availability portal. Then in this group you will need to add all your tenant IP addresses so they can connect their on-premises appliances to your VMware Cloud Director Availability cloud.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/compute-groups.png alt="Compute Groups"></p>
+<ol start=9>
+<li>Create a Compute Gateway Firewall Rule with the following settings to allow access from your trusted IPs to the environment:</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/compute-gw-fw-rules.png alt="Compute Gateway Firewall Rules"></p>
+<ol start=10>
+<li>Create a new Resource Pool for the VMware Cloud Director Availability Appliances under the <strong>Compute-Resource Pool</strong>.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/resource-pool.png alt="Dedicated Resource Pool"></p>
+<h2 id=deployment>
+Deployment
+<a class=anchor href=#deployment>#</a>
+</h2>
+<p>Below you can find the necessary configuration steps for the separate appliances case and NOT for the combined appliance.</p>
+<p>Please repeat the mentioned steps for each of the appliances – Cloud Replication Management appliance, Cloud Replicator appliance and Cloud Tunnel appliance.</p>
+<ol>
+<li>
+<p>Log in to the vCenter UI from your VMC console.</p>
+</li>
+<li>
+<p>Deploy the OVA template in the Resource pool created in Requirement #8 in the Prerequisites section.</p>
+</li>
+<li>
+<p>The deployment steps are similar to the typical VMware Cloud Director Availability Deployment. There are only a few considerations to be taken:</p>
+<ul>
+<li>On Step 7 – Select Storage: Select Workload Datastore</li>
+</ul>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/datastore-selection.png alt="Datastore selection"></p>
+<ul>
+<li>On Step 8 – Select networks: Select the dedicated network for VMware Cloud Director Availability from Requirement #4 in the Prerequisites section.</li>
+</ul>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/network-selection.png alt="Network selection"></p>
+<ul>
+<li>
+<p>On Step 9 – Customize template:</p>
+<ul>
+<li>In the Address field provide an address in the dedicated network for VMware Cloud Director Availability from Requirement #4 in the Prerequisites section.</li>
+<li>In the DNS servers field provide the DNS Service IP address from Requirement #6 in the Prerequisites section.</li>
+</ul>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/vcda-network-settings.png alt="VMware Cloud Director Availability Network settings"></p>
+</li>
+</ul>
+</li>
+<li>
+<p>After you have successfully deployed the 3 appliances, you should see something similar to:</p>
+</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/vcda-deployed-appliances.png alt="Deployed appliances view in vCenter"></p>
+<h2 id=additional-sddc-configuration>
+Additional SDDC configuration
+<a class=anchor href=#additional-sddc-configuration>#</a>
+</h2>
+<p>To be able to successfully pair any on-premises instance to the VMware Cloud Director Availability cloud instance hosted at VMC on AWS, you need to perform some additional steps and prepare your SDDC network settings.</p>
+<p>Please follow the procedures in their exact order as they are listed in this document.</p>
+<h3 id=add-inventory-services>
+Add Inventory Services
+<a class=anchor href=#add-inventory-services>#</a>
+</h3>
+<p>You need to define 2 Services that will be later used in the Firewall settings. One is for the Cloud Management Portal and the other one is for the Cloud Tunnel endpoint.</p>
+<p>Follow these steps to get your services defined:</p>
+<ol>
+<li>Navigate to your SDDC <strong>Network & Security</strong> > <strong>Inventory</strong> > <strong>Services</strong>.</li>
+<li>To add the Management Portal service, click on <strong>ADD SERVICE</strong>.</li>
+<li>Give the service a name.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/add-inventory-service.png alt="Add an Inventory Service for the Management Portal"></p>
+<ol start=4>
+<li>Click on <strong>Set Service Entries</strong>.</li>
+<li>Enter a name for the entry, select the <strong>Service Type</strong> to be <strong>TCP</strong> and the <strong>Destination Port</strong> to be <strong>8046</strong>.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/inventory-service-members.png alt="Set the Inventory Service Members"></p>
+<ol start=6>
+<li>Click <strong>Apply</strong> and then <strong>Save</strong>.</li>
+<li>To add the Tunnel endpoint service, click on <strong>ADD SERVICE</strong>.</li>
+<li>Give the service a name.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/add-inventory-service-tunnel.png alt="Add an Inventory Service for the Tunnel endpoint"></p>
+<ol start=9>
+<li>Click on <strong>Set Service Entries</strong>.</li>
+<li>Enter a name for the entry, select the <strong>Service Type</strong> to be <strong>TCP</strong> and the <strong>Destination Port</strong> to be <strong>8048</strong>.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/inventory-service-members-tunnel.png alt="Set the Inventory Service Members"></p>
+<ol start=11>
+<li>Your services are ready.</li>
+</ol>
+<h3 id=request-public-ips>
+Request Public IPs
+<a class=anchor href=#request-public-ips>#</a>
+</h3>
+<p>You will need to request 2 new Public IP addresses – one for the Cloud Management Portal and one for the Cloud Tunnel. To request them, please follow the steps below:</p>
+<ol>
+<li>Navigate to your SDDC <strong>Network & Security</strong> > <strong>System</strong> > <strong>Public IPs</strong>.</li>
+<li>Click on <strong>REQUEST NEW IP</strong>.</li>
+<li>Put a meaningful note for your <strong>Cloud Management Portal IP</strong>.</li>
+<li>Click <strong>Save</strong>.</li>
+<li>Click on <strong>REQUEST NEW IP</strong>.</li>
+<li>Put a meaningful note for your Cloud Tunnel IP.</li>
+<li>Click <strong>Save</strong>.</li>
+<li>Your 2 new Public IPs are ready.</li>
+</ol>
+<h3 id=create-a-compute-group>
+Create a Compute Group
+<a class=anchor href=#create-a-compute-group>#</a>
+</h3>
+<p>You need to create a Compute Group that will be later used in the Firewall configuration. To create a Compute Group, please follow the steps below:</p>
+<ol>
+<li>Navigate to your SDDC <strong>Network & Security</strong> > <strong>Inventory</strong> > <strong>Groups</strong> > <strong>Compute Groups</strong>.</li>
+<li>Click on <strong>ADD GROUP</strong>.</li>
+<li>Give the Compute Group a meaningful name.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/add-compute-group.png alt="Add a Compute Group"></p>
+<ol start=4>
+<li>Click on Set Members and select the IP Addresses tab.</li>
+<li>Enter the network details from Requirement #4 in the Prerequisites section.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/add-members-compute-group.png alt="Add Members to a Compute Group"></p>
+<ol start=6>
+<li>Click on <strong>Apply</strong> and then <strong>Save</strong>.</li>
+<li>The Compute Group is now ready.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/compute-groups-view.png alt="Compute Groups view"></p>
+<h3 id=create-management-groups>
+Create Management Groups
+<a class=anchor href=#create-management-groups>#</a>
+</h3>
+<p>For enabling your Cloud Replicator to perform its replication jobs with ESXi, you need to create 2 Management Groups that will be later used in the Management Gateway Firewall configuration. To create them, please follow these steps:</p>
+<ol>
+<li>Navigate to your SDDC <strong>Network & Security</strong> > <strong>Inventory</strong> > <strong>Groups</strong> > <strong>Management Groups</strong>.</li>
+<li>Click on <strong>ADD GROUP</strong>.</li>
+<li>Give the first Management Group a meaningful name.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/add-management-group.png alt="Add a Management Group"></p>
+<ol start=4>
+<li>Click on <strong>Set Members</strong>.</li>
+<li>Enter the private IP that you will set to the Cloud Replicator.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/select-members-management-group.png alt="Select the members of a Management Group"></p>
+<ol start=6>
+<li>Click on <strong>Apply</strong> and then <strong>Save</strong>.</li>
+<li>Click on <strong>ADD GROUP</strong>.</li>
+<li>Give the second Management Group a meaningful name.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/add-management-group-cgw.png alt="Add a Management Group"></p>
+<ol start=9>
+<li>Click on <strong>Set Members</strong>.</li>
+<li>Enter the Public IP that you collected in Requirement #5 in the Prerequisites section.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/select-members-management-group-cgw.png alt="Select the members of a Management Group"></p>
+<ol start=11>
+<li>Click on <strong>Apply</strong> and then <strong>Save</strong>.</li>
+<li>Your Management Groups are created.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/management-groups-view.png alt="Management Groups view"></p>
+<h3 id=configure-the-compute-gateway-firewall>
+Configure the Compute Gateway Firewall
+<a class=anchor href=#configure-the-compute-gateway-firewall>#</a>
+</h3>
+<p>You need to do some configurations to the Compute Gateway Firewall in order to allow the inbound traffic to the Cloud Tunnel and also the outbound traffic from your VMware Cloud Director Availability appliances.</p>
+<p>These are the necessary steps:</p>
+<ol>
+<li>Navigate to your SDDC <strong>Network & Security</strong> > <strong>Security</strong> > <strong>Gateway Firewall</strong> > <strong>Compute Gateway</strong>.</li>
+<li>Click on <strong>ADD RULE</strong>.</li>
+<li>Give the Appliances Outbound Rule a meaningful name.</li>
+<li>Select the <strong>Compute Group</strong> that you created in section <strong>Create a Compute Group</strong> in the <strong>Sources</strong> column. Leave everything else with its default value. Make sure the Rule is enabled.</li>
+<li>Click on <strong>ADD RULE</strong>.</li>
+<li>Give the Cloud Tunnel Inbound Rule a meaningful name.</li>
+<li>Select the Cloud Tunnel Endpoint service that you created in <strong>Add Inventory Services</strong> section. Leave everything else with its default value. Make sure the Rule is enabled.</li>
+<li>Click on <strong>Publish</strong>.</li>
+<li>The Firewall Rules are ready.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/compute-gw-fw-rules-view.png alt="Compute Gateway Firewall Rules"></p>
+<h3 id=configure-the-management-gateway-firewall>
+Configure the Management Gateway Firewall
+<a class=anchor href=#configure-the-management-gateway-firewall>#</a>
+</h3>
+<p>To enable the internal communication between the different VMware Cloud Director Availability components and the ESXi and vCenter, you need to configure 2 Compute Gateway Firewall rules.
+To create them, please follow these steps:</p>
+<ol>
+<li>Navigate to your SDDC <strong>Network & Security</strong> > <strong>Security</strong> > <strong>Gateway Firewall</strong> > <strong>Management Gateway</strong>.</li>
+<li>Click on <strong>ADD RULE</strong>.</li>
+<li>Give the ESXi Provisioning Rule a meaningful name.</li>
+<li>Select as follows:
+<ul>
+<li>Sources – the <strong>Cloud Replicator Private IP Management Group</strong> that you defined in the <strong>Create Management Groups</strong> section.</li>
+<li>Destinations – <strong>ESXi</strong>.</li>
+<li>Services – <strong>Provisioning and Remote Console (TCP 902)</strong>.</li>
+</ul>
+</li>
+<li>Click on <strong>ADD RULE</strong>.</li>
+<li>Give the Appliances Inbound rule a meaningful name.</li>
+<li>Select as follows:
+<ul>
+<li>Sources – the Management Group that has the Public IP as a member that you defined in the <strong>Create Management Groups</strong> section.</li>
+<li>Destinations – <strong>vCenter</strong>.</li>
+<li>Services – <strong>HTTPS</strong>.</li>
+</ul>
+</li>
+<li>Click on <strong>Publish</strong>.</li>
+<li>The Firewall Rules are defined.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/management-gw-fw-rules.png alt="Management Gateway Firewall Rules"></p>
+<h3 id=add-nat-rules>
+Add NAT rules
+<a class=anchor href=#add-nat-rules>#</a>
+</h3>
+<p>NAT rules are necessary to forward the incoming traffic to the correct appliances. You need to add 2 NAT rules – one for the Cloud Management Portal and one for the incoming Cloud Tunnel traffic.</p>
+<p>The Cloud Management Portal rule can be removed after the initial configuration is done as the Portal is accessible through the VMware Cloud Director Availability Plug-in in Cloud Director service.</p>
+<p>The steps to add NAT rules are:</p>
+<ol>
+<li>Navigate to your SDDC <strong>Network & Security</strong> > <strong>Network</strong> > <strong>NAT</strong>.</li>
+<li>Click on <strong>ADD NAT RULE</strong>.</li>
+<li>Give the Cloud Management Portal Rule a meaningful name.</li>
+<li>The rule settings should be as follows:
+<ul>
+<li>Public IP – the Public IP that you requested for the Cloud Management Portal in the <strong>Request Public IPs</strong> section.</li>
+<li>Service – the Cloud Management Service that you defined in the <strong>Add Inventory Services</strong> section.</li>
+<li>Public Port – <strong>8046</strong>.</li>
+<li>Internal IP – the Cloud Management Replicator Appliance internal IP address.</li>
+<li>Internal Port – <strong>8046</strong>.</li>
+<li>Firewall – <strong>Match Internal Address</strong>.</li>
+<li>Click <strong>Save</strong>.</li>
+</ul>
+</li>
+<li>Click on <strong>ADD NAT RULE</strong>.</li>
+<li>Give the Cloud Tunnel Inbound Rule a meaningful name.</li>
+<li>The rule settings should be as follows:
+<ul>
+<li>Public IP – the Public IP that you requested for the Cloud Tunnel in the <strong>Request Public IPs</strong> section.</li>
+<li>Service – the Cloud Tunnel Service that you defined in the Add Inventory Services section.</li>
+<li>Public Port – <strong>443</strong>.</li>
+<li>Internal IP – the Cloud Management Replicator Appliance internal IP address.</li>
+<li>Internal Port – <strong>8048</strong>.</li>
+<li>Firewall – <strong>Match Internal Address</strong>.</li>
+<li>Click <strong>Save</strong>.</li>
+</ul>
+</li>
+<li>The NAT rules are created.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/nat-rules-view.png alt="NAT Rules"></p>
+<h2 id=initial-setup>
+Initial setup
+<a class=anchor href=#initial-setup>#</a>
+</h2>
+<ol>
+<li>Make sure your external IP address is in the Trusted IP list that was defined in Requirement #7 in the Prerequisites section.</li>
+<li>Navigate to (https://&lt;Cloud_Management_Portal_Public_IP>:8046/admin).</li>
+<li>Log in as <strong>root</strong> and change the password when prompted.</li>
+<li>Click on <strong>Run the initial setup wizard</strong>.</li>
+<li>Provide the VMware Cloud Director Availability license.</li>
+<li>Give the site a meaningful name and check only the <strong>VMC</strong> data engine to be activated.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/vmc-data-engine-selection.png alt="Data engine selection"></p>
+<ol start=7>
+<li>Provide the Cloud Director service public URL in the following format – (https://CDs_URL/api).</li>
+<li>Enter a System Administrator or CDS Provider Admin user and its password. For example, vcdaadmin@sytem. Any other user types except Local users are currently not supported.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/cds-settings.png alt="Cloud Director service settings"></p>
+<ol start=9>
+<li>Provide the VMC Lookup Service URL which is the vCenter public URL. Use this format – (https://vCenter_URL:443/) lookupservice/sdk.</li>
+<li>Enter the internal IP address of the Replicator (for example, (https://172.26.46.202:8043)) and its root password. You might be prompted to change the root password, if you haven’t done so yet.</li>
+<li>Enter <a href=mailto:cloudadmin@vmc.local>cloudadmin@vmc.local</a> as SSO user name and provide its password.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/replicator-settings.png alt="Replicator settings"></p>
+<ol start=12>
+<li>Enter the Cloud Tunnel Appliance internal IP address and its root password. You might be prompted to change the root password, if you haven’t done so yet.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/tunnel-settings.png alt="Tunnel settings"></p>
+<ol start=13>
+<li>Finalize the wizard.</li>
+</ol>
+<h2 id=pairing-with-another-cloud>
+Pairing with another Cloud
+<a class=anchor href=#pairing-with-another-cloud>#</a>
+</h2>
+<p>To enable migrations from private clouds running VMware Cloud Director, you need to upgrade and pair the existing instance of VMware Cloud Director Availability operating in this private cloud.</p>
+<p>Once its version is 4.2, you will need to change the Data Engine similarly to what you did in the VMware Cloud Director Availability provider instance running in Cloud Director service (step 3 from the Additional Configuration in the Provider setup section).</p>
+<p>To continue supporting the existing replications, it should have both options selected – Classic and VMC.</p>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/data-engine-settings-private-cloud.png alt="VMware Cloud Director Availability Data Engine settings in private cloud"></p>
+<p>In cases where you perform a fresh installation of VMware Cloud Director Availability 4.2, you can select both data engines to be enabled during the Initial Config Wizard.</p>
+<p><img src=/images/dr-migration/implementation/vcda-vmc-on-aws-sddc/private-cloud-initial-setup-wizard.png alt="VMware Cloud Director Availability Data Engine settings in private cloud in the Initial Config Wizard"></p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#setting-up-vmware-cloud-director-availability-at-a-vmc-on-aws-sddc>Setting Up VMware Cloud Director Availability at a VMC on AWS SDDC</a>
+<ul>
+<li><a href=#prerequisites>Prerequisites</a></li>
+<li><a href=#deployment>Deployment</a></li>
+<li><a href=#additional-sddc-configuration>Additional SDDC configuration</a>
+<ul>
+<li><a href=#add-inventory-services>Add Inventory Services</a></li>
+<li><a href=#request-public-ips>Request Public IPs</a></li>
+<li><a href=#create-a-compute-group>Create a Compute Group</a></li>
+<li><a href=#create-management-groups>Create Management Groups</a></li>
+<li><a href=#configure-the-compute-gateway-firewall>Configure the Compute Gateway Firewall</a></li>
+<li><a href=#configure-the-management-gateway-firewall>Configure the Management Gateway Firewall</a></li>
+<li><a href=#add-nat-rules>Add NAT rules</a></li>
+</ul>
+</li>
+<li><a href=#initial-setup>Initial setup</a></li>
+<li><a href=#pairing-with-another-cloud>Pairing with another Cloud</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>
