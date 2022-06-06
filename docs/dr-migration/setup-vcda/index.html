@@ -16,7 +16,7 @@ Requirements #  Here is a high-level list of the requirements to deploy VMware C
   Routing and Firewall Ports in place">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/setup-vcda/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-06-03T17:56:32+02:00">
+<meta property="article:modified_time" content="2022-06-06T10:40:29+02:00">
 <title>Setting Up VMware Cloud Director Availability | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
@@ -129,7 +129,7 @@ Port mapping
 <a class=anchor href=#port-mapping>#</a>
 </h2>
 <p>The communication between the different appliances occurs at the following ports as shown on the diagram.</p>
-<p><img src=images/dr-migration/implementation/setup-vcda/port-mapping.png alt="VMware Cloud Director Availability Port mapping diagram"></p>
+<p><img src=/images/dr-migration/implementation/setup-vcda/port-mapping.png alt="VMware Cloud Director Availability Port mapping diagram"></p>
 <h2 id=requirements>
 Requirements
 <a class=anchor href=#requirements>#</a>
@@ -196,46 +196,46 @@ A detailed look at the initial setup wizard
 <p>After you successfully deploy the OVA templates for all the appliances, the next step is to run the initial setup wizard.</p>
 <p>First, you need to login to the appliance by opening your browser and entering the following URL: https://&lt;Cloud-Replication-Management-Appliance-URL>/ui/admin.</p>
 <p>You will see the login screen of the VMware Cloud Director Availability Cloud Service admin UI. There, you have to enter the password defined during the deployment process.</p>
-<p><img src=images/dr-migration/implementation/setup-vcda/login-screen.png alt="VMware Cloud Director Availability login screen"></p>
+<p><img src=/images/dr-migration/implementation/setup-vcda/login-screen.png alt="VMware Cloud Director Availability login screen"></p>
 <img src=./media/image2.png style=width:6.26806in;height:3.00347in>
 <p><em>Picture 1 – VMware Cloud Director Availability login screen</em></p>
 <p>Since it is the first login to the system, you will be prompted to change the password.</p>
-<p><img src=images/dr-migration/implementation/setup-vcda/change-password.png alt="Change the appliance root password"></p>
+<p><img src=/images/dr-migration/implementation/setup-vcda/change-password.png alt="Change the appliance root password"></p>
 <p>After you enter a new password that matches the password policy (it should be at least 8 symbols and contain at least one uppercase, lowercase, number, and special character), you will see the welcome screen (Picture 3).</p>
-<p><img src=images/dr-migration/implementation/setup-vcda/initial-setup-wizard.png alt="VMware Cloud Director Availability initial wizard screen"></p>
+<p><img src=/images/dr-migration/implementation/setup-vcda/initial-setup-wizard.png alt="VMware Cloud Director Availability initial wizard screen"></p>
 <p>After reading and complying with the information on the welcome screen, proceed with the configuration of the Cloud Director Availability, by clicking Run Initial Setup Wizard. Note that all the steps are mandatory, and you cannot skip any of them.</p>
 <p>The first thing to do is to enter your license key.</p>
-<p><img src=images/dr-migration/implementation/setup-vcda/license-key.png alt="Step 1 – enter the license key"></p>
+<p><img src=/images/dr-migration/implementation/setup-vcda/license-key.png alt="Step 1 – enter the license key"></p>
 <p>Next, you need to give your site a name and provide the Service Endpoint address. In case you are not sure about the address at the moment of setup, you can leave it empty and fill it later in the VMware Cloud Director Availability portal (Configuration menu).</p>
-<p><img src=images/dr-migration/implementation/setup-vcda/site-details.png alt="Step 2 – Site details"></p>
+<p><img src=/images/dr-migration/implementation/setup-vcda/site-details.png alt="Step 2 – Site details"></p>
 <p>On the next screen, you have to fill in your VMware Cloud Director Endpoint address and an administrator’s credentials. Note that you only need to type the Endpoint URL, and the wizard will automatically add the https:// prefix and /api suffix.</p>
-<p><img src=images/dr-migration/implementation/setup-vcda/cloud-director-details.png alt="Step 3 – VMware Cloud Director details"></p>
+<p><img src=/images/dr-migration/implementation/setup-vcda/cloud-director-details.png alt="Step 3 – VMware Cloud Director details"></p>
 <p>By clicking Next, you are prompted to reject or accept the VMware Cloud Director certificate. To proceed further, you need to accept it.</p>
-<p><img src=images/dr-migration/implementation/setup-vcda/accept-vcd-cert.png alt="Accepting the certificate of the VMware Cloud Director"></p>
+<p><img src=/images/dr-migration/implementation/setup-vcda/accept-vcd-cert.png alt="Accepting the certificate of the VMware Cloud Director"></p>
 <p>After accepting the certificate, you will be asked for your consent to participate in the VMware&rsquo;s Customer Experience Improvement Program (&ldquo;CEIP&rdquo;). By default, it is checked, but you can uncheck it and proceed with the wizard.</p>
-<p><img src=images/dr-migration/implementation/setup-vcda/ceip.png alt="Participation in the VMware&amp;rsquo;s Customer Experience Improvement Program"></p>
+<p><img src=/images/dr-migration/implementation/setup-vcda/ceip.png alt="Participation in the VMware&amp;rsquo;s Customer Experience Improvement Program"></p>
 <p>The penultimate step is to connect your Cloud Replicator Appliance(s) (if you have more than one). An important note - on this step, you enter the Lookup Service Address. It is used for all your replicators and the tunnel.</p>
-<p><img src=images/dr-migration/implementation/setup-vcda/replicator.png alt="Step 5 – Configure the Cloud Replicator Appliance(s)"></p>
+<p><img src=/images/dr-migration/implementation/setup-vcda/replicator.png alt="Step 5 – Configure the Cloud Replicator Appliance(s)"></p>
 <p>After entering all the Lookup Service Address, Replicator Service Address, and root password, you need to click TEST CONNECTION to verify the connectivity and connect to the Cloud Replicator Appliance. Similarly, to the VMware Cloud Director Service Endpoint, you only need to put the IP/URL, and the port, prefix, and suffix are added automatically. You need to perform the same set of actions for all the Cloud Replicator Appliances you want to attach.</p>
-<p><img src=images/dr-migration/implementation/setup-vcda/replicator-details.png alt="Submit the Cloud Replicator Appliance details"></p>
+<p><img src=/images/dr-migration/implementation/setup-vcda/replicator-details.png alt="Submit the Cloud Replicator Appliance details"></p>
 <p>Right after clicking the TEST CONNECTION button, you will be prompted to reject or accept the Cloud Replicator Appliance certificate. To proceed, accept the certificate.</p>
-<p><img src=images/dr-migration/implementation/setup-vcda/replicator-cert.png alt="Accept the certificate of the Cloud Replicator Appliance"></p>
+<p><img src=/images/dr-migration/implementation/setup-vcda/replicator-cert.png alt="Accept the certificate of the Cloud Replicator Appliance"></p>
 <p>If you haven&rsquo;t logged in the Cloud Replicator Appliance UI so far, you will see a message that the root password has expired. You can directly set a new root password from the wizard. The password policy is the same as for the Cloud Replication Management Appliance. If you change the password before running the wizard, you will proceed directly to the last step without being asked to change the root password.</p>
 <p>You also need to provide the SSO administrator credentials.</p>
 <p>The ADD A REPLICATOR SERVICE INSTANCE button will let you connect additional Replicator Services if wanted.</p>
-<p><img src=images/dr-migration/implementation/setup-vcda/replicator-change-pass.png alt="Change the root password of the Cloud Replicator Appliance"></p>
+<p><img src=/images/dr-migration/implementation/setup-vcda/replicator-change-pass.png alt="Change the root password of the Cloud Replicator Appliance"></p>
 <p>If all the details are entered correctly, you will be prompted to reject or accept the Lookup Service certificate. To proceed, accept the certificate.</p>
-<p><img src=images/dr-migration/implementation/setup-vcda/replicator-accept-cert.png alt="Accept the certificate of the Cloud Replicator Appliance"></p>
+<p><img src=/images/dr-migration/implementation/setup-vcda/replicator-accept-cert.png alt="Accept the certificate of the Cloud Replicator Appliance"></p>
 <p>The very last step of the setup process is to connect to the Cloud Tunnel Appliance. You don&rsquo;t need to define the Lookup Service Address again as the wizard uses the one set on the previous step. You only need to enter the API URL and the root password. Note that the prefix and port are added automatically.</p>
-<p><img src=images/dr-migration/implementation/setup-vcda/tunnel-details.png alt="Step 6 – Configure the Cloud Tunnel Appliance"></p>
+<p><img src=/images/dr-migration/implementation/setup-vcda/tunnel-details.png alt="Step 6 – Configure the Cloud Tunnel Appliance"></p>
 <p>Similarly, to the previous step where we connected to the Cloud Replicator Appliance(s), if you haven&rsquo;t changed the root password yet, you could do it after clicking the CHECK PASSWORD button. Note that if you have already changed the password, the UI will direct you to the next action.</p>
-<p><img src=images/dr-migration/implementation/setup-vcda/tunnel-change-pass.png alt="Change the root password of the Cloud Tunnel Appliance"></p>
+<p><img src=/images/dr-migration/implementation/setup-vcda/tunnel-change-pass.png alt="Change the root password of the Cloud Tunnel Appliance"></p>
 <p>By clicking Next, you will be prompted to reject or accept the Cloud Tunnel Appliance certificate. To go through, you need to accept it.</p>
-<p><img src=images/dr-migration/implementation/setup-vcda/tunnel-accept-cert.png alt="Accept the certificate of the Cloud Tunnel Appliance"></p>
+<p><img src=/images/dr-migration/implementation/setup-vcda/tunnel-accept-cert.png alt="Accept the certificate of the Cloud Tunnel Appliance"></p>
 <p>The last stage of the wizard is a summary that will show you some of the details you entered. Use the Finish button to close the initial setup wizard and start using your newly configured VMware Cloud Director Availability.</p>
-<p><img src=images/dr-migration/implementation/setup-vcda/summary.png alt="Step 7 - Summary"></p>
+<p><img src=/images/dr-migration/implementation/setup-vcda/summary.png alt="Step 7 - Summary"></p>
 <p>On Picture 17, you can see how the home screen looks like after performing a successful configuration.</p>
-<p><img src=images/dr-migration/implementation/setup-vcda/vcda-home-screen.png alt="VMware Cloud Director Availability home screen"></p>
+<p><img src=/images/dr-migration/implementation/setup-vcda/vcda-home-screen.png alt="VMware Cloud Director Availability home screen"></p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
