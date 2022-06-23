@@ -1,0 +1,248 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Planning and Preparation for Load Balancing as a Service in VMware Cloud Director #  Introduction #  Before you start implementing the Load Balancing as a Service in VMware Cloud Director solution, you must set up an environment that has a specific compute, storage, and network configuration and that provides external services to the components of the solution.
+Requirements #  Software #  To implement load balancing as a service with VMware Cloud Director, your software versions must meet the requirements specified in the VMware Product Interoperability Matrix.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Planning and Preparation for Load Balancing as a Service in VMware Cloud Director">
+<meta property="og:description" content="Planning and Preparation for Load Balancing as a Service in VMware Cloud Director #  Introduction #  Before you start implementing the Load Balancing as a Service in VMware Cloud Director solution, you must set up an environment that has a specific compute, storage, and network configuration and that provides external services to the components of the solution.
+Requirements #  Software #  To implement load balancing as a service with VMware Cloud Director, your software versions must meet the requirements specified in the VMware Product Interoperability Matrix.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/networking-security/vcd-lbaas-planning-and-preparation/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-06-23T11:00:25+02:00">
+<title>Planning and Preparation for Load Balancing as a Service in VMware Cloud Director | VMware Cloud Provider Architecture Toolkit</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.97cfda4f5e3c9fa49a2bf8d401f4ddc0eec576c99cdcf6afbec19173200c37db.css integrity="sha256-l8/aT148n6SaK/jUAfTdwO7Fdsmc3PavvsGRcyAMN9s=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.3b289bad560a849bd2365ea52a2e59c8ef0badc3dcde51bd25f58e8d13e5a84c.js integrity="sha256-OyibrVYKhJvSNl6lKi5ZyO8LrcPc3lG9JfWOjRPlqEw=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>VMware Cloud Provider Architecture Toolkit</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li><a href=/docs/cloud-infrastructure/><strong>Cloud Infrastructure</strong></a>
+<ul>
+<li><a href=/docs/cloud-infrastructure/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/cloud-infrastructure/design/>Design</a></li>
+<li><a href=/docs/cloud-infrastructure/implementation/>Implementation</a></li>
+<li><a href=/docs/cloud-infrastructure/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/networking-security/><strong>Networking & Security</strong></a>
+<ul>
+<li><a href=/docs/networking-security/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/networking-security/design/>Design</a></li>
+<li><a href=/docs/networking-security/implementation/>Implementation</a></li>
+<li><a href=/docs/networking-security/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/dr-migration/><strong>DR & Migration</strong></a>
+<ul>
+<li><a href=/docs/dr-migration/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/dr-migration/design/>Design</a></li>
+<li><a href=/docs/dr-migration/implementation/>Implementation</a></li>
+<li><a href=/docs/dr-migration/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/developer-ready-cloud/><strong>Developer Ready Cloud</strong></a>
+<ul>
+<li><a href=/docs/developer-ready-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/developer-ready-cloud/design/>Design</a></li>
+<li><a href=/docs/developer-ready-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/developer-ready-cloud/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/sovereign-cloud/><strong>Sovereign Cloud</strong></a>
+<ul>
+<li><a href=/docs/sovereign-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/sovereign-cloud/design/>Design</a></li>
+<li><a href=/docs/sovereign-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/sovereign-cloud/operations/>Operations</a>
+<br></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://cloudsolutions.vmware.com target=_blank rel=noopener>
+VMware Cloud Solutions
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Planning and Preparation for Load Balancing as a Service in VMware Cloud Director</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#planning-and-preparation-for-load-balancing-as-a-service-in-vmware-cloud-director>Planning and Preparation for Load Balancing as a Service in VMware Cloud Director</a>
+<ul>
+<li><a href=#introduction>Introduction</a></li>
+<li><a href=#requirements>Requirements</a>
+<ul>
+<li><a href=#software>Software</a></li>
+<li><a href=#resources>Resources</a></li>
+<li><a href=#networking>Networking</a></li>
+</ul>
+</li>
+<li><a href=#preparation>Preparation</a>
+<ul>
+<li><a href=#vsphere>vSphere</a></li>
+<li><a href=#nsx-t>NSX-T</a></li>
+</ul>
+</li>
+<li><a href=#next-steps>Next Steps</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=planning-and-preparation-for-load-balancing-as-a-service-in-vmware-cloud-director>
+Planning and Preparation for Load Balancing as a Service in VMware Cloud Director
+<a class=anchor href=#planning-and-preparation-for-load-balancing-as-a-service-in-vmware-cloud-director>#</a>
+</h1>
+<h2 id=introduction>
+Introduction
+<a class=anchor href=#introduction>#</a>
+</h2>
+<p>Before you start implementing the <strong>Load Balancing as a Service in VMware Cloud Director</strong> solution, you must set up an environment that has a specific compute, storage, and network configuration and that provides external services to the components of the solution.</p>
+<h2 id=requirements>
+Requirements
+<a class=anchor href=#requirements>#</a>
+</h2>
+<h3 id=software>
+Software
+<a class=anchor href=#software>#</a>
+</h3>
+<p>To implement load balancing as a service with VMware Cloud Director, your software versions must meet the requirements specified in the <a href=https://interopmatrix.vmware.com/Interoperability>VMware Product Interoperability Matrix</a>.</p>
+<h3 id=resources>
+Resources
+<a class=anchor href=#resources>#</a>
+</h3>
+<p>Before you deploy NSX Advanced Load Balancer, you must provide sufficient compute and storage resources to meet the footprint requirements of the Controller cluster and the Service Engines.</p>
+<ul>
+<li><a href=https://avinetworks.com/docs/21.1/avi-controller-sizing/>Avi Controller Sizing</a></li>
+<li><a href=https://avinetworks.com/docs/21.1/sizing-service-engines/>Sizing Service Engines</a></li>
+</ul>
+<h3 id=networking>
+Networking
+<a class=anchor href=#networking>#</a>
+</h3>
+<p>This load balancing as a service solution is based on several management virtual appliances that require to be deployed in a management infrastructure. <strong>Latency requirements</strong> are critical to guarantee proper functioning and performance:</p>
+<ul>
+<li>Latency among Avi controllers – Less than 10 ms</li>
+<li>Latency between any Avi SE to any Avi Controller – Less than 75 ms recommended</li>
+<li>Latency between Avi Controller and NSX-T Manager – Less than 10 ms recommended
+<ul>
+<li>Best practice is to co-locate in the same port group/management infrastructure as NSX-T</li>
+</ul>
+</li>
+<li>Latency between Avi Controller and VMware Cloud Director – Best practice is to have have VCD cells in the same management infrastructure as NSX-T manager and Avi Controller</li>
+</ul>
+<p>The Avi Controller and service engines use several ports for management and control communication: <a href=https://avinetworks.com/docs/21.1/protocol-ports-used-by-avi-vantage-for-management-communication/>Protocol Ports Used by Avi Vantage for Management Communication</a>.</p>
+<p>The firewall should allow traffic for these ports.</p>
+<h2 id=preparation>
+Preparation
+<a class=anchor href=#preparation>#</a>
+</h2>
+<p>The solution comprises of the Avi Controller which uses APIs to interface with the NSX-T manager and vCenter to discover the infrastructure. It also manages the lifecycle and network configuration of the service engines.</p>
+<p>The <strong>NSX-T Cloud</strong> is the object that permits the integration with the NSX-T manager and the vCenter server(s).</p>
+<p>The user accounts configured on the Avi Controller require the following roles and permissions for the integration to work successfully:</p>
+<ul>
+<li><a href=https://avinetworks.com/docs/21.1/roles-and-permissions-for-vcenter-nsx-t-users/#vcenter-roles>Roles and Permissions for vCenter user</a></li>
+<li><a href=https://avinetworks.com/docs/21.1/roles-and-permissions-for-vcenter-nsx-t-users/#nsx-t-roles>Roles and Permissions for NSX-T user</a></li>
+</ul>
+<h3 id=vsphere>
+vSphere
+<a class=anchor href=#vsphere>#</a>
+</h3>
+<p>When using an NSX-T Cloud, the Avi Controller uploads the service engine image to the <strong>content library</strong> on the vCenter server and uses this to create new virtual machine every time a new service engine is required. The content library must be <a href=https://avinetworks.com/docs/21.1/avi-nsx-t-integration/#content-library>created on vCenter before configuring the NSX-T cloud</a>.</p>
+<h3 id=nsx-t>
+NSX-T
+<a class=anchor href=#nsx-t>#</a>
+</h3>
+<p>The first network adapter of the service engine VM is reserved for management connectivity, and the remaining 9 data interfaces (network adapter 2 to 10) for the service engine VM to the VIP or data segment.</p>
+<p>The Avi SE management interface can be connected to an overlay (recommend) or a VLAN logical segment. When connected to an overlay segment, it also needs a tier-1 gateway to provide external connectivity to be able to reach the Avi controller management IP. It is recommended to have a dedicated tier-1 gateway and segment for Avi service engine management.</p>
+<blockquote class="book-hint info">
+If VLAN-backed logical segments are used instead of overlay transport zone for the management network in the NSX-T Cloud, refer to this page: <a href=https://avinetworks.com/docs/21.1/nsx-t-vlan-logical-segment/>NSX-T VLAN Logical Segment</a>.
+</blockquote>
+<p>Regardless of the solution (overlay or VLAN segment for the SE management network), the NSX-T topology must be created upfront the NSX-T Cloud configuration. In the case of overlay segment for the SE management network:</p>
+<ol>
+<li>Create a tier-1 gateway that will be used to connect the SE management network.</li>
+<li>Create 2 overlay segments: one for the management network, and one as a dummy data network segment.</li>
+<li>Enable DHCP Server at the tier-1 gateway level and configure DHCP on the management segment.</li>
+</ol>
+<p>More details here: <a href=https://avinetworks.com/docs/21.1/avi-nsx-t-integration/#configuring-management-networking-for-se>Configuring Management Networking for SE</a>.</p>
+<h2 id=next-steps>
+Next Steps
+<a class=anchor href=#next-steps>#</a>
+</h2>
+<p>One the environment is ready, you can proceed with the VMware NSX Advanced Load Balancer deployment and configuration in combination with VMware Cloud Director to provide Load Balancing as a Service: <a href=../vcd-lbaas-implementation>Load Balancing as a Service in VMware Cloud Director</a>.</p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#planning-and-preparation-for-load-balancing-as-a-service-in-vmware-cloud-director>Planning and Preparation for Load Balancing as a Service in VMware Cloud Director</a>
+<ul>
+<li><a href=#introduction>Introduction</a></li>
+<li><a href=#requirements>Requirements</a>
+<ul>
+<li><a href=#software>Software</a></li>
+<li><a href=#resources>Resources</a></li>
+<li><a href=#networking>Networking</a></li>
+</ul>
+</li>
+<li><a href=#preparation>Preparation</a>
+<ul>
+<li><a href=#vsphere>vSphere</a></li>
+<li><a href=#nsx-t>NSX-T</a></li>
+</ul>
+</li>
+<li><a href=#next-steps>Next Steps</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

@@ -1,0 +1,543 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Load Balancing as a Service in VMware Cloud Director #  Introduction #  This document is intended for VCPP Cloud Providers who are interested in providing Load Balancing as a Service (LBaaS) in their multi-tenant environments managed by VMware Cloud Director (VCD).
+From VMware Cloud Director 10.2 and onwards, VMware Cloud Director provides load balancing services in NSX-T backed organization virtual data centers (VDCs) by leveraging the capabilities of VMware NSX Advanced Load Balancer (Avi).">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Load Balancing as a Service in VMware Cloud Director">
+<meta property="og:description" content="Load Balancing as a Service in VMware Cloud Director #  Introduction #  This document is intended for VCPP Cloud Providers who are interested in providing Load Balancing as a Service (LBaaS) in their multi-tenant environments managed by VMware Cloud Director (VCD).
+From VMware Cloud Director 10.2 and onwards, VMware Cloud Director provides load balancing services in NSX-T backed organization virtual data centers (VDCs) by leveraging the capabilities of VMware NSX Advanced Load Balancer (Avi).">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/networking-security/vcd-lbaas-implementation/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-06-23T11:00:25+02:00">
+<title>Load Balancing as a Service in VMware Cloud Director | VMware Cloud Provider Architecture Toolkit</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.97cfda4f5e3c9fa49a2bf8d401f4ddc0eec576c99cdcf6afbec19173200c37db.css integrity="sha256-l8/aT148n6SaK/jUAfTdwO7Fdsmc3PavvsGRcyAMN9s=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.3b289bad560a849bd2365ea52a2e59c8ef0badc3dcde51bd25f58e8d13e5a84c.js integrity="sha256-OyibrVYKhJvSNl6lKi5ZyO8LrcPc3lG9JfWOjRPlqEw=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>VMware Cloud Provider Architecture Toolkit</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li><a href=/docs/cloud-infrastructure/><strong>Cloud Infrastructure</strong></a>
+<ul>
+<li><a href=/docs/cloud-infrastructure/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/cloud-infrastructure/design/>Design</a></li>
+<li><a href=/docs/cloud-infrastructure/implementation/>Implementation</a></li>
+<li><a href=/docs/cloud-infrastructure/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/networking-security/><strong>Networking & Security</strong></a>
+<ul>
+<li><a href=/docs/networking-security/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/networking-security/design/>Design</a></li>
+<li><a href=/docs/networking-security/implementation/>Implementation</a></li>
+<li><a href=/docs/networking-security/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/dr-migration/><strong>DR & Migration</strong></a>
+<ul>
+<li><a href=/docs/dr-migration/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/dr-migration/design/>Design</a></li>
+<li><a href=/docs/dr-migration/implementation/>Implementation</a></li>
+<li><a href=/docs/dr-migration/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/developer-ready-cloud/><strong>Developer Ready Cloud</strong></a>
+<ul>
+<li><a href=/docs/developer-ready-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/developer-ready-cloud/design/>Design</a></li>
+<li><a href=/docs/developer-ready-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/developer-ready-cloud/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/sovereign-cloud/><strong>Sovereign Cloud</strong></a>
+<ul>
+<li><a href=/docs/sovereign-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/sovereign-cloud/design/>Design</a></li>
+<li><a href=/docs/sovereign-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/sovereign-cloud/operations/>Operations</a>
+<br></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://cloudsolutions.vmware.com target=_blank rel=noopener>
+VMware Cloud Solutions
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Load Balancing as a Service in VMware Cloud Director</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#load-balancing-as-a-service-in-vmware-cloud-director>Load Balancing as a Service in VMware Cloud Director</a>
+<ul>
+<li><a href=#introduction>Introduction</a></li>
+<li><a href=#lbaas-anatomy>LBaaS Anatomy</a>
+<ul>
+<li><a href=#vmware-cloud-director-support>VMware Cloud Director Support</a></li>
+<li><a href=#provider-and-tenant-responsibilities>Provider and Tenant Responsibilities</a></li>
+</ul>
+</li>
+<li><a href=#deployment--configuration>Deployment & Configuration</a>
+<ul>
+<li><a href=#requirements>Requirements</a></li>
+<li><a href=#deploying-the-avi-controller-cluster>Deploying the Avi Controller Cluster</a></li>
+<li><a href=#avi-controller-cluster-initial-setup>Avi Controller Cluster Initial Setup</a></li>
+<li><a href=#nsx-t-cloud>NSX-T Cloud</a></li>
+<li><a href=#service-engine-groups>Service Engine Groups</a></li>
+<li><a href=#vmware-cloud-director-service-admin-portal>VMware Cloud Director Service Admin Portal</a></li>
+</ul>
+</li>
+<li><a href=#consumption>Consumption</a>
+<ul>
+<li><a href=#enabling-load-balancing>Enabling Load Balancing</a></li>
+<li><a href=#load-balancer-server-pool>Load Balancer Server Pool</a></li>
+<li><a href=#virtual-service>Virtual Service</a></li>
+<li><a href=#health-monitoring>Health Monitoring</a></li>
+</ul>
+</li>
+<li><a href=#advanced-features-consumption>Advanced Features Consumption</a>
+<ul>
+<li><a href=#avi-intelligent-web-application-firewall>Avi Intelligent Web Application Firewall</a></li>
+<li><a href=#custom-health-monitor>Custom Health Monitor</a></li>
+</ul>
+</li>
+<li><a href=#resources>Resources</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=load-balancing-as-a-service-in-vmware-cloud-director>
+Load Balancing as a Service in VMware Cloud Director
+<a class=anchor href=#load-balancing-as-a-service-in-vmware-cloud-director>#</a>
+</h1>
+<h2 id=introduction>
+Introduction
+<a class=anchor href=#introduction>#</a>
+</h2>
+<p>This document is intended for VCPP Cloud Providers who are interested in providing <strong>Load Balancing as a Service</strong> (LBaaS) in their multi-tenant environments managed by <strong>VMware Cloud Director</strong> (VCD).</p>
+<p>From VMware Cloud Director 10.2 and onwards, VMware Cloud Director provides load balancing services in NSX-T backed organization virtual data centers (VDCs) by leveraging the capabilities of <strong>VMware NSX Advanced Load Balancer (Avi)</strong>.</p>
+<p>The content below describes the deployment and configuration procedures and also clearly delineates the cloud provider actions from the actions of the tenant, addressing both self-service and managed service offerings that are possible.</p>
+<p>VMware NSX Advanced Load Balancer (Avi) provides multi-cloud load balancing, web application firewall and application analytics across on-premises data centers and any cloud. The software-defined platform delivers applications consistently across bare metal servers, virtual machines and containers to ensure a fast, scalable, and secure application experience.</p>
+<h2 id=lbaas-anatomy>
+LBaaS Anatomy
+<a class=anchor href=#lbaas-anatomy>#</a>
+</h2>
+<p>The NSX Advanced Load Balancer Platform (Avi) is architected on software-defined principles, decoupling the data and control planes. As a result, it centrally manages and dynamically provisions pools of application services, including load balancing, across multi cloud environments.</p>
+<p><img src=/images/lbaas/nsx-alb-avi-architecture.png alt="NSX Advanced Load Balancer (Avi) Architecture"></p>
+<p>Architecturally, the Platform comprises three core elements:</p>
+<ul>
+<li>The <strong>Avi Controller</strong> - provides central control and management of the Avi Service Engines. It orchestrates policy-driven application services, monitors real-time application performance (leveraging data provided by the Avi Service Engines), and provides for predictive auto-scaling of load balancing and other application services. Furthermore, it is capable of delivering per-tenant or per-application load balancing — increasingly in demand in multi cloud contexts — and also facilitates troubleshooting with traffic analytics.</li>
+<li>The <strong>Avi Service Engines (SEs)</strong> - distributed software that runs on bare metal servers, virtual machines, and containers. They implement application services across on-premises datacenters, colocation datacenters, and public clouds. They also collect data relating to application performance, security, and clients. As distributed software, Avi Service Engines are capable of horizontal auto-scaling within minutes while functioning as service proxies for micro services.</li>
+<li>The <strong>Avi Console</strong> - provides web-based administration and monitoring. It is a web server running on the controller and offers a UI for configuration of application services, delivers visualization of network configurations and virtual IPs (VIPs), and displays application health scores and transaction round-trip times. It’s also where customers can view performance, security, and client insights, as well as where they can view service interactions.</li>
+</ul>
+<h3 id=vmware-cloud-director-support>
+VMware Cloud Director Support
+<a class=anchor href=#vmware-cloud-director-support>#</a>
+</h3>
+<p>Starting with version 10.2, VMware Cloud Director provides load-balancing services by using the capabilities of VMware NSX Advanced Load Balancer (Avi). VMware Cloud Director supports L4 and L7 load balancing that you can configure on an NSX-T Data Center edge gateway.</p>
+<p>As a system administrator, you deploy the NSX Advanced Load Balancer controller cluster with the other management solutions in the management infrastructure.</p>
+<p><img src=/images/lbaas/lbaas-vcd-architecture.png alt="Load Balancing as a Service in VMware Cloud Director"></p>
+<p>The NSX Advanced Load Balancer Controller uses APIs to interface with NSX Manager and vCenter Server to discover the infrastructure. It also manages the lifecycle and network configuration of Service Engines (SE). The Avi Controller cluster uploads the SE OVA image to the vCenter Server content library and uses vCenter APIs to deploy the SE VMs.</p>
+<p>This integration happens through an NSX-T Cloud configured in NSX ALB before being imported into VMware Cloud Director.</p>
+<p>Load balancing services are associated with NSX-T edge gateways, which can be scoped to an organization VDC or a data center Group.</p>
+<p><img src=/images/lbaas/lbaas-vcd-logical-diagram.png alt="Load Balancing as a Service in VMware Cloud Director - Logical Design"></p>
+<p>​The system administrator has the flexibility to decide whether a service engine group is dedicated to a single edge gateway or shared between several edge gateways.</p>
+<p>Tenant users have full self-service UI and API load balancing capabilities in VMware Cloud Director.</p>
+<p><img src=/images/lbaas/lbaas-vcd-topology-diagram.png alt="Load Balancing as a Service in VMware Cloud Director - Topology"></p>
+<p>A service engine node is a VM with up to 10 network interfaces (NICs). The first NIC is always used for the management and control traffic. The other nine are used to connect to the NSX-T edge gateway (tier-1 gateway) using a service network logical segment. The service networks are created by VMware Cloud Director when you enable the load balancing service on an edge gateway with the DHCP service to provide IP addresses for the attached SEs.</p>
+<p>By default, the IP address used is 10.255.255.0/25 subnet. The system administrator can change the IP address if it coincides with the existing organization&rsquo;s VDC networks.</p>
+<p>Service Engines run each service interface in a different VRF. As a result, IP conflicts or cross-tenant communication does not occur. Avi automatically picks a service engine to instantiate the load balancing service when the tenant configures a load balancing pool and virtual service.</p>
+<p>When an SE is assigned, Avi configures a static route (/32) on the organization VDC edge gateway pointing the virtual service VIP (virtual IP) to the service engine IP address from the tenant&rsquo;s load balancing service network.</p>
+<h3 id=provider-and-tenant-responsibilities>
+Provider and Tenant Responsibilities
+<a class=anchor href=#provider-and-tenant-responsibilities>#</a>
+</h3>
+<p>As a <strong>system administrator</strong>, you deploy an Avi Controller Cluster, complete the initial configuration and the association with NSX-T and VMware Cloud Director. Once the integration is ready, you deploy and enable load balancing on an NSX-T edge gateway and assign it a service engine group.</p>
+<p>An <strong>organization administrator</strong> creates load balancer server pools and virtual services.</p>
+<h2 id=deployment--configuration>
+Deployment & Configuration
+<a class=anchor href=#deployment--configuration>#</a>
+</h2>
+<p><img src=/images/lbaas/lbaas-vcd-steps.png alt="Load Balancing as a Service in VMware Cloud Director - Implementation Steps"></p>
+<h3 id=requirements>
+Requirements
+<a class=anchor href=#requirements>#</a>
+</h3>
+<p>Please find the full list of requirements in the <a href=../vcd-lbaas-planning-and-preparation>planning and preparation page</a>.</p>
+<h3 id=deploying-the-avi-controller-cluster>
+Deploying the Avi Controller Cluster
+<a class=anchor href=#deploying-the-avi-controller-cluster>#</a>
+</h3>
+<blockquote class="book-hint info">
+To ensure complete system redundancy, the Avi Controller must be highly available. Three Avi Controller VMs will form a highly available control plane for the NSX Advanced Load Balancer.
+</blockquote>
+<ol>
+<li>Download the Controller OVA from my.vmware.com portal. Follow this <a href=https://kb.vmware.com/s/article/82049>KB article</a> to download the Controller OVA image.</li>
+<li>Log into the vCenter server through a vSphere Client and deploy a first Avi Controller:</li>
+<li>Follow the Deploy OVA Template wizard instructions:
+<ul>
+<li>Choose a port group for Destination Network in Network Mapping. This port group is the management network for the Controller and will be used for all management communication (e.g., Avi Controller communication with vCenter).</li>
+<li>Specify the management IP address and default gateway (only static IP addresses should be used in a production environment).</li>
+<li>The &lsquo;Sysadmin login authentication&rsquo; key is used to specify an SSH public key and is NOT required.</li>
+</ul>
+</li>
+<li>Repeat the last steps to create two additional Avi Controllers to be used to form a three-node Controller cluster which will form the control plane for the NSX Advanced Load Balancer.</li>
+<li>Create an anti-affinity &lsquo;VM/Host&rsquo; rule to make sure Controller VMs are placed on separate hosts.</li>
+<li>Power on Controller VMs.</li>
+</ol>
+<blockquote class="book-hint warning">
+Just like any other infrastructure management system, CPU and memory should be 100% reserved on Avi controllers.
+</blockquote>
+<h3 id=avi-controller-cluster-initial-setup>
+Avi Controller Cluster Initial Setup
+<a class=anchor href=#avi-controller-cluster-initial-setup>#</a>
+</h3>
+<p>This section shows the steps to perform initial configuration of the Avi Controller using its deployment wizard. You can change or customize settings following initial deployment using the Avi Controller’s web interface.</p>
+<p>Configure NSX Advanced Load Balancer Controller cluster to provide a highly available control plane for the NSX Advanced Load Balancer.</p>
+<ol>
+<li><strong>Initialize the first NSX Advanced Load Balancer Controller VM</strong>
+<ol>
+<li>In a web browser, navigate to the first controller IP or FQDN.
+<blockquote class="book-hint warning">
+Note: While the system is booting up, a 503 status code or a page with following message will appear: &ldquo;<em>Controller is not yet ready. Please try again after a couple of minutes</em>&rdquo;. Wait for about 5 to 10 minutes and refresh the page.
+</blockquote>
+</li>
+<li>Once the NSX Advanced Load Balancer welcome screen appears, create an <code>admin</code> account.</li>
+<li>Complete the remaining steps by configuring all required parameters (DNS, NTP, SMTP, etc.).</li>
+<li>Select <code>No Orchestrator</code> in the Orchestrator Integration page.</li>
+<li>Leave the Tenant Settings configured by default.</li>
+</ol>
+</li>
+<li><strong>Configure an NSX Advanced Load Balancer Controller cluster</strong>
+<ol>
+<li>Navigate to Administration > Controller and select Edit.</li>
+<li>Specify the Name and the Controller Cluster IP.</li>
+<li>Add the details for each of the three NSX Advanced Load Balancer Controller nodes.  </li>
+<li>Click on Save. It will take a few minutes for the services to restart and the Controller cluster to be up.</li>
+<li>In a web browser, log in to the Controller cluster VIP.</li>
+<li>Navigate to Administration > Controller and ensure all the Controllers show <code>State</code> as <code>Active</code> which represents a healthy Controller cluster.</li>
+<li>Setup licensing in Administration > Settings > Licensing.
+<blockquote class="book-hint info">
+Basic or Enterprise licenses are set at the controller cluster level. You cannot mix both licenses in a single Avi Controller cluster instance.
+</blockquote>
+</li>
+<li>Finish the Controller Cluster configuration (alerting, backup, etc.). Note: the full configuration of the Avi Controllers general settings is outside the scope of this document.</li>
+</ol>
+</li>
+</ol>
+<blockquote class="book-hint danger">
+<p>VMware Cloud Director integration with NSX Advanced Load Balancer fails if the default self-signed certificate is used.</p>
+<p>By default, the Controller cluster Portal will be setup with a self-signed certificate which does not have a valid SAN (Subject Alternative Name) and makes the integration with VMware Cloud Director impossible. VMware Cloud Director will reject any URL that does not match the values present in the certificate, which is to conform with industry standard security guidelines and our platform criteria.</p>
+</blockquote>
+<p>Setup of Avi Controller cluster Portal certificate is outside the scope of this document.</p>
+<p>Additional resources:</p>
+<ul>
+<li><a href=https://avinetworks.com/docs/21.1/configure-controller-ha-cluster/>Deploying an Avi Controller Cluster</a></li>
+<li><a href=https://avinetworks.com/docs/21.1/ssl-certificates/>Avi SSL/TLS Certificates</a></li>
+</ul>
+<h3 id=nsx-t-cloud>
+NSX-T Cloud
+<a class=anchor href=#nsx-t-cloud>#</a>
+</h3>
+<p>The point of integration in Avi, with any infrastructure, is named a cloud. For NSX-T environment, an <strong>NSX-T cloud</strong> has to be configured.</p>
+<p>An <strong>NSX-T cloud is defined by an NSX-T manager and a transport zone</strong>. If an NSX-T manager has multiple transport zones, each will map to a new NSX-T cloud. To manage load balancing for multiple NSX-T environments each NSX-T manager will map to a new NSX-T cloud.</p>
+<p>NSX-T cloud general considerations:</p>
+<ul>
+<li>An NSX-T cloud has a one-to-one relationship with a network pool backed by an NSX-T transport zone.</li>
+<li>DHCP checkbox: the Service Engines are expected to get an IP via DHCP on the management subnet</li>
+</ul>
+<p>To create an NSX-T cloud, log in in to the Avi Controller and:</p>
+<ol>
+<li>Navigate to Infrastructure > Clouds.</li>
+<li>Click on Create and select NSX-T Cloud.</li>
+</ol>
+<p><img src=/images/lbaas/lbaas-vcd-nsxt-cloud-config-1.png alt="Load Balancing as a Service in VMware Cloud Director - NSX-T Cloud General Configuration"></p>
+<p>Following the general parameters, the NSX-T section allows to configure the future service engines network configuration:</p>
+<ul>
+<li>The <strong>transport zone must match the overlay transport zone configured in the network pool in VMware Cloud Director</strong>.</li>
+<li>The NSX-T cloud requires two types of network configurations:
+<ul>
+<li><strong>Management Network</strong>: the tier-1 logical router and overlay segment to be used for management connectivity of the service engine VMs has to be selected. The first vNic of each service engines will be connected to that management network (which must be created upfront, with DHCP enabled).</li>
+<li><strong>Data Network</strong>: although not required for the VMware Cloud Director integration, it is required to set a dummy data network to avoid having the NSX-T cloud object in a degraded state.</li>
+</ul>
+</li>
+</ul>
+<blockquote class="book-hint info">
+VMware Cloud Director will automatically complete the data network tier-1 logical routers and segments when load balancing is enabled on tier-1 acting as NSX-T edge gateways.
+</blockquote>
+<ul>
+<li>Each NSX-T cloud can have one or more vCenters associated to it. vCenter objects must be configured on Avi for all the vCenter compute managers added to the NSX-T that has ESXi hosts that belong to the transport zone configured in the NSX-T cloud.</li>
+</ul>
+<p><img src=/images/lbaas/lbaas-vcd-nsxt-cloud-config-2.png alt="Load Balancing as a Service in VMware Cloud Director - NSX-T Cloud Networking Configuration"></p>
+<p>Additional resources:</p>
+<ul>
+<li><a href=https://avinetworks.com/docs/21.1/multiple-vcenters-per-nsx-t-cloud/>Multiple vCenters with NSX-T Cloud</a></li>
+</ul>
+<h3 id=service-engine-groups>
+Service Engine Groups
+<a class=anchor href=#service-engine-groups>#</a>
+</h3>
+<p>A <strong>service engine group is an isolation domain that also defines service engine node sizing (CPU, memory, storage), bandwidth restrictions, availability modes, and network access</strong>.</p>
+<p>Resources in a service engine group can be used for different virtual services, depending on your tenant&rsquo;s needs.</p>
+<p>To create a service engine group, log in in to the Avi Controller and:</p>
+<ol>
+<li>Navigate to Infrastructure > Cloud Resources > Service Engine Group.</li>
+<li>Using the &ldquo;Select Cloud&rdquo; drop down menu, select the relevant NSX-T cloud.</li>
+<li>Click on Create.</li>
+</ol>
+<p>The basic settings page allows to configure the high availability mode, the service engine capacity and limit settings, as well as other advanced parameters. The official Avi documentation can help to <a href=https://avinetworks.com/docs/20.1/sizing-service-engines/>size appropriately the service engines</a> in terms of CPU, memory and disk.</p>
+<p><img src=/images/lbaas/lbaas-vcd-seg-creation-1.png alt="Load Balancing as a Service in VMware Cloud Director - Service Engine Groups Configuration"></p>
+<p>Service engines VMs may be automatically deployed on any host and storage that most closely matches the resources and reachability criteria for placement.</p>
+<p>Starting in Avi 20.1.3 and onwards, it is possible to tailor the service engine placement in terms of:</p>
+<ul>
+<li>vSphere folder</li>
+<li>vSphere hosts and cluster</li>
+<li>vSphere datastore</li>
+</ul>
+<p><img src=/images/lbaas/lbaas-vcd-seg-creation-2.png alt="Load Balancing as a Service in VMware Cloud Director - Service Engine Groups Placement Configuration"></p>
+<blockquote class="book-hint info">
+You may create multiple service engine groups depending on your tenants requirements for high availability, placement or performances.
+</blockquote>
+<p>Additional resources:</p>
+<ul>
+<li><a href=https://avinetworks.com/docs/20.1/sizing-service-engines/>Sizing Service Engines</a></li>
+</ul>
+<h3 id=vmware-cloud-director-service-admin-portal>
+VMware Cloud Director Service Admin Portal
+<a class=anchor href=#vmware-cloud-director-service-admin-portal>#</a>
+</h3>
+<p>After the NSX Advanced Load Balancer deployment and configuration with the NSX-T infrastructure, the next step is to register the controller cluster with VMware Cloud Director.</p>
+<p>To provide virtual service management capabilities to your tenants:</p>
+<ol>
+<li><strong>Register your Avi Controller instances</strong> with your VMware Cloud Director instance.</li>
+<li><strong>Register your NSX-T Cloud instances</strong> with VMware Cloud Director.</li>
+<li><strong>Import all the relevant service engine groups</strong> to your VMware Cloud Director deployment.</li>
+</ol>
+<p><img src=/images/lbaas/lbaas-vcd-avi-controller-registration.png alt="Load Balancing as a Service in VMware Cloud Director - Avi Controller Registration in VMware Cloud Director"></p>
+<p><img src=/images/lbaas/lbaas-vcd-nsxt-cloud-registration.png alt="Load Balancing as a Service in VMware Cloud Director - NSX-T Cloud Registration in VMware Cloud Director"></p>
+<p><img src=/images/lbaas/lbaas-vcd-service-engine-group-import.png alt="Load Balancing as a Service in VMware Cloud Director - Service Engine Group Import"></p>
+<h2 id=consumption>
+Consumption
+<a class=anchor href=#consumption>#</a>
+</h2>
+<h3 id=enabling-load-balancing>
+Enabling Load Balancing
+<a class=anchor href=#enabling-load-balancing>#</a>
+</h3>
+<p>Before an organization administrator can configure load balancing services, a system administrator must enable the load balancer on the NSX-T edge gateway and assign at least one service engine group to it.</p>
+<ol>
+<li>Navigate to the NSX-T edge gateway on which you want to enable load balancing.</li>
+<li>Under Load Balancer, click General Settings.</li>
+<li>Click Edit and enable the Load Balancer function for this particular edge.</li>
+<li>(optional) Enter a network CIDR for a service network subnet.</li>
+</ol>
+<blockquote class="book-hint info">
+The service network is an internal construct; as such, it is not exposed to the tenant. Only change the default specification (192.168.255.1/25) if it overlaps with an existing organization VDC network.
+</blockquote>
+<p><img src=/images/lbaas/lbaas-vcd-nsxt-edge-enable-lb.png alt="Enable Load Balancing as a Service in VMware Cloud Director on an NSX-T Edge Gateway"></p>
+<p>Once load balancing is enabled, the next step is to manage the service engine group assignment on the edge gateway.</p>
+<ol>
+<li>Under Load Balancer, click Service Engine Groups.</li>
+<li>Select an available service engine group from the list.</li>
+<li>For shared service engine groups, the system administrator must set the maximum and reserved number of virtual services that can be placed on the edge gateway (within the capacity of the service engine group)</li>
+</ol>
+<p><img src=/images/lbaas/lbaas-vcd-nsxt-edge-assign-seg.png alt="Assign a Service Engine Group to an NSX-T Data Center Edge Gateway in VMware Cloud Director"></p>
+<p>Design considerations:</p>
+<ul>
+<li>A system administrator can assign one or more service engine groups to an NSX-T Data Center edge gateway.</li>
+<li>All service engine groups that are assigned to a single edge gateway use the same service network.</li>
+</ul>
+<h3 id=load-balancer-server-pool>
+Load Balancer Server Pool
+<a class=anchor href=#load-balancer-server-pool>#</a>
+</h3>
+<p>After a system administrator assigns a service engine group to an edge gateway, an organization administrator can create and configure virtual services that run in a specific service engine group.</p>
+<p>The heart of a load balancer is its ability to effectively distribute traffic across healthy servers. A server pool is a group of one or more servers that you configure to run the same application and to provide high availability.</p>
+<p>If persistence is enabled, only the first connection from a client is load balanced. While the persistence remains in effect, subsequent connections or requests from a client are directed to the same server.</p>
+<ol>
+<li>Under Load Balancer, click Pools, and then click Add.</li>
+<li>Configure the general settings for the load balancer pool.
+<img src=/images/lbaas/lbaas-vcd-nsxt-pool-general-settings.png alt="LBaaS in VMware Cloud Director - Server Pool Creation"></li>
+<li>Add members to the server pool.</li>
+</ol>
+<p><img src=/images/lbaas/lbaas-vcd-nsxt-pool-members.png alt="LBaaS in VMware Cloud Director - Server Pool Members"></p>
+<blockquote class="book-hint warning">
+Note: pool health status and pool member health status will remain <code>Down</code> until a virtual service is created and service engines are deployed.
+</blockquote>
+<p>Additional resources:</p>
+<ul>
+<li><a href=https://docs.vmware.com/en/VMware-Cloud-Director/10.3/VMware-Cloud-Director-Service-Provider-Admin-Portal-Guide/GUID-033348E5-435E-4F8F-8A5E-FFA001F659FC.html>Add a Load Balancer Server Pool</a></li>
+</ul>
+<h3 id=virtual-service>
+Virtual Service
+<a class=anchor href=#virtual-service>#</a>
+</h3>
+<p><strong>A virtual service listens for traffic to an IP address, processes client requests, and directs valid requests to a member of the load balancer server pool.</strong></p>
+<p>A virtual service is a combination of an IP address and a port that uses a single network protocol. The virtual service is advertised to outside networks and is listening for client requests. When a client connects to the virtual service, the load balancer directs the request to a member of the configured load balancer server pool.</p>
+<p>To secure SSL termination for a virtual service, you can use a certificate from the certificate library. For more information, see <a href=https://docs.vmware.com/en/VMware-Cloud-Director/10.3/VMware-Cloud-Director-Service-Provider-Admin-Portal-Guide/GUID-C23633FA-8657-450C-80B0-2BDE79EDD233.html#GUID-C23633FA-8657-450C-80B0-2BDE79EDD233>Import Certificates to the Certificates Library</a>.</p>
+<ol>
+<li>Under Load Balancer, click Virtual Services, and then click Add.</li>
+<li>Configure the general settings for the load balancer pool.</li>
+<li>Enter a meaningful name and, optionally, a description, for the virtual service.</li>
+<li>To activate the virtual service upon creation, toggle on the Enabled option.</li>
+<li>Select a service engine group for the virtual service.</li>
+<li>Select a load balancer pool for the virtual service.</li>
+<li>Enter an IP address for the virtual service.</li>
+<li>Select the virtual service type.</li>
+</ol>
+<p><img src=/images/lbaas/lbaas-vcd-nsxt-edge-virtual-service-vip.png alt="LBaaS in VMware Cloud Director - Virtual Service Creation"></p>
+<blockquote class="book-hint info">
+<p>The Virtual IP (VIP) can be any arbitrary IPv4 address. The VIP can be a routable external IP address allocated to the organization VDC edge gateway or any internal routed address:</p>
+<ul>
+<li>An external organization VDC edge gateway allocated IP address; no DNAT is required, but you cannot use this IP for NAT anymore due do the internal packet processing.</li>
+<li>An arbitrary internal IP (DNAT required). In that situation, the VIP must not coincide with any existing organization VDC networks or with the load balancer service network.</li>
+</ul>
+<p>A static route will be automatically created on the Tier-1 from the VIP to the relevant service engine node IP.</p>
+</blockquote>
+<p>Additional resources:</p>
+<ul>
+<li><a href=https://docs.vmware.com/en/VMware-Cloud-Director/10.3/VMware-Cloud-Director-Service-Provider-Admin-Portal-Guide/GUID-5B04413B-6761-483B-979C-D99F43651284.html#GUID-5B04413B-6761-483B-979C-D99F43651284>Create a Virtual Service</a></li>
+</ul>
+<h3 id=health-monitoring>
+Health Monitoring
+<a class=anchor href=#health-monitoring>#</a>
+</h3>
+<p>VMware Cloud Director manages the health of the following load balancing components:</p>
+<ul>
+<li>NSX-T Cloud</li>
+<li>Virtual services</li>
+<li>Server pools</li>
+</ul>
+<p>VMware Cloud Director provides basic monitoring and metrics about the virtual services and pools to both providers and tenant administrators.</p>
+<p>Providers can see the basic usage metrics for each service engine groups deployments (number of applications, usage, and running SE engines).</p>
+<p>Tenants can see some basic metrics about each virtual service (up or down and traffic). Analytics is only available if the controller are imported with Enterprise License.</p>
+<h2 id=advanced-features-consumption>
+Advanced Features Consumption
+<a class=anchor href=#advanced-features-consumption>#</a>
+</h2>
+<p>Although some advanced features are not exposed in VMware Cloud Director, they can be provided as a managed service. This includes (but is not limited to) <strong>Web Application Firewall</strong> (WAF) or <strong>custom Health Monitors</strong>.</p>
+<h3 id=avi-intelligent-web-application-firewall>
+Avi Intelligent Web Application Firewall
+<a class=anchor href=#avi-intelligent-web-application-firewall>#</a>
+</h3>
+<p>Web application firewalls (WAFs) are intended to protect businesses from web app attacks and proactively prevent threats.
+Traditional web application security solutions do not provide visibility and security insights that administrators can use to create an effective application security posture. Enterprises need real-time visibility into application traffic, user experience, security and threat landscape, and application performance to identify and protect against the most sophisticated attacks.</p>
+<p>Avi leverages software-defined architecture and its strategic location on the network to gain real-time application insights. The built-in WAF solution provides application security and networking teams with an elastic and analytics-driven solution that scales and simplifies policy customization and administration through central management.</p>
+<p><strong>Avi intelligent WAF (iWAF)</strong> plays an integral role in a defense-in-depth strategy that does comprehensive threat analysis, mitigates risk, provides zero-day protection against unpublished exploits and optimizes application security.</p>
+<p>As of today, Avi iWAF capabilities are not exposed in VMware Cloud Director for self-service configuration and consumption. However, a system administrator can assign WAF policies to existing virtual services.</p>
+<p><img src=/images/lbaas/lbaas-vcd-waf-managed-service.png alt="LBaaS in VMware Cloud Director - Web Application Firewall as a Managed Service"></p>
+<p>Additional resources:</p>
+<ul>
+<li><a href=https://avinetworks.com/docs/21.1/waf-in-avi-vantage/>Avi Intelligent Web Application Firewall</a></li>
+</ul>
+<h3 id=custom-health-monitor>
+Custom Health Monitor
+<a class=anchor href=#custom-health-monitor>#</a>
+</h3>
+<p>Avi validates if the backend servers are functioning efficiently by sending <strong>active health monitors</strong> on a periodic basis. Avi Vantage also tests if they can accommodate additional workloads before load balancing a client to a server. Health monitors originate from the service engines assigned to the application&rsquo;s virtual service. The health monitors are attached to the pool for the virtual service.</p>
+<p>A pool may have multiple actively concurrent health monitors (such as Ping, TCP, and HTTP), as well as a passive monitor. All active health monitors must be successful for the server to be marked up.</p>
+<p>When configuring a server pool from the tenant portal, a tenant administrator can choose between 5 health monitors: HTTP, HTTPS, TCP, UDP and PING. However, a system administrator can create and customize advanced health monitors from the Avi UI, and assign them to existing server pool.</p>
+<p><img src=/images/lbaas/lbaas-vcd-custom-health-monitor-config.png alt="LBaaS in VMware Cloud Director - Custom Health Monitor Creation"></p>
+<p>Once the additional health monitor is associated with the server pool, it will appear in the tenant portal: a tenant administrator can remove it but not add it in self-service.</p>
+<p><img src=/images/lbaas/lbaas-vcd-custom-health-monitor-pool.png alt="LBaaS in VMware Cloud Director - Custom Health Monitor in Pool"></p>
+<h2 id=resources>
+Resources
+<a class=anchor href=#resources>#</a>
+</h2>
+<ul>
+<li><a href=https://avinetworks.com/docs/21.1/avi-nsx-t-integration/>NSX Advanced Load Balancer Integration with NSX-T</a></li>
+<li><a href=https://avinetworks.com/docs/21.1/cloud-nsx-t/>NSX-T Support in NSX Advanced Load Balancer</a></li>
+</ul>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#load-balancing-as-a-service-in-vmware-cloud-director>Load Balancing as a Service in VMware Cloud Director</a>
+<ul>
+<li><a href=#introduction>Introduction</a></li>
+<li><a href=#lbaas-anatomy>LBaaS Anatomy</a>
+<ul>
+<li><a href=#vmware-cloud-director-support>VMware Cloud Director Support</a></li>
+<li><a href=#provider-and-tenant-responsibilities>Provider and Tenant Responsibilities</a></li>
+</ul>
+</li>
+<li><a href=#deployment--configuration>Deployment & Configuration</a>
+<ul>
+<li><a href=#requirements>Requirements</a></li>
+<li><a href=#deploying-the-avi-controller-cluster>Deploying the Avi Controller Cluster</a></li>
+<li><a href=#avi-controller-cluster-initial-setup>Avi Controller Cluster Initial Setup</a></li>
+<li><a href=#nsx-t-cloud>NSX-T Cloud</a></li>
+<li><a href=#service-engine-groups>Service Engine Groups</a></li>
+<li><a href=#vmware-cloud-director-service-admin-portal>VMware Cloud Director Service Admin Portal</a></li>
+</ul>
+</li>
+<li><a href=#consumption>Consumption</a>
+<ul>
+<li><a href=#enabling-load-balancing>Enabling Load Balancing</a></li>
+<li><a href=#load-balancer-server-pool>Load Balancer Server Pool</a></li>
+<li><a href=#virtual-service>Virtual Service</a></li>
+<li><a href=#health-monitoring>Health Monitoring</a></li>
+</ul>
+</li>
+<li><a href=#advanced-features-consumption>Advanced Features Consumption</a>
+<ul>
+<li><a href=#avi-intelligent-web-application-firewall>Avi Intelligent Web Application Firewall</a></li>
+<li><a href=#custom-health-monitor>Custom Health Monitor</a></li>
+</ul>
+</li>
+<li><a href=#resources>Resources</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

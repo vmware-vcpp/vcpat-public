@@ -1,0 +1,177 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="(this page is here as a placeholder)
+Clouds are containers for the environment that NSX Advanced Load Balancer is installed. During the initial setup of the Avi Networks platform, a default cloud named Default-Cloud is created. The first controller is deployed in Default-Cloud. You can add clouds containing SEs and virtual services. The network adapter 1 of the service engine VM is reserved for management connectivity and the remaining nine data interfaces (network adapter 2 to 10) for the service engine VM to the VIP or data segment.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Load Balancing as a Service in VMware Cloud Director Design">
+<meta property="og:description" content="(this page is here as a placeholder)
+Clouds are containers for the environment that NSX Advanced Load Balancer is installed. During the initial setup of the Avi Networks platform, a default cloud named Default-Cloud is created. The first controller is deployed in Default-Cloud. You can add clouds containing SEs and virtual services. The network adapter 1 of the service engine VM is reserved for management connectivity and the remaining nine data interfaces (network adapter 2 to 10) for the service engine VM to the VIP or data segment.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/networking-security/vcd-lbaas-design/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-06-23T11:00:25+02:00">
+<title>Load Balancing as a Service in VMware Cloud Director Design | VMware Cloud Provider Architecture Toolkit</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.97cfda4f5e3c9fa49a2bf8d401f4ddc0eec576c99cdcf6afbec19173200c37db.css integrity="sha256-l8/aT148n6SaK/jUAfTdwO7Fdsmc3PavvsGRcyAMN9s=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.3b289bad560a849bd2365ea52a2e59c8ef0badc3dcde51bd25f58e8d13e5a84c.js integrity="sha256-OyibrVYKhJvSNl6lKi5ZyO8LrcPc3lG9JfWOjRPlqEw=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>VMware Cloud Provider Architecture Toolkit</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li><a href=/docs/cloud-infrastructure/><strong>Cloud Infrastructure</strong></a>
+<ul>
+<li><a href=/docs/cloud-infrastructure/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/cloud-infrastructure/design/>Design</a></li>
+<li><a href=/docs/cloud-infrastructure/implementation/>Implementation</a></li>
+<li><a href=/docs/cloud-infrastructure/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/networking-security/><strong>Networking & Security</strong></a>
+<ul>
+<li><a href=/docs/networking-security/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/networking-security/design/>Design</a></li>
+<li><a href=/docs/networking-security/implementation/>Implementation</a></li>
+<li><a href=/docs/networking-security/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/dr-migration/><strong>DR & Migration</strong></a>
+<ul>
+<li><a href=/docs/dr-migration/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/dr-migration/design/>Design</a></li>
+<li><a href=/docs/dr-migration/implementation/>Implementation</a></li>
+<li><a href=/docs/dr-migration/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/developer-ready-cloud/><strong>Developer Ready Cloud</strong></a>
+<ul>
+<li><a href=/docs/developer-ready-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/developer-ready-cloud/design/>Design</a></li>
+<li><a href=/docs/developer-ready-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/developer-ready-cloud/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/sovereign-cloud/><strong>Sovereign Cloud</strong></a>
+<ul>
+<li><a href=/docs/sovereign-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/sovereign-cloud/design/>Design</a></li>
+<li><a href=/docs/sovereign-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/sovereign-cloud/operations/>Operations</a>
+<br></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://cloudsolutions.vmware.com target=_blank rel=noopener>
+VMware Cloud Solutions
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Load Balancing as a Service in VMware Cloud Director Design</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#ideas--placeholder>IDEAS / PLACEHOLDER</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><p>(this page is here as a placeholder)</p>
+<p>Clouds are containers for the environment that NSX Advanced Load Balancer is installed. During the initial setup of the Avi Networks platform, a default cloud named Default-Cloud is created. The first controller is deployed in Default-Cloud. You can add clouds containing SEs and virtual services. The network adapter 1 of the service engine VM is reserved for management connectivity and the remaining nine data interfaces (network adapter 2 to 10) for the service engine VM to the VIP or data segment.</p>
+<p>Avi controller deployed and managed by provider
+SEs are outside of tenant domains
+Service Engine Groups can be dedicated or shared. It is a provider decision on how to manage this.</p>
+<p>Dedicated: If a tenant wants to pay to have dedicated LB compute (for throughput reasons)
+Shared: Normal model for providers to leverage multiple edges and potentially multiple tenants on the same compute resources</p>
+<p>Note: the shared VS dedicated is more about how the provider wants to manage how the tenants uses which SEGs
+As we must follow Basic licensing, Service Engine Groups configuration need to be configured in Legacy HA (Active/Standby) Mode
+This impact the number of Virtual Services per Service Engine Group</p>
+<p>Design considerations</p>
+<ul>
+<li>NSX Advanced Load Balancer supports load balancing only in an NSX-T Data Center transport zone of type overlay.</li>
+</ul>
+<p>The network adapter 1 of the Service Engine VM is reserved for management connectivity. You can connect only one of the remaining nine data interfaces (network adapter 2-10) of the Service Engine VM to the VIP or data segment. The other interfaces must be left disconnected. The service engines are deployed in one arm mode. The same interface is used for the client and backend server traffic. The SE routes to backend servers through the Tier 1 router.
+The SEs on a dedicated logical segment:
+• Allow to manage the IP address assignment separately for SE interfaces.
+• In the current version, this segment must be created on NSX-T Data Center before adding it to the cloud configuration on NSX Advanced Load Balancer.
+Only logical segments connected to the tier-1 router are supported. The cloud automation for NSX-T Data Center integration does not support placing SEs on logical segments directly connected to tier-0 routers.</p>
+<p>The Controller cluster VMs can be deployed adjacent to the NSX Manager for NSX-T Data
+Center, connected to the management port group:
+• Dedicated tier-1 gateway and logical segment for the SE management.
+• Management IP address of the SEs must be reachable from controller.
+• Tier-0 must advertise the learned routes to the external router using BGP.</p>
+<p>VCD will prevent you to use more that one Avi NSX-T Cloud per VCD Geneve network pool. But you can have (in theory) multiple Geneve TZs on the same vSphere cluster, but that means separate physical NICS for each TZ
+Avi: You can&rsquo;t share a transport zone, so you need a different pVDC when you have different Avi controllers with different transport zone > because VCD check the TZ match the NP during import</p>
+<h2 id=ideas--placeholder>
+IDEAS / PLACEHOLDER
+<a class=anchor href=#ideas--placeholder>#</a>
+</h2>
+<blockquote>
+<p>have a link to what&rsquo;s next (design, prep or implementation)</p>
+</blockquote>
+<ul>
+<li>show design options for where to host/connect the controllers vs the SEs</li>
+</ul>
+<p><a href=https://vmware-wwcp.screenstepslive.com/m/100574/l/1333937-nsx-advance-load-balancer>https://vmware-wwcp.screenstepslive.com/m/100574/l/1333937-nsx-advance-load-balancer</a>
+<a href=https://avinetworks.com/docs/20.1/nsx-t-design-guide/#nsx-t-cloud-configuration-model>https://avinetworks.com/docs/20.1/nsx-t-design-guide/#nsx-t-cloud-configuration-model</a></p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#ideas--placeholder>IDEAS / PLACEHOLDER</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>
