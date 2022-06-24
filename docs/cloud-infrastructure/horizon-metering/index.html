@@ -2,19 +2,21 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Horizon Metering and Reporting #  ">
+<meta name=description content="Horizon Metering and Reporting #  Product Detection #  Horizon is added for metering in Usage Meter 4.5.0.1. The provider needs to enter the endpoint IP address or hostname, user and password, and the domain to which Horizon belongs. After the product certificate is accepted in the Usage Meter web application and the connection to Horizon is successful, the data collection starts.
+Metering #  Usage Meter 4.5.0.1 collects data for the number of concurrent connections from the Horizon Connection Server and the license with which the concurrent connections are associated.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Horizon Metering and Reporting">
-<meta property="og:description" content="Horizon Metering and Reporting #  ">
+<meta property="og:description" content="Horizon Metering and Reporting #  Product Detection #  Horizon is added for metering in Usage Meter 4.5.0.1. The provider needs to enter the endpoint IP address or hostname, user and password, and the domain to which Horizon belongs. After the product certificate is accepted in the Usage Meter web application and the connection to Horizon is successful, the data collection starts.
+Metering #  Usage Meter 4.5.0.1 collects data for the number of concurrent connections from the Horizon Connection Server and the license with which the concurrent connections are associated.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/horizon-metering/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-06-24T12:44:43+03:00">
+<meta property="article:modified_time" content="2022-06-24T15:18:09+03:00">
 <title>Horizon Metering and Reporting | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.abf9003e791d754364c8910074d365c8d90a4dcde7b562189e7c6eea68a4c91f.js integrity="sha256-q/kAPnkddUNkyJEAdNNlyNkKTc3ntWIYnnxu6mikyR8=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.4208640791e7edd3cc9efc407303af8618952129be45df24c7ddc326300523c5.js integrity="sha256-QghkB5Hn7dPMnvxAcwOvhhiVISm+Rd8kx93DJjAFI8U=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -100,7 +102,13 @@ VMware Cloud Solutions
 <aside class="hidden clearfix">
 <nav id=TableOfContents>
 <ul>
-<li><a href=#horizon-metering-and-reporting>Horizon Metering and Reporting</a></li>
+<li><a href=#horizon-metering-and-reporting>Horizon Metering and Reporting</a>
+<ul>
+<li><a href=#product-detection>Product Detection</a></li>
+<li><a href=#metering>Metering</a></li>
+<li><a href=#reporting>Reporting</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
@@ -109,6 +117,61 @@ VMware Cloud Solutions
 Horizon Metering and Reporting
 <a class=anchor href=#horizon-metering-and-reporting>#</a>
 </h1>
+<h2 id=product-detection>
+Product Detection
+<a class=anchor href=#product-detection>#</a>
+</h2>
+<p>Horizon is added for metering in Usage Meter 4.5.0.1. The provider needs to enter the endpoint IP address or hostname, user and password, and the domain to which Horizon belongs. After the product certificate is accepted in the Usage Meter web application and the connection to Horizon is successful, the data collection starts.</p>
+<h2 id=metering>
+Metering
+<a class=anchor href=#metering>#</a>
+</h2>
+<p>Usage Meter 4.5.0.1 collects data for the number of concurrent connections from the Horizon Connection Server and the license with which the concurrent connections are associated. Usage Meter 4.5.0.1 collects data every 1 hour and sends it to vCloud Usage Insight. Usage Meter stores in-memory the last received number of concurrent connections. It compares the latest collected data with the in-memory data and pushes the value to vCloud Usage Insight if it has changed.
+The Horizon usage is calculated based on the maximum number of concurrent connections per license edition for the month.
+If Horizon is not licensed or not reachable, Usage Meter 4.5.0.1 will generate a warning message in the Usage Meter Notifications tab.</p>
+<h2 id=reporting>
+Reporting
+<a class=anchor href=#reporting>#</a>
+</h2>
+<p>Horizon usage is reported per license edition. The following license editions are reported by Usage Meter 4.5.0.1:</p>
+<ul>
+<li>VMware Horizon Standard</li>
+<li>VMware Horizon Advanced</li>
+<li>VMware Horizon Enterprise</li>
+<li>VMware Horizon Apps Standard</li>
+<li>VMware Horizon Apps Advanced</li>
+</ul>
+<p>Sample Monthly Usage Report for Horizon</p>
+<table>
+<thead>
+<tr>
+<th><strong>Product</strong></th>
+<th><strong>Hostname</strong></th>
+<th><strong>Version</strong></th>
+<th><strong>VC UUID</strong></th>
+<th><strong>Unit of Measure</strong></th>
+<th><strong>Units to be Reported</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VMware Horizon Standard</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Concurrent Connection</td>
+<td>15</td>
+</tr>
+<tr>
+<td>VMware Horizon Enterprise</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Concurrent Connection</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
@@ -123,7 +186,13 @@ Horizon Metering and Reporting
 <div class=book-toc-content>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#horizon-metering-and-reporting>Horizon Metering and Reporting</a></li>
+<li><a href=#horizon-metering-and-reporting>Horizon Metering and Reporting</a>
+<ul>
+<li><a href=#product-detection>Product Detection</a></li>
+<li><a href=#metering>Metering</a></li>
+<li><a href=#reporting>Reporting</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </div>

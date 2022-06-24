@@ -2,19 +2,23 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="vRealize Network Insight Metering and Reporting #  ">
+<meta name=description content="vRealize Network Insight Metering and Reporting #  VMware vRealize Network Insight is available to service providers in two editions:
+ vRealize Network Insight Advanced vRealize Network Insight Enterprise  Metering #  vRealize Network Insight is reported depending on the provider’s preference. The following are the available reporting options for vRealize Network Insight:
+ Standalone – When vRNI is reported as a standalone product, then the metering is per VM or OSI per Month.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="vRealize Network Insight Metering and Reporting">
-<meta property="og:description" content="vRealize Network Insight Metering and Reporting #  ">
+<meta property="og:description" content="vRealize Network Insight Metering and Reporting #  VMware vRealize Network Insight is available to service providers in two editions:
+ vRealize Network Insight Advanced vRealize Network Insight Enterprise  Metering #  vRealize Network Insight is reported depending on the provider’s preference. The following are the available reporting options for vRealize Network Insight:
+ Standalone – When vRNI is reported as a standalone product, then the metering is per VM or OSI per Month.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/vrni-metering/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-06-24T12:44:43+03:00">
+<meta property="article:modified_time" content="2022-06-24T15:18:09+03:00">
 <title>vRealize Network Insight Metering and Reporting | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.abf9003e791d754364c8910074d365c8d90a4dcde7b562189e7c6eea68a4c91f.js integrity="sha256-q/kAPnkddUNkyJEAdNNlyNkKTc3ntWIYnnxu6mikyR8=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.4208640791e7edd3cc9efc407303af8618952129be45df24c7ddc326300523c5.js integrity="sha256-QghkB5Hn7dPMnvxAcwOvhhiVISm+Rd8kx93DJjAFI8U=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -100,7 +104,12 @@ VMware Cloud Solutions
 <aside class="hidden clearfix">
 <nav id=TableOfContents>
 <ul>
-<li><a href=#vrealize-network-insight-metering-and-reporting>vRealize Network Insight Metering and Reporting</a></li>
+<li><a href=#vrealize-network-insight-metering-and-reporting>vRealize Network Insight Metering and Reporting</a>
+<ul>
+<li><a href=#metering>Metering</a></li>
+<li><a href=#feature-detection>Feature Detection</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
@@ -109,6 +118,25 @@ VMware Cloud Solutions
 vRealize Network Insight Metering and Reporting
 <a class=anchor href=#vrealize-network-insight-metering-and-reporting>#</a>
 </h1>
+<p>VMware vRealize Network Insight is available to service providers in two editions:</p>
+<ul>
+<li>vRealize Network Insight Advanced</li>
+<li>vRealize Network Insight Enterprise</li>
+</ul>
+<h2 id=metering>
+Metering
+<a class=anchor href=#metering>#</a>
+</h2>
+<p>vRealize Network Insight is reported depending on the provider’s preference. The following are the available reporting options for vRealize Network Insight:</p>
+<ul>
+<li><strong>Standalone</strong> – When vRNI is reported as a standalone product, then the metering is per VM or OSI per Month. The usage is calculated as the average hourly count of non-unique VMs in the month.</li>
+<li><strong>Flex model add-on</strong> – When vRNI is reported as a Flex Add-on product, then the metering is per GB per Month.</li>
+</ul>
+<h2 id=feature-detection>
+Feature Detection
+<a class=anchor href=#feature-detection>#</a>
+</h2>
+<p>Usage Meter detects if a VM is managed by vRealize Network Insight. If NSX-T Enterprise Plus edition and vRealize Network Advanced is detected for the same VM, the VM will not be reported for vRealize Network Insight.</p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
@@ -123,7 +151,12 @@ vRealize Network Insight Metering and Reporting
 <div class=book-toc-content>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#vrealize-network-insight-metering-and-reporting>vRealize Network Insight Metering and Reporting</a></li>
+<li><a href=#vrealize-network-insight-metering-and-reporting>vRealize Network Insight Metering and Reporting</a>
+<ul>
+<li><a href=#metering>Metering</a></li>
+<li><a href=#feature-detection>Feature Detection</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </div>
