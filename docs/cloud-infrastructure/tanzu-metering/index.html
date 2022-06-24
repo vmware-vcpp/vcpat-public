@@ -1,0 +1,232 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Tanzu Metering and Reporting #  Configuration #  Tanzu is automatically detected if the Usage Meter administrator configures the endpoint and credentials for each vCenter to be metered using the Usage Meter web application. The Usage Meter administrator can choose to either meter Tanzu as a vRAM or CPU cores metric by selecting the respective option from the &ldquo;If Tanzu is detected, choose the metric to report:&rdquo; drop-down list. The Usage Meter administrator can switch between the vRAM metric and CPU cores metric any time during the metering period.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Tanzu Metering and Reporting">
+<meta property="og:description" content="Tanzu Metering and Reporting #  Configuration #  Tanzu is automatically detected if the Usage Meter administrator configures the endpoint and credentials for each vCenter to be metered using the Usage Meter web application. The Usage Meter administrator can choose to either meter Tanzu as a vRAM or CPU cores metric by selecting the respective option from the &ldquo;If Tanzu is detected, choose the metric to report:&rdquo; drop-down list. The Usage Meter administrator can switch between the vRAM metric and CPU cores metric any time during the metering period.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/tanzu-metering/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-06-24T12:44:43+03:00">
+<title>Tanzu Metering and Reporting | VMware Cloud Provider Architecture Toolkit</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.abf9003e791d754364c8910074d365c8d90a4dcde7b562189e7c6eea68a4c91f.js integrity="sha256-q/kAPnkddUNkyJEAdNNlyNkKTc3ntWIYnnxu6mikyR8=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>VMware Cloud Provider Architecture Toolkit</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li><a href=/docs/cloud-infrastructure/><strong>Cloud Infrastructure</strong></a>
+<ul>
+<li><a href=/docs/cloud-infrastructure/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/cloud-infrastructure/design/>Design</a></li>
+<li><a href=/docs/cloud-infrastructure/implementation/>Implementation</a></li>
+<li><a href=/docs/cloud-infrastructure/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/networking-security/><strong>Networking & Security</strong></a>
+<ul>
+<li><a href=/docs/networking-security/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/networking-security/design/>Design</a></li>
+<li><a href=/docs/networking-security/implementation/>Implementation</a></li>
+<li><a href=/docs/networking-security/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/dr-migration/><strong>DR & Migration</strong></a>
+<ul>
+<li><a href=/docs/dr-migration/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/dr-migration/design/>Design</a></li>
+<li><a href=/docs/dr-migration/implementation/>Implementation</a></li>
+<li><a href=/docs/dr-migration/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/developer-ready-cloud/><strong>Developer Ready Cloud</strong></a>
+<ul>
+<li><a href=/docs/developer-ready-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/developer-ready-cloud/design/>Design</a></li>
+<li><a href=/docs/developer-ready-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/developer-ready-cloud/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/sovereign-cloud/><strong>Sovereign Cloud</strong></a>
+<ul>
+<li><a href=/docs/sovereign-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/sovereign-cloud/design/>Design</a></li>
+<li><a href=/docs/sovereign-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/sovereign-cloud/operations/>Operations</a>
+<br></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://cloudsolutions.vmware.com target=_blank rel=noopener>
+VMware Cloud Solutions
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Tanzu Metering and Reporting</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#tanzu-metering-and-reporting>Tanzu Metering and Reporting</a>
+<ul>
+<li><a href=#configuration>Configuration</a></li>
+<li><a href=#reporting>Reporting</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=tanzu-metering-and-reporting>
+Tanzu Metering and Reporting
+<a class=anchor href=#tanzu-metering-and-reporting>#</a>
+</h1>
+<h2 id=configuration>
+Configuration
+<a class=anchor href=#configuration>#</a>
+</h2>
+<p>Tanzu is automatically detected if the Usage Meter administrator configures the endpoint and credentials for each vCenter to be metered using the Usage Meter web application. The Usage Meter administrator can choose to either meter Tanzu as a vRAM or CPU cores metric by selecting the respective option from the &ldquo;If Tanzu is detected, choose the metric to report:&rdquo; drop-down list. The Usage Meter administrator can switch between the vRAM metric and CPU cores metric any time during the metering period. The default metering metric is vRAM.
+Any of the following Tanzu editions can be selected in the Usage Meter web application as well.</p>
+<ul>
+<li>Tanzu Basic</li>
+<li>Tanzu Standard</li>
+<li>Tanzu Advanced</li>
+</ul>
+<p><strong>Note:</strong> Currently, Usage Insight will only report Tanzu-related usage as Basic in the monthly usage reports, irrespective of the selected Tanzu edition. In future vCloud Usage Insight releases, there will be a fine-grain mapping of the Tanzu-related usage and its correlating edition.</p>
+<p><strong>Note:</strong> It is recommended that a single Usage Meter instance meters a single Tanzu edition. For datacenters using different Tanzu editions, there should be a separate Usage Meter installation for each used Tanzu edition.
+Metering</p>
+<p>Only Tanzu Basic-related VMs are metered based on Tanzu Basic usage. The following type of VMs will be considered as Tanzu Basic-related VMs:</p>
+<ul>
+<li>Supervisor VM: These VMs are Kubernetes control plane VMs. Three Kubernetes control plane VMs in total are created on the hosts that are part of the Supervisor Cluster. The three-control plane VMs are load-balanced as each one of them has its own IP address. Additionally, a floating IP address is assigned to one of the VMs. vSphere DRS determines the exact placement of the control plane VMs on the ESXi hosts and migrates them when needed. vSphere DRS is also integrated with the Kubernetes Scheduler on the control plane VMs so that DRS determines the placement of vSphere Pods. When as a DevOps engineer, you schedule a vSphere Pod, the request goes through the regular Kubernetes workflow, then to DRS, which makes the final placement decision.</li>
+<li>POD VM: A vSphere Pod is a VM with a small footprint that runs one or more Linux containers. Each vSphere Pod is sized precisely for the workload that it accommodates and has explicit resource reservations for that workload. It allocates the exact amount of storage, memory, and CPU resources required for the workload to run. vSphere Pods are only supported with Supervisor Clusters configured with NSX-T Data Center as the networking stack.</li>
+<li>TKG VM: VMs running and managing Tanzu Kubernetes clusters. A Tanzu Kubernetes cluster is a full distribution of the open-source Kubernetes container orchestration platform that is built, signed, and supported by VMware. You can provision and operate Tanzu Kubernetes clusters on the Supervisor Cluster by using the Tanzu Kubernetes Grid Service. Both main nodes and worker nodes are metered in the Tanzu Kubernetes cluster.
+Tanzu Basic supports both time-based average vRAM metering metric and CPU cores metering metric.</li>
+<li>vRAM metric (Time-based average vRAM usage): Average vRAM usage for all Tanzu Basic-related powered-on VMs.</li>
+<li>CPU cores metric (Time-based average of host CPU core count): Average host cores usage for all hosts with at least one powered-on Tanzu Basic-related VM. A host is metered for the period where there was at least one powered-on Tanzu Basic-related VM running on this host during the metering period. All cores of the host are metered for the duration. For example, if there is at least one powered-on VM that is running on a host with 6 CPU cores for any of the 10 days in a 30-day period, this host will be billed with an average host CPU core count of 2, (6 * (1/3) = 2). If a host -whether it has been modified or added or placed into migration mode (i.e., host state changes) - has been running even a single VM, the host is metered for the duration where there is at least one powered-on Tanzu Basic-related VM.</li>
+</ul>
+<h2 id=reporting>
+Reporting
+<a class=anchor href=#reporting>#</a>
+</h2>
+<p>Tanzu Basic Usage (if detected) is always reported as a standalone line item in the Monthly Usage Report.</p>
+<p>Sample Monthly Usage Report</p>
+<table>
+<thead>
+<tr>
+<th><strong>Product</strong></th>
+<th><strong>Hostname</strong></th>
+<th><strong>Version</strong></th>
+<th><strong>VC UUID</strong></th>
+<th><strong>Units of Measure</strong></th>
+<th><strong>Units to be Reported</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tanzu Basic</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Avg Capped Billed vRAM (GB)</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Tanzu Basic</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Avg Number of Cores</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> The report above shows both the vRAM and CPU cores usage are detected by Usage Meter. This could mean that the Usage Meter administrator has registered a single Tanzu Basic enabled vCenter and switched between the vRAM metric and CPU core metric during the metering period. Multiple vCenters with different metering metrics registered to the Usage Meter cloud also produce two-line items in the report. If the same metric is selected during the entire metering period for all vCenters registered in the Usage Meter, only one-line item with the selected metric will be shown in the report.
+Virtual Machine History Report:
+The column &ldquo;vmType&rdquo; is included in the Virtual Machine History report indicating the types of VMs in the report:</p>
+<table>
+<thead>
+<tr>
+<th><strong>vmType</strong></th>
+<th><strong>Translation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SUP</td>
+<td>Supervisor VM</td>
+</tr>
+<tr>
+<td>POD</td>
+<td>POD VM</td>
+</tr>
+<tr>
+<td>TKG</td>
+<td>VMs created by vSphere Tanzu Kubernetes Grid service</td>
+</tr>
+<tr>
+<td>OTHERS</td>
+<td>VMs that are not categorized as SUP, POD or TKG</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> Tanzu will not be shown in &ldquo;associated products&rdquo; on the vCenter registration and management page even if detected by Usage Meter.</p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#tanzu-metering-and-reporting>Tanzu Metering and Reporting</a>
+<ul>
+<li><a href=#configuration>Configuration</a></li>
+<li><a href=#reporting>Reporting</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

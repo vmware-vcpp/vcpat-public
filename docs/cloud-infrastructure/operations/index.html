@@ -2,23 +2,35 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Cloud Infrastructure Operations #  vCenter Server Metering #  Usage Meter collects product usage information from all vCenter servers that are registered with Usage Meter.
-Note: Usage Meter does not traverse Enhanced Linked Mode, and it requires registering all vCenter servers, part of this mode, to meter their usage data.
-VMware Cloud Provider Program partners should utilize VCPP licenses for all servers used in the service delivery path or administration control plane.">
+<meta name=description content="Cloud Infrastructure Operations #  How to start metering your VCPP products with Usage Meter #  The following information helps you understand how Usage Meter detects and meters the usage of the following products and their features. It also provides insight into how the reported usage data is calculated and appears in the Usage Insight reports.
+vCenter Server
+VMware Cloud Foundation
+vSAN
+Tanzu
+SRM
+NSX
+Cloud Director
+Cloud Director Availability">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Cloud Infrastructure Operations">
-<meta property="og:description" content="Cloud Infrastructure Operations #  vCenter Server Metering #  Usage Meter collects product usage information from all vCenter servers that are registered with Usage Meter.
-Note: Usage Meter does not traverse Enhanced Linked Mode, and it requires registering all vCenter servers, part of this mode, to meter their usage data.
-VMware Cloud Provider Program partners should utilize VCPP licenses for all servers used in the service delivery path or administration control plane.">
+<meta property="og:description" content="Cloud Infrastructure Operations #  How to start metering your VCPP products with Usage Meter #  The following information helps you understand how Usage Meter detects and meters the usage of the following products and their features. It also provides insight into how the reported usage data is calculated and appears in the Usage Insight reports.
+vCenter Server
+VMware Cloud Foundation
+vSAN
+Tanzu
+SRM
+NSX
+Cloud Director
+Cloud Director Availability">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/operations/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-06-23T11:19:09+02:00">
+<meta property="article:modified_time" content="2022-06-24T12:44:43+03:00">
 <title>Cloud Infrastructure Operations | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.6374dabebe44944f1c548ef9216b3d6253c61719fa41dde9c65a70e1fbcdd388.js integrity="sha256-Y3Tavr5ElE8cVI75IWs9YlPGFxn6Qd3pxlpw4fvN04g=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.abf9003e791d754364c8910074d365c8d90a4dcde7b562189e7c6eea68a4c91f.js integrity="sha256-q/kAPnkddUNkyJEAdNNlyNkKTc3ntWIYnnxu6mikyR8=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -106,15 +118,7 @@ VMware Cloud Solutions
 <ul>
 <li><a href=#cloud-infrastructure-operations>Cloud Infrastructure Operations</a>
 <ul>
-<li><a href=#vcenter-server-metering>vCenter Server Metering</a></li>
-<li><a href=#configuration>Configuration</a></li>
-<li><a href=#feature-detection>Feature Detection</a>
-<ul>
-<li><a href=#event-history-collections>Event history collections</a></li>
-<li><a href=#inventory-collections>Inventory collections</a></li>
-</ul>
-</li>
-<li><a href=#vcenter-reporting>vCenter Reporting</a></li>
+<li><a href=#how-to-start-metering-your-vcpp-products-with-usage-meter>How to start metering your VCPP products with Usage Meter</a></li>
 </ul>
 </li>
 </ul>
@@ -125,39 +129,24 @@ VMware Cloud Solutions
 Cloud Infrastructure Operations
 <a class=anchor href=#cloud-infrastructure-operations>#</a>
 </h1>
-<h2 id=vcenter-server-metering>
-vCenter Server Metering
-<a class=anchor href=#vcenter-server-metering>#</a>
+<h2 id=how-to-start-metering-your-vcpp-products-with-usage-meter>
+How to start metering your VCPP products with Usage Meter
+<a class=anchor href=#how-to-start-metering-your-vcpp-products-with-usage-meter>#</a>
 </h2>
-<p>Usage Meter collects product usage information from all vCenter servers that are registered with Usage Meter.</p>
-<p><strong>Note:</strong> Usage Meter does not traverse Enhanced Linked Mode, and it requires registering all vCenter servers, part of this mode, to meter their usage data.</p>
-<p>VMware Cloud Provider Program partners should utilize VCPP licenses for all servers used in the service delivery path or administration control plane. VMware perpetual licenses, including OEM versions, can only be utilized to support internal IT operations that are not part of service delivery. In addition, VMware perpetual licenses may not be used to support the management or operations of an environment utilized to host unaffiliated third parties. Virtual machines running on hosts with perpetual or demo license keys are metered by Usage Meter.</p>
-<h2 id=configuration>
-Configuration
-<a class=anchor href=#configuration>#</a>
-</h2>
-<p>The Usage Meter administrator must configure the endpoint and credentials for each vCenter server to be metered using the Usage Meter web application.</p>
-<h2 id=feature-detection>
-Feature Detection
-<a class=anchor href=#feature-detection>#</a>
-</h2>
-<p>When metering vCenter, Usage Meter performs two types of usage collections: event-based and inventory collections.</p>
-<h3 id=event-history-collections>
-Event history collections
-<a class=anchor href=#event-history-collections>#</a>
-</h3>
-<p>Usage meter subscribes to vCenter events to detect changes in a virtual machine and host state. Changes in a virtual machine state are delivered every hour to Usage Meter and recorded.</p>
-<p><strong>Note:</strong> Usage Meter collects data from hosts and VMs in an active state. Even when there is a connectivity issue with a host, Usage Meter will still report metering data if the host VMs are in a powered-on state. This means that providers will be billed for VMs even when there are temporary interruptions in host connectivity. If providers want to be sure they are not being billed for VMs, they need to turn those VMs off.</p>
-<h3 id=inventory-collections>
-Inventory collections
-<a class=anchor href=#inventory-collections>#</a>
-</h3>
-<p>Usage Meter queries vCenter servers every eight hours to collect full inventory information.</p>
-<h2 id=vcenter-reporting>
-vCenter Reporting
-<a class=anchor href=#vcenter-reporting>#</a>
-</h2>
-<p>The vCenter Server Standard edition is part of the Flex Core bundle and therefore reported as part of that bundle. vCenter usage is bundled by default and cannot be reported standalone.</p>
+<p>The following information helps you understand how Usage Meter detects and meters the usage of the following products and their features. It also provides insight into how the reported usage data is calculated and appears in the Usage Insight reports.</p>
+<p><a href=../cloud-infrastructure/vcenter-metering>vCenter Server</a></p>
+<p><a href=../cloud-infrastructure/vcf-metering>VMware Cloud Foundation</a></p>
+<p><a href=../cloud-infrastructure/vsan-metering>vSAN</a></p>
+<p><a href=../cloud-infrastructure/tanzu-metering>Tanzu</a></p>
+<p><a href=../cloud-infrastructure/srm-metering>SRM</a></p>
+<p><a href=../cloud-infrastructure/nsx-metering>NSX</a></p>
+<p><a href=../cloud-infrastructure/cloud-director-metering>Cloud Director</a></p>
+<p><a href=../cloud-infrastructure/cloud-director-availability-metering>Cloud Director Availability</a></p>
+<p><a href=../cloud-infrastructure/vrops-metering>vRealize Operations</a></p>
+<p><a href=../cloud-infrastructure/vrni-metering>vRealize Network Insight</a></p>
+<p><a href=../cloud-infrastructure/vra-metering>vRealize Automation</a></p>
+<p><a href=../cloud-infrastructure/horizon-metering>Horizon</a></p>
+<p><a href=../cloud-infrastructure/horizon-daas-metering>Horizon DaaS</a></p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
@@ -174,15 +163,7 @@ vCenter Reporting
 <ul>
 <li><a href=#cloud-infrastructure-operations>Cloud Infrastructure Operations</a>
 <ul>
-<li><a href=#vcenter-server-metering>vCenter Server Metering</a></li>
-<li><a href=#configuration>Configuration</a></li>
-<li><a href=#feature-detection>Feature Detection</a>
-<ul>
-<li><a href=#event-history-collections>Event history collections</a></li>
-<li><a href=#inventory-collections>Inventory collections</a></li>
-</ul>
-</li>
-<li><a href=#vcenter-reporting>vCenter Reporting</a></li>
+<li><a href=#how-to-start-metering-your-vcpp-products-with-usage-meter>How to start metering your VCPP products with Usage Meter</a></li>
 </ul>
 </li>
 </ul>

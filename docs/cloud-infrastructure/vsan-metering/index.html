@@ -1,0 +1,420 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="vSAN Metering and Reporting #  vSAN is activated at a host-cluster level either while creating new clusters or updating existing host clusters. vSAN aggregates all local storage devices across all hosts in the vSAN cluster into a single datastore. More storage devices or hosts can be added to the cluster to expand its datastore capacity. If a host contributes to the vSAN datastore, it must provide at least one device for flash cache and another for persistent storage.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="vSAN Metering and Reporing">
+<meta property="og:description" content="vSAN Metering and Reporting #  vSAN is activated at a host-cluster level either while creating new clusters or updating existing host clusters. vSAN aggregates all local storage devices across all hosts in the vSAN cluster into a single datastore. More storage devices or hosts can be added to the cluster to expand its datastore capacity. If a host contributes to the vSAN datastore, it must provide at least one device for flash cache and another for persistent storage.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/vsan-metering/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-06-24T12:44:43+03:00">
+<title>vSAN Metering and Reporing | VMware Cloud Provider Architecture Toolkit</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.abf9003e791d754364c8910074d365c8d90a4dcde7b562189e7c6eea68a4c91f.js integrity="sha256-q/kAPnkddUNkyJEAdNNlyNkKTc3ntWIYnnxu6mikyR8=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>VMware Cloud Provider Architecture Toolkit</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li><a href=/docs/cloud-infrastructure/><strong>Cloud Infrastructure</strong></a>
+<ul>
+<li><a href=/docs/cloud-infrastructure/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/cloud-infrastructure/design/>Design</a></li>
+<li><a href=/docs/cloud-infrastructure/implementation/>Implementation</a></li>
+<li><a href=/docs/cloud-infrastructure/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/networking-security/><strong>Networking & Security</strong></a>
+<ul>
+<li><a href=/docs/networking-security/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/networking-security/design/>Design</a></li>
+<li><a href=/docs/networking-security/implementation/>Implementation</a></li>
+<li><a href=/docs/networking-security/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/dr-migration/><strong>DR & Migration</strong></a>
+<ul>
+<li><a href=/docs/dr-migration/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/dr-migration/design/>Design</a></li>
+<li><a href=/docs/dr-migration/implementation/>Implementation</a></li>
+<li><a href=/docs/dr-migration/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/developer-ready-cloud/><strong>Developer Ready Cloud</strong></a>
+<ul>
+<li><a href=/docs/developer-ready-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/developer-ready-cloud/design/>Design</a></li>
+<li><a href=/docs/developer-ready-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/developer-ready-cloud/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/sovereign-cloud/><strong>Sovereign Cloud</strong></a>
+<ul>
+<li><a href=/docs/sovereign-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/sovereign-cloud/design/>Design</a></li>
+<li><a href=/docs/sovereign-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/sovereign-cloud/operations/>Operations</a>
+<br></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://cloudsolutions.vmware.com target=_blank rel=noopener>
+VMware Cloud Solutions
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>vSAN Metering and Reporing</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#vsan-metering-and-reporting>vSAN Metering and Reporting</a>
+<ul>
+<li><a href=#configuration>Configuration</a></li>
+<li><a href=#feature-detection>Feature Detection</a></li>
+<li><a href=#vsan-reporting>vSAN Reporting</a></li>
+<li><a href=#vsan-cluster-history-report>vSAN Cluster History Report</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=vsan-metering-and-reporting>
+vSAN Metering and Reporting
+<a class=anchor href=#vsan-metering-and-reporting>#</a>
+</h1>
+<p>vSAN is activated at a host-cluster level either while creating new clusters or updating existing host clusters. vSAN aggregates all local storage devices across all hosts in the vSAN cluster into a single datastore. More storage devices or hosts can be added to the cluster to expand its datastore capacity. If a host contributes to the vSAN datastore, it must provide at least one device for flash cache and another for persistent storage. Capacity devices are also called data disks. The devices on the contributing hosts form one or more disk groups, and each disk group contains one flash cache device and one or more capacity devices. Devices used for caching cannot be shared across disk groups. Each host can be configured to use multiple disk groups. The amount of physical capacity from the vSAN datastore consumed by one or more VMs at any point is called the consumed capacity.</p>
+<h2 id=configuration>
+Configuration
+<a class=anchor href=#configuration>#</a>
+</h2>
+<p>With Usage Meter 4.5.0.1, vSAN is automatically detected. There should be at least one vSAN cluster per vCenter Server so that Usage Meter detects and meters it.
+When one or more clusters in the vCenter are enabled with vSAN, the vCenter product configuration list page in the Usage Meter web application indicates that vSAN is associated and used for that vCenter.</p>
+<h2 id=feature-detection>
+Feature Detection
+<a class=anchor href=#feature-detection>#</a>
+</h2>
+<p>vSAN usage is metered per vSAN enabled cluster (see Cluster History Report) and reported aggregated by vSAN license editions (see Monthly Usage Report).
+vSAN usage is collected on an hourly basis by the Usage Meter appliance. vSAN usage collection intervals are closed when one or more of the following scenarios occur:</p>
+<ul>
+<li>vSAN collection fails to send collected data for 24 hours or more</li>
+<li>vSAN enabled cluster is deleted</li>
+<li>vSAN license has changed</li>
+<li>When vCenter product is not metered and/or deleted from the Usage Meter web app Products page.</li>
+</ul>
+<p><strong>Note:</strong> The collection intervals are shown in the vSAN Cluster History Report.Specific space efficiency and QoS features are detected during these hourly collections and are used to determine the billing rate of vSAN usage.</p>
+<p>vSAN usage is metered at a cluster level. While there are many features and capabilities that vSAN offers, from the perspective of usage metering, Usage Meter 4.5.0.1 records the following cluster-level and VM-level features:</p>
+<ul>
+<li>Cluster level: Base , Deduplication, Compression, Stretched Cluster, Data-at-rest Encryption, File Services, HCI Mesh, Shared Witness, Data in Transit Encryption, and Cloud Native Storage. When these features are enabled, the entire cluster is marked as using these features.</li>
+<li>At a VM level, usage is reported per cluster: Raid 5/6 Erasure Coding feature is enabled at the individual virtual machine level but scoped and reported at the cluster level. If one or more virtual machines (regardless of the power state) have enabled this feature, then this feature is considered enabled for the entire cluster.
+ 
+Usage Meter 4.5.0.1 examines the vSAN features enabled for the cluster to determine the reported license edition. The following vSAN features are automatically detected by Usage Meter and reported in the vSAN Cluster History Report.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>vSAN Features</strong></th>
+<th><strong>vSAN Standard</strong></th>
+<th><strong>vSAN Advanced</strong></th>
+<th><strong>vSAN Enterprise</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stretched Cluster</td>
+<td></td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>Raid 5/6 Erasure Coding</td>
+<td></td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>File Services</td>
+<td></td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>Deduplication and Compression</td>
+<td></td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>Data-at-rest Encryption</td>
+<td></td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>Base</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>HCI Mesh</td>
+<td></td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>Shared Witness</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>Data in Transit Encryption</td>
+<td></td>
+<td></td>
+<td>X</td>
+</tr>
+<tr>
+<td>Cloud Native Storage</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> Usage Meter 4.5.0.1 detects VMs compliant with Storage Policy - Raid 5/6 Erasure Coding. When one or more VMs in a vSAN enabled cluster are compliant with this policy, customers are billed at vSAN Advanced edition.</p>
+<h2 id=vsan-reporting>
+vSAN Reporting
+<a class=anchor href=#vsan-reporting>#</a>
+</h2>
+<p>vSAN usage is reported as monthly aggregated total used storage capacity by a vSAN license edition in the Monthly Usage Report generated by Usage Insight. More granular information about the vSAN usage can be seen in the vSAN Cluster History Report (see an example below). This report includes information about what storage capacity and features have been used by a cluster per time interval. It also shows the detected vSAN license edition of a cluster. The features that are used by a vSAN cluster can be calculated from the vSANFint column in that report. See the vSAN Cluster History Report information.
+The average used storage for vSAN is calculated as: Average GB = (Sum of consumed storage capacity in GB per-hourly collections) / (Hours in a month). The value can be zero if no vSAN usage exists or vSAN was not configured.
+Average Used Storage means the storage capacity consumed by all virtual machine disks (VMDK) and not available for new allocations in GB averaged during the applicable reporting period. This includes swap space (if utilized) and the RAID overhead set within the storage policy.</p>
+<p><strong>Note:</strong> Usage Meter 4.5.0.1 only reports usage against the vSAN license the detected features are part of. For example, a cluster with a vSAN Enterprise license is detected to use features also part of vSAN Advanced, like Compression and Deduplication. In this case, if there are no other features used that are only part of vSAN Enterprise during the reporting month, then the Monthly Usage Report will report usage against the vSAN Advanced edition.
+The following vSAN editions are reported in the generated reports by Usage Insight:</p>
+<ul>
+<li>vSAN Standard.</li>
+<li>vSAN Advanced.</li>
+<li>vSAN Enterprise</li>
+</ul>
+<p><strong>Note:</strong> vSAN is not reported standalone and included in Horizon DaaS bundles. Also, vSAN with Desktop and ROBO licenses are excluded from the usage reports.</p>
+<h2 id=vsan-cluster-history-report>
+vSAN Cluster History Report
+<a class=anchor href=#vsan-cluster-history-report>#</a>
+</h2>
+<p>vSAN Cluster History Report contains the used capacity (in MB) per time interval for vSAN enabled clusters in vCenter Servers metered by Usage Meter 4.5.0.1. Additionally, it displays the vSAN license edition and the features used by a cluster.
+Note: To verify which vSAN cluster features were detected by Usage Meter 4.5.0.1, use the integer value in the table below and compare it with the vsanFInt column in the Cluster History Report.</p>
+<p>A vSAN cluster might use several features, and the way to find them is to subtract from the vSANFint value for a cluster the highest possible int value of a vSAN feature detected by Usage Meter.</p>
+<p>For example, if you have a value of 6 in the vSANFint column in the cluster history report, subtract 4 (the highest possible value of a vSAN feature that can be subtracted from 6). The int value of 4 represents Compression, as seen from the table below. The result of the subtraction will be 2 (6-4), which stands for Deduplication. In conclusion, the cluster with a vSANFint value of 6 in the vSAN cluster history report uses two vSAN features: Compression and Deduplication.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Feature</strong></th>
+<th><strong>Feature Int Value</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BASE</td>
+<td>1</td>
+</tr>
+<tr>
+<td>DEDUPLICATION</td>
+<td>2</td>
+</tr>
+<tr>
+<td>COMPRESSION</td>
+<td>4</td>
+</tr>
+<tr>
+<td>ERASURE_CODING</td>
+<td>8</td>
+</tr>
+<tr>
+<td>STRETCHED_CLUSTER</td>
+<td>16</td>
+</tr>
+<tr>
+<td>DATA_AT_REST_ENCRYPTION</td>
+<td>32</td>
+</tr>
+<tr>
+<td>FILE_SERVICES</td>
+<td>64</td>
+</tr>
+<tr>
+<td>DATA_IN_TRANSIT_ENCRYPTION</td>
+<td>128</td>
+</tr>
+<tr>
+<td>CLOUD_NATIVE_STORAGE</td>
+<td>256</td>
+</tr>
+<tr>
+<td>HCI_MESH</td>
+<td>512</td>
+</tr>
+<tr>
+<td>SHARED_WITNESS</td>
+<td>1024</td>
+</tr>
+</tbody>
+</table>
+<p>Sample Cluster History Report and Monthly Usage Report</p>
+<table>
+<thead>
+<tr>
+<th><strong>VCHostName</strong></th>
+<th><strong>vSAN ClusterId</strong></th>
+<th><strong>vSAN ClusterName</strong></th>
+<th><strong>vSAN License</strong></th>
+<th><strong>vSAN Used (MB</strong>**)**</th>
+<th><strong>From</strong></th>
+<th><strong>To</strong></th>
+<th><strong>Interval</strong></th>
+<th><strong>vSANFint</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0UfypLEAUZCz</td>
+<td>domain-xyz</td>
+<td>0UfypLEAUZCy</td>
+<td>std</td>
+<td>2500</td>
+<td>2021-12-18 11:32:14</td>
+<td>2021-12-18 17:05:31</td>
+<td>05:33:17</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0UfypLEAUZCz</td>
+<td>domain-xyz</td>
+<td>0UfypLEAUZCy</td>
+<td>std</td>
+<td>3500</td>
+<td>2021-12-19 11:32:14</td>
+<td>2021-12-19 19:05:31</td>
+<td>08:33:17</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0UfypLEAUZCz</td>
+<td>domain-abc</td>
+<td>0bxyzABCkMy</td>
+<td>ent</td>
+<td>9500</td>
+<td>2021-12-18 17:05:31</td>
+<td>2021-12-19 18:05:31</td>
+<td>1 day 00:59:59</td>
+<td>6</td>
+</tr>
+<tr>
+<td>0UfypLEAUZCz</td>
+<td>domain-abc</td>
+<td>0bxyzABCkMy</td>
+<td>ent</td>
+<td>2500</td>
+<td>2021-12-20 11:05:31</td>
+<td>2020-12-20 18:45:50</td>
+<td>07:40:19</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p>In the Cluster History Report, the vSAN license is the edition activated for a cluster and detected by Usage Meter 4.5.0.1.
+Another important column in the report is vSANFint. With the values in this column, you can identify the features used by a cluster per time interval. The detected features determine the vSAN license edition by which the aggregated usage will be reported in the Monthly Usage Report. There might be a difference between the detected license edition activated for a cluster and the reported license edition in the Monthly Usage Report. This happens when the cluster has used only a portion of the features part of the license. These features are also part of another license, e.g., a cluster with an Enterprise license has only used features that are also part of the vSAN Standard edition. As a result, only what has been used during the reporting period is reported against the respective license edition in the Monthly Usage Report. See below what the Monthly Usage Report will be for the vSAN consumption shown in the above Cluster History Report:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Product</strong></th>
+<th><strong>Hostname</strong></th>
+<th><strong>Version</strong></th>
+<th><strong>VC UUID</strong></th>
+<th><strong>Unit of Measure</strong></th>
+<th><strong>Units to be Reported</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VMware Virtual SAN Standard</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Avg Billed vSAN Storage (GB)</td>
+<td>2</td>
+</tr>
+<tr>
+<td>VMware Virtual SAN Advanced</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Avg Billed vSAN Storage (GB)</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>The units reported in the Monthly Usage Report for vSAN are calculated based on the average vSAN storage capacity consumption throughout the month in GB per vSAN license edition, rounded down to the nearest whole number.</p>
+<p><strong>Note:</strong> The vSAN storage consumption in the Cluster History Report is shown in MB; thus, it must be converted to GB to check if the usage in the Cluster History Report matches that in the Monthly Usage Report.</p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#vsan-metering-and-reporting>vSAN Metering and Reporting</a>
+<ul>
+<li><a href=#configuration>Configuration</a></li>
+<li><a href=#feature-detection>Feature Detection</a></li>
+<li><a href=#vsan-reporting>vSAN Reporting</a></li>
+<li><a href=#vsan-cluster-history-report>vSAN Cluster History Report</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>
