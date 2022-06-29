@@ -2,19 +2,23 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="NSX Metering and Reporting #  ">
+<meta name=description content="NSX Metering and Reporting #  Usage Meter 4.5.0.1 can detect specific NSX features available to Virtual Machines, which determines the NSX edition billed to a VM.
+Usage Meter 4.5.0.1 tracks NSX usage by Virtual Machine based on the networking services available to the Virtual Machine.
+Configuration #  The Usage Meter administrator must configure the NSX Manager endpoint and credentials using the Usage Meter web application. There is one NSX Manager for each vCenter server instance utilizing NSX.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="NSX Metering and Reporting">
-<meta property="og:description" content="NSX Metering and Reporting #  ">
+<meta property="og:description" content="NSX Metering and Reporting #  Usage Meter 4.5.0.1 can detect specific NSX features available to Virtual Machines, which determines the NSX edition billed to a VM.
+Usage Meter 4.5.0.1 tracks NSX usage by Virtual Machine based on the networking services available to the Virtual Machine.
+Configuration #  The Usage Meter administrator must configure the NSX Manager endpoint and credentials using the Usage Meter web application. There is one NSX Manager for each vCenter server instance utilizing NSX.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/nsx-metering/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-06-24T15:18:09+03:00">
+<meta property="article:modified_time" content="2022-06-29T10:01:40+03:00">
 <title>NSX Metering and Reporting | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.4208640791e7edd3cc9efc407303af8618952129be45df24c7ddc326300523c5.js integrity="sha256-QghkB5Hn7dPMnvxAcwOvhhiVISm+Rd8kx93DJjAFI8U=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.9498e84593e25a80dd953be989b2da3526b539048eaf60e4911593420a68962d.js integrity="sha256-lJjoRZPiWoDdlTvpibLaNSa1OQSOr2DkkRWTQgpoli0=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -100,7 +104,15 @@ VMware Cloud Solutions
 <aside class="hidden clearfix">
 <nav id=TableOfContents>
 <ul>
-<li><a href=#nsx-metering-and-reporting>NSX Metering and Reporting</a></li>
+<li><a href=#nsx-metering-and-reporting>NSX Metering and Reporting</a>
+<ul>
+<li><a href=#configuration>Configuration</a></li>
+<li><a href=#feature-detection>Feature Detection</a></li>
+<li><a href=#nsx-v-scenario-samples>NSX-V Scenario Samples</a></li>
+<li><a href=#nsx-reporting>NSX Reporting</a></li>
+<li><a href=#nsx-t-features>NSX-T Features</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
@@ -109,6 +121,334 @@ VMware Cloud Solutions
 NSX Metering and Reporting
 <a class=anchor href=#nsx-metering-and-reporting>#</a>
 </h1>
+<p>Usage Meter 4.5.0.1 can detect specific NSX features available to Virtual Machines, which determines the NSX edition billed to a VM.</p>
+<p>Usage Meter 4.5.0.1 tracks NSX usage by Virtual Machine based on the networking services available to the Virtual Machine.</p>
+<h2 id=configuration>
+Configuration
+<a class=anchor href=#configuration>#</a>
+</h2>
+<p>The Usage Meter administrator must configure the NSX Manager endpoint and credentials using the Usage Meter web application. There is one NSX Manager for each vCenter server instance utilizing NSX.</p>
+<p>All virtual machines deployed to an NSX prepared host are candidates for NSX usage. The administrator needs to consider partitioning tenant VMs onto networks depending on their NSX usage. To avoid NSX metering for Virtual Machines that are not utilizing NSX, consider deploying the VMs to a vCenter cluster that is not prepared for NSX. The figure below shows two different vCenter clusters within the same vCenter domain. Virtual machines that are not utilizing NSX should be deployed to the cluster that is not prepared for NSX.</p>
+<p><img src=/images/usage-meter-product-detection/nsx-1.png alt>
+Figure 1</p>
+<h2 id=feature-detection>
+Feature Detection
+<a class=anchor href=#feature-detection>#</a>
+</h2>
+<p>The fact that a virtual machine can potentially access a service through the network will result in the VM being metered for the service. A VM will be considered as using NSX for metering purposes if:</p>
+<ul>
+<li>The virtual machine is connected to a network (backed by any type of switch) with access to an NSX edge.</li>
+<li>The virtual machine is connected to an NSX logical switch or distributed switch on an NSX prepared host.</li>
+<li>The virtual machine is referenced by a non-default distributed firewall rule, including groups/policies.</li>
+</ul>
+<p><strong>Note:</strong> The default DFW rule is the ‘Allow’ action.</p>
+<ul>
+<li>The virtual machine is connected to a network (backed by any type of switch) with access to a distributed logical router.
+If a virtual machine is connected to an Edge service through the network, the VM will be metered for the service.</li>
+</ul>
+<p>Usage Meter examines the switches, routers, and gateways managed by the NSX Manager, and creates a graph of connected networks. It then determines the VMs that are connected to each switch. VMs are metered for NSX usage based on their ability to reach a gateway or router through the network. Usage Meter does not examine individual Virtual Machines, network traffic, or routing tables to determine actual usage.</p>
+<p>Usage Meter examines the list of NSX features available to a Virtual Machine and selects the minimum license needed to enable the features. Each VM is metered based on the NSX edition and the VMs vRAM configuration.
+The following table lists the NSX components examined by Usage Meter to determine available NSX-V features.</p>
+<p><strong>Note:</strong> NSXFint is a column that appears in the Virtual Machine History report for VMs that are using NSX. NSXFint has an integer value and represents the NSX features used by a metered VM. The NSXFint value per NSX-v feature is shown in the table below.
+The NSXFInt value for each metered VM will be the integer value of the NSX feature or the integer sum of all NSX features used by that VM.</p>
+<p>For example, a VM using the NSX Edge load balancing and Distributed firewalling features will have the following value in the NSXFInt column = 2+64=66.</p>
+<p><strong>Note:</strong> Each NSX-v feature has a unique NSXFint value. However, the following NSX-v features are all reported as integer 1 and are essentially undistinguished: Distributed switching and routing, NSX Edge Firewall, NAT, Integration with vRealize, and OpenStack, VPN (IPSEC and SSL). These features are Base features, and if a VM uses a couple of them, then Usage Meter will only meter them as a single Base feature used by that VM. As a result, the sum of these NSX-v features will have an NSXFint value equal to 1.</p>
+<p>For example, if a VM uses Distributed switching and routing and NSX Edge Firewall, this VM will only have a value of NSXFint=1.</p>
+<p>To find the features used by a VM, subtract from the NSXFint value the highest possible value equal to or less than the NSXFint value, and continue the subtraction until NSXFint =0.</p>
+<p>For example, let’s have a VM that has NSXFint = 9.</p>
+<ol>
+<li>We will check in the table below which NSX feature has a value equal to or less than 9 and subtract it from NSXFint. In this case, the highest number close to NSXFint =9 is 8, corresponding to Dynamic Routing with ECMP (Active-Active).</li>
+<li>The result of the subtraction is NSXFint - 8= 9-8=1.</li>
+<li>We will check again in the table what NSX feature has a value equal to 1. This feature is a Base feature and could be any of the following features: Distributed switching and routing, NAT, VPN (IPSEC & SSL), NSX Edge Firewall, Integration with vRealize and OpenStack.</li>
+<li>When we also subtract it from NSXFint, the NSXFint value will equal 0.
+In conclusion, NSXFint =9 is NSXFint=8+1, corresponding to ECMP dynamic routing and a Base feature.</li>
+</ol>
+<p>| <strong>NSX-V Feature</strong> | <strong>NSX Feature String</strong> | <strong>NSX-V Edition</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Flex</strong></th>
+<th><strong>NSXFint</strong></th>
+<th><strong>VMs declared as using this feature</strong></th>
+<th><strong>Provided By</strong></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Distributed switching and routing,</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>NAT, VPN (IPSEC & SSL), NSX Edge firewall, Integration with vRealize and OpenStack | BASE | Base | 1 | All VMs that are connected to a Logical Switch.</p>
+<p>All VMs on all networks serviced by the edge. | ESXi Hosts prepared</p>
+<p>Edge gateway |
+| NSX Edge load balancing | DLB | Base | 2 | All VMs on all networks serviced by the edge. | Edge gateway |
+| Dynamic routing with ECMP | ECMP | Base | 4 | All VMs on all networks serviced by the edge. | Edge gateway |
+| Dynamic Routing with ECMP (Active-Active) | DYNRT | Base | 8 | All VMs on all networks serviced by the edge. | Edge gateway |
+| Software L2 bridging to physical environment | SWL2 | Base | 16 | All VMs on all networks serviced by the edge. | SW L2 bridging to a physical environment |
+| Distributed firewalling | DFW | Professional | 64 | All VMs referenced in the Source rule or Target rule sections of a firewall rule.  Default Firewall rules excluded. | Hosts prepared |
+| Remote Gateway<br>(also known as L2VPN) | RemoteGW | Professional | 128 | All VMs on all networks serviced by the edge. | Edge gateway |
+| Multi-Site NSX Optimizations | Universal | Advanced | 256 | All VMs on the ULS serviced by the edge. | ULS, UDFW |
+| Integration with HW VTEPs | HWVTEP | Advanced | 512 | All VMs on the LS bridged with HW VTEP. | Integration with HW VTEPs |
+| Service insertion (3rd party integration) | DFW3 | Advanced | 1024 | Same as Distributed Firewalling. | Distributed firewalling |
+| Active Directory Integrated firewall | DFW_AD | Advanced | 2048 | Same as Distributed Firewalling. | Distributed firewalling |
+| Context Aware firewall with Layer 7 | DFWL7 | Advanced | 4096 | All VMs on all networks serviced by the edge. | Edge gateway |
+| Server activity monitoring | SAM | Advanced | 65536 | Same as Distributed Firewalling. | Distributed firewalling |</p>
+<p> 
+The following table lists the combinations of NSX features available to a Virtual Machine and the resulting NSX edition that will be metered.
+| <strong>Is the host prepared</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>for NSX-V?</strong></th>
+<th><strong>Is the VM connected to Logical Switch?</strong></th>
+<th><strong>At least one non-default rule is applicable to a VM</strong></th>
+<th><strong>Is NSX Edge available to a VM?</strong></th>
+<th><strong>NSX Edition metered</strong></th>
+<th><strong>Scenario in Diagram below</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>No</td>
+<td>none</td>
+<td></td>
+</tr>
+<tr>
+<td>No</td>
+<td>No</td>
+<td>n/a</td>
+<td>Yes</td>
+<td>at least* Base Edition</td>
+<td></td>
+</tr>
+<tr>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>none</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+<td>at least* Base Edition+</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+<td>Advanced Edition</td>
+<td></td>
+</tr>
+<tr>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>at least* Advanced Edition</td>
+<td></td>
+</tr>
+<tr>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>Base Edition</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+<td>at least* Base Edition</td>
+<td>2, 3, 6</td>
+</tr>
+<tr>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Advanced Edition</td>
+<td></td>
+</tr>
+<tr>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>at least* Advanced Edition</td>
+<td></td>
+</tr>
+<tr>
+<td>*Depending upon the edge services configured.</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> </td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id=nsx-v-scenario-samples>
+NSX-V Scenario Samples
+<a class=anchor href=#nsx-v-scenario-samples>#</a>
+</h2>
+<p><strong>Scenario One:</strong> Minimum NSX configurations</p>
+<p><img src=/images/usage-meter-product-detection/nsx-2.png alt></p>
+<p>Figure 2</p>
+<p>A virtual machine VM1 is deployed to a vSphere host on an NSX enabled cluster. The virtual machine is not connected to a switch. The VM is automatically connected to the NSX Distributed Firewall.</p>
+<p><strong>Metering</strong>
+By default, the VM is connected to a distributed Firewall. VM1 will not be metered for NSX usage unless the default distributed firewall rules have been modified to reference the VM. If the DFW is in use using non-default rules, then the VM will be metered for NSX Advanced Edition.</p>
+<p><img src=/static/images/usage-meter-product-detection/nsx-3.png alt></p>
+<p>Figure 3</p>
+<p>A virtual machine VM1 is deployed to a host on an NSX enabled cluster. The VM is connected to a switch. The VM is automatically connected to the NSX Distributed Firewall. The administrator has not modified the default DFW rules.</p>
+<p><strong>Metering</strong>
+VM1 will be billed for NSX (Base Edition) since it is connected to a distributed switch.</p>
+<p><strong>Scenario Two:</strong> Base Edition Example</p>
+<p><img src=/images/usage-meter-product-detection/nsx-4.png alt></p>
+<p>Figure 4</p>
+<p>Two virtual machines VM1 and VM2 are connected to different VXLAN backed networks with routing through a Distributed Logical Router.
+Both virtual machines have access to a remote network through an Edge Gateway ESG, running a Firewall service. Neither of the VMs are referenced by non-default DFW rules.</p>
+<p><strong>Metering</strong>
+VM1 and VM2 are both metered for NSX Base edition since both distributed switching and routing, and edge firewall are base edition features.
+ 
+**Scenario Three:**Active / Active Gateway</p>
+<p><img src=/images/usage-meter-product-detection/nsx-5.png alt></p>
+<p>Figure 5</p>
+<p>Dynamic routing with ECMP (Active-active) Edge</p>
+<p><strong>Metering</strong>
+VM1, VM2, and VM3 are billed as NSX Base since ECMP is a Base feature, and all VMs have potential access to the edge.
+This scenario illustrates the feature selection based on the most advanced feature reachable by a Virtual Machine through the network.</p>
+<p><strong>Scenario Four:</strong> NSX Partitioned by Tenant</p>
+<p><img src=/images/usage-meter-product-detection/nsx-6.png alt></p>
+<p>Figure 6</p>
+<p>Two different Tenants A and B, each with their own network and ESG. No shared Switch, DLR or ESG.</p>
+<p><strong>Metering</strong>
+VM1 is metered for NSX usage based on the services running on the ESG1 accessible to VM1.
+VM2 is metered for NSX usage based on the services running on the ESG2 accessible to VM2.</p>
+<p> 
+<strong>Scenario Five:</strong> ESG on vSphere Distributed Switch (Not a logical Switch)</p>
+<p><img src=/images/usage-meter-product-detection/nsx-7.png alt>
+Figure 7</p>
+<p>VM1 on an NSX prepared Cluster and attached to vSphere Distributed Switch, not a Logical Switch.
+ESG running a load balancer service attached to the same vSphere Distributed Switch. VMs are using only default DFW rules.</p>
+<p><strong>Metering</strong>
+VM1 is metered for NSX (Base Edition) since Edge Load balancing is a Base feature and is accessible to the VM through the distributed switch.</p>
+<p><strong>Scenario Six:</strong> NSX Cross vCenter shared ESG</p>
+<p><img src=/images/usage-meter-product-detection/nsx-8.png alt>
+Figure 8</p>
+<p>An NSX Edge Gateway, ESG shared between vCenter Domains using a Universal Logical Switch. Both virtual machines are using only default DFW rules.</p>
+<p><strong>Metering</strong>
+VM1 and VM2 are both billed as NSX Enterprise since the ESG connects to a Universal Logical Switch, and all VMs have access to the ESG.</p>
+<h2 id=nsx-reporting>
+NSX Reporting
+<a class=anchor href=#nsx-reporting>#</a>
+</h2>
+<p>NSX usage can be included in reports as a license edition line item or as a standalone line item. Usage reporting is based on editions unless standalone reporting is requested.
+NSX-V Q&A
+Q1: What are the minimum configurations that Usage Meter will detect as NSX usage?</p>
+<ul>
+<li>A VM connected to a Logical Switch will be detected as an NSX BASE edition. This is the case even when no distributed logical routers or NSX edges are created.</li>
+<li>A VM with a vNIC referenced in a distributed firewall rule (non-default) will cause the VM to be detected as NSX Advance, even if the VM is not connected to a logical switch, distributed logical router, or edge.
+Q2: Are the Virtual Machines that implement NSX functionality (for example, NSX Controller VMs and Edge Gateways) billed for NSX usage?</li>
+<li>Yes, NSX management VMs are billed for NSX Base usage. The only VM excluded from metering is the Usage Meter appliance.
+Q3: An NSX Edge Gateway can be installed on a vCenter cluster that is not prepared for NSX. In this case, is the NSX Edge and the Virtual Machines utilizing the edge billed for NSX usage?</li>
+<li>Installation of an edge gateway on unprepared servers is supported only when the Edge is running the L2VPN Client. It is assumed that the client hosting the gateway will not be metered by Usage Meter.
+Q4: Does Usage Meter infer the content of a distributed firewall rule? For example, if two rules cancel out one another.</li>
+<li>No, Usage Meter does not examine the relationships between firewall rules. Usage Meter will meter the VM for DFW usage if any of the DFW rules in a policy reference the vNIC either directly or through a security group (static or dynamic).
+Q5: If a VM is connected to multiple networks, what rate is metered at?</li>
+<li>The VM is metered at the rate of the network with the highest level of service features.
+Q6: If a VM is listed in the NSX Firewall exclusion list, does Usage Meter bill for Firewall usage?</li>
+<li>No, Usage Meter does not bill DFW usage for VMs in the NSX firewall exclusion list.
+Q7: On an Edge configured as a Remote Gateway (also known as L2VPN), what VM’s are metered for NSX Usage?</li>
+<li>L2VPN can be configured as &ldquo;Server&rdquo; and &ldquo;Client&rdquo;. In both cases, all VM&rsquo;s with access to the Edge are metered by Usage Meter.
+Q8: How does Usage Meter detect if NSX Cross vCenter is configured?</li>
+<li>Usage Meter detects the Universal logical switch configured on a local edge.
+Q9: Does Usage Meter detect and bill for NSX vShield Endpoint (guest introspection to support anti-malware) solutions?</li>
+<li>Yes, Usage Meter detects vShield Endpoint as a base NSX feature.
+Q10: An NSX Edge can be deployed to an ESX Server that is not prepared for NSX. Can the edge be connected to a logical switch?</li>
+<li>No, it is not possible to create a Logical Switch on a server that is not prepared for NSX.
+Q11: Are Virtual Machines connected to a vNetwork Standard Switch (vSwitch) or vNetwork Distributed Switch (dvSwitch) metered for NSX Usage?</li>
+<li>Yes, all switch types that are serviced by an NSX Edge are metered. Logical switches will be metered even if there is no NSX Edge servicing it.</li>
+</ul>
+<h2 id=nsx-t-features>
+NSX-T Features
+<a class=anchor href=#nsx-t-features>#</a>
+</h2>
+<p>Usage Meter 4.5.0.1 inspects the topology of the virtual NSX network, obtaining lists of all known:</p>
+<ul>
+<li>Virtual machines</li>
+<li>Virtual Network Interfaces</li>
+<li>Logical ports</li>
+<li>Logical switches (aka &ldquo;segments&rdquo;)</li>
+<li>Logical routers (aka &ldquo;gateways&rdquo;)</li>
+</ul>
+<p>Usage Meter reports usage for each VM, based on the feature and license editions described in the table below.
+Note: NSXFint is a column that appears in the Virtual Machine History report and represents the sum of the integer code of the NSX features used by a VM. Each NSX- T feature has a unique NSXFint value. In the table below, you can find the NSXFInt value for each NSX-T feature metered by Usage Meter. The value of the NSXFInt column in the Virtual Machine History report for each metered VM will be the sum of all NSX-T features used by that VM. For example, a VM using the Layer 2 VPN (aka &ldquo;Remote Gateway&rdquo;) and 3rd party service insertion features will have the following value in the NSXFInt column = 128+1024=1152.
+To find the features used by a VM, subtract from the NSXFint value, the highest possible value equal to or less than the NSXFint value, and continue the subtraction until NSXFint =0.
+For example, let’s have a VM that has NSXFint value = 3.</p>
+<ol>
+<li>We will check in the table below which NSX feature has a value equal to or less than 3 and subtract it from NSXFint. In this case, the highest number close to NSXFint =3 is 2, corresponding to Edge load balancing.</li>
+<li>The result of the subtraction is NSXFint - 2= 3-2=1.</li>
+<li>We will check again in the table what NSX feature has a value equal to 1. This feature is Distributed switching and routing.</li>
+<li>When we also subtract it from NSXFint, the NSXFint value will equal 0. In conclusion, NSXFint =3 is NSXFint=2+1, corresponding to</li>
+</ol>
+<p>| Distributed switching and routing | BASE | Base | 1 | All VMs connected to any NSX-T logical switch have this feature. |
+| Edge Load Balancing | DLB | Base | 2 | A VM is metered as using this feature if it is connected (via switches and routers) to a router that has the load balancing service enabled. |
+| Dynamic Routing with ECMP | ECMP | Base | 4 | Any VM connected (via switches and tier-1 routers) to a tier-0 router that is ECMP-enabled, will be metered as using this feature. |
+| SW L2 Bridging to physical environment | SWL2 | Base | 16 | Any logical ports with attachment type &ldquo;BRIDGEENDPOINT&rdquo; use this feature, and all VMs that are connected to a logical switch that has such a port, will be metered as using this feature. |
+| Network Address Translation | NAT | Base | 32 | All VMs connected to logical switches connected directly or indirectly to a router that has NAT rules are metered using this feature. |
+| Distributed Firewall | DFW | Prof | 64 | Any VM that is referenced directly or indirectly in the sources or destinations of an enabled Distributed Firewall rule, will be metered for this feature, unless the appliedTos property of the rule indicates that the rule is not applied to that VM. |
+| Layer 2 VPN (aka &ldquo;Remote Gateway&rdquo;) | L2VPN | Prof | 128 | Any segment/logical switch with a logical port connected to an L2VPN session uses this feature, and VMs attached to that logical switch will be metered as using this feature. |
+| 3rd party service insertion | DFW3 | Adv | 1024 | Any VM that is referenced directly or indirectly in the sources or destinations of an enabled service insertion rule will be metered for this feature, unless the appliedTos property of the rule indicates that the rule is not applied to that VM. |
+| Identity firewall (aka &ldquo;Integration with Active Directory&rdquo;) | DFW_AD | Adv | 2048 | Any VM metered for DFW because of an Active Directory-enabled firewall rule will also be metered for this feature. |
+| Context-aware Firewall with Layer 7 | DFWL7 | Adv | 4096 | Any VM metered for DFW will also be metered for this feature if the firewall rule that references the VM has a non-empty context profiles list. |
+| Virtual Private Network using IPSEC | IPSEC | Base | 8192 | Any VM that is connected (via logical switches and routers) to a logical router that has IPsec service and IPsec sessions enabled is metered as using this feature. |
+| Edge Firewall (aka Gateway firewall) | GFW | Base | 16384 | Any VM connected (via switches and routers) to a router that has one or more specified gateway firewall rules, will be metered as using this feature.</p>
+<p>The difference between distributed and gateway firewall rules is that distributed firewall sections (groups of rules) have an enforced_on attribute set to &ldquo;VIF&rdquo;, and gateway firewall sections have the enforced_on attribute set to LOGICALROUTER. |
+| IPv6 Layer 3 forwarding | IPV6STATIC | Base | 32768 | If an NSX-T manager node has api/v1/global-configs/RoutingGlobalConfig configured to support IPv6 Layer 3 forwarding, then all the VMs which have a network managed by NSX-T manager node are metered with this feature. |
+| URL Filtering (as part of a firewall) | URL | Adv | 131072 | Any VM metered for the DFWL7 feature will also be metered for this URL feature if it is referenced by a firewall rule with a context profile that specifies a domain name. |
+| Container networking | NCP | Adv | 262144 | VMs are metered as using this feature if their VIF is connected to a logical port that has a tag with a scope of ncp/cluster. |
+| NSX Federation | FED | Ent Plus | 524288 | This feature is detected if Global Manager is installed and there is at least 1 Local Manager connected to the Global Manager. This is a global configuration. If this feature is enabled, all the hosts under the Local Manager are said to be using Federation. |
+| Kubernetes VM in vSphere PKS cluster | PKS | Adv | 2097152 | If a VM would be metered for the NCP feature and if its ncp/cluster tag specifies a cluster name and if the named cluster has a type of &ldquo;Kubernetes&rdquo;, and an infrastructure type of &ldquo;vSphere&rdquo;, then the VM is metered as using this PKS feature instead of the NCP feature. |
+| Multi vCenter Network and Security | MVC | Adv | 4194304 | If an NSX-T manager is connected to more than one vCenter compute manager, then all the VMs that the NSX-T manager knows about will be metered with this feature. |
+| IPv6 Layer 3 forwarding and bgp configured on corresponding Tier-0 router | IPV6DYN | Adv | 8388608 | If an NSX-T manager node has api/v1/global-configs/RoutingGlobalConfig configured to support IPv6 Layer 3 forwarding and bgp, is configured on the corresponding Tier-0 router, then all the VMs which are connected to Tier-0 router gateway are metered with this feature. |
+| Tier-0 router configured as VRF | VRF | Prof | 16777216 | If an NSX-T manager node has a Tier-0 router configured as VRF, then all the VMs connected to Tier-0 router gateway on which this VRF instance is configured will be metered with this feature. |
+| NSX intelligence appliance | NSXINT | Ent+ | 33554432 | If an NSX-T manager node has an NSX intelligence appliance configured, then all the VMs which have their network managed by NSX-T manager node are metered with this feature. |
+| Tier-0 router configured with EVPN | EVPN | Ent+ | 67108864 | If an NSX-T manager node has a Tier-0 router configured with EVPN, then all the VMs connected to those Tier-0 router gateway will be metered with this feature. |
+| NSX Distributed IDS | IDS_STANDALONEHOST | Adv | 2147483648 | This feature is enabled on a per host basis. When it is enabled, all the VMs connected to that host are counted. |
+| Integration with Distributed Firewall | IDFW | Adv | 4294967296 | This is a global feature. When it is enabled, all the hosts/VMs under the NSX Manager are counted. |</p>
+<p>NSX-T Scenario Sample</p>
+<p>Only metering of eVPN inline mode and non-telco use case is supported. The eVPN server mode is not covered.
+In this scenario, non-telco eVPN inline mode uses VRF on T0, getting mapped to MP-eBGP via RD/RT combination and VMs belonging to VRF on south-side/downlink of T0 will be behind T1.</p>
+<p><img src=/images/usage-meter-product-detection/nsx-9.png alt>
+Figure 9</p>
+<p> </p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
@@ -123,7 +463,15 @@ NSX Metering and Reporting
 <div class=book-toc-content>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#nsx-metering-and-reporting>NSX Metering and Reporting</a></li>
+<li><a href=#nsx-metering-and-reporting>NSX Metering and Reporting</a>
+<ul>
+<li><a href=#configuration>Configuration</a></li>
+<li><a href=#feature-detection>Feature Detection</a></li>
+<li><a href=#nsx-v-scenario-samples>NSX-V Scenario Samples</a></li>
+<li><a href=#nsx-reporting>NSX Reporting</a></li>
+<li><a href=#nsx-t-features>NSX-T Features</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </div>
