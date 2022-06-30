@@ -8,13 +8,13 @@
 <meta property="og:description" content="SRM Metering and Reporting #  VMware Site Recovery Manager (SRM) is a disaster recovery solution that provides automated orchestration and non-disruptive testing of centralized recovery plans for all virtualized applications. It allows service providers to offer reliable, automated protection for workloads hosted on their own cloud infrastructure and being replicated to another cloud destination (DR of the cloud) or workloads running on customer premises and being replicated to the cloud infrastructure (DR to the Cloud).">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/srm-metering/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-06-29T10:01:40+03:00">
+<meta property="article:modified_time" content="2022-06-30T11:53:44+03:00">
 <title>SRM Metering and Reporting | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.9498e84593e25a80dd953be989b2da3526b539048eaf60e4911593420a68962d.js integrity="sha256-lJjoRZPiWoDdlTvpibLaNSa1OQSOr2DkkRWTQgpoli0=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.49dc8e9f961c8ab792770c9f3f84733d3038e4a1592bf665eb5ec965198a8e5f.js integrity="sha256-SdyOn5YcireSdwyfP4RzPTA45KFZK/Zl617JZRmKjl8=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -124,65 +124,66 @@ Product Detection
 </h2>
 <p>SRM is automatically detected in vCenter when the latter is added for metering in the Usage Meter 4.5.0.1 web application. The appliance checks if there is an SRM instance installed on the metered vCenter, and if there is, it receives information from the SRM server for the count of the protected VMs. The service providers do not need to provide site details for the SRM metering. They can deactivate the SRM metering from the UM 4.5.0.1 web application for any added vCenter. Usage Meter 4.5.0.1 detects and meters SRM versions from 8.2.1 to 8.5.</p>
 <p>Metering of SRM provides enhanced billing bi-directional support, for example, from protection to failover site and from failover to protection site. Usage Meter 4.5.0.1 supports the metering of multiple failover sites, for example, from site A to site B and from site A to site C. If any site part of a pair of sites is not added to a Usage Meter appliance, then no VM will be counted as a protected VM.
-Metering of active and failover sites with a single UM 4.5.0.1 appliance:
-| <strong>Setup</strong> | <strong>Expected Monthly Usage Report Count</strong> |
-| Both sites A and B are added to the same Usage Meter 4.5.0.1. Both vCenter and SRM are enabled. | The Monthly Usage Report will contain 8 protected VMs.</p>
-<p>5 protected VMs from site A.</p>
-<p>3 protected VMs from site B.</p>
-<p><strong>Note:</strong> In Usage Meter 3.6.1, billing on both sites is not possible. |
-| Site A added to Usage Meter 4.5.0.1, Site B is not added to Usage Meter 4.5.0.1. | The Monthly Usage Report will contain 5 protected VMs.</p>
-<p>5 protected VMs from site A. |
-| Both A and B sites are added to the same Usage Meter 4.5.0.1. However, site B is deactivated in the Usage Meter web application by deselecting the following checkbox: <strong>Meter VMs protected by all SRM&rsquo;s associated with this VC in</strong> the <strong>Edit this vCenter/vCloud Foundation Server</strong> window. | The Monthly Usage Report will contain 5 protected VMs.</p>
-<p>5 protected VMs from site A.</p>
-<p>0 protected VMs from site B.</p>
-<p><strong>Note:</strong> Metering in this scenario is the same as with UM 3.6.1. |
-| Both sites A and B are added to the same Usage Meter 4.5.0.1. However, site A and B are deactivated in the Usage Meter web application by deselecting the following checkbox: ** Meter VMs protected by all SRM&rsquo;s associated with this VC in** the <strong>Edit this vCenter/vCloud Foundation Server</strong> window. | The Monthly Usage Report will contain 0 protected VMs.</p>
-<p>0 protected VMs from site A.</p>
-<p>0 protected VMs from site B.</p>
-<p><strong>Note:</strong> In this scenario, there will be no billing for SRM, only vCenter-based VM usage part of the Monthly Usage Report. |
-| |</p>
-<p>Metering of active and failover sites with multiple Usage Meter 4.5.0.1 appliances registered in the same contract:</p>
+Metering of active and failover sites with a single UM 4.5.0.1 appliance:</p>
 <table>
 <thead>
 <tr>
-<th><strong>Setup</strong></th>
-<th><strong>Monthly Usage Report Number of Protected VMs</strong></th>
+<th>Setup</th>
+<th>Expected Monthly Usage Report Count</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>UM 1 and UM 2 both belong to the same contract.<br></td>
-<td></td>
+<td>Both sites A and B are added to the same Usage Meter 4.5.0.1. Both vCenter and SRM are enabled.</td>
+<td>The Monthly Usage Report will contain 8 protected VMs. 5 protected VMs from site A. 3 protected VMs from site B. Note: In Usage Meter 3.6.1, billing on both sites is not possible.</td>
+</tr>
+<tr>
+<td>Site A added to Usage Meter 4.5.0.1, Site B is not added to Usage Meter 4.5.0.1.</td>
+<td>The Monthly Usage Report will contain 5 protected VMs. 5 protected VMs from site A.</td>
+</tr>
+<tr>
+<td>Both A and B sites are added to the same Usage Meter 4.5.0.1. However, site B is deactivated in the Usage Meter web application by deselecting the following checkbox: Meter VMs protected by all SRM&rsquo;s associated with this VC in the Edit this vCenter/vCloud Foundation Server window.</td>
+<td>The Monthly Usage Report will contain 5 protected VMs. 5 protected VMs from site A. 0 protected VMs from site B. Note: Metering in this scenario is the same as with UM 3.6.1.</td>
+</tr>
+<tr>
+<td>Both sites A and B are added to the same Usage Meter 4.5.0.1. However, site A and B are deactivated in the Usage Meter web application by deselecting the following checkbox: Meter VMs protected by all SRM&rsquo;s associated with this VC in the Edit this vCenter/vCloud Foundation Server window.</td>
+<td>The Monthly Usage Report will contain 0 protected VMs. 0 protected VMs from site A. 0 protected VMs from site B. <strong>Note:</strong> In this scenario, there will be no billing for SRM, only vCenter-based VM usage part of the Monthly Usage Report.</td>
 </tr>
 </tbody>
 </table>
-<p>• Site A is metered by UM 1</p>
-<p>vCenter and SRM are both enabled.</p>
-<p>• Site B is metered by UM 2</p>
-<p>vCenter and SRM are both enabled. | The Monthly Usage Report of UM 1 will contain 8 protected VMs.</p>
-<p>The Monthly Usage Report of UM 2 will contain 8 protected VMs.</p>
-<p>Per the contract, there will be 16 protected VMs. |
-| <strong>Workaround for avoiding duplicate billing</strong> | <strong>Monthly Usage Report Number of Protected VMs</strong> |
-| <strong>1.</strong> <strong>Avoiding duplicate SRM billing</strong></p>
-<p>UM 1 and UM 2 both belong to the same contract.<br></p>
-<p>• Site A is metered by UM 1.</p>
-<p>vCenter and SRM are both enabled.</p>
-<p>• Site B is metered by UM 2.</p>
-<p>vCenter is enabled, while SRM is deactivated.</p>
-<p><strong>Note:</strong> SRM metering can be enabled/deactivated in the Usage Meter 4.5.0.1 web application by clicking <strong>Edit</strong> for a selected vCenter/vCloud Foundation instance and then by selecting/deselecting the checkbox: <strong>Meter VMs protected by all SRM&rsquo;s associated with this VC in</strong> the <strong>Edit this vCenter/vCloud Foundation Server</strong> window. | The Monthly Usage Report of UM 1 will contain 8 protected VMs.</p>
-<p>The Monthly Usage Report of UM 2 will contain 0 protected VMs.</p>
-<p>Per the contract, there will be 8 protected VMs.</p>
-<p><strong>Note:</strong> In the example with UM 2, there will be no SRM-specific billing, but only vCenter-based VM usage information in the Monthly Usage Report of that appliance. |
-| <strong>2.</strong> <strong>Avoiding duplicate SRM and vCenter billing</strong></p>
-<p>UM 1 & UM 2 both belong to the same contract.</p>
-<p>• Site A is metered by UM 1.</p>
-<p>vCenter and SRM are both enabled.</p>
-<p>• Site B is metered by UM 2.</p>
-<p>vCenter is deactivated (by applying a demo license to all hosts), and SRM is also deactivated.</p>
-<p><strong>Note:</strong> SRM metering can be deactivated in the Usage Meter 4.5.0.1 web application by clicking <strong>Edit</strong> for a selected vCenter/vCloud Foundation instance and then by deselecting the checkbox: <strong>Meter VMs protected by all SRM&rsquo;s associated with this VC</strong> in the <strong>Edit this vCenter/vCloud Foundation Server</strong> window. | The Monthly Usage Report of UM 1 will contain <strong>8</strong> protected VMs.</p>
-<p>The Monthly Usage Report of UM 2 will contain <strong>0</strong> protected VMs.</p>
-<p>Per the contract, there will be 8 protected VMs.</p>
-<p><strong>Note:</strong> In the scenario where both vCenter and SRM are deactivated, there will be no SRM-specific billing and no vCenter-based VM usage in the Monthly Usage Report. |</p>
+<p>Metering of active and failover sites with multiple Usage Meter 4.5.0.1 appliances registered in the same contract:</p>
+<table>
+<thead>
+<tr>
+<th>Setup</th>
+<th>Monthly Usage Report Number of Protected VMs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UM 1 and UM 2 both belong to the same contract. Site A is metered by UM 1; vCenter and SRM are both enabled. Site B is metered by UM 2; vCenter and SRM are both enabled.</td>
+<td>The Monthly Usage Report of UM 1 will contain 8 protected VMs. The Monthly Usage Report of UM 2 will contain 8 protected VMs. Per the contract, there will be 16 protected VMs.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><br>Workarounds for avoiding duplicate billing:<br> <br></th>
+<th><br>Monthly Usage Report Number of Protected VMs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><br>Avoiding duplicate SRM billing<br> <br> <br> <br>UM 1 and UM 2 both belong to the same contract.<br> <br>Site A is metered by UM 1; vCenter and SRM are both enabled.<br> <br>Site B is metered by UM 2; vCenter is enabled, while SRM is deactivated. <br> <br>Note: SRM metering can be enabled/deactivated in the Usage Meter 4.5.0.1 web application by clicking Edit for a selected vCenter/vCloud Foundation instance and then by selecting/deselecting the checkbox: Meter VMs protected by all SRM&rsquo;s associated with this VC in the Edit this vCenter/vCloud Foundation Server window.</td>
+<td><br> <br> <br>The Monthly Usage Report of UM 1 will contain 8 protected VMs.<br> <br>The Monthly Usage Report of UM 2 will contain 0 protected VMs.<br> <br>Per the contract, there will be 8 protected VMs.<br> <br><strong>Note:</strong> In the example with UM 2, there will be no SRM specific billing, but only vCenter-based VM usage information in the Monthly Usage Report of that appliance.<br> <br></td>
+</tr>
+<tr>
+<td><br> <br> <br>Avoiding duplicate SRM and vCenter billing<br> <br>UM 1 & UM 2 both belong to the same contract.<br> <br>Site A is metered by UM 1; vCenter and SRM are both enabled.<br> <br>Site B is metered by UM 2; vCenter is deactivated (by applying a demo license to all hosts), and SRM is also deactivated.<br> <br>Note: SRM metering can be deactivated in the Usage Meter 4.5.0.1 web application by clicking Edit for a selected vCenter/vCloud Foundation instance and then by deselecting the checkbox: Meter VMs protected by all SRM&rsquo;s associated with this VC in the Edit this vCenter/vCloud Foundation Server window.</td>
+<td><br> <br> <br>The Monthly Usage Report of UM 1 will contain 8 protected VMs.<br> <br>The Monthly Usage Report of UM 2 will contain 0 protected VMs.<br> <br>Per contract, there will be 8 protected VMs.<br> <br><strong>Note:</strong> In the scenario where both vCenter and SRM are deactivated, there will be no SRM specific billing and no vCenter-based VM usage in the Monthly Usage Report.<br> <br></td>
+</tr>
+</tbody>
+</table>
 <h2 id=sample-monthly-usage-report>
 Sample Monthly Usage Report
 <a class=anchor href=#sample-monthly-usage-report>#</a>
