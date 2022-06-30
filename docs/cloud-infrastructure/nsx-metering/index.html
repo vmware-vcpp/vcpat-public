@@ -12,13 +12,13 @@ Usage Meter 4.5.0.1 tracks NSX usage by Virtual Machine based on the networking 
 Configuration #  The Usage Meter administrator must configure the NSX Manager endpoint and credentials using the Usage Meter web application. There is one NSX Manager for each vCenter server instance utilizing NSX.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/nsx-metering/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-06-30T11:53:44+03:00">
+<meta property="article:modified_time" content="2022-06-30T15:39:34+03:00">
 <title>NSX Metering and Reporting | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.49dc8e9f961c8ab792770c9f3f84733d3038e4a1592bf665eb5ec965198a8e5f.js integrity="sha256-SdyOn5YcireSdwyfP4RzPTA45KFZK/Zl617JZRmKjl8=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.813e3e248a5934239315d29ad4a8936c3d2957ecbecd7e66c762543d7adc1ceb.js integrity="sha256-gT4+JIpZNCOTFdKa1KiTbD0pV+y+zX5mx2JUPXrcHOs=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -131,7 +131,7 @@ Configuration
 <p>The Usage Meter administrator must configure the NSX Manager endpoint and credentials using the Usage Meter web application. There is one NSX Manager for each vCenter server instance utilizing NSX.</p>
 <p>All virtual machines deployed to an NSX prepared host are candidates for NSX usage. The administrator needs to consider partitioning tenant VMs onto networks depending on their NSX usage. To avoid NSX metering for Virtual Machines that are not utilizing NSX, consider deploying the VMs to a vCenter cluster that is not prepared for NSX. The figure below shows two different vCenter clusters within the same vCenter domain. Virtual machines that are not utilizing NSX should be deployed to the cluster that is not prepared for NSX.</p>
 <p align=center>
-<img width=75% height=75% src=../../../static/images/usage-meter-product-detection/nsx-1.png>
+<img width=75% height=75% src=/images/usage-meter-product-detection/nsx-1.png>
 </p>
 <p style=text-align:center><b>Figure 1</b></p>
 <h2 id=feature-detection>
@@ -290,16 +290,9 @@ In conclusion, NSXFint =9 is NSXFint=8+1, corresponding to ECMP dynamic routing 
 <td></td>
 <td></td>
 </tr>
-<tr>
-<td>The following table lists the combinations of NSX features available to a Virtual Machine and the resulting NSX edition that will be metered.</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
 </tbody>
 </table>
+<p>The following table lists the combinations of NSX features available to a Virtual Machine and the resulting NSX edition that will be metered.</p>
 <table>
 <thead>
 <tr>
@@ -392,65 +385,32 @@ In conclusion, NSXFint =9 is NSXFint=8+1, corresponding to ECMP dynamic routing 
 <td>at least* Advanced Edition</td>
 <td></td>
 </tr>
-<tr>
-<td>*Depending upon the edge services configured.</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td> </td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
 </tbody>
 </table>
+<p>*Depending upon the edge services configured.
+ </p>
 <h2 id=nsx-v-scenario-samples>
 NSX-V Scenario Samples
 <a class=anchor href=#nsx-v-scenario-samples>#</a>
 </h2>
 <p><strong>Scenario One:</strong> Minimum NSX configurations</p>
 <p align=center>
-<img width=40% height=40% src=../../../static/images/usage-meter-product-detection/nsx-2.png>
+<img width=40% height=40% src=/images/usage-meter-product-detection/nsx-2.png>
 </p>
 <p style=text-align:center><b>Figure 2</b></p>
 <p>A virtual machine VM1 is deployed to a vSphere host on an NSX enabled cluster. The virtual machine is not connected to a switch. The VM is automatically connected to the NSX Distributed Firewall.</p>
 <p><strong>Metering</strong>
 By default, the VM is connected to a distributed Firewall. VM1 will not be metered for NSX usage unless the default distributed firewall rules have been modified to reference the VM. If the DFW is in use using non-default rules, then the VM will be metered for NSX Advanced Edition.</p>
-<p>&#171;&#171;&#171;&lt; HEAD</p>
 <p align=center>
-<img width=40% height=40% src=../../../static/images/usage-meter-product-detection/nsx-3.png>
+<img width=40% height=40% src=/images/usage-meter-product-detection/nsx-3.png>
 </p>
 <p style=text-align:center><b>Figure 3</b></p>
-=======
-![](/static/images/usage-meter-product-detection/nsx-3.png)
-<p>Figure 3</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>main</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 <p>A virtual machine VM1 is deployed to a host on an NSX enabled cluster. The VM is connected to a switch. The VM is automatically connected to the NSX Distributed Firewall. The administrator has not modified the default DFW rules.</p>
 <p><strong>Metering</strong>
 VM1 will be billed for NSX (Base Edition) since it is connected to a distributed switch.</p>
 <p><strong>Scenario Two:</strong> Base Edition Example</p>
 <p align=center>
-<img width=40% height=40% src=../../../static/images/usage-meter-product-detection/nsx-4.png>
+<img width=40% height=40% src=/images/usage-meter-product-detection/nsx-4.png>
 </p>
 <p style=text-align:center><b>Figure 4</b></p>
 <p>Two virtual machines VM1 and VM2 are connected to different VXLAN backed networks with routing through a Distributed Logical Router.
@@ -460,7 +420,7 @@ VM1 and VM2 are both metered for NSX Base edition since both distributed switchi
  
 **Scenario Three:**Active / Active Gateway</p>
 <p align=center>
-<img width=40% height=40% src=../../../static/images/usage-meter-product-detection/nsx-5.png>
+<img width=40% height=40% src=/images/usage-meter-product-detection/nsx-5.png>
 </p>
 <p style=text-align:center><b>Figure 5</b></p>
 <p>Dynamic routing with ECMP (Active-active) Edge</p>
@@ -469,7 +429,7 @@ VM1, VM2, and VM3 are billed as NSX Base since ECMP is a Base feature, and all V
 This scenario illustrates the feature selection based on the most advanced feature reachable by a Virtual Machine through the network.</p>
 <p><strong>Scenario Four:</strong> NSX Partitioned by Tenant</p>
 <p align=center>
-<img width=40% height=40% src=../../../static/images/usage-meter-product-detection/nsx-6.png>
+<img width=40% height=40% src=/images/usage-meter-product-detection/nsx-6.png>
 </p>
 <p style=text-align:center><b>Figure 6</b></p>
 <p>Two different Tenants A and B, each with their own network and ESG. No shared Switch, DLR or ESG.</p>
@@ -479,7 +439,7 @@ VM2 is metered for NSX usage based on the services running on the ESG2 accessibl
 <p> 
 <strong>Scenario Five:</strong> ESG on vSphere Distributed Switch (Not a logical Switch)</p>
 <p align=center>
-<img width=40% height=40% src=../../../static/images/usage-meter-product-detection/nsx-7.png>
+<img width=40% height=40% src=/images/usage-meter-product-detection/nsx-7.png>
 </p>
 <p style=text-align:center><b>Figure 7</b></p>
 <p>VM1 on an NSX prepared Cluster and attached to vSphere Distributed Switch, not a Logical Switch.
@@ -488,7 +448,7 @@ ESG running a load balancer service attached to the same vSphere Distributed Swi
 VM1 is metered for NSX (Base Edition) since Edge Load balancing is a Base feature and is accessible to the VM through the distributed switch.</p>
 <p><strong>Scenario Six:</strong> NSX Cross vCenter shared ESG</p>
 <p align=center>
-<img width=40% height=40% src=../../../static/images/usage-meter-product-detection/nsx-8.png>
+<img width=40% height=40% src=/images/usage-meter-product-detection/nsx-8.png>
 </p>
 <p style=text-align:center><b>Figure 8</b></p>
 <p>An NSX Edge Gateway, ESG shared between vCenter Domains using a Universal Logical Switch. Both virtual machines are using only default DFW rules.</p>
@@ -755,7 +715,7 @@ NSX-T Scenario Sample
 <p>Only metering of eVPN inline mode and non-telco use case is supported. The eVPN server mode is not covered.
 In this scenario, non-telco eVPN inline mode uses VRF on T0, getting mapped to MP-eBGP via RD/RT combination and VMs belonging to VRF on south-side/downlink of T0 will be behind T1.</p>
 <p align=center>
-<img width=75% height=75% src=../../../static/images/usage-meter-product-detection/nsx-9.png>
+<img width=75% height=75% src=/images/usage-meter-product-detection/nsx-9.png>
 </p>
 <p style=text-align:center><b>Figure 9</b></p>
 <p> </p>
