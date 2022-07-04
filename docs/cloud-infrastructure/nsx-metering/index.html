@@ -12,13 +12,13 @@ Usage Meter 4.5.0.1 tracks NSX usage by Virtual Machine based on the networking 
 Configuration #  The Usage Meter administrator must configure the NSX Manager endpoint and credentials using the Usage Meter web application. There is one NSX Manager for each vCenter server instance utilizing NSX.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/nsx-metering/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-04T16:40:38+02:00">
+<meta property="article:modified_time" content="2022-07-04T16:44:24+02:00">
 <title>NSX Metering and Reporting | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.201e63426431a7e8d5e429c5a3983f64654978883dd10436cfc299ee592b5a35.js integrity="sha256-IB5jQmQxp+jV5CnFo5g/ZGVJeIg90QQ2z8KZ7lkrWjU=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.7aa5995816fae532e98dbf35bd02f34d95855bc847e387b0e3d43b56dda81cad.js integrity="sha256-eqWZWBb65TLpjb81vQLzTZWFW8hH44ew49Q7Vt2oHK0=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -130,10 +130,7 @@ Configuration
 </h2>
 <p>The Usage Meter administrator must configure the NSX Manager endpoint and credentials using the Usage Meter web application. There is one NSX Manager for each vCenter server instance utilizing NSX.</p>
 <p>All virtual machines deployed to an NSX prepared host are candidates for NSX usage. The administrator needs to consider partitioning tenant VMs onto networks depending on their NSX usage. To avoid NSX metering for Virtual Machines that are not utilizing NSX, consider deploying the VMs to a vCenter cluster that is not prepared for NSX. The figure below shows two different vCenter clusters within the same vCenter domain. Virtual machines that are not utilizing NSX should be deployed to the cluster that is not prepared for NSX.</p>
-<p align=center>
-<img width=75% height=75% src=/images/usage-meter-product-detection/nsx-1.png>
-</p>
-<p style=text-align:center><b>Figure 1</b></p>
+<p><img src=/images/usage-meter-product-detection/nsx-1.png#center alt></p>
 <h2 id=feature-detection>
 Feature Detection
 <a class=anchor href=#feature-detection>#</a>
