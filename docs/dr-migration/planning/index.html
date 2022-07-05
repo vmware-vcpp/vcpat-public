@@ -2,21 +2,23 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="DR & Migration Planning and Preparation #  Everything you need to know before deploying VMware Cloud Director Availability.
-Hardware Requirements #     Appliance Type Description and Services Hardware Requirements     Cloud Replication Management Appliance A dedicated appliance, that runs the following VMware Cloud Director Availability services: * Manager Service * Cloud Service with embedded VMware Cloud Director Availability Tenant Portal - 2 vCPUs - 4 GB RAM">
+<meta name=description content="DR & Migration Planning and Preparation #  Before you start implementing the components of the {VVS for CP Title} solution, you must set up an environment that has a specific compute, storage, and network configuration, and that provides external services to the components of the solution.
+Use the VMware Cloud Foundation Planning and Preparation Workbook to capture environment specific input values that are required during the implementation.
+Carefully review the VMware Cloud Foundation Planning and Preparation Workbook before implementation to avoid costly rework and delays.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="DR & Migration Planning and Preparation">
-<meta property="og:description" content="DR & Migration Planning and Preparation #  Everything you need to know before deploying VMware Cloud Director Availability.
-Hardware Requirements #     Appliance Type Description and Services Hardware Requirements     Cloud Replication Management Appliance A dedicated appliance, that runs the following VMware Cloud Director Availability services: * Manager Service * Cloud Service with embedded VMware Cloud Director Availability Tenant Portal - 2 vCPUs - 4 GB RAM">
+<meta property="og:description" content="DR & Migration Planning and Preparation #  Before you start implementing the components of the {VVS for CP Title} solution, you must set up an environment that has a specific compute, storage, and network configuration, and that provides external services to the components of the solution.
+Use the VMware Cloud Foundation Planning and Preparation Workbook to capture environment specific input values that are required during the implementation.
+Carefully review the VMware Cloud Foundation Planning and Preparation Workbook before implementation to avoid costly rework and delays.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/planning/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-05T17:28:35-04:00">
+<meta property="article:modified_time" content="2022-07-05T17:29:22-04:00">
 <title>DR & Migration Planning and Preparation | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.b86bacc1033acc330d58f24e730dec7a116b1d75050d571b28c100edadde4871.js integrity="sha256-uGuswQM6zDMNWPJOcw3sehFrHXUFDVcbKMEA7a3eSHE=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.5894a9444bd7cd14eb8aa5e822c2cab084ac8a0dc7bda0a66fb018127b326c5f.js integrity="sha256-WJSpREvXzRTriqXoIsLKsISsig3HvaCmb7AYEnsybF8=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -123,6 +125,38 @@ VMware Cloud Solutions
 DR & Migration Planning and Preparation
 <a class=anchor href=#dr--migration-planning-and-preparation>#</a>
 </h1>
+<p>Before you start implementing the components of the {VVS for CP Title} solution, you must set up an environment that has a specific compute, storage, and network configuration, and that provides external services to the components of the solution.</p>
+<p>Use the VMware Cloud Foundation Planning and Preparation Workbook to capture environment specific input values that are required during the implementation.</p>
+<p>Carefully review the VMware Cloud Foundation Planning and Preparation Workbook before implementation to avoid costly rework and delays. Capture input values that are specific to your environment and verify that the components that are required by this solution are available.</p>
+<p>The VMware Cloud Foundation Planning and Preparation Workbook contains inputs for each implementation and configuration procedure. Reference your values from the VMware Cloud Foundation Planning and Preparation Workbook to complete UI or PowerShell procedures.</p>
+<p>#External Services
+You use services that are external to VMware Cloud Foundation when implementing the solution-name solution.</p>
+<table>
+<thead>
+<tr>
+<th>External Service</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Active Directory (AD)</td>
+<td>Active Directory (AD) is used to provide authentication and authorization to the VMware Cloud Foundation infrastructure.<br>This includes dedicated Domain Users with least privilege access to act as service accounts for component connectivity.</td>
+</tr>
+<tr>
+<td>Domain Name Services (DNS)</td>
+<td>Domain Name Services is used to ensure components are resolvable by FQDN and by IP address.</td>
+</tr>
+<tr>
+<td>Network Time Protocol (NTP)</td>
+<td>Network Time Protocol is used to synchronize time consistently across components.</td>
+</tr>
+<tr>
+<td>Certificate Authority (CA)</td>
+<td>Certificate Authority is used to provide signed certificates for user facing interfaces.</td>
+</tr>
+</tbody>
+</table>
 <p>Everything you need to know before deploying VMware Cloud Director Availability.</p>
 <h2 id=hardware-requirements>
 Hardware Requirements
