@@ -2,19 +2,23 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Cloud Infrastructure Planning and Preparation #  Coming soon!">
+<meta name=description content="Cloud Infrastructure Planning and Preparation #  Before you start implementing the components of the {VVS for CP Title} solution, you must set up an environment that has a specific compute, storage, and network configuration, and that provides external services to the components of the solution.
+Use the VMware Cloud Foundation Planning and Preparation Workbook to capture environment specific input values that are required during the implementation.
+Carefully review the VMware Cloud Foundation Planning and Preparation Workbook before implementation to avoid costly rework and delays.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Cloud Infrastructure Planning and Preparation">
-<meta property="og:description" content="Cloud Infrastructure Planning and Preparation #  Coming soon!">
+<meta property="og:description" content="Cloud Infrastructure Planning and Preparation #  Before you start implementing the components of the {VVS for CP Title} solution, you must set up an environment that has a specific compute, storage, and network configuration, and that provides external services to the components of the solution.
+Use the VMware Cloud Foundation Planning and Preparation Workbook to capture environment specific input values that are required during the implementation.
+Carefully review the VMware Cloud Foundation Planning and Preparation Workbook before implementation to avoid costly rework and delays.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/planning/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-05T17:26:28-04:00">
+<meta property="article:modified_time" content="2022-07-05T17:28:07-04:00">
 <title>Cloud Infrastructure Planning and Preparation | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.b3279653340fbbfbfd22e25c6117e36ec42dfe2fc62c7702d8b490271f879344.js integrity="sha256-syeWUzQPu/v9IuJcYRfjbsQt/i/GLHcC2LSQJx+Hk0Q=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.6b26768660357f081e039ec8e10baf39173d117d6b1218524f01d7ecb5fade65.js integrity="sha256-ayZ2hmA1fwgeA57I4QuvORc9EX1rEhhSTwHX7LX63mU=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -101,7 +105,38 @@ VMware Cloud Solutions
 Cloud Infrastructure Planning and Preparation
 <a class=anchor href=#cloud-infrastructure-planning-and-preparation>#</a>
 </h1>
-<p>Coming soon!</p>
+<p>Before you start implementing the components of the {VVS for CP Title} solution, you must set up an environment that has a specific compute, storage, and network configuration, and that provides external services to the components of the solution.</p>
+<p>Use the VMware Cloud Foundation Planning and Preparation Workbook to capture environment specific input values that are required during the implementation.</p>
+<p>Carefully review the VMware Cloud Foundation Planning and Preparation Workbook before implementation to avoid costly rework and delays. Capture input values that are specific to your environment and verify that the components that are required by this solution are available.</p>
+<p>The VMware Cloud Foundation Planning and Preparation Workbook contains inputs for each implementation and configuration procedure. Reference your values from the VMware Cloud Foundation Planning and Preparation Workbook to complete UI or PowerShell procedures.</p>
+<p>#External Services
+You use services that are external to VMware Cloud Foundation when implementing the solution-name solution.</p>
+<table>
+<thead>
+<tr>
+<th>External Service</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Active Directory (AD)</td>
+<td>Active Directory (AD) is used to provide authentication and authorization to the VMware Cloud Foundation infrastructure.<br>This includes dedicated Domain Users with least privilege access to act as service accounts for component connectivity.</td>
+</tr>
+<tr>
+<td>Domain Name Services (DNS)</td>
+<td>Domain Name Services is used to ensure components are resolvable by FQDN and by IP address.</td>
+</tr>
+<tr>
+<td>Network Time Protocol (NTP)</td>
+<td>Network Time Protocol is used to synchronize time consistently across components.</td>
+</tr>
+<tr>
+<td>Certificate Authority (CA)</td>
+<td>Certificate Authority is used to provide signed certificates for user facing interfaces.</td>
+</tr>
+</tbody>
+</table>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
