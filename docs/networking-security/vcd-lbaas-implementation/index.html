@@ -10,13 +10,13 @@ From VMware Cloud Director 10.2 and onwards, VMware Cloud Director provides load
 From VMware Cloud Director 10.2 and onwards, VMware Cloud Director provides load balancing services in NSX-T backed organization virtual data centers (VDCs) by leveraging the capabilities of VMware NSX Advanced Load Balancer (Avi).">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/networking-security/vcd-lbaas-implementation/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-05T17:44:53-04:00">
+<meta property="article:modified_time" content="2022-07-06T11:33:06-04:00">
 <title>Load Balancing as a Service in VMware Cloud Director | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.bcdeed99ae0fd9392998e4c1540c961c587e2641c045430a45b9c51460c00607.js integrity="sha256-vN7tma4P2TkpmOTBVAyWHFh+JkHARUMKRbnFFGDABgc=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.3ade93f246f3925c26624f4a02d836222b0cdfc7c9cfcefeea684fdcac65589f.js integrity="sha256-Ot6T8kbzklwmYk9KAtg2IisM38fJz87+6mhP3KxlWJ8=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -96,51 +96,8 @@ VMware Cloud Solutions
 </label>
 <strong>Load Balancing as a Service in VMware Cloud Director</strong>
 <label for=toc-control>
-<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
 </label>
 </div>
-<aside class="hidden clearfix">
-<nav id=TableOfContents>
-<ul>
-<li><a href=#load-balancing-as-a-service-in-vmware-cloud-director>Load Balancing as a Service in VMware Cloud Director</a>
-<ul>
-<li><a href=#introduction>Introduction</a></li>
-<li><a href=#lbaas-anatomy>LBaaS Anatomy</a>
-<ul>
-<li><a href=#vmware-cloud-director-support>VMware Cloud Director Support</a></li>
-<li><a href=#provider-and-tenant-responsibilities>Provider and Tenant Responsibilities</a></li>
-</ul>
-</li>
-<li><a href=#deployment--configuration>Deployment & Configuration</a>
-<ul>
-<li><a href=#requirements>Requirements</a></li>
-<li><a href=#deploying-the-avi-controller-cluster>Deploying the Avi Controller Cluster</a></li>
-<li><a href=#avi-controller-cluster-initial-setup>Avi Controller Cluster Initial Setup</a></li>
-<li><a href=#nsx-t-cloud>NSX-T Cloud</a></li>
-<li><a href=#service-engine-groups>Service Engine Groups</a></li>
-<li><a href=#vmware-cloud-director-service-admin-portal>VMware Cloud Director Service Admin Portal</a></li>
-</ul>
-</li>
-<li><a href=#consumption>Consumption</a>
-<ul>
-<li><a href=#enabling-load-balancing>Enabling Load Balancing</a></li>
-<li><a href=#load-balancer-server-pool>Load Balancer Server Pool</a></li>
-<li><a href=#virtual-service>Virtual Service</a></li>
-<li><a href=#health-monitoring>Health Monitoring</a></li>
-</ul>
-</li>
-<li><a href=#advanced-features-consumption>Advanced Features Consumption</a>
-<ul>
-<li><a href=#avi-intelligent-web-application-firewall>Avi Intelligent Web Application Firewall</a></li>
-<li><a href=#custom-health-monitor>Custom Health Monitor</a></li>
-</ul>
-</li>
-<li><a href=#resources>Resources</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
 </header>
 <article class=markdown><h1 id=load-balancing-as-a-service-in-vmware-cloud-director>
 Load Balancing as a Service in VMware Cloud Director
@@ -494,50 +451,6 @@ Resources
 </div>
 <label for=menu-control class="hidden book-menu-overlay"></label>
 </div>
-<aside class=book-toc>
-<div class=book-toc-content>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#load-balancing-as-a-service-in-vmware-cloud-director>Load Balancing as a Service in VMware Cloud Director</a>
-<ul>
-<li><a href=#introduction>Introduction</a></li>
-<li><a href=#lbaas-anatomy>LBaaS Anatomy</a>
-<ul>
-<li><a href=#vmware-cloud-director-support>VMware Cloud Director Support</a></li>
-<li><a href=#provider-and-tenant-responsibilities>Provider and Tenant Responsibilities</a></li>
-</ul>
-</li>
-<li><a href=#deployment--configuration>Deployment & Configuration</a>
-<ul>
-<li><a href=#requirements>Requirements</a></li>
-<li><a href=#deploying-the-avi-controller-cluster>Deploying the Avi Controller Cluster</a></li>
-<li><a href=#avi-controller-cluster-initial-setup>Avi Controller Cluster Initial Setup</a></li>
-<li><a href=#nsx-t-cloud>NSX-T Cloud</a></li>
-<li><a href=#service-engine-groups>Service Engine Groups</a></li>
-<li><a href=#vmware-cloud-director-service-admin-portal>VMware Cloud Director Service Admin Portal</a></li>
-</ul>
-</li>
-<li><a href=#consumption>Consumption</a>
-<ul>
-<li><a href=#enabling-load-balancing>Enabling Load Balancing</a></li>
-<li><a href=#load-balancer-server-pool>Load Balancer Server Pool</a></li>
-<li><a href=#virtual-service>Virtual Service</a></li>
-<li><a href=#health-monitoring>Health Monitoring</a></li>
-</ul>
-</li>
-<li><a href=#advanced-features-consumption>Advanced Features Consumption</a>
-<ul>
-<li><a href=#avi-intelligent-web-application-firewall>Avi Intelligent Web Application Firewall</a></li>
-<li><a href=#custom-health-monitor>Custom Health Monitor</a></li>
-</ul>
-</li>
-<li><a href=#resources>Resources</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-</aside>
 </main>
 </body>
 </html>

@@ -2,21 +2,21 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="VMware Cloud Director Availability Certificate Management #  The SSL certificates are essential for establishing a trusted connection between the different VMware Cloud Director Availability appliances and their proper service.
+<meta name=description content="DR and Migration Certificate Management #  The SSL certificates are essential for establishing a trusted connection between the different VMware Cloud Director Availability appliances and their proper service.
 Each of them comes with their unique self-signed SSL certificate during the deployment. But still, these certificates need to be replaced when they expire, or if the providers prefer to use CA-signed ones to make sure there will be no browser warnings, for example.">
 <meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="VMware Cloud Director Availability Certificate Management">
-<meta property="og:description" content="VMware Cloud Director Availability Certificate Management #  The SSL certificates are essential for establishing a trusted connection between the different VMware Cloud Director Availability appliances and their proper service.
+<meta name=color-scheme content="light dark"><meta property="og:title" content="DR and Migration Certificate Management">
+<meta property="og:description" content="DR and Migration Certificate Management #  The SSL certificates are essential for establishing a trusted connection between the different VMware Cloud Director Availability appliances and their proper service.
 Each of them comes with their unique self-signed SSL certificate during the deployment. But still, these certificates need to be replaced when they expire, or if the providers prefer to use CA-signed ones to make sure there will be no browser warnings, for example.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/certificate-management/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-05T17:44:53-04:00">
-<title>VMware Cloud Director Availability Certificate Management | VMware Cloud Provider Architecture Toolkit</title>
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/cert-management/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-07-06T11:33:06-04:00">
+<title>DR and Migration Certificate Management | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.bcdeed99ae0fd9392998e4c1540c961c587e2641c045430a45b9c51460c00607.js integrity="sha256-vN7tma4P2TkpmOTBVAyWHFh+JkHARUMKRbnFFGDABgc=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.3ade93f246f3925c26624f4a02d836222b0cdfc7c9cfcefeea684fdcac65589f.js integrity="sha256-Ot6T8kbzklwmYk9KAtg2IisM38fJz87+6mhP3KxlWJ8=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -94,45 +94,14 @@ VMware Cloud Solutions
 <label for=menu-control>
 <img src=/svg/menu.svg class=book-icon alt=Menu>
 </label>
-<strong>VMware Cloud Director Availability Certificate Management</strong>
+<strong>DR and Migration Certificate Management</strong>
 <label for=toc-control>
-<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
 </label>
 </div>
-<aside class="hidden clearfix">
-<nav id=TableOfContents>
-<ul>
-<li><a href=#vmware-cloud-director-availability-certificate-management>VMware Cloud Director Availability Certificate Management</a>
-<ul>
-<li><a href=#prerequisites-for-the-ca-signed-certificate>Prerequisites for the CA-signed certificate</a></li>
-<li><a href=#useful-commands>Useful commands</a></li>
-<li><a href=#usual-scenario>Usual scenario</a>
-<ul>
-<li><a href=#steps>Steps</a></li>
-</ul>
-</li>
-<li><a href=#affected-services>Affected services</a>
-<ul>
-<li><a href=#procedure-1>Procedure 1:</a></li>
-</ul>
-</li>
-<li><a href=#affected-paired-sites>Affected paired sites</a>
-<ul>
-<li><a href=#on-premises>On-premises</a></li>
-<li><a href=#cloud>Cloud</a></li>
-</ul>
-</li>
-<li><a href=#other-appliances>Other appliances</a></li>
-<li><a href=#backup-and-restore> Backup and restore</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
 </header>
-<article class=markdown><h1 id=vmware-cloud-director-availability-certificate-management>
-VMware Cloud Director Availability Certificate Management
-<a class=anchor href=#vmware-cloud-director-availability-certificate-management>#</a>
+<article class=markdown><h1 id=dr-and-migration-certificate-management>
+DR and Migration Certificate Management
+<a class=anchor href=#dr-and-migration-certificate-management>#</a>
 </h1>
 <p>The SSL certificates are essential for establishing a trusted connection between the different VMware Cloud Director Availability appliances and their proper service.</p>
 <p>Each of them comes with their unique self-signed SSL certificate during the deployment. But still, these certificates need to be replaced when they expire, or if the providers prefer to use CA-signed ones to make sure there will be no browser warnings, for example. </p>
@@ -450,38 +419,6 @@ Other appliances
 </div>
 <label for=menu-control class="hidden book-menu-overlay"></label>
 </div>
-<aside class=book-toc>
-<div class=book-toc-content>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#vmware-cloud-director-availability-certificate-management>VMware Cloud Director Availability Certificate Management</a>
-<ul>
-<li><a href=#prerequisites-for-the-ca-signed-certificate>Prerequisites for the CA-signed certificate</a></li>
-<li><a href=#useful-commands>Useful commands</a></li>
-<li><a href=#usual-scenario>Usual scenario</a>
-<ul>
-<li><a href=#steps>Steps</a></li>
-</ul>
-</li>
-<li><a href=#affected-services>Affected services</a>
-<ul>
-<li><a href=#procedure-1>Procedure 1:</a></li>
-</ul>
-</li>
-<li><a href=#affected-paired-sites>Affected paired sites</a>
-<ul>
-<li><a href=#on-premises>On-premises</a></li>
-<li><a href=#cloud>Cloud</a></li>
-</ul>
-</li>
-<li><a href=#other-appliances>Other appliances</a></li>
-<li><a href=#backup-and-restore> Backup and restore</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-</aside>
 </main>
 </body>
 </html>

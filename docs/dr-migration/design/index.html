@@ -2,23 +2,23 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="DR & Migration Design #  Architecture #  The following diagram shows the network flow between the VMware Cloud Director Availability components and the other infrastructure components part of the replication process.
+<meta name=description content="DR and Migration Design #  Architecture #  The following diagram shows the network flow between the VMware Cloud Director Availability components and the other infrastructure components part of the replication process.
 Other Components #  Platform Services Controller #  All the VMware Cloud Director Availability appliances need to be configured with a Lookup Service for two purposes:
  Service authentication and resource discovery – the Replicator and Management appliances require registration with a Lookup Service to authenticate to the resource vCenters and discover resources which is required for operations from the VMware Cloud Director Availability workflow.">
 <meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="DR & Migration Design">
-<meta property="og:description" content="DR & Migration Design #  Architecture #  The following diagram shows the network flow between the VMware Cloud Director Availability components and the other infrastructure components part of the replication process.
+<meta name=color-scheme content="light dark"><meta property="og:title" content="DR and Migration Design">
+<meta property="og:description" content="DR and Migration Design #  Architecture #  The following diagram shows the network flow between the VMware Cloud Director Availability components and the other infrastructure components part of the replication process.
 Other Components #  Platform Services Controller #  All the VMware Cloud Director Availability appliances need to be configured with a Lookup Service for two purposes:
  Service authentication and resource discovery – the Replicator and Management appliances require registration with a Lookup Service to authenticate to the resource vCenters and discover resources which is required for operations from the VMware Cloud Director Availability workflow.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-05T17:44:53-04:00">
-<title>DR & Migration Design | VMware Cloud Provider Architecture Toolkit</title>
+<meta property="article:modified_time" content="2022-07-06T11:33:06-04:00">
+<title>DR and Migration Design | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.bcdeed99ae0fd9392998e4c1540c961c587e2641c045430a45b9c51460c00607.js integrity="sha256-vN7tma4P2TkpmOTBVAyWHFh+JkHARUMKRbnFFGDABgc=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.3ade93f246f3925c26624f4a02d836222b0cdfc7c9cfcefeea684fdcac65589f.js integrity="sha256-Ot6T8kbzklwmYk9KAtg2IisM38fJz87+6mhP3KxlWJ8=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -96,40 +96,14 @@ VMware Cloud Solutions
 <label for=menu-control>
 <img src=/svg/menu.svg class=book-icon alt=Menu>
 </label>
-<strong>DR & Migration Design</strong>
+<strong>DR and Migration Design</strong>
 <label for=toc-control>
-<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
 </label>
 </div>
-<aside class="hidden clearfix">
-<nav id=TableOfContents>
-<ul>
-<li><a href=#dr--migration-design>DR & Migration Design</a>
-<ul>
-<li><a href=#architecture>Architecture</a></li>
-<li><a href=#other-components>Other Components</a>
-<ul>
-<li><a href=#platform-services-controller>Platform Services Controller</a></li>
-<li><a href=#vcenter-server>vCenter Server</a></li>
-<li><a href=#vmware-cloud-director>VMware Cloud Director</a></li>
-</ul>
-</li>
-<li><a href=#esxi-hosts>ESXi hosts</a></li>
-<li><a href=#data-paths>Data Paths</a>
-<ul>
-<li><a href=#cloud-tunnel>Cloud Tunnel</a></li>
-<li><a href=#cloud-replicator>Cloud Replicator</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
 </header>
-<article class=markdown><h1 id=dr--migration-design>
-DR & Migration Design
-<a class=anchor href=#dr--migration-design>#</a>
+<article class=markdown><h1 id=dr-and-migration-design>
+DR and Migration Design
+<a class=anchor href=#dr-and-migration-design>#</a>
 </h1>
 <h2 id=architecture>
 Architecture
@@ -218,33 +192,6 @@ A single Replicator can be put in maintenance mode during a maintenance window w
 </div>
 <label for=menu-control class="hidden book-menu-overlay"></label>
 </div>
-<aside class=book-toc>
-<div class=book-toc-content>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#dr--migration-design>DR & Migration Design</a>
-<ul>
-<li><a href=#architecture>Architecture</a></li>
-<li><a href=#other-components>Other Components</a>
-<ul>
-<li><a href=#platform-services-controller>Platform Services Controller</a></li>
-<li><a href=#vcenter-server>vCenter Server</a></li>
-<li><a href=#vmware-cloud-director>VMware Cloud Director</a></li>
-</ul>
-</li>
-<li><a href=#esxi-hosts>ESXi hosts</a></li>
-<li><a href=#data-paths>Data Paths</a>
-<ul>
-<li><a href=#cloud-tunnel>Cloud Tunnel</a></li>
-<li><a href=#cloud-replicator>Cloud Replicator</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-</aside>
 </main>
 </body>
 </html>

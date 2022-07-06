@@ -12,13 +12,13 @@ For operational guidance on the components that are deployed automatically in VM
 Personas in {VVS for CP Title} #  Personas describe types of system users, aligned with real people and their functions within the organization.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/operations/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-05T17:44:53-04:00">
+<meta property="article:modified_time" content="2022-07-06T11:33:06-04:00">
 <title>Cloud Infrastructure Operations | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.bcdeed99ae0fd9392998e4c1540c961c587e2641c045430a45b9c51460c00607.js integrity="sha256-vN7tma4P2TkpmOTBVAyWHFh+JkHARUMKRbnFFGDABgc=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.3ade93f246f3925c26624f4a02d836222b0cdfc7c9cfcefeea684fdcac65589f.js integrity="sha256-Ot6T8kbzklwmYk9KAtg2IisM38fJz87+6mhP3KxlWJ8=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -98,26 +98,8 @@ VMware Cloud Solutions
 </label>
 <strong>Cloud Infrastructure Operations</strong>
 <label for=toc-control>
-<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
 </label>
 </div>
-<aside class="hidden clearfix">
-<nav id=TableOfContents>
-<ul>
-<li><a href=#cloud-infrastructure-operations>Cloud Infrastructure Operations</a>
-<ul>
-<li><a href=#personas-in-vvs-for-cp-titlehahahugoshortcode-s0-hbhb><a href=HAHAHUGOSHORTCODE-s0-HBHB>Personas in {VVS for CP Title}</a></a></li>
-<li><a href=#operational-verification-of-vvs-for-cp-titlehahahugoshortcode-s2-hbhb><a href=HAHAHUGOSHORTCODE-s2-HBHB>Operational Verification of {VVS for CP Title}</a></a></li>
-<li><a href=#certificate-management-for-vvs-for-cp-titlehahahugoshortcode-s4-hbhb><a href=HAHAHUGOSHORTCODE-s4-HBHB>Certificate Management for {VVS for CP Title}</a></a></li>
-<li><a href=#password-management-for-vvs-for-cp-titlehahahugoshortcode-s6-hbhb><a href=HAHAHUGOSHORTCODE-s6-HBHB>Password Management for {VVS for CP Title}</a></a></li>
-<li><a href=#shutdown-and-startup-of-vvs-for-cp-titlehahahugoshortcode-s8-hbhb><a href=HAHAHUGOSHORTCODE-s8-HBHB>Shutdown and Startup of {VVS for CP Title}</a></a></li>
-<li><a href=#metering-of-vvs-for-cp-titlehahahugoshortcode-s10-hbhb><a href=HAHAHUGOSHORTCODE-s10-HBHB>Metering of {VVS for CP Title}</a></a></li>
-<li><a href=#how-to-start-metering-your-vcpp-products-with-usage-meter>How to start metering your VCPP products with Usage Meter</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
 </header>
 <article class=markdown><h1 id=cloud-infrastructure-operations>
 Cloud Infrastructure Operations
@@ -125,55 +107,36 @@ Cloud Infrastructure Operations
 </h1>
 <p>After you complete the implementation of the {VVS for CP Title}, you perform common operations on the environment, such as &mldr;</p>
 <p>For operational guidance on the components that are deployed automatically in VMware Cloud Foundation or complement the basic VMware Cloud Foundation configuration, see the VMware Cloud Foundation Operations and Administration Guide in the VMware Cloud Foundation documentation.</p>
-<h2 id=personas-in-vvs-for-cp-titlehahahugoshortcode-s0-hbhb>
-<a href=/docs/cloud-infrastructure/personas/>Personas in {VVS for CP Title}</a>
-<a class=anchor href=#personas-in-vvs-for-cp-titlehahahugoshortcode-s0-hbhb>#</a>
+<h2 id=personas-in-vvs-for-cp-titlepersonasmd>
+<a href=../personas.md>Personas in {VVS for CP Title}</a>
+<a class=anchor href=#personas-in-vvs-for-cp-titlepersonasmd>#</a>
 </h2>
-<p>Personas describe types of system users, aligned with real people and their functions within the organization. You build a persona set based on your organization&rsquo;s requirements for role-based access control.<a href=/docs/cloud-infrastructure/personas/>[Read more]</a></p>
-<h2 id=operational-verification-of-vvs-for-cp-titlehahahugoshortcode-s2-hbhb>
-<a href=/docs/cloud-infrastructure/verification/>Operational Verification of {VVS for CP Title}</a>
-<a class=anchor href=#operational-verification-of-vvs-for-cp-titlehahahugoshortcode-s2-hbhb>#</a>
+<p>Personas describe types of system users, aligned with real people and their functions within the organization. You build a persona set based on your organization&rsquo;s requirements for role-based access control.<a href=../personas.md>[Read more]</a></p>
+<h2 id=operational-verification-of-vvs-for-cp-titleverificationmd>
+<a href=../verification.md>Operational Verification of {VVS for CP Title}</a>
+<a class=anchor href=#operational-verification-of-vvs-for-cp-titleverificationmd>#</a>
 </h2>
-<p>After you add a {VVS Product/Suite} instance in your VMware Cloud Foundation environment during the implementation of the {VVS for CP Title} validated solution, verify that the newly-implemented and reconfigured components are operational and functioning within expected parameters.<a href=/docs/cloud-infrastructure/verification/>[Read more]</a></p>
-<h2 id=certificate-management-for-vvs-for-cp-titlehahahugoshortcode-s4-hbhb>
-<a href=/docs/cloud-infrastructure/cert-management/>Certificate Management for {VVS for CP Title}</a>
-<a class=anchor href=#certificate-management-for-vvs-for-cp-titlehahahugoshortcode-s4-hbhb>#</a>
+<p>After you add a {VVS Product/Suite} instance in your VMware Cloud Foundation environment during the implementation of the {VVS for CP Title} validated solution, verify that the newly-implemented and reconfigured components are operational and functioning within expected parameters.<a href=../verification.md>[Read more]</a></p>
+<h2 id=certificate-management-for-vvs-for-cp-titlecert-managementmd>
+<a href=../cert-management.md>Certificate Management for {VVS for CP Title}</a>
+<a class=anchor href=#certificate-management-for-vvs-for-cp-titlecert-managementmd>#</a>
 </h2>
-<p>The security of your environment depends on the validity and trust of the SDDC component certificates. After you deploy and configure the standalone {VVS Product/Suite} instance to your VMware Cloud Foundation environment, you replace the component certificate if the certificate is expiring or compromised, or some of the certificate attributes, such as the host or organization name, must be changed.<a href=/docs/cloud-infrastructure/cert-management/>[Read more]</a></p>
-<h2 id=password-management-for-vvs-for-cp-titlehahahugoshortcode-s6-hbhb>
-<a href=/docs/cloud-infrastructure/pwd-management/>Password Management for {VVS for CP Title}</a>
-<a class=anchor href=#password-management-for-vvs-for-cp-titlehahahugoshortcode-s6-hbhb>#</a>
+<p>The security of your environment depends on the validity and trust of the SDDC component certificates. After you deploy and configure the standalone {VVS Product/Suite} instance to your VMware Cloud Foundation environment, you replace the component certificate if the certificate is expiring or compromised, or some of the certificate attributes, such as the host or organization name, must be changed.<a href=../cert-management.md>[Read more]</a></p>
+<h2 id=password-management-for-vvs-for-cp-titlepwd-managementmd>
+<a href=../pwd-management.md>Password Management for {VVS for CP Title}</a>
+<a class=anchor href=#password-management-for-vvs-for-cp-titlepwd-managementmd>#</a>
 </h2>
-<p>Manage the account passwords of the components in your VMware Cloud Foundation environment according to the design objectives and design guidance of {VVS for CP Title} validated solution.<a href=/docs/cloud-infrastructure/pwd-management/>[Read more]</a></p>
-<h2 id=shutdown-and-startup-of-vvs-for-cp-titlehahahugoshortcode-s8-hbhb>
-<a href=/docs/cloud-infrastructure/shutdown-startup/>Shutdown and Startup of {VVS for CP Title}</a>
-<a class=anchor href=#shutdown-and-startup-of-vvs-for-cp-titlehahahugoshortcode-s8-hbhb>#</a>
+<p>Manage the account passwords of the components in your VMware Cloud Foundation environment according to the design objectives and design guidance of {VVS for CP Title} validated solution.[[Read more]]../pwd-management.md)</p>
+<h2 id=shutdown-and-startup-of-vvs-for-cp-titleshutdown-startupmd>
+<a href=../shutdown-startup.md>Shutdown and Startup of {VVS for CP Title}</a>
+<a class=anchor href=#shutdown-and-startup-of-vvs-for-cp-titleshutdown-startupmd>#</a>
 </h2>
-<p>In certain cases, for example, during hardware or power maintenance of the data center, you must shut down the standalone {VVS Product/Suite} instance in a VMware Cloud Foundation environment in a way that prevents data loss and appliance malfunction, and start it up restoring component integration after the maintenance operation is over.<a href=/docs/cloud-infrastructure/shutdown-startup/>[Read more]</a></p>
-<h2 id=metering-of-vvs-for-cp-titlehahahugoshortcode-s10-hbhb>
-<a href=/docs/cloud-infrastructure/metering/>Metering of {VVS for CP Title}</a>
-<a class=anchor href=#metering-of-vvs-for-cp-titlehahahugoshortcode-s10-hbhb>#</a>
+<p>In certain cases, for example, during hardware or power maintenance of the data center, you must shut down the standalone {VVS Product/Suite} instance in a VMware Cloud Foundation environment in a way that prevents data loss and appliance malfunction, and start it up restoring component integration after the maintenance operation is over.<a href=../shutdown-startup.md>[Read more]</a></p>
+<h2 id=metering-of-vvs-for-cp-titlemeteringmd>
+<a href=../metering.md>Metering of {VVS for CP Title}</a>
+<a class=anchor href=#metering-of-vvs-for-cp-titlemeteringmd>#</a>
 </h2>
-<p>After inplementing {VVS for CP Title} you must take steps to ensure that proper usage metering of the new {VVS Product/Suite} begins.<a href=/docs/cloud-infrastructure/metering/>[Read more]</a></p>
-<h2 id=how-to-start-metering-your-vcpp-products-with-usage-meter>
-How to start metering your VCPP products with Usage Meter
-<a class=anchor href=#how-to-start-metering-your-vcpp-products-with-usage-meter>#</a>
-</h2>
-<p>The following information helps you understand how Usage Meter detects and meters the usage of the listed VMware products and their features.</p>
-<p>It also provides insight into how the reported usage data is calculated and appears in the Usage Insight reports.</p>
-<p><a href=../vcenter-metering>vCenter Server</a></p>
-<p><a href=../vcf-metering>VMware Cloud Foundation</a></p>
-<p><a href=../vsan-metering>vSAN</a></p>
-<p><a href=../tanzu-metering>Tanzu</a></p>
-<p><a href=../srm-metering>SRM</a></p>
-<p><a href=../nsx-metering>NSX</a></p>
-<p><a href=../cloud-director-metering>Cloud Director</a></p>
-<p><a href=../cloud-director-availability-metering>Cloud Director Availability</a></p>
-<p><a href=../vrops-metering>vRealize Operations</a></p>
-<p><a href=../vrni-metering>vRealize Network Insight</a></p>
-<p><a href=../vra-metering>vRealize Automation</a></p>
-<p><a href=../horizon-metering>Horizon</a></p>
-<p><a href=../horizon-daas-metering>Horizon DaaS</a></p>
+<p>After implementing {VVS for CP Title} you must take steps to ensure that proper usage metering of the new {VVS Product/Suite} begins.<a href=../metering.md>[Read more]</a></p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
@@ -184,25 +147,6 @@ How to start metering your VCPP products with Usage Meter
 </div>
 <label for=menu-control class="hidden book-menu-overlay"></label>
 </div>
-<aside class=book-toc>
-<div class=book-toc-content>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#cloud-infrastructure-operations>Cloud Infrastructure Operations</a>
-<ul>
-<li><a href=#personas-in-vvs-for-cp-titlehahahugoshortcode-s0-hbhb><a href=HAHAHUGOSHORTCODE-s0-HBHB>Personas in {VVS for CP Title}</a></a></li>
-<li><a href=#operational-verification-of-vvs-for-cp-titlehahahugoshortcode-s2-hbhb><a href=HAHAHUGOSHORTCODE-s2-HBHB>Operational Verification of {VVS for CP Title}</a></a></li>
-<li><a href=#certificate-management-for-vvs-for-cp-titlehahahugoshortcode-s4-hbhb><a href=HAHAHUGOSHORTCODE-s4-HBHB>Certificate Management for {VVS for CP Title}</a></a></li>
-<li><a href=#password-management-for-vvs-for-cp-titlehahahugoshortcode-s6-hbhb><a href=HAHAHUGOSHORTCODE-s6-HBHB>Password Management for {VVS for CP Title}</a></a></li>
-<li><a href=#shutdown-and-startup-of-vvs-for-cp-titlehahahugoshortcode-s8-hbhb><a href=HAHAHUGOSHORTCODE-s8-HBHB>Shutdown and Startup of {VVS for CP Title}</a></a></li>
-<li><a href=#metering-of-vvs-for-cp-titlehahahugoshortcode-s10-hbhb><a href=HAHAHUGOSHORTCODE-s10-HBHB>Metering of {VVS for CP Title}</a></a></li>
-<li><a href=#how-to-start-metering-your-vcpp-products-with-usage-meter>How to start metering your VCPP products with Usage Meter</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-</aside>
 </main>
 </body>
 </html>

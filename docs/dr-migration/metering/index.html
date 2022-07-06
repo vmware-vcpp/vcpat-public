@@ -1,0 +1,153 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="DR and Migration Metering #  How to start metering your VCPP products with Usage Meter #  The following information helps you understand how Usage Meter detects and meters the usage of the listed VMware products and their features.
+It also provides insight into how the reported usage data is calculated and appears in the Usage Insight reports.
+Metering DR and Migration Products #  vCenter Server
+VMware Cloud Foundation">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="DR and Migration Metering">
+<meta property="og:description" content="DR and Migration Metering #  How to start metering your VCPP products with Usage Meter #  The following information helps you understand how Usage Meter detects and meters the usage of the listed VMware products and their features.
+It also provides insight into how the reported usage data is calculated and appears in the Usage Insight reports.
+Metering DR and Migration Products #  vCenter Server
+VMware Cloud Foundation">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/metering/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-07-06T11:33:06-04:00">
+<title>DR and Migration Metering | VMware Cloud Provider Architecture Toolkit</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.3ade93f246f3925c26624f4a02d836222b0cdfc7c9cfcefeea684fdcac65589f.js integrity="sha256-Ot6T8kbzklwmYk9KAtg2IisM38fJz87+6mhP3KxlWJ8=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>VMware Cloud Provider Architecture Toolkit</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li><a href=/docs/cloud-infrastructure/><strong>Cloud Infrastructure</strong></a>
+<ul>
+<li><a href=/docs/cloud-infrastructure/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/cloud-infrastructure/design/>Design</a></li>
+<li><a href=/docs/cloud-infrastructure/implementation/>Implementation</a></li>
+<li><a href=/docs/cloud-infrastructure/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/networking-security/><strong>Networking & Security</strong></a>
+<ul>
+<li><a href=/docs/networking-security/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/networking-security/design/>Design</a></li>
+<li><a href=/docs/networking-security/implementation/>Implementation</a></li>
+<li><a href=/docs/networking-security/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/dr-migration/><strong>DR & Migration</strong></a>
+<ul>
+<li><a href=/docs/dr-migration/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/dr-migration/design/>Design</a></li>
+<li><a href=/docs/dr-migration/implementation/>Implementation</a></li>
+<li><a href=/docs/dr-migration/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/developer-ready-cloud/><strong>Developer Ready Cloud</strong></a>
+<ul>
+<li><a href=/docs/developer-ready-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/developer-ready-cloud/design/>Design</a></li>
+<li><a href=/docs/developer-ready-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/developer-ready-cloud/operations/>Operations</a></li>
+</ul>
+</li>
+<li><a href=/docs/sovereign-cloud/><strong>Sovereign Cloud</strong></a>
+<ul>
+<li><a href=/docs/sovereign-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/sovereign-cloud/design/>Design</a></li>
+<li><a href=/docs/sovereign-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/sovereign-cloud/operations/>Operations</a>
+<br></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://cloudsolutions.vmware.com target=_blank rel=noopener>
+VMware Cloud Solutions
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>DR and Migration Metering</strong>
+<label for=toc-control>
+</label>
+</div>
+</header>
+<article class=markdown><h1 id=dr-and-migration-metering>
+DR and Migration Metering
+<a class=anchor href=#dr-and-migration-metering>#</a>
+</h1>
+<h2 id=how-to-start-metering-your-vcpp-products-with-usage-meter>
+How to start metering your VCPP products with Usage Meter
+<a class=anchor href=#how-to-start-metering-your-vcpp-products-with-usage-meter>#</a>
+</h2>
+<p>The following information helps you understand how Usage Meter detects and meters the usage of the listed VMware products and their features.</p>
+<p>It also provides insight into how the reported usage data is calculated and appears in the Usage Insight reports.</p>
+<h3 id=metering-dr-and-migration-products>
+Metering DR and Migration Products
+<a class=anchor href=#metering-dr-and-migration-products>#</a>
+</h3>
+<p><a href=../vcenter-metering>vCenter Server</a></p>
+<p><a href=../vcf-metering>VMware Cloud Foundation</a></p>
+<p><a href=../vsan-metering>vSAN</a></p>
+<p><a href=../nsx-metering>NSX</a></p>
+<p><a href=../cloud-director-metering>Cloud Director</a></p>
+<h3 id=metering-other-solutions>
+Metering Other Solutions
+<a class=anchor href=#metering-other-solutions>#</a>
+</h3>
+<p><a href=../cloud-director-availability-metering>Cloud Director Availability</a></p>
+<p><a href=../tanzu-metering>Tanzu</a></p>
+<p><a href=../srm-metering>SRM</a></p>
+<p><a href=../vrops-metering>vRealize Operations</a></p>
+<p><a href=../vrni-metering>vRealize Network Insight</a></p>
+<p><a href=../vra-metering>vRealize Automation</a></p>
+<h3 id=metering-other-products>
+Metering Other Products
+<a class=anchor href=#metering-other-products>#</a>
+</h3>
+<p><a href=../horizon-metering>Horizon</a></p>
+<p><a href=../horizon-daas-metering>Horizon DaaS</a></p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+</main>
+</body>
+</html>
