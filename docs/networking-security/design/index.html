@@ -2,19 +2,21 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Networking and Security Design #  Coming soon!">
+<meta name=description content="Networking and Security Design #  The {VVS for CP Title} validated solution has objectives to deliver prescriptive content about the solution so that it is fast to deploy and is suitable for use in production environments.
+   Objective Description     Main objective Provide {VVS for CP function} for VMware Cloud Foundation infrastructure components. {optionally add: through services in the VVS}   VMware Cloud Foundation architecture support vSAN ReadyNodesConsolidatedStandardSingle VMware Cloud Foundation instanceMultiple VMware Cloud Foundation instances with NSX FederationSingle or multiple VMware Cloud Foundation instances with multiple availability zonesVxRail NodesStandardSingle VMware Cloud Foundation instanceMultiple VMware Cloud Foundation instances with NSX FederationSingle or multiple VMware Cloud Foundation instances with multiple availability zones   Workload domain type support Management Workload domainVI Workload domain   Scope of guidance Detailed design for solution components.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Networking and Security Design">
-<meta property="og:description" content="Networking and Security Design #  Coming soon!">
+<meta property="og:description" content="Networking and Security Design #  The {VVS for CP Title} validated solution has objectives to deliver prescriptive content about the solution so that it is fast to deploy and is suitable for use in production environments.
+   Objective Description     Main objective Provide {VVS for CP function} for VMware Cloud Foundation infrastructure components. {optionally add: through services in the VVS}   VMware Cloud Foundation architecture support vSAN ReadyNodesConsolidatedStandardSingle VMware Cloud Foundation instanceMultiple VMware Cloud Foundation instances with NSX FederationSingle or multiple VMware Cloud Foundation instances with multiple availability zonesVxRail NodesStandardSingle VMware Cloud Foundation instanceMultiple VMware Cloud Foundation instances with NSX FederationSingle or multiple VMware Cloud Foundation instances with multiple availability zones   Workload domain type support Management Workload domainVI Workload domain   Scope of guidance Detailed design for solution components.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/networking-security/design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-06T16:08:03-04:00">
+<meta property="article:modified_time" content="2022-07-06T16:08:34-04:00">
 <title>Networking and Security Design | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.c3ae7aabfc4cf73e82be439b18be7a6c92fcf2088bd95aedb3a5f6558d0f0074.js integrity="sha256-w656q/xM9z6CvkObGL56bJL88giL2Vrts6X2VY0PAHQ=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.554f9bf30ece709e4db1e0a6c0fd02859fe6f183e7cc5726cf4f44bbaffdd240.js integrity="sha256-VU+b8w7OcJ5NseCmwP0ChZ/m8YPnzFcmz09Eu6/90kA=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -106,7 +108,61 @@ VMware Cloud Solutions
 Networking and Security Design
 <a class=anchor href=#networking-and-security-design>#</a>
 </h1>
-<p>Coming soon!</p>
+<p>The {VVS for CP Title} validated solution has objectives to deliver prescriptive content about the solution so that it is fast to deploy and is suitable for use in production environments.</p>
+<table>
+<thead>
+<tr>
+<th>Objective</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Main objective</td>
+<td>Provide {VVS for CP function} for VMware Cloud Foundation infrastructure components. {optionally add: through services in the VVS}</td>
+</tr>
+<tr>
+<td>VMware Cloud Foundation architecture support</td>
+<td><ul><li>vSAN ReadyNodes<ul><li>Consolidated</li><li>Standard<ul><li>Single VMware Cloud Foundation instance</li><li>Multiple VMware Cloud Foundation instances with NSX Federation</li><li>Single or multiple VMware Cloud Foundation instances with multiple availability zones</li></ul></li></ul></li><li>VxRail Nodes<ul><li>Standard<ul><li>Single VMware Cloud Foundation instance</li><li>Multiple VMware Cloud Foundation instances with NSX Federation</li><li>Single or multiple VMware Cloud Foundation instances with multiple availability zones</li></ul></li></ul></li></ul></td>
+</tr>
+<tr>
+<td>Workload domain type support</td>
+<td><ul><li>Management Workload domain</li><li>VI Workload domain</li></ul></td>
+</tr>
+<tr>
+<td>Scope of guidance</td>
+<td><ul><li>Detailed design for solution components.</li><li>Deployment and initial configuration of intelligent logging and analytics components for management and VI workload domains.</li><li>Operational guidance for solution components, such as operational verification, password management, and certificate management.</li><li>Solution interoperability with solution components, such as monitoring and life cycle.</li></ul></td>
+</tr>
+<tr>
+<td>Scope of implementation</td>
+<td><ul><li>Deployment and configuration of solution components:<ul><li>Component 1</li><li>Component 2</li></ul><li>Configuration of &mldr;<ul><li>Component 1</li><li>Component 2</li></ul></li></ul></td>
+</tr>
+<tr>
+<td>Cloud type</td>
+<td>Public Cloud</td>
+</tr>
+<tr>
+<td>Number of VMware Cloud Foundation instances</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Load Balancing</td>
+<td>&mdash;</td>
+</tr>
+<tr>
+<td>Availability</td>
+<td>99%</td>
+</tr>
+<tr>
+<td>Authentication, authorization, and access control</td>
+<td><ul><li>Use of Microsoft Active Directory over LDAP as the identity provider.</li><li>Use of security groups and roles for least-privilege access control.</li><li>Use of service accounts and least-privilege access control for solution integration.</li></ul> The configuration of Microsoft Active Directory Federation Services as the external identity provider is not included in this solution.</td>
+</tr>
+<tr>
+<td>Certificate signing</td>
+<td>Certificates are signed by a certificate authority (CA) that consists of a root and intermediate certificate authority layers.</td>
+</tr>
+</tbody>
+</table>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
