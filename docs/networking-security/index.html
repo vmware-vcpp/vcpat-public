@@ -2,7 +2,8 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="About {VVS for CP Title} #  The {VVS for CP Title} validated solution provides detailed design, implementation, configuration, and operation guidance on &mldr; A VMware validated solution is a technical validated implementation that is built and tested by VMware and VMware cloud providers to help customers resolve common business use cases. VMware validated solutions are cost-effective, performant, reliable, and secure. Each solution contains a detailed design, implementation, and operational guidance.">
+<meta name=description content="About Networking and Security #  The Networking and Security validated solution provides detailed design, implementation, configuration, and operation guidance on &mldr; A VMware validated solution is a technical validated implementation that is built and tested by VMware and VMware cloud providers to help customers resolve common business use cases. VMware validated solutions are cost-effective, performant, reliable, and secure. Each solution contains a detailed design, implementation, and operational guidance.
+Automation for This Design in VMware Cloud Foundation #  The implementation tasks for some design decisions are automated by SDDC Manager.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Networking and Security">
 <meta property="og:description" content>
@@ -13,7 +14,7 @@
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.f185b4cfb51aa53a7bcc7ce658abc166b39bf72e732a861eb64a11880b647e06.js integrity="sha256-8YW0z7UapTp7zHzmWKvBZrOb9y5zKoYetkoRiAtkfgY=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.7a48a228d71157ff28272ea5966cd9fb7fab2980a2d2d0da1485917cbdf19b57.js integrity="sha256-ekiiKNcRV/8oJy6llmzZ+3+rKYCi0tDaFIWRfL3xm1c=" crossorigin=anonymous></script>
 <link rel=alternate type=application/rss+xml href=http://vcpat.cloudhappens.io/docs/networking-security/index.xml title="VMware Cloud Provider Architecture Toolkit">
 </head>
 <body dir=ltr>
@@ -97,31 +98,31 @@ VMware Cloud Solutions
 </label>
 </div>
 </header>
-<article class=markdown><h1 id=about-vvs-for-cp-title>
-About {VVS for CP Title}
-<a class=anchor href=#about-vvs-for-cp-title>#</a>
+<article class=markdown><h1 id=about-networking-and-security>
+About Networking and Security
+<a class=anchor href=#about-networking-and-security>#</a>
 </h1>
-<p>The {VVS for CP Title} validated solution provides detailed design, implementation, configuration, and operation guidance on &mldr;
+<p>The Networking and Security validated solution provides detailed design, implementation, configuration, and operation guidance on &mldr;
 A VMware validated solution is a technical validated implementation that is built and tested by VMware and VMware cloud providers to help customers resolve common business use cases. VMware validated solutions are cost-effective, performant, reliable, and secure. Each solution contains a detailed design, implementation, and operational guidance.</p>
 <h2 id=automation-for-this-design-in-vmware-cloud-foundation>
 Automation for This Design in VMware Cloud Foundation
 <a class=anchor href=#automation-for-this-design-in-vmware-cloud-foundation>#</a>
 </h2>
 <p>The implementation tasks for some design decisions are automated by SDDC Manager. You must perform the implementation manually for the rest of the design decisions as noted in the design implication.
-To provide a fast and efficient path to automating the {VVS for CP Title} implementation, this document provides Microsoft PowerShell cmdlets as code-based alternatives to completing certain procedures in each SDDC component&rsquo;s user interface. You can directly reuse the PowerShell commands by replacing the provided sample values with values from your VMware Cloud Foundation Planning and Preparation Workbook.</p>
+To provide a fast and efficient path to automating the Networking and Security implementation, this document provides Microsoft PowerShell cmdlets as code-based alternatives to completing certain procedures in each SDDC component&rsquo;s user interface. You can directly reuse the PowerShell commands by replacing the provided sample values with values from your VMware Cloud Foundation Planning and Preparation Workbook.</p>
 <h2 id=intended-audience>
 Intended Audience
 <a class=anchor href=#intended-audience>#</a>
 </h2>
-<p>The {VVS for CP Title} documentation is intended for cloud provider architects and administrators who are familiar with and want to use VMware software and a {VVS for CP topic} for VMware Cloud Foundation.</p>
+<p>The Networking and Security documentation is intended for cloud provider architects and administrators who are familiar with and want to use VMware software and a {VVS for CP topic} for VMware Cloud Foundation.</p>
 <h2 id=support-matrix>
 Support Matrix
 <a class=anchor href=#support-matrix>#</a>
 </h2>
-<p>The {VVS for CP Title} validated solution is compatible with certain versions of the VMware products that are used for implementing the solution.</p>
-<h6 id=software-components-in-vvs-for-cp-title>
-Software Components in {VVS for CP Title}
-<a class=anchor href=#software-components-in-vvs-for-cp-title>#</a>
+<p>The Networking and Security validated solution is compatible with certain versions of the VMware products that are used for implementing the solution.</p>
+<h6 id=software-components-in-networking-and-security>
+Software Components in Networking and Security
+<a class=anchor href=#software-components-in-networking-and-security>#</a>
 </h6>
 <table>
 <thead>
@@ -178,7 +179,7 @@ Software Components in {VVS for CP Title}
 Before You Apply This Guidance
 <a class=anchor href=#before-you-apply-this-guidance>#</a>
 </h2>
-<p>To design and implement the {VVS for CP Title} validated solution, your environment must have a certain configuration.</p>
+<p>To design and implement the Networking and Security validated solution, your environment must have a certain configuration.</p>
 <h6 id=supported-vmware-cloud-foundation-deployment>
 Supported VMware Cloud Foundation Deployment
 <a class=anchor href=#supported-vmware-cloud-foundation-deployment>#</a>
@@ -201,14 +202,14 @@ Supported VMware Cloud Foundation Deployment
 </tr>
 </tbody>
 </table>
-<h2 id=overview-of-vvs-for-cp-title>
-Overview of {VVS for CP Title}
-<a class=anchor href=#overview-of-vvs-for-cp-title>#</a>
+<h2 id=overview-of-networking-and-security>
+Overview of Networking and Security
+<a class=anchor href=#overview-of-networking-and-security>#</a>
 </h2>
-<p>By applying the {VVS for CP Title} validated solution, you implement {describe outcome}.</p>
-<h6 id=implementation-overview-of-vvs-for-cp-title>
-Implementation Overview of {VVS for CP Title}
-<a class=anchor href=#implementation-overview-of-vvs-for-cp-title>#</a>
+<p>By applying the Networking and Security validated solution, you implement {describe outcome}.</p>
+<h6 id=implementation-overview-of-networking-and-security>
+Implementation Overview of Networking and Security
+<a class=anchor href=#implementation-overview-of-networking-and-security>#</a>
 </h6>
 <table>
 <thead>
@@ -236,7 +237,7 @@ Implementation Overview of {VVS for CP Title}
 Update History
 <a class=anchor href=#update-history>#</a>
 </h2>
-<p>This {VVS for CP Title} is updated when necessary.</p>
+<p>This Networking and Security solution is updated when necessary.</p>
 <table>
 <thead>
 <tr>
