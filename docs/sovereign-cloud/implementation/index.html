@@ -2,19 +2,21 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Sovereign Cloud Implementation #  Coming soon!">
+<meta name=description content="Sovereign Cloud Implementation #  Implementing {VVS for CP Title} validated solution includes configuring &mldr; and enabling &mldr;
+To implement and configure {VVS for CP services}, two alternative methods exist. You can use the user interface of each component in the solution or you can use PowerShell cmdlets. You can directly reuse the PowerShell commands by replacing the provided sample values with values from your VMware Cloud Foundation Planning and Preparation Workbook.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Sovereign Cloud Implementation">
-<meta property="og:description" content="Sovereign Cloud Implementation #  Coming soon!">
+<meta property="og:description" content="Sovereign Cloud Implementation #  Implementing {VVS for CP Title} validated solution includes configuring &mldr; and enabling &mldr;
+To implement and configure {VVS for CP services}, two alternative methods exist. You can use the user interface of each component in the solution or you can use PowerShell cmdlets. You can directly reuse the PowerShell commands by replacing the provided sample values with values from your VMware Cloud Foundation Planning and Preparation Workbook.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/sovereign-cloud/implementation/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-07-07T17:26:17-04:00">
+<meta property="article:modified_time" content="2022-07-07T17:26:44-04:00">
 <title>Sovereign Cloud Implementation | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.f579d2324039f10708692f2039059f44856a3f54b61ccc47f64f835f44ada9eb.js integrity="sha256-9XnSMkA58QcIaS8gOQWfRIVqP1S2HMxH9k+DX0Stqes=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.ad6b4f889d4add5ce023b551d5bae6bb18f47c01cc5cadb6a5df87f9f7150eb3.js integrity="sha256-rWtPiJ1K3VzgI7VR1brmuxj0fAHMXK22pd+H+fcVDrM=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -106,7 +108,54 @@ VMware Cloud Solutions
 Sovereign Cloud Implementation
 <a class=anchor href=#sovereign-cloud-implementation>#</a>
 </h1>
-<p>Coming soon!</p>
+<p>Implementing {VVS for CP Title} validated solution includes configuring &mldr; and enabling &mldr;</p>
+<p>To implement and configure {VVS for CP services}, two alternative methods exist. You can use the user interface of each component in the solution or you can use PowerShell cmdlets. You can directly reuse the PowerShell commands by replacing the provided sample values with values from your <em>VMware Cloud Foundation Planning and Preparation Workbook.</em></p>
+<p>This guidance provides a prescriptive path for deploying {VVS for CP solution} using &mldr;, and sample {VVS for CP services} in a {management|VI workload} domain. For more information on other deployment options and configurations, read the {VVS for CP Products} Configuration and Management guide. See the {VVS for CP Products} documentation for more details.</p>
+<h2 id=prerequisites>
+Prerequisites
+<a class=anchor href=#prerequisites>#</a>
+</h2>
+<ul>
+<li>Verify that your environment is configured according to Before You Apply This Guidance and the Developer Ready Infrastructure tab of the VMware Cloud Foundation Planning and Preparation Workbook.</li>
+<li>If you want to use the included Microsoft PowerShell cmdlets to perform implementation and configuration procedures, verify that your system fulfils the following prerequisites.
+<ul>
+<li>Verify that your system has Microsoft PowerShell 5.1 installed. See Microsoft PowerShell.</li>
+<li>Install the PowerValidatedSolutions PowerShell module together with the supporting modules from the PowerShell Gallery by running the following commands.
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>Install-Module -Name VMware.PowerCLI -MinimumVersion 12.4.1
+Install-Module -Name VMware.vSphere.SsoAdmin -MinimumVersion 1.3.7
+Install-Module -Name ImportExcel -MinimumVersion 7.1.1
+Install-Module -Name PowerVCF -MinimumVersion 2.2.0
+Install-Module -Name PowerValidatedSolutions -MinimumVersion 1.7.0
+</code></pre></div></li>
+<li>Import the PowerValidatedSolutions and the PowerCLI PowerShell modules by running the following commands.
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>Import-Module -Name VMware.PowerCLI -MinimumVersion 12.4.1
+Import-Module -Name PowerValidatedSolutions -MinimumVersion 1.7.0
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+<h2 id=proceedure>
+Proceedure
+<a class=anchor href=#proceedure>#</a>
+</h2>
+<ol>
+<li>
+<p>[Configure Product 1](link md file here)<br>
+Description of proceedure [//]: # (Add [[Read more]] and link to same md file here)</p>
+</li>
+<li>
+<p>[Configure Product 2](link md file here)<br>
+Description of proceedure [//]: # (Add [[Read more]] and link to same md file here)</p>
+</li>
+<li>
+<p>[Deploy and Configure Product 3](link md file here)<br>
+Description of proceedure [//]: # (Add [[Read more]] and link to same md file here)</p>
+</li>
+<li>
+<p>[Deploy and Configure Product 4](link md file here)<br>
+Description of proceedure [//]: # (Add [[Read more]] and link to same md file here)</p>
+</li>
+</ol>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
