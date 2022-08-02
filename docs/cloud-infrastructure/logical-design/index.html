@@ -2,19 +2,27 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Cloud Infrastructure Logical Design #  ">
+<meta name=description content="Cloud Infrastructure Logical Design #  The logical design provides a high-level overview of the solution design.
+VMware Cloud Provider Lifecycle Manager simplifies the operational experience by providing a comprehensive solution to deploy, upgrade, configure, and manage the VMware Cloud Provider Program products.
+The Cloud Infrastucture stack is comprised of the following components:
+VMware VMware Cloud Director
+VMware VMware Cloud Director is VMware’s flagship cloud services platform for Cloud Providers. It is a pervasive cloud infrastructure control plane for cloud providers’ service-delivery needs, and the management entity for a global VMware cloud estate.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Cloud Infrastructure Logical Design">
-<meta property="og:description" content="Cloud Infrastructure Logical Design #  ">
+<meta property="og:description" content="Cloud Infrastructure Logical Design #  The logical design provides a high-level overview of the solution design.
+VMware Cloud Provider Lifecycle Manager simplifies the operational experience by providing a comprehensive solution to deploy, upgrade, configure, and manage the VMware Cloud Provider Program products.
+The Cloud Infrastucture stack is comprised of the following components:
+VMware VMware Cloud Director
+VMware VMware Cloud Director is VMware’s flagship cloud services platform for Cloud Providers. It is a pervasive cloud infrastructure control plane for cloud providers’ service-delivery needs, and the management entity for a global VMware cloud estate.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/logical-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-08-02T15:26:45-04:00">
+<meta property="article:modified_time" content="2022-08-02T17:03:29-04:00">
 <title>Cloud Infrastructure Logical Design | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.20f49ac160278cab122a19e1e60a3a78ff86cb08bfb0459aba73b03eb14090ad.js integrity="sha256-IPSawWAnjKsSKhnh5go6eP+Gywi/sEWaunOwPrFAkK0=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.a23b7ba87e74e2c4e191f5943a4bc56f80a913190ef1de4584f23b0d9555d739.js integrity="sha256-ojt7qH504sThkfWUOkvFb4CpExkO8d5FhPI7DZVV1zk=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -107,6 +115,26 @@ VMware Cloud Solutions
 Cloud Infrastructure Logical Design
 <a class=anchor href=#cloud-infrastructure-logical-design>#</a>
 </h1>
+<p>The logical design provides a high-level overview of the solution design.</p>
+<p>VMware Cloud Provider Lifecycle Manager simplifies the operational experience by providing a comprehensive solution to deploy, upgrade, configure, and manage the VMware Cloud Provider Program products.</p>
+<p>The Cloud Infrastucture stack is comprised of the following components:</p>
+<p><em>VMware VMware Cloud Director</em></p>
+<p>VMware VMware Cloud Director is VMware’s flagship cloud services platform for Cloud Providers. It is a pervasive cloud infrastructure control plane for cloud providers’ service-delivery needs, and the management entity for a global VMware cloud estate. VMware Cloud Director allows seamless provisioning and consumption of cloud computing resources and services to geographically distributed lines of business and IT teams in an API-driven approach</p>
+<p><em>VMware vCloud Usage Meter</em></p>
+<p>VMware vCloud Usage Meter is a virtual appliance that collects usage data VMware products that are added for metering. The collected data is sent to vCloud Usage Insight, which aggregates the data and sends it to the VMware Commerce Portal. In that portal, the aggregated usage data automatically populates each month the partner&rsquo;s MBO if automatic reporting is selected.</p>
+<p><em>VMware vRealize Tenant App for VMware Cloud Director</em></p>
+<p>VMware vRealize Tenant App for VMware Cloud Director is used for metering the infrastructure services provided by a service provider to their tenants. Further, it provides options to configure different models for pricing the metered infrastructure.</p>
+<p><em>RabbitMQ</em></p>
+<p>RabbitMQ is an open source distributed message broker. It facilitates the efficient delivery of messages in complex routing scenarios. Initially built around the popular AMQP protocol, it’s also highly compatible with existing technologies, while its capabilities can be expanded through plug-ins enabled on the server. RabbitMQ brokers can be distributed and configured to be reliable in case of network or server failure.</p>
+<h1 id=cloud-infrastructure-architecture-for-vmware-cloud-foundation>
+Cloud Infrastructure Architecture for VMware Cloud Foundation
+<a class=anchor href=#cloud-infrastructure-architecture-for-vmware-cloud-foundation>#</a>
+</h1>
+<p>Description comment</p>
+<p><em>VMware VMware Cloud Director</em></p>
+<p><em>VMware vCloud Usage Meter</em></p>
+<p><em>VMware vRealize Tenant App for VMware Cloud Director</em></p>
+<p><em>RabbitMQ</em></p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
