@@ -10,13 +10,13 @@
    Objective Description     Main objective Provide {VVS for CP function} for VMware Cloud Foundation infrastructure components. {optionally add: through services in the VVS}   VMware Cloud Foundation architecture support vSAN ReadyNodesConsolidatedStandardSingle VMware Cloud Foundation instanceMultiple VMware Cloud Foundation instances with NSX FederationSingle or multiple VMware Cloud Foundation instances with multiple availability zonesVxRail NodesStandardSingle VMware Cloud Foundation instanceMultiple VMware Cloud Foundation instances with NSX FederationSingle or multiple VMware Cloud Foundation instances with multiple availability zones   Workload domain type support Management Workload domainVI Workload domain   Scope of guidance Detailed design for solution components.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-08-10T15:07:54+05:30">
+<meta property="article:modified_time" content="2022-08-10T17:56:50+05:30">
 <title>Cloud Infrastructure Design Objectives | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.877bfd62784987839551b6e358eac32541271ccf7050497eabca323ae2675b42.js integrity="sha256-h3v9YnhJh4OVUbbjWOrDJUEnHM9wUEl+q8oyOuJnW0I=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.c543bd9be4e1a932a7598954ab7eeadb082f74360111a1a94767942b92d80581.js integrity="sha256-xUO9m+ThqTKnWYlUq37q2wgvdDYBEaGpR2eUK5LYBYE=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -164,6 +164,7 @@ Cloud Infrastructure Design Objectives
 </tr>
 </tbody>
 </table>
+<p><br><br><br><br></p>
 <table>
 <thead>
 <tr>
@@ -174,102 +175,39 @@ Cloud Infrastructure Design Objectives
 <tbody>
 <tr>
 <td>Main Objective</td>
-<td>Provide enterprise-grade validated VMware Cloud Director infrastructure deployed on on VMware Cloud Foundation deployed by VMware Cloud Provider Lifecycle Manager</td>
+<td>Provide enterprise-grade validated VMware Cloud Director infrastructure on VMware Cloud Foundation deployed by VMware Cloud Provider Lifecycle Manager</td>
+</tr>
+<tr>
+<td>VMware Cloud Foundation Architecture Support</td>
+<td>vSAN Ready Nodes Standard<br> Single VMware Cloud Foundation Instance<br> <br> VxRail Nodes Standard<br> Single VMware Cloud Foundation Instance</td>
 </tr>
 <tr>
 <td>Scope of Implementation</td>
-<td>Configuration of VMware Cloud Director</td>
-</tr>
-<tr>
-<td></td>
-<td>· 5 Node Deployment (1 Primary + 2 Standby +2 Application)</td>
-</tr>
-<tr>
-<td></td>
-<td>· Single Site</td>
-</tr>
-<tr>
-<td></td>
-<td>· Appliance Based</td>
-</tr>
-<tr>
-<td></td>
-<td>· Large Sized cell deployment</td>
-</tr>
-<tr>
-<td></td>
-<td>Configuration of NFS for VMware Cloud Director</td>
-</tr>
-<tr>
-<td></td>
-<td>· vSAN FS – 3TB Size</td>
-</tr>
-<tr>
-<td></td>
-<td>Configuration of NSX for VMware Cloud Director</td>
-</tr>
-<tr>
-<td></td>
-<td>· <to be updated></td>
-</tr>
-<tr>
-<td></td>
-<td>Configuration of LDAP</td>
-</tr>
-<tr>
-<td></td>
-<td>· <to be updated></td>
-</tr>
-<tr>
-<td></td>
-<td>Configuration of VMware Cloud Provider Lifecycle Manager</td>
-</tr>
-<tr>
-<td></td>
-<td>· Appliance based deployment</td>
-</tr>
-<tr>
-<td></td>
-<td>Configuration of NFS share for VMware Cloud Provider Lifecycle Manager</td>
-</tr>
-<tr>
-<td></td>
-<td>· vSAN FS</td>
+<td><strong>VMware Cloud Provider Lifecycle Manager</strong><br> <li> Appliance based deployment<br> <br> <li>Configuration of NFS share for VMware Cloud Provider Lifecycle Manager<br> <ul> <li> vSAN FS – 100GB Size</ul><br> <strong>VMware Cloud Director</strong><br> <li> 5 Node Deployment (1 Primary + 2 Standby +2 Application)<br> <li> Single Site<br> <li> Appliance Based <br> <li> Large Sized cell deployment<br> <br> Configuration of NFS for VMware Cloud Director<br> <li>vSAN FS – 3TB Size<br> <br> Configuration of NSX for VMware Cloud Director<br> <li> Deploy and configure NSX-T Data Center for VMware Cloud Director<br> <br> <strong>Usage Meter</strong><br> <li>Appliance deployment<br> <br> <strong>vRealize Operations Manager Tenant App</strong><br> <li>Appliance based deplioyment<br> <li> Node details to be updated <br> <strong>Note:</strong> As a part of pre-requisites vRealize Operations needs to be deployed and pre-configured for vROPS TA to use.VMware Cloud Provider Lifecycle Manager doesn&rsquo;t support deployment of vRealize Operations Manager.<br> <br> <strong>RabbitMQ</strong><br> <li> Linux based deployment<br> <li> Node Details to be updated <br></td>
 </tr>
 <tr>
 <td>Scope of guidance</td>
-<td>Detailed design for solution components.</td>
-</tr>
-<tr>
-<td></td>
-<td>Deployment of VMware Cloud Provider Lifecycle Manager</td>
-</tr>
-<tr>
-<td></td>
-<td>Deployment of VMware Cloud Director on VMware Cloud Foundation</td>
+<td>Detailed design for solution components.<br> Implementation<br> Operational Guidance<br> Solution Interoperability<br> Deployment of VMware Cloud Provider Lifecycle Manager<br> Deployment of VMware Cloud Director, Usage Meter, vRealize Operations manager Tenant App and RabbitMQ on VMware Cloud Foundation using VMware Cloud Provider Lifecycle Manager</td>
 </tr>
 <tr>
 <td>Cloud Type</td>
-<td></td>
+<td>Private Cloud</td>
 </tr>
 <tr>
 <td>Load Balancing</td>
-<td></td>
+<td>NSX Advanced Load (Balancer (Avi)</td>
 </tr>
 <tr>
 <td>Availability</td>
-<td></td>
-</tr>
-<tr>
-<td>Authentication, authorization, and access control</td>
-<td></td>
+<td>99%</td>
 </tr>
 <tr>
 <td>Certificate Signing</td>
-<td></td>
+<td>Certificates are signed by a certificate authority (CA) that consists of a root and intermediate certificate authority layers</td>
 </tr>
 </tbody>
 </table>
+<p>=======</p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">

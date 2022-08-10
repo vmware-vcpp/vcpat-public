@@ -16,13 +16,13 @@ VMware VMware Cloud Director
 VMware VMware Cloud Director is VMware’s flagship cloud services platform for Cloud Providers. It is a pervasive cloud infrastructure control plane for cloud providers’ service-delivery needs, and the management entity for a global VMware cloud estate.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/logical-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-08-10T15:07:54+05:30">
+<meta property="article:modified_time" content="2022-08-10T17:56:50+05:30">
 <title>Cloud Infrastructure Logical Design | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.877bfd62784987839551b6e358eac32541271ccf7050497eabca323ae2675b42.js integrity="sha256-h3v9YnhJh4OVUbbjWOrDJUEnHM9wUEl+q8oyOuJnW0I=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.c543bd9be4e1a932a7598954ab7eeadb082f74360111a1a94767942b92d80581.js integrity="sha256-xUO9m+ThqTKnWYlUq37q2wgvdDYBEaGpR2eUK5LYBYE=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -126,10 +126,10 @@ Cloud Infrastructure Logical Design
 <p>VMware vRealize Tenant App for VMware Cloud Director is used for metering the infrastructure services provided by a service provider to their tenants. Further, it provides options to configure different models for pricing the metered infrastructure.</p>
 <p><em>RabbitMQ</em></p>
 <p>RabbitMQ is an open source distributed message broker. It facilitates the efficient delivery of messages in complex routing scenarios. Initially built around the popular AMQP protocol, it’s also highly compatible with existing technologies, while its capabilities can be expanded through plug-ins enabled on the server. RabbitMQ brokers can be distributed and configured to be reliable in case of network or server failure.</p>
-<h1 id=cloud-infrastructure-architecture-for-vmware-cloud-foundation>
+<h2 id=cloud-infrastructure-architecture-for-vmware-cloud-foundation>
 Cloud Infrastructure Architecture for VMware Cloud Foundation
 <a class=anchor href=#cloud-infrastructure-architecture-for-vmware-cloud-foundation>#</a>
-</h1>
+</h2>
 <p>Description comment</p>
 <p><em>VMware VMware Cloud Director</em></p>
 <p>VCD diagram here</p>
@@ -139,6 +139,108 @@ Cloud Infrastructure Architecture for VMware Cloud Foundation
 <p>Tenant App diagram here</p>
 <p><em>RabbitMQ</em></p>
 <p>RabbitMQ diagram here</p>
+<p><br><br></p>
+<h2 id=logical-design-for-product-deployment-using-vmware-cloud-provider-lifecycle-manager>
+Logical Design For Product Deployment Using VMware Cloud Provider Lifecycle Manager
+<a class=anchor href=#logical-design-for-product-deployment-using-vmware-cloud-provider-lifecycle-manager>#</a>
+</h2>
+<p>The logical design provides a high-level overview of the solution design.</p>
+<p><strong>Deployment Architecture</strong></p>
+<p>Two different deployment architectures are envisioned to be supported by VVS for Cloud Providers namely Standard and Consolidated. For the standard architecture, two workload domains are considered for the VCPP deployment: VI workload domain and Private Cloud Workload Domain</p>
+<p>The SDDC management components and workload domains will be managed by the SDDC manager.</p>
+<p><strong>Standard Architecture</strong></p>
+<p>This design is based on Standard Architecture where differemt Management and Workload Domains are used to segregate resources.</p>
+<p><strong>VI Workload Domain</strong></p>
+<p>This deployment is based on the standard VCF deployment, consisting of a management domain and at least one workload domain.</p>
+<p>All infrastructure and cloud management components are deployed in the management domain, being physically and logically isolated from the tenant workload. Workload domains (Compute (vCenter), storage (vSAN) and network (NSX-T)) are deployed on separate hosts and configured as provider VDCs in vCloud Director.</p>
+<p>All vCenters are running in enhanced link mode.</p>
+<p><strong>Private Cloud Workload Domain</strong></p>
+<p>This is required to support VCD&rsquo;s CPOM (Central Point of Management) feature to allow direct access to dedicated vCenters. The vCenter provisioned for this domain must not have ELM enabled, as otherwise, users accessing the dedicated vCenter would be able to automatically have access to other vCenters as well.</p>
+<p>In this architecture, each customer will get a dedicated workload domain (aka vSphere Cluster), managed by a single instance of VMware Cloud Director. The customer will consume infrastructure as a Cloud Director tenant without having vCenter server access due to ELM architecture in VCF 4.4.x release.</p>
+<p><strong>Consolidated Architecture</strong></p>
+<p>This deployment is intended for smaller environments, requiring a minimum of 4 hosts for the complete deployment. Both management and customer workloads are deployed in a single vCenter (cluster) & resources are provided using vCenter server resource pools.</p>
+<p><strong>VCPP Components in VMware Cloud Foundation.</strong></p>
+<p>For this design document, the following VCPP components must be deployed in the management domain of VMware Cloud Foundation.</p>
+<p><strong>Core Components:</strong></p>
+<ul>
+<li>
+<p>VMware Cloud Director cells (VCD)</p>
+</li>
+<li>
+<p>NFS Share for VMware Cloud Director</p>
+</li>
+<li>
+<p>VMware Cloud Provider Lifecycle Manager</p>
+</li>
+<li>
+<p>External NFS share for VMware Cloud Provider Lifecycle Manager</p>
+</li>
+</ul>
+<p><strong>Optional products that can be deployed using VMware Cloud Provider Lifecycle Manager</strong></p>
+<ul>
+<li>
+<p>Usage Meter (UM)</p>
+</li>
+<li>
+<p>RabbitMQ</p>
+</li>
+<li>
+<p>vRealize Operations Manager Tenant App</p>
+</li>
+</ul>
+<p>Most of the components will be deployed in the management domain except for tenant & development workloads.</p>
+<p>The following diagram shows the standard architecture with VI and private cloud workload domains (consolidated architecture cannot be combined with standard architecture).</p>
+<p><img src=/images/vcplcm-detailed-design/image1.jpeg alt="Management domain arch"></p>
+<h2 id=vmware-cloud-provider-lifecycle-manager-architecture>
+VMware Cloud Provider Lifecycle Manager Architecture
+<a class=anchor href=#vmware-cloud-provider-lifecycle-manager-architecture>#</a>
+</h2>
+<p>VMware Cloud Provider Lifecycle Manager is designed as an application that provides a REST API and GUI to perform the required tasks. The underlying implementation to integrate with the corresponding products VMware Cloud Director, vRealize</p>
+<p>Operations Manager Tenant App, RabbitMQ and Usage Meter are designed as generic product tasks.</p>
+<p>To deploy or manage a solution, VMware Cloud Provider Lifecycle Manager requires a definition of the necessary tasks (deployment + validation, configuration, upgrade tasks) and product binaries (e.g., OVA). The REST API generic structure is applicable to different types of solutions.</p>
+<p>VMware Cloud Provider Lifecycle Manager needs access to a repository (mounted NFS or locally) which contains OVA files, upgrade packages, etc.</p>
+<p>The Below diagram represents the high-level architecture of VMware Cloud Provider Lifecycle Manager</p>
+<p><img src=/images/vcplcm-detailed-design/image2.jpeg alt="cplcm Architecture"></p>
+<h2 id=workflow-execution-process-of-vmware-cloud-provider-lifecycle-manager>
+Workflow Execution Process Of VMware Cloud Provider Lifecycle Manager
+<a class=anchor href=#workflow-execution-process-of-vmware-cloud-provider-lifecycle-manager>#</a>
+</h2>
+<p>Once a request is triggered by VMware Cloud Provider Lifecycle Manager’s REST API or GUI, then it will execute the corresponding task defining a list of actions. The task will be executed asynchronously. Each task will be associated with an ID which can be used to query the state of the task.</p>
+<p><strong>Datacenter</strong></p>
+<p>To enable VMware Cloud Provider Lifecycle Manager to manage products, first you must register a data center component. The data center components are instances or services available in the data center that VMware Cloud Provider Lifecycle Manager does not manage. You can register vCenter Server, NSX-T, and vRealize Operations Manager as data center components.</p>
+<p><strong>Environment</strong></p>
+<p>Products are deployed as a part of Lifecycle Manager environment. Each environment can have multiple products and user needs to provide a unique Environment ID during deployment, for identification purpose. VMware Cloud Provider doesn’t allow environments with duplicate Environment ID as it is referenced during retrieval, deletion of environment and product management operations like upgrades, node management, etc.</p>
+<p>To deploy a product, the target vCenter to deploy in, has to be specified. This should refer to a vCenter that is registered as a datacenter component.</p>
+<p><strong>Product</strong></p>
+<p>The products follow a generic definition pattern that defines basic common product fields and requires product-specific details to be specified as properties. Each product will be associated with a unique product ID and the same will be used to retrieve the details related to the products.</p>
+<p><strong>Workflow Execution</strong></p>
+<p>The below diagram represents the product deployment process using VMware Cloud Provider Lifecyclle Manager.</p>
+<p><img src=/images/vcplcm-detailed-design/image3.jpeg alt="Workflow Execution"></p>
+<h2 id=logical-design-of-management-cluster-for-vmware-cloud-foundation>
+Logical Design of Management Cluster for VMware Cloud Foundation
+<a class=anchor href=#logical-design-of-management-cluster-for-vmware-cloud-foundation>#</a>
+</h2>
+<p>The following picture shows the typical logical architecture of the management cluster where VMware Cloud Director and its associated components will be deployed.</p>
+<p><img src=/images/vcplcm-detailed-design/image4.jpeg alt="Logical design"></p>
+<p><strong>Reg.Mgmt and X.Reg.Mgmt</strong></p>
+<ul>
+<li>
+<p>These are overlay Segments</p>
+</li>
+<li>
+<p>Existing Reg. Mgmt is used for a secondary interface for VCD cells, vSAN FS, Usage meter, vRealize Operations</p>
+<p>Manager Tenant App and VMware Cloud provider Lifecycle Manager</p>
+</li>
+</ul>
+<p><strong>VCD DMZ</strong></p>
+<ul>
+<li>
+<p>VCD DMZ network has been added to separate the internet traffic. It is routed via a separate Tier-1 gateway and connected to existing Tier-0.</p>
+</li>
+<li>
+<p>VCD Cells have the primary (eth0) interface connected to this network with NSX-T load balancer in its own Tier-1 gateway.</p>
+</li>
+</ul>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
