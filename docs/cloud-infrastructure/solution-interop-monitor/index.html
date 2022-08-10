@@ -1,0 +1,181 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Monitoring and Alerting for Cloud Infrastructure #  After you implement the {VVS for CP Title} validated solution, monitor the components that are newly added to or reconfigured in your VMware Cloud Foundation environment.
+For validated monitoring solutions, see VMware Cloud Foundation Validated Solutions.[link]
+Integration with vRealize Operations Manager #  If your environment is running vRealize Operations Manager, you can connect vRealize Operations Manager to the {VVS for CP Title} components.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Monitoring and Alerting for Cloud Infrastructure">
+<meta property="og:description" content="Monitoring and Alerting for Cloud Infrastructure #  After you implement the {VVS for CP Title} validated solution, monitor the components that are newly added to or reconfigured in your VMware Cloud Foundation environment.
+For validated monitoring solutions, see VMware Cloud Foundation Validated Solutions.[link]
+Integration with vRealize Operations Manager #  If your environment is running vRealize Operations Manager, you can connect vRealize Operations Manager to the {VVS for CP Title} components.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/solution-interop-monitor/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-08-10T18:05:24-04:00">
+<title>Monitoring and Alerting for Cloud Infrastructure | VMware Cloud Provider Architecture Toolkit</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.3a632701e80f390ae21f450deb1f4a0411864d578919d73b40c432805821cdb3.js integrity="sha256-OmMnAegPOQriH0UN6x9KBBGGTVeJGdc7QMQygFghzbM=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>VMware Cloud Provider Architecture Toolkit</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li><a href=/docs/cloud-infrastructure/><strong>Cloud Infrastructure</strong></a>
+<ul>
+<li><a href=/docs/cloud-infrastructure/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/cloud-infrastructure/design/>Design Objectives</a></li>
+<li><a href=/docs/cloud-infrastructure/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/cloud-infrastructure/implementation/>Implementation</a></li>
+<li><a href=/docs/cloud-infrastructure/operations/>Operational Guidance</a></li>
+<li><a href=/docs/cloud-infrastructure/design-decisions/>Design Decisions</a></li>
+</ul>
+</li>
+<li><a href=/docs/networking-security/><strong>Networking and Security</strong></a>
+<ul>
+<li><a href=/docs/networking-security/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/networking-security/design/>Design Objectives</a></li>
+<li><a href=/docs/networking-security/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/networking-security/implementation/>Implementation</a></li>
+<li><a href=/docs/networking-security/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/dr-migration/><strong>DR and Migration</strong></a>
+<ul>
+<li><a href=/docs/dr-migration/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/dr-migration/design/>Design Objectives</a></li>
+<li><a href=/docs/dr-migration/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/dr-migration/implementation/>Implementation</a></li>
+<li><a href=/docs/dr-migration/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/developer-ready-cloud/><strong>Developer Ready Cloud</strong></a>
+<ul>
+<li><a href=/docs/developer-ready-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/developer-ready-cloud/design/>Design Objectives</a></li>
+<li><a href=/docs/developer-ready-cloud/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/developer-ready-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/developer-ready-cloud/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/sovereign-cloud/><strong>Sovereign Cloud</strong></a>
+<ul>
+<li><a href=/docs/sovereign-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/sovereign-cloud/design/>Design Objectives</a></li>
+<li><a href=/docs/sovereign-cloud/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/sovereign-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/sovereign-cloud/operations/>Operational Guidance</a>
+<br></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://cloudsolutions.vmware.com target=_blank rel=noopener>
+VMware Cloud Solutions
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Monitoring and Alerting for Cloud Infrastructure</strong>
+<label for=toc-control>
+</label>
+</div>
+</header>
+<article class=markdown><h1 id=monitoring-and-alerting-for-cloud-infrastructure>
+Monitoring and Alerting for Cloud Infrastructure
+<a class=anchor href=#monitoring-and-alerting-for-cloud-infrastructure>#</a>
+</h1>
+<p>After you implement the {VVS for CP Title} validated solution, monitor the components that are newly added to or reconfigured in your VMware Cloud Foundation environment.</p>
+<p>For validated monitoring solutions, see VMware Cloud Foundation Validated Solutions.[link]</p>
+<h1 id=integration-with-vrealize-operations-manager>
+Integration with vRealize Operations Manager
+<a class=anchor href=#integration-with-vrealize-operations-manager>#</a>
+</h1>
+<p>If your environment is running vRealize Operations Manager, you can connect vRealize Operations Manager to the {VVS for CP Title} components.</p>
+<p>Design Decisions on Monitoring of {VVS for CP Title}</p>
+<table>
+<thead>
+<tr>
+<th>Decision ID</th>
+<th>Design Decision</th>
+<th>Design Justification</th>
+<th>Design Implications</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VVS-COMP1-001</td>
+<td>Decision comment</td>
+<td>Justification comments</td>
+<td>Implication comments</td>
+</tr>
+<tr>
+<td>VVS-COMP1-002</td>
+<td>Decision comment</td>
+<td>Justification comments</td>
+<td>Implication comments</td>
+</tr>
+<tr>
+<td>VVS-COMP1-002</td>
+<td>Decision comment</td>
+<td>Justification comments</td>
+<td>Implication comments</td>
+</tr>
+</tbody>
+</table>
+<h2 id=prerequisites>
+Prerequisites
+<a class=anchor href=#prerequisites>#</a>
+</h2>
+<p>Verify that vRealize Operations is deployed and operational in a logical environment enabled for VMware Cloud Foundation mode using the corresponding vRealize Suite Lifecycle Manager instance.</p>
+<h2 id=proceedure>
+Proceedure
+<a class=anchor href=#proceedure>#</a>
+</h2>
+<ol>
+<li>Step 1 Title - may link to sub document
+Description of step with [Read more link] or just describe the process if short</li>
+<li>Step 2 Title - may link to sub document
+Description of step with [Read more link] or just describe the process if short</li>
+<li>Step 3 Title - may link to sub document
+Description of step with [Read more link] or just describe the process if short</li>
+</ol>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+</main>
+</body>
+</html>
