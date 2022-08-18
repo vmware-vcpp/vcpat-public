@@ -16,13 +16,13 @@ VMware VMware Cloud Director
 VMware VMware Cloud Director is VMware’s flagship cloud services platform for Cloud Providers. It is a pervasive cloud infrastructure control plane for cloud providers’ service-delivery needs, and the management entity for a global VMware cloud estate.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/logical-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-08-16T16:55:20-04:00">
+<meta property="article:modified_time" content="2022-08-18T18:33:30+05:30">
 <title>Cloud Infrastructure Logical Design | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.3a632701e80f390ae21f450deb1f4a0411864d578919d73b40c432805821cdb3.js integrity="sha256-OmMnAegPOQriH0UN6x9KBBGGTVeJGdc7QMQygFghzbM=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.e55e5d52b1d6059471a6a732a3dda83b075238c541e101834cf05819b467473b.js integrity="sha256-5V5dUrHWBZRxpqcyo92oOwdSOMVB4QGDTPBYGbRnRzs=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -191,7 +191,7 @@ Logical Design For Product Deployment Using VMware Cloud Provider Lifecycle Mana
 </ul>
 <p>Most of the components will be deployed in the management domain except for tenant & development workloads.</p>
 <p>The following diagram shows the standard architecture with VI and private cloud workload domains (consolidated architecture cannot be combined with standard architecture).</p>
-<p><img src=/images/vcplcm-detailed-design/image1.jpeg alt="Management domain arch"></p>
+<p><img src=/images/vcplcm-detailed-design/image1.jpg alt="Management domain arch"></p>
 <h2 id=vmware-cloud-provider-lifecycle-manager-architecture>
 VMware Cloud Provider Lifecycle Manager Architecture
 <a class=anchor href=#vmware-cloud-provider-lifecycle-manager-architecture>#</a>
@@ -216,13 +216,13 @@ Workflow Execution Process Of VMware Cloud Provider Lifecycle Manager
 <p>The products follow a generic definition pattern that defines basic common product fields and requires product-specific details to be specified as properties. Each product will be associated with a unique product ID and the same will be used to retrieve the details related to the products.</p>
 <p><strong>Workflow Execution</strong></p>
 <p>The below diagram represents the product deployment process using VMware Cloud Provider Lifecyclle Manager.</p>
-<p><img src=/images/vcplcm-detailed-design/image3.jpeg alt="Workflow Execution"></p>
+<p><img src=/images/vcplcm-detailed-design/image3.jpg alt="Workflow Execution"></p>
 <h2 id=logical-design-of-management-cluster-for-vmware-cloud-foundation>
 Logical Design of Management Cluster for VMware Cloud Foundation
 <a class=anchor href=#logical-design-of-management-cluster-for-vmware-cloud-foundation>#</a>
 </h2>
 <p>The following picture shows the typical logical architecture of the management cluster where VMware Cloud Director and its associated components will be deployed.</p>
-<p><img src=/images/vcplcm-detailed-design/image4.jpeg alt="Logical design"></p>
+<p><img src=/images/vcplcm-detailed-design/image4.jpg alt="Logical design"></p>
 <p><strong>Reg.Mgmt and X.Reg.Mgmt</strong></p>
 <ul>
 <li>
