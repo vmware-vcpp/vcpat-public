@@ -1,0 +1,22 @@
+## Deploy VMware Cloud Provider Lifecycle Manager
+
+Begin implementation of this solution by deploying VMware Cloud Provider Lifecycle Manager
+
+**Prerequisites**
+
+Verify that your environment fulfils the prerequisites for the deployment of VMware Cloud Provider Lifecycle Manager \<\<Link to overall Prerequisites.xls\>\>
+
+**Procedure**
+
+[**Configure Product Binaries for VMware Cloud provider Lifecycle Manager**](../product-binaries)
+
+The binaries (ova files) for deploying the supported products must be downloaded and provided to the VMware Cloud Provider Lifecycle Manager application.
+
+The files can be downloaded locally to the VMware Cloud Provider Lifecycle Manager at /cplcmrepo directory or mounted as NFS share to the same path.[Read More](../product-binaries)
+
+[**Deploy VMware Cloud Provider Lifecycle Manager On VMware Cloud Foundation**](../cplcm-appliance-deployment)
+
+Deploy VMware Cloud Provider Lifecycle Manager on VMware Cloud Foundation for automated deployment of products like VMware Cloud director, vRealize Operations manager Tenant App, Usage Meter and Rabbit MQ [Read More](../cplcm-appliance-deployment)
+
+
+

@@ -1,0 +1,99 @@
+## 
+
+##  Deploy VMware Cloud Provider Lifecycle Manager On VMware Cloud Foundation
+
+## 
+
+Deploy VMware Cloud Provider Lifecycle Manager on VMware Cloud Foundation for automated deployment of products like VMware Cloud director, vRealize Operations manager Tenant App, Usage Meter and Rabbit MQ.
+
+Starting with version 1.2, VMware Cloud Provider Lifecycle Manager is delivered as a virtual appliance. You must deploy the virtual appliance on an ESXi host or in a vCenter Server. Here are the steps you need to take to deploy VMware Cloud Provider Lifecycle Manager 1.3.
+
+## UI Procedure
+
+You can deploy the VMware Cloud Provider Lifecycle Manager appliance as an OVA by using the vSphere Client (HTML5). For more details, check the following [information](https://docs.vmware.com/en/VMware-Cloud-Provider-Lifecycle-Manager/1.3/vmware-cloud-provider-lifecycle-manager-13-deployment-administration.pdf).
+
+1.  In the vSphere Client, right-click any inventory object and click **Deploy OVF Template.**
+
+2.  Enter the path to the VMware Cloud Provider Lifecycle Manager.Ova file and click **Next**.
+
+3.  Enter a name for the virtual machine and browse the vCenter Server repository to select a data
+
+    center or folder on which to deploy the appliance and click **Next**.
+
+4.  Select an ESXi host or cluster on which to deploy the appliance and click **Next**.
+
+5.  Review the template details and click **Next**.
+
+6.  Read and accept the license agreements and click **Next**.
+
+7.  Select the disk format and the datastore for the virtual machine configuration files and virtual
+
+    disks, and click **Next**.
+
+    Thick formats improve performance, and thin formats save storage space.
+
+8.  From the drop-down menus in the **Destination Network** cells, select the target networks for
+
+    the eth0 NIC of the appliance.
+
+9.  From the **IP allocation Settings** drop-down menus, select a **Static-Manual** IP allocation and an
+
+    **IPv4** protocol.
+
+10. Click **Next**.
+
+    You are redirected to the **Customize template** page of the wizard to configure the VMware
+
+    Cloud Provider Lifecycle Manager details.
+
+11. In the section **Application Settings**, configure the appliance details.
+
+12. In section **Additional Networking Properties**, enter the network details for the VMware Cloud
+
+    Provider Lifecycle Manager appliance, and click **Next**.
+
+13. On the **Ready to Complete** page, review the configuration settings for the VMware Cloud
+
+14. Provider Lifecycle Manager appliance, and click **Finish** to start the deployment.
+
+## VMware OVF Tool Procedure
+
+You can deploy the VMware Cloud Provider Lifecycle Manager appliance as an OVF template by using the VMware OVF Tool.
+
+For information about installing OVF Tool, see the VMware OVF Tool Release Notes document. For information about using OVF Tool, see the OVF Tool User's Guide.
+
+Read the following [information](https://docs.vmware.com/en/VMware-Cloud-Provider-Lifecycle-Manager/1.3/vmware-cloud-provider-lifecycle-manager-13-deployment-administration.pdf) for more details.
+
+**An Example Command for Deploying a Production Primary VMware Cloud Provider Lifecycle Manager Appliance**
+
+ovftool --name=vcplcm-demo-1 --X:logFile=/tmp/vcplcm-deploy.log --X:logLevel=info \\
+
+--noSSLVerify --acceptAllEulas --allowAllExtraConfig --diskMode=thin \\
+
+--datastore=sfo-m01-cl01-ds-vsan01 --network=sfo01-m01-cl01-vds01-pg-mgmt --powerOn \\
+
+--prop:varoot-password='Root_pw1' \\
+
+--prop:vcplcm-admin-password='VCPlcm_pw1' \\
+
+--prop:vcplcm-api-port=9443 \\
+
+--prop:ntpserver=time.vmware.com \\
+
+--prop:hostname=vcplcm-demo-1 \\
+
+--prop:netipaddress0=x.x.x.x \\
+
+--prop:netprefix0=24 \\
+
+--prop:netgateway0=x.x.x.x \\
+
+--prop:netdns0=x.x.x.x,y.y.y.y \\
+
+--prop:domainname=test.dom \\
+
+--prop:searchdomains=test1.dom,test2.dom --prop:ceip_enable=True \\
+
+--prop:nfs_mount=vsan-nfs.test.dom:/vsanfs/cplcmrepo \\
+
+VMware-Cloud-Provider-Lifecycle-Manager-version-number.ova \\ vi://vc_user_name:vc_password@vc_hostname_or_ip_address/vc_dataceter_name/host/vc_cluster_name

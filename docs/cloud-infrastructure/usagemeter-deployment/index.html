@@ -1,0 +1,126 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content>
+<meta property="og:description" content>
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/usagemeter-deployment/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-08-22T18:46:57+05:30">
+<title>Usagemeter Deployment | VMware Cloud Provider Architecture Toolkit</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.d53559a379a88960feab25f5af8bdbaf800a9fe167c76ddca8c2a5a47785c054.js integrity="sha256-1TVZo3moiWD+qyX1r4vbr4AKn+Fnx23cqMKlpHeFwFQ=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>VMware Cloud Provider Architecture Toolkit</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li><a href=/docs/cloud-infrastructure/><strong>Cloud Infrastructure</strong></a>
+<ul>
+<li><a href=/docs/cloud-infrastructure/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/cloud-infrastructure/design/>Design Objectives</a></li>
+<li><a href=/docs/cloud-infrastructure/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/cloud-infrastructure/implementation/>Implementation</a></li>
+<li><a href=/docs/cloud-infrastructure/operations/>Operational Guidance</a></li>
+<li><a href=/docs/cloud-infrastructure/design-decisions/>Design Decisions</a></li>
+<li><a href=/docs/cloud-infrastructure/solution-interop/>Solution Interoperability</a></li>
+</ul>
+</li>
+<li><a href=/docs/networking-security/><strong>Networking and Security</strong></a>
+<ul>
+<li><a href=/docs/networking-security/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/networking-security/design/>Design Objectives</a></li>
+<li><a href=/docs/networking-security/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/networking-security/implementation/>Implementation</a></li>
+<li><a href=/docs/networking-security/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/dr-migration/><strong>DR and Migration</strong></a>
+<ul>
+<li><a href=/docs/dr-migration/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/dr-migration/design/>Design Objectives</a></li>
+<li><a href=/docs/dr-migration/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/dr-migration/implementation/>Implementation</a></li>
+<li><a href=/docs/dr-migration/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/developer-ready-cloud/><strong>Developer Ready Cloud</strong></a>
+<ul>
+<li><a href=/docs/developer-ready-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/developer-ready-cloud/design/>Design Objectives</a></li>
+<li><a href=/docs/developer-ready-cloud/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/developer-ready-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/developer-ready-cloud/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/sovereign-cloud/><strong>Sovereign Cloud</strong></a>
+<ul>
+<li><a href=/docs/sovereign-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/sovereign-cloud/design/>Design Objectives</a></li>
+<li><a href=/docs/sovereign-cloud/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/sovereign-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/sovereign-cloud/operations/>Operational Guidance</a>
+<br></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://cloudsolutions.vmware.com target=_blank rel=noopener>
+VMware Cloud Solutions
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Usagemeter Deployment</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents></nav>
+</aside>
+</header>
+<article class=markdown></article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents></nav>
+</div>
+</aside>
+</main>
+</body>
+</html>
