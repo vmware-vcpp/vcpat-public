@@ -1,0 +1,328 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Deploy RabbitMQ using API #  Execute the respective API call from the postman Collection after changing the environment variables and parameters.
+API Procedure #  To deploy one or several products, a Lifecycle Manager environment must be created. An environment can be created using the below POST request.
+Method: POST
+URL: /api/{apiVersion}/lcm/environment?action=DEPLOY
+Header: name: JSESSIONID – value: a valid jsessionid
+Sample bodies #  Deploy RabbitMQ - API call at a high level #    Define Environment Name and ID">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content>
+<meta property="og:description" content="Deploy RabbitMQ using API #  Execute the respective API call from the postman Collection after changing the environment variables and parameters.
+API Procedure #  To deploy one or several products, a Lifecycle Manager environment must be created. An environment can be created using the below POST request.
+Method: POST
+URL: /api/{apiVersion}/lcm/environment?action=DEPLOY
+Header: name: JSESSIONID – value: a valid jsessionid
+Sample bodies #  Deploy RabbitMQ - API call at a high level #    Define Environment Name and ID">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/rabbitmq-deployment-using-api/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-08-23T13:23:35+05:30">
+<title>Rabbitmq Deployment Using API | VMware Cloud Provider Architecture Toolkit</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.40208c840aa1f1040e9720f846c0dfeacd066da85ce956efe628d298fac6a483.js integrity="sha256-QCCMhAqh8QQOlyD4RsDf6s0Gbahc6Vbv5ijSmPrGpIM=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>VMware Cloud Provider Architecture Toolkit</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li><a href=/docs/cloud-infrastructure/><strong>Cloud Infrastructure</strong></a>
+<ul>
+<li><a href=/docs/cloud-infrastructure/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/cloud-infrastructure/design/>Design Objectives</a></li>
+<li><a href=/docs/cloud-infrastructure/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/cloud-infrastructure/implementation/>Implementation</a></li>
+<li><a href=/docs/cloud-infrastructure/operations/>Operational Guidance</a></li>
+<li><a href=/docs/cloud-infrastructure/design-decisions/>Design Decisions</a></li>
+<li><a href=/docs/cloud-infrastructure/solution-interop/>Solution Interoperability</a></li>
+</ul>
+</li>
+<li><a href=/docs/networking-security/><strong>Networking and Security</strong></a>
+<ul>
+<li><a href=/docs/networking-security/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/networking-security/design/>Design Objectives</a></li>
+<li><a href=/docs/networking-security/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/networking-security/implementation/>Implementation</a></li>
+<li><a href=/docs/networking-security/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/dr-migration/><strong>DR and Migration</strong></a>
+<ul>
+<li><a href=/docs/dr-migration/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/dr-migration/design/>Design Objectives</a></li>
+<li><a href=/docs/dr-migration/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/dr-migration/implementation/>Implementation</a></li>
+<li><a href=/docs/dr-migration/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/developer-ready-cloud/><strong>Developer Ready Cloud</strong></a>
+<ul>
+<li><a href=/docs/developer-ready-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/developer-ready-cloud/design/>Design Objectives</a></li>
+<li><a href=/docs/developer-ready-cloud/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/developer-ready-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/developer-ready-cloud/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/sovereign-cloud/><strong>Sovereign Cloud</strong></a>
+<ul>
+<li><a href=/docs/sovereign-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/sovereign-cloud/design/>Design Objectives</a></li>
+<li><a href=/docs/sovereign-cloud/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/sovereign-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/sovereign-cloud/operations/>Operational Guidance</a>
+<br></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://cloudsolutions.vmware.com target=_blank rel=noopener>
+VMware Cloud Solutions
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Rabbitmq Deployment Using API</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#deploy-rabbitmq-using-api>Deploy RabbitMQ using API</a>
+<ul>
+<li><a href=#api-procedure>API Procedure</a>
+<ul>
+<li><a href=#sample-bodies>Sample bodies</a></li>
+<li><a href=#deploy-rabbitmq---api-call-at-a-high-level>Deploy RabbitMQ - API call at a high level</a></li>
+<li><a href=#retrieve-task-status>Retrieve Task Status</a></li>
+<li><a href=#cancel-a-task>Cancel a Task</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=deploy-rabbitmq-using-api>
+Deploy RabbitMQ using API
+<a class=anchor href=#deploy-rabbitmq-using-api>#</a>
+</h1>
+<p>Execute the respective API call from the postman Collection after changing the environment variables and parameters.</p>
+<h2 id=api-procedure>
+API Procedure
+<a class=anchor href=#api-procedure>#</a>
+</h2>
+<p>To deploy one or several products, a Lifecycle Manager environment must be created. An environment can be created using the below POST request.</p>
+<p><strong>Method</strong>: POST</p>
+<p><strong>URL</strong>: <em>/api/{apiVersion}/lcm/environment?action=DEPLOY</em></p>
+<p><strong>Header</strong>: name: JSESSIONID – value: a valid jsessionid</p>
+<h3 id=sample-bodies>
+Sample bodies
+<a class=anchor href=#sample-bodies>#</a>
+</h3>
+<h3 id=deploy-rabbitmq---api-call-at-a-high-level>
+Deploy RabbitMQ - API call at a high level
+<a class=anchor href=#deploy-rabbitmq---api-call-at-a-high-level>#</a>
+</h3>
+<ul>
+<li>
+<p>Define Environment Name and ID</p>
+</li>
+<li>
+<p>Products</p>
+<ul>
+<li>
+<p>Product Type</p>
+</li>
+<li>
+<p>Product ID</p>
+</li>
+<li>
+<p>RabbitMQ version</p>
+</li>
+<li>
+<p>Admin password</p>
+</li>
+<li>
+<p>Product Properties</p>
+<ul>
+<li>
+<p>RabbitMQ Load Balancer Name, FQDN and IP</p>
+</li>
+<li>
+<p>RabbitMQ SSL and Management port details.</p>
+</li>
+<li>
+<p>User (svc_vcd) credentials</p>
+</li>
+<li>
+<p>User (svc_vropsta) credentials</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Deployment</p>
+<ul>
+<li>
+<p>vCenter name and user</p>
+</li>
+<li>
+<p>Datacenter</p>
+</li>
+<li>
+<p>Cluster</p>
+</li>
+<li>
+<p>Resource pool</p>
+</li>
+<li>
+<p>Datastore</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Node Information</p>
+<ul>
+<li>
+<p>Below details for all the RabbitMQ nodes need to be provided.</p>
+<ul>
+<li>Hostname, VM name, CPU, Memory, root password and network details.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Note</strong>: We don’t need to provide deployment infrastructure details like the earlier version as we are registering the datacenter first using the methods mentioned [Read More] and then proceeding with product deployment or management.</p>
+<p><img src=/images/Cloud-Infrastructure-CPLCM-Implementation/rabbitmq-deployment-using-api.jpg alt=api-call></p>
+<p><strong>Note:</strong> Please refer to the API reference and POSTMAN <a href=https://developer.vmware.com/apis/1253>sample collection</a> on <a href=http://code.vmware.com/>code.vmware.com</a> for detailed APIs.</p>
+<p><strong>Response</strong></p>
+<p>{</p>
+<p>    &ldquo;taskId&rdquo;: &ldquo;1&rdquo;</p>
+<p>}</p>
+<p>If the response is OK (200), the request to create the environment has been accepted and is being processed asynchronously.</p>
+<p>The returned <em>taskId</em> can now be used to check the status of the deployment.</p>
+</blockquote>
+<h3 id=retrieve-task-status>
+Retrieve Task Status
+<a class=anchor href=#retrieve-task-status>#</a>
+</h3>
+<blockquote>
+<p>To verify the status of a running task, a GET request must be executed.</p>
+<p><strong>Method</strong>: GET</p>
+<p><strong>URL</strong>: /api/{apiVersion}/task/{taskId}</p>
+<p><strong>Header</strong>: name: JSESSIONID - value: a valid jsessionid</p>
+<p><strong>Sample response</strong>:</p>
+<p>{</p>
+<p>&ldquo;id&rdquo;: 1,</p>
+<p>&ldquo;subTasks&rdquo;: {</p>
+<p>&ldquo;c6765081-c5bf-4386-a3d8-498c84e8e497&rdquo;: {</p>
+<p>&ldquo;name&rdquo;: &ldquo;LcmDiscoverStep-USAGE-4.4.0-DISCOVER&rdquo;,</p>
+<p>&ldquo;status&rdquo;: &ldquo;SUCCESS&rdquo;,</p>
+<p>&ldquo;message&rdquo;: [</p>
+<p>{</p>
+<p>&ldquo;name&rdquo;: &ldquo;Discover product&rdquo;,</p>
+<p>&ldquo;status&rdquo;: &ldquo;OK&rdquo;,</p>
+<p>&ldquo;message&rdquo;: &ldquo;Successfully updated product state.&rdquo;,</p>
+<p>&ldquo;start_time&rdquo;: &ldquo;2021-04-08-15:23:06UTC&rdquo;,</p>
+<p>&ldquo;end_time&rdquo;: &ldquo;2021-04-08-15:23:55UTC&rdquo;</p>
+<p>}</p>
+<p>],</p>
+<p>&ldquo;nextSubTasks&rdquo;: {</p>
+<p>&ldquo;SUCCESS&rdquo;: &ldquo;28d7b09e-d16c-4dc3-ba98-17679b989b2f&rdquo;</p>
+<p>}</p>
+<p>}</p>
+<p>},</p>
+<p>&ldquo;status&rdquo;: &ldquo;SUCCESS&rdquo;,</p>
+<p>&ldquo;message&rdquo;: ""</p>
+<p>}</p>
+<p>Possible values for the status are:</p>
+</blockquote>
+<ul>
+<li>
+<p>IN_PROGRESS</p>
+</li>
+<li>
+<p>SUCCESS</p>
+</li>
+<li>
+<p>ERROR</p>
+</li>
+</ul>
+<blockquote>
+<p>The message field of the task contains response messages from different steps of the task. For example, pre- and post-validation results are listed in the corresponding sub-section within the messages.</p>
+</blockquote>
+<h3 id=cancel-a-task>
+Cancel a Task
+<a class=anchor href=#cancel-a-task>#</a>
+</h3>
+<p>To cancel a running task, a PUT request must be executed.</p>
+<p><strong>Method</strong>: PUT</p>
+<p><strong>URL</strong>: /api/{apiVersion}/task/{taskId}?action=cancel</p>
+<p><strong>Header</strong>: name: JSESSIONID - value: a valid jsessionid</p>
+<p><strong>Expected response code:</strong> 200</p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#deploy-rabbitmq-using-api>Deploy RabbitMQ using API</a>
+<ul>
+<li><a href=#api-procedure>API Procedure</a>
+<ul>
+<li><a href=#sample-bodies>Sample bodies</a></li>
+<li><a href=#deploy-rabbitmq---api-call-at-a-high-level>Deploy RabbitMQ - API call at a high level</a></li>
+<li><a href=#retrieve-task-status>Retrieve Task Status</a></li>
+<li><a href=#cancel-a-task>Cancel a Task</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>
