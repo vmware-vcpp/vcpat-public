@@ -1,0 +1,308 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Register Datacenter vCenter Server #  To enable VMware Cloud Provider Lifecycle Manager to manage products, first, you must register a datacenter component.
+The datacenter components are instances or services available in the datacenter that VMware Cloud Provider Lifecycle Manager does not manage. You can register vCenter Server, NSX-T, and vRealize Operations Manager as datacenter components.
+Register vCenter Server #  API Procedure
+  Download & import Postman collection Read More">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content>
+<meta property="og:description" content="Register Datacenter vCenter Server #  To enable VMware Cloud Provider Lifecycle Manager to manage products, first, you must register a datacenter component.
+The datacenter components are instances or services available in the datacenter that VMware Cloud Provider Lifecycle Manager does not manage. You can register vCenter Server, NSX-T, and vRealize Operations Manager as datacenter components.
+Register vCenter Server #  API Procedure
+  Download & import Postman collection Read More">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/vc-dc-register/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-08-23T13:22:50+05:30">
+<title>VC Dc Register | VMware Cloud Provider Architecture Toolkit</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.44efadcae2cca9a0a62029fd8619a500d1bdab8716578998b51964907c226b08.js integrity="sha256-RO+tyuLMqaCmICn9hhmlANG9q4cWV4mYtRlkkHwiawg=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>VMware Cloud Provider Architecture Toolkit</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li><a href=/docs/cloud-infrastructure/><strong>Cloud Infrastructure</strong></a>
+<ul>
+<li><a href=/docs/cloud-infrastructure/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/cloud-infrastructure/design/>Design Objectives</a></li>
+<li><a href=/docs/cloud-infrastructure/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/cloud-infrastructure/implementation/>Implementation</a></li>
+<li><a href=/docs/cloud-infrastructure/operations/>Operational Guidance</a></li>
+<li><a href=/docs/cloud-infrastructure/design-decisions/>Design Decisions</a></li>
+<li><a href=/docs/cloud-infrastructure/solution-interop/>Solution Interoperability</a></li>
+</ul>
+</li>
+<li><a href=/docs/networking-security/><strong>Networking and Security</strong></a>
+<ul>
+<li><a href=/docs/networking-security/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/networking-security/design/>Design Objectives</a></li>
+<li><a href=/docs/networking-security/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/networking-security/implementation/>Implementation</a></li>
+<li><a href=/docs/networking-security/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/dr-migration/><strong>DR and Migration</strong></a>
+<ul>
+<li><a href=/docs/dr-migration/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/dr-migration/design/>Design Objectives</a></li>
+<li><a href=/docs/dr-migration/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/dr-migration/implementation/>Implementation</a></li>
+<li><a href=/docs/dr-migration/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/developer-ready-cloud/><strong>Developer Ready Cloud</strong></a>
+<ul>
+<li><a href=/docs/developer-ready-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/developer-ready-cloud/design/>Design Objectives</a></li>
+<li><a href=/docs/developer-ready-cloud/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/developer-ready-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/developer-ready-cloud/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/sovereign-cloud/><strong>Sovereign Cloud</strong></a>
+<ul>
+<li><a href=/docs/sovereign-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/sovereign-cloud/design/>Design Objectives</a></li>
+<li><a href=/docs/sovereign-cloud/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/sovereign-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/sovereign-cloud/operations/>Operational Guidance</a>
+<br></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://cloudsolutions.vmware.com target=_blank rel=noopener>
+VMware Cloud Solutions
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>VC Dc Register</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#register-datacenter-vcenter-server>Register Datacenter vCenter Server</a>
+<ul>
+<li><a href=#register-vcenter-server>Register vCenter Server</a>
+<ul>
+<li><a href=#retrieve-task-status>Retrieve Task Status</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=register-datacenter-vcenter-server>
+Register Datacenter vCenter Server
+<a class=anchor href=#register-datacenter-vcenter-server>#</a>
+</h1>
+<p>To enable VMware Cloud Provider Lifecycle Manager to manage products, first, you must register a datacenter component.</p>
+<p>The datacenter components are instances or services available in the datacenter that VMware Cloud Provider Lifecycle Manager does not manage. You can register vCenter Server, NSX-T, and vRealize Operations Manager as datacenter components.</p>
+<h2 id=register-vcenter-server>
+Register vCenter Server
+<a class=anchor href=#register-vcenter-server>#</a>
+</h2>
+<br>
+<p><strong>API Procedure</strong></p>
+<ol>
+<li>
+<p>Download & import Postman collection <a href=../vcd-deploy-subpage>Read More</a></p>
+</li>
+<li>
+<p>Authenticate Session ID <a href=../vcd-deploy-subpage>Read More</a></p>
+</li>
+<li>
+<p>Validate API version <a href=../vcd-deploy-subpage>Read More</a></p>
+</li>
+<li>
+<p>Create POST Request - To deploy one or several products, Datacenter needs to be registered. Registration of Datacenter can be done using the below POST request.</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>Method</strong>: POST</p>
+<p><strong>URL:</strong> /api/{api version}/lcm/datacenter?action=REGISTER</p>
+<p><strong>Header</strong>: name: JSESSIONID – value: a valid jsessionid</p>
+<p><strong>Sample Bodies:</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>Provide vCenter Server Version</p>
+</li>
+<li>
+<p>Data Center Type- “VCENTER, VROPS or NSX-T”</p>
+</li>
+<li>
+<p>Fully Qualified Domain Name</p>
+</li>
+<li>
+<p>Username</p>
+</li>
+<li>
+<p>Password</p>
+</li>
+<li>
+<p>Content</p>
+<ul>
+<li>
+<p>Networks</p>
+<ul>
+<li>
+<p>Port Group Names and the below network details:</p>
+</li>
+<li>
+<p>Gateway</p>
+</li>
+<li>
+<p>Subnet Mask</p>
+</li>
+<li>
+<p>Domain Name</p>
+</li>
+<li>
+<p>Search Path</p>
+</li>
+<li>
+<p>DHCP</p>
+</li>
+<li>
+<p>DNS</p>
+</li>
+<li>
+<p>NTP</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src=/images/Cloud-Infrastructure-CPLCM-Implementation/register-vcd-dc.jpg alt=api-call></p>
+<h3 id=retrieve-task-status>
+Retrieve Task Status
+<a class=anchor href=#retrieve-task-status>#</a>
+</h3>
+<blockquote>
+<p>To verify the status of a running task, a GET request must be executed.</p>
+<p><strong>Method</strong>: GET</p>
+<p><strong>URL</strong>: /api/{apiVersion}/task/{taskId}</p>
+<p><strong>Header</strong>: name: JSESSIONID - value: a valid jsessionid</p>
+<p><strong>Sample response</strong>:</p>
+<p>{</p>
+<p>&ldquo;id&rdquo;: 2,</p>
+<p>&ldquo;taskType&rdquo;: &ldquo;DATACENTER_REGISTER&rdquo;,</p>
+<p>&ldquo;subTasks&rdquo;: {</p>
+<p>&ldquo;c0a0c045-2b20-4838-a9b1-820a5f4e3f94&rdquo;: {</p>
+<p>&ldquo;name&rdquo;: &ldquo;DataCenterRegisterStep-VCENTER-7.0.1-DC_DISCOVER&rdquo;,</p>
+<p>&ldquo;status&rdquo;: &ldquo;SUCCESS&rdquo;,</p>
+<p>&ldquo;message&rdquo;: [</p>
+<p>{</p>
+<p>&ldquo;name&rdquo;: &ldquo;Discover product&rdquo;,</p>
+<p>&ldquo;status&rdquo;: &ldquo;OK&rdquo;,</p>
+<p>&ldquo;message&rdquo;: &ldquo;Successfully updated product state.&rdquo;,</p>
+<p>&ldquo;start_time&rdquo;: &ldquo;2022-08-20-08:49:49UTC&rdquo;,</p>
+<p>&ldquo;end_time&rdquo;: &ldquo;2022-08-20-08:50:01UTC&rdquo;</p>
+<p>},</p>
+<p>{</p>
+<p>&ldquo;name&rdquo;: &ldquo;Retrieve resource pool data from vCenter.&rdquo;,</p>
+<p>&ldquo;status&rdquo;: &ldquo;OK&rdquo;,</p>
+<p>&ldquo;message&rdquo;: &ldquo;Successfully retrieved resource pool data from vCenter.&rdquo;,</p>
+<p>&ldquo;start_time&rdquo;: &ldquo;2022-08-20-08:50:00UTC&rdquo;,</p>
+<p>&ldquo;end_time&rdquo;: &ldquo;2022-08-20-08:50:00UTC&rdquo;</p>
+<p>},</p>
+<p>{</p>
+<p>&ldquo;name&rdquo;: &ldquo;Retrieve certificate data from vCenter.&rdquo;,</p>
+<p>&ldquo;status&rdquo;: &ldquo;OK&rdquo;,</p>
+<p>&ldquo;message&rdquo;: &ldquo;Successfully certificate pool data from vCenter.&rdquo;,</p>
+<p>&ldquo;start_time&rdquo;: &ldquo;2022-08-20-08:50:00UTC&rdquo;,</p>
+<p>&ldquo;end_time&rdquo;: &ldquo;2022-08-20-08:50:01UTC&rdquo;</p>
+<p>}</p>
+<p>],</p>
+<p>&ldquo;nextSubTasks&rdquo;: {},</p>
+<p>&ldquo;ignoreStatus&rdquo;: false</p>
+<p>}</p>
+<p>},</p>
+<p>&ldquo;environmentId&rdquo;: &ldquo;<a href=mailto:xxxxxxxx_administrator@vsphere.local>xxxxxxxx_administrator@vsphere.local</a>&rdquo;,</p>
+<p>&ldquo;taskName&rdquo;: &ldquo;DATACENTER_REGISTER_ref:xxxxxxxxxadministrator@vsphere.local_2&rdquo;,</p>
+<p>&ldquo;status&rdquo;: &ldquo;SUCCESS&rdquo;,</p>
+<p>&ldquo;message&rdquo;: &ldquo;&rdquo;,</p>
+<p>&ldquo;next_tasks&rdquo;: []</p>
+<p>}</p>
+</blockquote>
+<p><strong>Possible values for the status are:</strong></p>
+<ul>
+<li>
+<p>IN_PROGRESS</p>
+</li>
+<li>
+<p>SUCCESS</p>
+</li>
+<li>
+<p>ERROR</p>
+</li>
+<li>
+<p><strong>Note.</strong> Please refer to the API reference and POSTMAN <a href=https://developer.vmware.com/apis/1253>sample collection</a> on <a href=http://code.vmware.com/>code.vmware.com</a> for APIs.</p>
+</li>
+</ul>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#register-datacenter-vcenter-server>Register Datacenter vCenter Server</a>
+<ul>
+<li><a href=#register-vcenter-server>Register vCenter Server</a>
+<ul>
+<li><a href=#retrieve-task-status>Retrieve Task Status</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

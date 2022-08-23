@@ -1,0 +1,151 @@
+# Register NSX-T Datacenter
+
+To enable VMware Cloud Provider Lifecycle Manager to manage products, first, you must register a datacenter component.
+
+The datacenter components are instances or services available in the datacenter that VMware Cloud Provider Lifecycle Manager does not manage. You can register vCenter Server, NSX-T, and vRealize Operations Manager as datacenter components.
+
+## Register NSX-T
+<br>
+**API Procedure**
+
+1.  Download & import Postman collection [Read More](../vcd-deploy-subpage)
+
+2.  Authenticate Session ID [Read More](../vcd-deploy-subpage)
+
+3.  Validate API version [Read More](../vcd-deploy-subpage)
+
+4.  Create POST Request - To deploy one or several products, Datacenter needs to be registered. Registration of Datacenter can be done using the below POST request.
+
+> **Method**: POST
+>
+> **URL:** /api/{api version}/lcm/datacenter?action=REGISTER
+>
+> **Header**: name: JSESSIONID – value: a valid jsessionid
+>
+> **Sample Bodies:**
+>
+> Version
+>
+> DataCenter Component Type:“NSX-T”
+>
+> Fully Qualified Domain Name
+>
+> Username
+>
+> Password
+
+![api-call](/images/Cloud-Infrastructure-CPLCM-Implementation/register-nsx-t-dc.jpg)
+
+### Retrieve Task Status
+
+> To verify the status of a running task, a GET request must be executed.
+>
+> **Method**: GET
+>
+> **URL**: /api/{apiVersion}/task/{taskId}
+>
+> **Header**: name: JSESSIONID - value: a valid jsessionid
+>
+> **Sample response**:
+>
+> {
+>
+> "id": 6,
+>
+> "taskType": "DATACENTER_REGISTER",
+>
+> "subTasks": {
+>
+> "58e91ae1-5203-481d-af0f-9d32ee64a5d4": {
+>
+> "name": "DataCenterRegisterStep-NSXT-3.2.0-DC_DISCOVER",
+>
+> "status": "SUCCESS",
+>
+> "message": \[
+>
+> {
+>
+> "name": "Discover product",
+>
+> "status": "OK",
+>
+> "message": "Successfully updated product state.",
+>
+> "start_time": "2022-08-20-10:12:38UTC",
+>
+> "end_time": "2022-08-20-10:12:39UTC"
+>
+> },
+>
+> {
+>
+> "name": "Retrieve NSX-T certificate.",
+>
+> "status": "OK",
+>
+> "message": "Successfully retrieved certificate from NSX-T.",
+>
+> "start_time": "2022-08-20-10:12:38UTC",
+>
+> "end_time": "2022-08-20-10:12:38UTC"
+>
+> },
+>
+> {
+>
+> "name": "Discover NSX-T transport zones.",
+>
+> "status": "OK",
+>
+> "message": "Successfully discovered NSX-T transport zones.",
+>
+> "start_time": "2022-08-20-10:12:38UTC",
+>
+> "end_time": "2022-08-20-10:12:39UTC"
+>
+> },
+>
+> {
+>
+> "name": "Discover NSX-T T0 gateways.",
+>
+> "status": "OK",
+>
+> "message": "Successfully discover NSX-T T0 gateways.",
+>
+> "start_time": "2022-08-20-10:12:39UTC",
+>
+> "end_time": "2022-08-20-10:12:39UTC"
+>
+> }
+>
+> \],
+>
+> "nextSubTasks": {},
+>
+> "ignoreStatus": false
+>
+> }
+>
+> },
+>
+> "environmentId": "ref:dc:xxxxxxx_admin",
+>
+> "taskName": "DATACENTER_REGISTER_ref:xxxxxxxx_admin_6",
+>
+> "status": "SUCCESS",
+>
+> "message": "",
+>
+> "next_tasks": \[\]
+>
+ **Possible values for the status are:**
+
+-   IN_PROGRESS
+
+-   SUCCESS
+
+-   ERROR
+
+-   **Note.** Please refer to the API reference and POSTMAN [sample collection](https://developer.vmware.com/apis/1253) on [code.vmware.com](http://code.vmware.com/) for APIs.
