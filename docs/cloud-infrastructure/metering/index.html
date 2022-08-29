@@ -2,27 +2,21 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Cloud Infrastructure Metering #  How to start metering your VCPP products with Usage Meter #  The following information helps you understand how Usage Meter detects and meters the usage of the listed VMware products and their features.
-It also provides insight into how the reported usage data is calculated and appears in the Usage Insight reports.
-Metering Cloud Infrastructure Products #  vCenter Server
-VMware Cloud Foundation
-vSAN">
+<meta name=description content="Cloud Infrastructure Metering #  vCloud Usage Meter is a virtual appliance for tracking the usage of the VMware products part of the VMware Cloud Provider Program that are deployed on-prem and payed based on pay-as-you-grow model.
+The Usage Meter appliance is installed on-prem through vSphere and connects to the metered products through their IPs and the users who are able to connect to them. After the successful connection to the metered products is established, the collection of usage data starts.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Cloud Infrastructure Metering">
-<meta property="og:description" content="Cloud Infrastructure Metering #  How to start metering your VCPP products with Usage Meter #  The following information helps you understand how Usage Meter detects and meters the usage of the listed VMware products and their features.
-It also provides insight into how the reported usage data is calculated and appears in the Usage Insight reports.
-Metering Cloud Infrastructure Products #  vCenter Server
-VMware Cloud Foundation
-vSAN">
+<meta property="og:description" content="Cloud Infrastructure Metering #  vCloud Usage Meter is a virtual appliance for tracking the usage of the VMware products part of the VMware Cloud Provider Program that are deployed on-prem and payed based on pay-as-you-grow model.
+The Usage Meter appliance is installed on-prem through vSphere and connects to the metered products through their IPs and the users who are able to connect to them. After the successful connection to the metered products is established, the collection of usage data starts.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/metering/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-08-24T14:15:03+02:00">
+<meta property="article:modified_time" content="2022-08-29T11:46:53+03:00">
 <title>Cloud Infrastructure Metering | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.ba135fa28da35568193ef4c4ec5fd4784bdff445d534971234c07be7837d1094.js integrity="sha256-uhNfoo2jVWgZPvTE7F/UeEvf9EXVNJcSNMB754N9EJQ=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.24c73c72a4242f679f03669878605dccd8dcd5e805ecdb39850df7df83e75158.js integrity="sha256-JMc8cqQkL2efA2aYeGBdzNjc1egF7Ns5hQ3334PnUVg=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -117,37 +111,102 @@ VMware Cloud Solutions
 Cloud Infrastructure Metering
 <a class=anchor href=#cloud-infrastructure-metering>#</a>
 </h1>
+<p><img src=/static/images/usage-meter-product-detection/usage-meter-logo.png alt="Usage Meter"></p>
+<p>vCloud Usage Meter is a virtual appliance for tracking the usage of the VMware products part of the VMware Cloud Provider Program that are deployed on-prem and payed based on pay-as-you-grow model.</p>
+<p>The Usage Meter appliance is installed on-prem through vSphere and connects to the metered products through their IPs and the users who are able to connect to them. After the successful connection to the metered products is established, the collection of usage data starts.</p>
+<p>The data is collected every 1 hour for most VMware products and used by vCloud Usage Insight. The latter is a cloud service that aggregates the usage data and generated reports out of it. The aggregated data appears during the first few days of the following month in the VMware Commerce Portal (VCP). This data is used for the generation of the VCP Monthly Billing Order (MBO).</p>
+<p>Here is a glimpse of how Usage Meter and Usage Insight work together:</p>
+<p><img src=/static/images/usage-meter-product-detection/Usage%20Meter%20Workflow.png alt="Usage Meter Workflow"></p>
+<h2 id=vcloud-usage-meter-deployement>
+vCloud Usage Meter Deployement
+<a class=anchor href=#vcloud-usage-meter-deployement>#</a>
+</h2>
+<p>vCloud Usage Meter is deployed on-prem as a virtual appliance and tracks the usage of the VMware products that it meters.</p>
+<p>One of the ways to deploy the appliance is to use the VMware Cloud Provider Lifecycle Manager.</p>
+<p>See the <strong>following information</strong> on how to deploy vCloud Usage Meter by using the API calls of the VMware Cloud Provider Lifecycle Manager.</p>
+<p>Another way to deploy the appliance is by installing its ova file through vSphere. See the process <strong>here</strong>.</p>
+<h2 id=vcloud-usage-meter-security-and-privacy-guidelines>
+vCloud Usage Meter Security and Privacy Guidelines
+<a class=anchor href=#vcloud-usage-meter-security-and-privacy-guidelines>#</a>
+</h2>
+<p>vCloud Usage Meter collects usage data from the metered products in a transparent and secure way. It anonymizes data such as vSAN cluster name, VM name, hostname, target vCenter, etc. The anonymization is conducted prior to transmitting to VMware using SHA1 to create a one-way hash. From the hash, VMware cannot obtain the original value.</p>
+<p>Moreover, vCloud Usage Meter does not collect any PII data. Providers can see at any time what data their Usage Meter collects by downloading the usage data locally.</p>
+<p>The full list of data collected by vCloud Usage Meter per supported VMware product can be found in the <strong>Usage Meter Data Privacy and Sharing Guidelines whitepaper</strong>.</p>
+<p>vCloud Usage Meter is also [FIPS-compliant] (<a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.5/Getting-Started-vCloud-Usage-Meter/GUID-CBF5E838-24F3-4A3F-9B53-752E41AD9806.html>https://docs.vmware.com/en/vCloud-Usage-Meter/4.5/Getting-Started-vCloud-Usage-Meter/GUID-CBF5E838-24F3-4A3F-9B53-752E41AD9806.html</a>) which testifies to its high level of security and data privacy.</p>
 <h2 id=how-to-start-metering-your-vcpp-products-with-usage-meter>
 How to start metering your VCPP products with Usage Meter
 <a class=anchor href=#how-to-start-metering-your-vcpp-products-with-usage-meter>#</a>
 </h2>
-<p>The following information helps you understand how Usage Meter detects and meters the usage of the listed VMware products and their features.</p>
-<p>It also provides insight into how the reported usage data is calculated and appears in the Usage Insight reports.</p>
+<p>To start metering the VMware products that you use, you need a signed VCPP contract with VMware and a deployed Usage Meter appliance. The latter must be registered with your VCPP license (Rental or Sovereing Cloud) before you can start metering the usage of your VMware products.</p>
+<p>Then, you must add the details of each product like IP address or hostname, and the credentials of the user who is able to connect to it.</p>
+<p>The process of adding a VMware product for metering is explained in details in the following <strong>page</strong>.</p>
+<h2 id=how-does-the-metering-work>
+How does the metering work
+<a class=anchor href=#how-does-the-metering-work>#</a>
+</h2>
+<p>The following information helps you understand how the metering of product usage data works.</p>
+<p>It also provides insight into how the reported usage data is calculated and appears in the vCloud Usage Insight reports.</p>
+<p>The metering information goes into the following categories.</p>
 <h3 id=metering-cloud-infrastructure-products>
 Metering Cloud Infrastructure Products
 <a class=anchor href=#metering-cloud-infrastructure-products>#</a>
 </h3>
-<p><a href=../vcenter-metering>vCenter Server</a></p>
-<p><a href=../vcf-metering>VMware Cloud Foundation</a></p>
-<p><a href=../vsan-metering>vSAN</a></p>
-<p><a href=../nsx-metering>NSX</a></p>
-<p><a href=../cloud-director-metering>Cloud Director</a></p>
+<ol>
+<li>
+<p><a href=../vcenter-metering>vCenter Server</a> - Metered based on the average capped billed vRAM per a managed VM.Report as part of the FLex Core bundle.</p>
+</li>
+<li>
+<p><a href=../vcf-metering>VMware Cloud Foundation</a> - Metering is based on the time-based average of host CPU core count aggregated by different VCF editions except for the SDDC Manager license edition. The SDDC Manager license edition is metered as an average Capped Billed vRAM GB per a VM. The VCF editon that is reported is the one selected when the VCF is added in the Usage Meter web application.</p>
+</li>
+<li>
+<p><a href=../vsan-metering>vSAN</a> - Metered based on Monthly average of an hourly count of used capacity (datastore space used). The vSAN license edition is determined by the vSAN features used by the vCenter VMs.</p>
+</li>
+<li>
+<p><a href=../nsx-metering>NSX- V</a> - Metering is based on the average capped billed vRAM GB per a VM using a NSX-V features if bundled or a monthly average of an hourly count of non-unique VMs serviced for the NSX-V Enterprise edition only. The edition is determined by the NSX- V features that are used by the vCenter VMs.</p>
+</li>
+<li>
+<p>[NSX-T] (../nsx-metering) - Metered based on the average capped billed vRAM in GB per VM using NSX-T features. The reported license edition is determined by the NSX-T features used by the vCenter VMs.</p>
+</li>
+<li>
+<p><a href=../cloud-director-metering>Cloud Director</a> - Metered based on the number VMs under management.</p>
+</li>
+</ol>
 <h3 id=metering-other-solutions>
 Metering Other Solutions
 <a class=anchor href=#metering-other-solutions>#</a>
 </h3>
-<p><a href=../cloud-director-availability-metering>Cloud Director Availability</a></p>
-<p><a href=../tanzu-metering>Tanzu</a></p>
-<p><a href=../srm-metering>SRM</a></p>
-<p><a href=../vrops-metering>vRealize Operations</a></p>
-<p><a href=../vrni-metering>vRealize Network Insight</a></p>
-<p><a href=../vra-metering>vRealize Automation</a></p>
+<ol>
+<li>
+<p><a href=../cloud-director-availability-metering>Cloud Director Availability</a> - Usage is calculated based on the number of protected VMs.</p>
+</li>
+<li>
+<p><a href=../tanzu-metering>Tanzu</a> - Usage is calculated based on the vRAM or CPU cores used by the Tanzu-related VMs.</p>
+</li>
+<li>
+<p><a href=../srm-metering>SRM</a> - Metered based on the number of protected VMs.</p>
+</li>
+<li>
+<p><a href=../vrops-metering>vRealize Operations</a> - Usage is metered either based on the average capped billed vRAM used by the VMs monitored by vRealize Operations when the latter is used as a Flex Add-on product, or the hourly count of non-uniques VMs under monitoring throughout the month when vROPs is reported as a standalone product.</p>
+</li>
+<li>
+<p><a href=../vrni-metering>vRealize Network Insight</a> - Usage is metered either based on the average capped billed vRAM used by the VMs monitored by vRealize Operations when the latter is used as a Flex Add-on product, or the hourly count of non-uniques VMs under monitoring throughout the month when vROPs is reported as a standalone product.</p>
+</li>
+<li>
+<p><a href=../vra-metering>vRealize Automation</a> - Usage is calculated based on the monthly average of an hourly count of non-unique VMs in the month.</p>
+</li>
+</ol>
 <h3 id=metering-other-products>
 Metering Other Products
 <a class=anchor href=#metering-other-products>#</a>
 </h3>
-<p><a href=../horizon-metering>Horizon</a></p>
-<p><a href=../horizon-daas-metering>Horizon DaaS</a></p>
+<ol>
+<li>
+<p><a href=../horizon-metering>Horizon</a> - Usage is calculated as a maximum number of desktop VMs under management for VDI or maximum number of sessions under management for RDSH.</p>
+</li>
+<li>
+<p><a href=../horizon-daas-metering>Horizon DaaS</a> - Usage is calculated based on the maximum number of concurrent connections to Horizon Connection Server per license edition.</p>
+</li>
+</ol>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
