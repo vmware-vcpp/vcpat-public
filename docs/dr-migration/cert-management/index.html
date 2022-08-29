@@ -10,13 +10,13 @@ Each of them comes with their unique self-signed SSL certificate during the depl
 Each of them comes with their unique self-signed SSL certificate during the deployment. But still, these certificates need to be replaced when they expire, or if the providers prefer to use CA-signed ones to make sure there will be no browser warnings, for example.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/cert-management/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-08-29T11:46:53+03:00">
+<meta property="article:modified_time" content="2022-08-29T11:51:04+03:00">
 <title>DR and Migration Certificate Management | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.24c73c72a4242f679f03669878605dccd8dcd5e805ecdb39850df7df83e75158.js integrity="sha256-JMc8cqQkL2efA2aYeGBdzNjc1egF7Ns5hQ3334PnUVg=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.510de3340da6237fb42c6f7017d71b7d79bf5e0bec4b1839d1176a8c7d939923.js integrity="sha256-UQ3jNA2mI3+0LG9wF9cbfXm/XgvsSxg50RdqjH2TmSM=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -113,7 +113,12 @@ DR and Migration Certificate Management
 </h1>
 <p>The SSL certificates are essential for establishing a trusted connection between the different VMware Cloud Director Availability appliances and their proper service.</p>
 <p>Each of them comes with their unique self-signed SSL certificate during the deployment. But still, these certificates need to be replaced when they expire, or if the providers prefer to use CA-signed ones to make sure there will be no browser warnings, for example. </p>
-<p>This post will review the necessary steps to replace the Cloud Service, Manager Service, Replicator Service, and the Tunnel Service certificates with CA-signed ones. </p>
+<p>Below you can find the necessary steps to replace the Cloud Service, Manager Service, Replicator Service, and the Tunnel Service certificates with CA-signed ones. </p>
+<h2 id=usual-scenario>
+Usual scenario
+<a class=anchor href=#usual-scenario>#</a>
+</h2>
+<p>It is sufficient for most providers to use a CA-signed certificate for the Cloud Service only and self-signed certificates for all other services. This CA-signed certificate has to be generated for the public endpoint of VMware Cloud Director Availability. </p>
 <h2 id=prerequisites-for-the-ca-signed-certificate>
 Prerequisites for the CA-signed certificate
 <a class=anchor href=#prerequisites-for-the-ca-signed-certificate>#</a>
@@ -143,11 +148,6 @@ Useful commands
 <p><em><code> openssl x509 -inform der -in certificate.cer -out certificate.pem</code></em></p>
 <p>Command 3: Prepare a PKCS#12 (.pfx) from a .pem (in case your CA didn&rsquo;t provide it to you)</p>
 <p><em><code> openssl pkcs12 -export -out certificate.pfx -inkey privateKey.key -in certificate.crt -certfile CACert.crt</code></em></p>
-<h2 id=usual-scenario>
-Usual scenario
-<a class=anchor href=#usual-scenario>#</a>
-</h2>
-<p>It is sufficient for most providers to use a CA-signed certificate for the Cloud Service only and self-signed certificates for all other services. This CA-signed certificate has to be generated for the public address of VMware Cloud Director Availability. </p>
 <h3 id=steps>
 Steps
 <a class=anchor href=#steps>#</a>
@@ -396,7 +396,7 @@ Other appliances
 <p>If you plan to replace all self-signed certificates with CA-signed ones, you can follow the steps described for the Cloud Service. The only difference is in the affected services as follows:</p>
 <ul>
 <li>
-<p>When changing the SSL certificate of a Manager Service, the trust between all Replicator Service instances is invalidated. To re-establish it, you need to register all Replicator Service instances by performing Repair from their UI and re-pair the cloud sites.</p>
+<p>When changing the SSL certificate of a Manager Service, the trust between all Replicator Service instances is invalidated. All cloud and on-premises replicators become offline. The cloud replicators need to be repaired manually while the on-premises ones will restore their operation automatically within 30 minutes without repairing them manually. However, it may have a temporary impact over the active replications.</p>
 </li>
 <li>
 <p>When changing the SSL certificate of a Replicator Service, it leads to a paring problem with Manager Service. You need to re-pair to the Manager Service on the local site and re-establish the trust between all cloud sites.</p>

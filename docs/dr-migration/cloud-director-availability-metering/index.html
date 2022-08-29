@@ -2,18 +2,16 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Cloud Director Availability Metering and Reporting #  Usage Meter 4.5.0.1 can detect configured for protection or migration virtual machines using VMware Cloud Director Availability, where the source or destination is a replication-enabled VMware Cloud Director.
-Configuration #  VMware Cloud Director Availability Management Appliance instance must be registered with Usage Meter by providing the appliance IP address or hostname and root credentials.
-Feature Detection #  Usage Meter collects the number of all replications (migrations and protections) during the month.">
+<meta name=description content="Cloud Director Availability Metering #  Usage Meter collects the number of all replications (migrations and protections) configured in VMware Cloud Director Availability during the month. The collection is performed on an hourly basis. Replications for both powered-on and powered-off VMs are counted. At the end of the month, the report shows the number of all the unique migrated VMs and all the unique protected VMs.
+Prerequisites #   vCloud Usage Meter can connect to VMware Cloud Director Availability.">
 <meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="Cloud Director Availability Metering and Reporting">
-<meta property="og:description" content="Cloud Director Availability Metering and Reporting #  Usage Meter 4.5.0.1 can detect configured for protection or migration virtual machines using VMware Cloud Director Availability, where the source or destination is a replication-enabled VMware Cloud Director.
-Configuration #  VMware Cloud Director Availability Management Appliance instance must be registered with Usage Meter by providing the appliance IP address or hostname and root credentials.
-Feature Detection #  Usage Meter collects the number of all replications (migrations and protections) during the month.">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Cloud Director Availability Metering">
+<meta property="og:description" content="Cloud Director Availability Metering #  Usage Meter collects the number of all replications (migrations and protections) configured in VMware Cloud Director Availability during the month. The collection is performed on an hourly basis. Replications for both powered-on and powered-off VMs are counted. At the end of the month, the report shows the number of all the unique migrated VMs and all the unique protected VMs.
+Prerequisites #   vCloud Usage Meter can connect to VMware Cloud Director Availability.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/cloud-director-availability-metering/"><meta property="article:section" content="docs">
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/cloud-director-availability-metering/"><meta property="article:section" content="docs">
 <meta property="article:modified_time" content="2022-08-29T11:51:04+03:00">
-<title>Cloud Director Availability Metering and Reporting | VMware Cloud Provider Architecture Toolkit</title>
+<title>Cloud Director Availability Metering | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
@@ -104,86 +102,66 @@ VMware Cloud Solutions
 <label for=menu-control>
 <img src=/svg/menu.svg class=book-icon alt=Menu>
 </label>
-<strong>Cloud Director Availability Metering and Reporting</strong>
+<strong>Cloud Director Availability Metering</strong>
 <label for=toc-control>
 </label>
 </div>
 </header>
-<article class=markdown><h1 id=cloud-director-availability-metering-and-reporting>
-Cloud Director Availability Metering and Reporting
-<a class=anchor href=#cloud-director-availability-metering-and-reporting>#</a>
+<article class=markdown><h1 id=cloud-director-availability-metering>
+Cloud Director Availability Metering
+<a class=anchor href=#cloud-director-availability-metering>#</a>
 </h1>
-<p>Usage Meter 4.5.0.1 can detect configured for protection or migration virtual machines using VMware Cloud Director Availability, where the source or destination is a replication-enabled VMware Cloud Director.</p>
+<p>Usage Meter collects the number of all replications (migrations and protections) configured in VMware Cloud Director Availability during the month. The collection is performed on an hourly basis. Replications for both powered-on and powered-off VMs are counted. At the end of the month, the report shows the number of all the unique migrated VMs and all the unique protected VMs.</p>
+<h2 id=prerequisites>
+Prerequisites
+<a class=anchor href=#prerequisites>#</a>
+</h2>
+<ul>
+<li>vCloud Usage Meter can connect to VMware Cloud Director Availability.</li>
+<li>You have the root credentials for the VMware Cloud Director Availability appliance.</li>
+<li>The VMware Cloud Director Availability certificate is FIPS compliant.</li>
+</ul>
 <h2 id=configuration>
 Configuration
 <a class=anchor href=#configuration>#</a>
 </h2>
-<p>VMware Cloud Director Availability Management Appliance instance must be registered with Usage Meter by providing the appliance IP address or hostname and root credentials.</p>
-<h2 id=feature-detection>
-Feature Detection
-<a class=anchor href=#feature-detection>#</a>
+<ol>
+<li>In the main menu bar of the vCloud Usage Meter Web interface, click Products.</li>
+<li>In the left navigation pane, click VMware Cloud Director Availability.</li>
+<li>On the VMware Cloud Director Availability page, click the Add.</li>
+<li>In the Endpoint text box, enter the host name or IP address of your Cloud Replication Management Appliance.</li>
+<li>In the Username and Password text boxes, enter the credentials of a VMware Cloud Director Availability root user.</li>
+<li>Click Add.</li>
+</ol>
+<p>Note: If you deploy vCloud Usage Meter in an external network and has no direct access to VMware Cloud Director Availability, Cloud Replication Management Appliance, or the vCenter Replication Management Appliance, as Endpoint, provide the Service Endpoint address. For Cloud Replication Management Appliance, set the Restrict Admin APIs by source IP configuration to Allow admin access from anywhere.</p>
+<p>If the metering fails due to VMware Cloud Director Availability not being available or Usage Meter is not functioning, Usage Meter will report the last known &ldquo;Protected VMs&rdquo; count. This can lead to some replications not reported in the total number of unique replications for the month.
+If there is no successful collection during the month, VMware Cloud Director Availability usage will not be reported.</p>
+<h2 id=metered-cases>
+Metered cases
+<a class=anchor href=#metered-cases>#</a>
 </h2>
-<p>Usage Meter collects the number of all replications (migrations and protections) during the month. The collection is performed on an hourly basis. Replications for both powered-on and powered-off VMs are counted. At the end of the month, the report shows the number of all the unique migrated VMs and all the unique protected VMs.
-Replications are reported in the following cases:</p>
 <ul>
-<li>Cloud-to-Cloud migrations and protection, where the registered VMware Cloud Director Availability is the destination</li>
-<li>vCenter-to-Cloud migrations and protection, where the registered VMware Cloud Director Availability is the destination</li>
-<li>Cloud-to-vCenter migrations and protections where the registered VMware Cloud Director Availability is the source</li>
+<li>VMware Cloud Director Availability vCenter Cloud-to-vCenter Cloud Protections</li>
+<li>VMware Cloud Director Availability vCenter Cloud-to-vCenter Cloud Migrations</li>
+<li>VMware Cloud Director Availability vCenter Cloud-to-vCenter Protections</li>
+<li>VMware Cloud Director Availability vCenter Cloud-to-vCenter Migrations</li>
+<li>VMware Cloud Director Availability vCenter-to-vCenter Cloud Protections</li>
+<li>VMware Cloud Director Availability vCenter-to-vCenter Cloud Migrations</li>
 </ul>
-<p>When Usage Meter fails to connect to a registered VMware Cloud Director Availability Management Appliance instance, the following actions are taken:</p>
-<ul>
-<li>The failure is logged in the Usage Meter log files</li>
-<li>An error message is shown on the Notifications page in the Usage Meter web application</li>
-<li>An email is sent to the defined Usage Meter admin email account
-If the metering fails due to VMware Cloud Director Availability not being available or Usage Meter is not functioning, Usage Meter will report the last known &ldquo;Protected VMs&rdquo; count. This can lead to some replications not being reported in the total number of unique replications for the month.</li>
-</ul>
-<p>If there is no successful collection during the month, VMware Cloud Director Availability usage will not be reported.</p>
 <h2 id=reporting>
 Reporting
 <a class=anchor href=#reporting>#</a>
 </h2>
-<p>A sample Monthly Usage Report for VMware Cloud Director Availability can be seen below.</p>
-<table>
-<thead>
-<tr>
-<th><strong>Product</strong></th>
-<th><strong>Unit of Measure</strong></th>
-<th><strong>Units to be Reported</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>VMware Cloud Director Availability Cloud-to-Cloud Migrations</td>
-<td>Protected VMs</td>
-<td>100</td>
-</tr>
-<tr>
-<td>VMware Cloud Director Availability Cloud-to-Cloud Protections</td>
-<td>Protected VMs</td>
-<td>200</td>
-</tr>
-<tr>
-<td>VMware Cloud Director Availability Cloud-to-vCenter Migrations</td>
-<td>Protected VMs</td>
-<td>75</td>
-</tr>
-<tr>
-<td>VMware Cloud Director Availability Cloud-to-vCenter Protections</td>
-<td>Protected VMs</td>
-<td>105</td>
-</tr>
-<tr>
-<td>VMware Cloud Director Availability vCenter-to-Cloud Migrations</td>
-<td>Protected VMs</td>
-<td>46</td>
-</tr>
-<tr>
-<td>VMware Cloud Director Availability vCenter-to-Cloud Protections</td>
-<td>Protected VMs</td>
-<td>27</td>
-</tr>
-</tbody>
-</table>
+<p>VMware Cloud Director Availability ™ reporting consists of:</p>
+<ul>
+<li><strong>Disaster Recovery</strong>: The number of VMs under protection - 10 points per protected virtual machine per month. A protected VM is any virtual machine that is replicated from the primary site to the recovery site, regardless of whether the VM is powered on or off.</li>
+<li><strong>Migration</strong>: The number of VMs configured for migration (no charge) - 0 points per migration. To be counted as migration, the workload replication must be configured by using the button “New migration” from the UI or by invoking an API call that sets the replication type to migration.</li>
+</ul>
+<p>Please note that all usage should be reported to the following SKUs, regardless of the version in use:</p>
+<ul>
+<li>VMW-VCAN-CA-C – VMware Cloud Director Availability – Disaster Recovery</li>
+<li>VMW-VCAN-CA-MIG-C – VMware Cloud Director Availability – Migration</li>
+</ul>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">

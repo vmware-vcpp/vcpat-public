@@ -2,19 +2,23 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="DR and Migration Shutdown and Startup #  ">
+<meta name=description content="DR and Migration Shutdown and Startup #  Start/Stop/Status #  To start, restart, stop or see the status of each of the VMware Cloud Director Availability appliances, you need to establish an SSH session to the respective appliance and run the following command:
+systemctl {start|restart|stop|status} <Service_System_Unit> The different services and their system units can be found in the table below.
+   Service Name System Unit     VMware Cloud on AWS Data Engine Service h4dm   Replicator Service replicator   Manager Service manager   Cloud Service cloud   Tunnel Service tunnel   vSphere Replication Server hbrsrv   Lightweight Delta Protocol Service lwdproxy   PostgreSQL database server h4postgresql    Restart through the UI #  As part of the troubleshooting, you can restart all VMware Cloud Director Availability services in the appliance from the System health page.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="DR and Migration Shutdown and Startup">
-<meta property="og:description" content="DR and Migration Shutdown and Startup #  ">
+<meta property="og:description" content="DR and Migration Shutdown and Startup #  Start/Stop/Status #  To start, restart, stop or see the status of each of the VMware Cloud Director Availability appliances, you need to establish an SSH session to the respective appliance and run the following command:
+systemctl {start|restart|stop|status} <Service_System_Unit> The different services and their system units can be found in the table below.
+   Service Name System Unit     VMware Cloud on AWS Data Engine Service h4dm   Replicator Service replicator   Manager Service manager   Cloud Service cloud   Tunnel Service tunnel   vSphere Replication Server hbrsrv   Lightweight Delta Protocol Service lwdproxy   PostgreSQL database server h4postgresql    Restart through the UI #  As part of the troubleshooting, you can restart all VMware Cloud Director Availability services in the appliance from the System health page.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/shutdown-startup/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-08-29T11:46:53+03:00">
+<meta property="article:modified_time" content="2022-08-29T11:51:04+03:00">
 <title>DR and Migration Shutdown and Startup | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.24c73c72a4242f679f03669878605dccd8dcd5e805ecdb39850df7df83e75158.js integrity="sha256-JMc8cqQkL2efA2aYeGBdzNjc1egF7Ns5hQ3334PnUVg=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.510de3340da6237fb42c6f7017d71b7d79bf5e0bec4b1839d1176a8c7d939923.js integrity="sha256-UQ3jNA2mI3+0LG9wF9cbfXm/XgvsSxg50RdqjH2TmSM=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -109,6 +113,81 @@ VMware Cloud Solutions
 DR and Migration Shutdown and Startup
 <a class=anchor href=#dr-and-migration-shutdown-and-startup>#</a>
 </h1>
+<h2 id=startstopstatus>
+Start/Stop/Status
+<a class=anchor href=#startstopstatus>#</a>
+</h2>
+<p>To start, restart, stop or see the status of each of the VMware Cloud Director Availability appliances, you need to establish an SSH session to the respective appliance and run the following command:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-console data-lang=console>systemctl {start|restart|stop|status} &lt;Service_System_Unit&gt;
+</code></pre></div><p>The different services and their system units can be found in the table below.</p>
+<table>
+<thead>
+<tr>
+<th>Service Name</th>
+<th>System Unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VMware Cloud on AWS Data Engine Service</td>
+<td>h4dm</td>
+</tr>
+<tr>
+<td>Replicator Service</td>
+<td>replicator</td>
+</tr>
+<tr>
+<td>Manager Service</td>
+<td>manager</td>
+</tr>
+<tr>
+<td>Cloud Service</td>
+<td>cloud</td>
+</tr>
+<tr>
+<td>Tunnel Service</td>
+<td>tunnel</td>
+</tr>
+<tr>
+<td>vSphere Replication Server</td>
+<td>hbrsrv</td>
+</tr>
+<tr>
+<td>Lightweight Delta Protocol Service</td>
+<td>lwdproxy</td>
+</tr>
+<tr>
+<td>PostgreSQL database server</td>
+<td>h4postgresql</td>
+</tr>
+</tbody>
+</table>
+<h2 id=restart-through-the-ui>
+Restart through the UI
+<a class=anchor href=#restart-through-the-ui>#</a>
+</h2>
+<p>As part of the troubleshooting, you can restart all VMware Cloud Director Availability services in the appliance from the System health page.</p>
+<p><strong>Note</strong>: After restarting each service, wait a couple of minutes for the service to become operational and display its service management interface again.</p>
+<h3 id=procedure>
+Procedure
+<a class=anchor href=#procedure>#</a>
+</h3>
+<ol>
+<li>Log in to the management interface of each VMware Cloud Director Availability appliance.
+<ul>
+<li>In a Web browser, go to https://Appliance-IP-Address/ui/admin.</li>
+<li>Select Appliance login or SSO login and enter the root or the single sign-on user credentials.</li>
+<li>Click Login.</li>
+</ul>
+</li>
+<li>Restart all of the appliance services.
+<ul>
+<li>In the left pane, click System Health.</li>
+<li>In the System health page, click Restart service.</li>
+<li>In the Restart service window, to confirm the restart operation click Restart.</li>
+</ul>
+</li>
+</ol>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">

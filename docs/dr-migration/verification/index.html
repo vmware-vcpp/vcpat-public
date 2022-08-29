@@ -2,19 +2,23 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="DR and Migration Verification #  ">
+<meta name=description content="DR and Migration Verification #  The VMware Cloud Director Availability System Health page indicates the overall status of the service and appliances. It is highly recommended to verify the status after the initial setup or any maintenance operations such as an upgrade, certificate changes, password changes or other.
+Service status #  Verify the connectivity statuses in the local cloud site to the following infrastructure services.
+ Connectivity to the vCenter Server Lookup service.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="DR and Migration Verification">
-<meta property="og:description" content="DR and Migration Verification #  ">
+<meta property="og:description" content="DR and Migration Verification #  The VMware Cloud Director Availability System Health page indicates the overall status of the service and appliances. It is highly recommended to verify the status after the initial setup or any maintenance operations such as an upgrade, certificate changes, password changes or other.
+Service status #  Verify the connectivity statuses in the local cloud site to the following infrastructure services.
+ Connectivity to the vCenter Server Lookup service.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/verification/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-08-29T11:46:53+03:00">
+<meta property="article:modified_time" content="2022-08-29T11:51:04+03:00">
 <title>DR and Migration Verification | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.24c73c72a4242f679f03669878605dccd8dcd5e805ecdb39850df7df83e75158.js integrity="sha256-JMc8cqQkL2efA2aYeGBdzNjc1egF7Ns5hQ3334PnUVg=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.510de3340da6237fb42c6f7017d71b7d79bf5e0bec4b1839d1176a8c7d939923.js integrity="sha256-UQ3jNA2mI3+0LG9wF9cbfXm/XgvsSxg50RdqjH2TmSM=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -109,6 +113,36 @@ VMware Cloud Solutions
 DR and Migration Verification
 <a class=anchor href=#dr-and-migration-verification>#</a>
 </h1>
+<p>The VMware Cloud Director Availability System Health page indicates the overall status of the service and appliances. It is highly recommended to verify the status after the initial setup or any maintenance operations such as an upgrade, certificate changes, password changes or other.</p>
+<h2 id=service-status>
+Service status
+<a class=anchor href=#service-status>#</a>
+</h2>
+<p>Verify the connectivity statuses in the local cloud site to the following infrastructure services.</p>
+<ul>
+<li>Connectivity to the vCenter Server Lookup service.</li>
+<li>Connectivity to the database of VMware Cloud Director Availability.</li>
+<li>Connectivity to VMware Cloud Director.</li>
+<li>Connectivity to the local Tunnel Service.</li>
+<li>Connectivity to the NTP server.</li>
+</ul>
+<h2 id=tunnel-connectivity>
+Tunnel connectivity
+<a class=anchor href=#tunnel-connectivity>#</a>
+</h2>
+<p>The following three sections are available for verifying the statuses of the connections from the local Tunnel Service to the following destinations.</p>
+<ul>
+<li>Local components connectivity to all the remaining VMware Cloud Director Availability services on the cloud appliances in the local cloud site.</li>
+<li>Remote cloud sites connectivity to the remote Tunnel Service instances in all paired remote cloud sites with the local cloud site.</li>
+<li>On-Prem Incoming connectivity to all paired On-Premises to Cloud Director Replication Appliance instances with the local cloud site.</li>
+</ul>
+<p>Successful connectivity shows a green check icon OK. Alternatively, a red exclamation icon shows for connections that the Tunnel Service cannot establish. Restoring such connections automatically updates their connectivity status to green check icons OK.</p>
+<h2 id=example>
+Example
+<a class=anchor href=#example>#</a>
+</h2>
+<p>Below you can see an example from the System Health page.</p>
+<p><img src=/images/dr-migration/operations/verification/vcda-system-health-example.png alt="Generating a Certificate Signing Request"></p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">

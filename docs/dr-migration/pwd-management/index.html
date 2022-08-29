@@ -2,19 +2,23 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="DR and Migration Password Management #  ">
+<meta name=description content="DR and Migration Password Management #  VMware Cloud Director Availability doesn&rsquo;t have its users and permissions system but utilizes the organization structure and authentication mechanisms of VMware Cloud Director.
+As a result, there is only one local user for each appliance - the system administrator user (root).
+VMware Cloud Director Availability uses the root user account for access to both the virtual appliance console and the management interface. The initial deployment of each VMware Cloud Director Availability appliance sets up this account.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="DR and Migration Password Management">
-<meta property="og:description" content="DR and Migration Password Management #  ">
+<meta property="og:description" content="DR and Migration Password Management #  VMware Cloud Director Availability doesn&rsquo;t have its users and permissions system but utilizes the organization structure and authentication mechanisms of VMware Cloud Director.
+As a result, there is only one local user for each appliance - the system administrator user (root).
+VMware Cloud Director Availability uses the root user account for access to both the virtual appliance console and the management interface. The initial deployment of each VMware Cloud Director Availability appliance sets up this account.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/pwd-management/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-08-29T11:46:53+03:00">
+<meta property="article:modified_time" content="2022-08-29T11:51:04+03:00">
 <title>DR and Migration Password Management | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.24c73c72a4242f679f03669878605dccd8dcd5e805ecdb39850df7df83e75158.js integrity="sha256-JMc8cqQkL2efA2aYeGBdzNjc1egF7Ns5hQ3334PnUVg=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.510de3340da6237fb42c6f7017d71b7d79bf5e0bec4b1839d1176a8c7d939923.js integrity="sha256-UQ3jNA2mI3+0LG9wF9cbfXm/XgvsSxg50RdqjH2TmSM=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -109,6 +113,52 @@ VMware Cloud Solutions
 DR and Migration Password Management
 <a class=anchor href=#dr-and-migration-password-management>#</a>
 </h1>
+<p>VMware Cloud Director Availability doesn&rsquo;t have its users and permissions system but utilizes the organization structure and authentication mechanisms of VMware Cloud Director.</p>
+<p>As a result, there is only one local user for each appliance - the system administrator user (root).</p>
+<p>VMware Cloud Director Availability uses the root user account for access to both the virtual appliance console and the management interface. The initial deployment of each VMware Cloud Director Availability appliance sets up this account. The OVF Deployment wizard requires an initial password for the root user account, with an initial requirement being over three characters long. After the initial deployment, VMware Cloud Director Availability forces changing this initial password on the first login by using the root user, with the following requirements for the persistent root user account password.</p>
+<ul>
+<li>The password must be over eight characters.</li>
+<li>The password must contain digits, upper and lower case letters, and non-alphabetic characters.</li>
+<li>The password cannot match any previous password.</li>
+<li>The password must contain more than four new characters compared to the previous password.</li>
+</ul>
+<h2 id=change-the-root-user-password>
+Change the root user password
+<a class=anchor href=#change-the-root-user-password>#</a>
+</h2>
+<p>For security reasons, you can change the root users passwords of the VMware Cloud Director Availability appliances. Please note that each appliance has its own root user, and changing the password of one appliance will NOT affect the rest.</p>
+<h3 id=procedure>
+Procedure
+<a class=anchor href=#procedure>#</a>
+</h3>
+<ol>
+<li>Log in to the management interface of the VMware Cloud Director Availability appliance.
+<ul>
+<li>In a Web browser, go to https://Appliance-IP-Address/ui/admin.</li>
+<li>Select Appliance login enter the root user credentials.</li>
+<li>Click Login.</li>
+</ul>
+</li>
+<li>In the left pane under Configuration, click Settings.</li>
+<li>Under Appliance settings, next to Root password click Change.</li>
+<li>In the VMware Cloud Director Availability Appliance Password window, change the root user password.
+<ul>
+<li>In the Current Password text box, you must enter the current password of the root user.</li>
+<li>In the New Password text box, enter the new password for the root user. It must comply with the VMware Cloud Director Availability password policy.</li>
+<li>In the Confirm Password text box, enter the same new password.</li>
+<li>To confirm the password change, click Apply.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Note</strong>: VMware Cloud Director Availability does not store the root user password for services communications and operations.
+No further actions are required after any of the VMware Cloud Director Availability appliances root users passwords changes:</p>
+<ul>
+<li>The root user password is used only for administrative logins to the appliance.</li>
+<li>Changing the root user password of the Cloud Replication Management Appliance in a cloud site does not affect the paired cloud sites and does not affect the paired on-premises sites.</li>
+<li>The Replicator Service instances paired with the Cloud Service continue operating normally after changing the root users passwords of the Cloud Replicator Appliance instances and the Cloud Replication Management Appliance.</li>
+<li>The Cloud Service only uses the Cloud Tunnel Appliance root user password to enable the Tunnel Service for the first time.</li>
+<li>Changing the root user password of the On-Premises to Cloud Director Replication Appliance does not affect the pairing with the cloud site.</li>
+</ul>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
