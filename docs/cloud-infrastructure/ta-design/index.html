@@ -10,7 +10,7 @@ As can be imagined, there are several variants of infrastructure that can be sol
 As can be imagined, there are several variants of infrastructure that can be sold by these partners such as “Pay as you go”, “Raw capacity” aka “Allocation based”, “Raw capacity with minimum guarantee” aka “Reservation based”, “Flex” i.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/ta-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-08-30T10:02:17-07:00">
+<meta property="article:modified_time" content="2022-08-30T10:13:49-07:00">
 <title>VMware vRealize Tenant App Design | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
@@ -131,7 +131,7 @@ VMware vRealize Tenant App Design
 <li>Providing an isolated view of the infrastructure and services for each tenant</li>
 </ul>
 <p>Functional Flow Diagram</p>
-<p><img src=/images/vcpat-sources/static/images/vta-detailed-design/vta-detailed-design04.png alt="Graphical user interface, application Description automatically generated"></p>
+<p><img src=/images/vta-detailed-design/vta-detailed-design04.png alt="Graphical user interface, application Description automatically generated"></p>
 <p>Pricing policies have several variants such as their infrastructure scope of application (e.g.: Allocation pool, PAYG, Reservation pool), charge rates for different resources (e.g.: 2$/vCPU/Day, 1$/GB RAM configuration/Day) and conditions for applying the rates (E.g.: Only when powered on, slabbed rate or overage). Associating pricing policies to org VDCs sets up a combination that can be used henceforth for all metering and billing. Bills are created on-demand based on provider’s request and contain a detailed result of applying a pricing policy on and Org-VDC. Reports are customizable entities containing historical data about pricing and usage. They can be scheduled and exported to formats such as CSV and PDF. A plugin to VCD allows these bills and usage data to be exposed to tenants. In addition, Tenant App provides a set of dashboards that can be exposed to tenants.</p>
 <h2 id=licensing>
 Licensing
@@ -147,7 +147,7 @@ Deployment Architecture for vRealize Operations Tenant App for vCloud Director
 <a class=anchor href=#deployment-architecture-for-vrealize-operations-tenant-app-for-vcloud-director>#</a>
 </h2>
 <p>The following architecture provides an overview of integration of Tenant App with vCenter, vCloud Director, and NSX Management Packs.</p>
-<p><img src=/images/vcpat-sources/static/images/vta-detailed-design/vta-detailed-design01.png alt="Graphical user interface, application Description automatically generated"></p>
+<p><img src=/images/vta-detailed-design/vta-detailed-design01.png alt="Graphical user interface, application Description automatically generated"></p>
 <p>You can receive data from vCenter, vCloud Director, and NSX Management Packs.</p>
 <ul>
 <li>vRealize Operations Manager collects resources from vCenter, vCloud Director, and NSX Management Packs using their respective Management Pack plugins and displays it in the vRealize Operations Manager Database.</li>
@@ -168,13 +168,13 @@ Architecture and Port Requirements
 Integration of vRealize Operations Tenant App for vCloud Director as a plug-in
 <a class=anchor href=#integration-of-vrealize-operations-tenant-app-for-vcloud-director-as-a-plug-in>#</a>
 </h3>
-<p><img src=/images/vcpat-sources/static/images/vta-detailed-design/vta-detailed-design02.png alt="Graphical user interface, application Description automatically generated"></p>
+<p><img src=/images/vta-detailed-design/vta-detailed-design02.png alt="Graphical user interface, application Description automatically generated"></p>
 <p>The following architecture provides the port requirement of the vRealize Operations Tenant App for vCloud Director as a stand-alone app.</p>
 <h3 id=integration-of-vrealize-operations-tenant-app-for-vcloud-director-as-a-stand-alone-app>
 Integration of vRealize Operations Tenant App for vCloud Director as a stand-alone App
 <a class=anchor href=#integration-of-vrealize-operations-tenant-app-for-vcloud-director-as-a-stand-alone-app>#</a>
 </h3>
-<p><img src=/images/vcpat-sources/static/images/vta-detailed-design/vta-detailed-design03.png alt="Graphical user interface, application Description automatically generated"></p>
+<p><img src=/images/vta-detailed-design/vta-detailed-design03.png alt="Graphical user interface, application Description automatically generated"></p>
 <h2 id=deployment-model>
 Deployment Model
 <a class=anchor href=#deployment-model>#</a>
@@ -424,7 +424,7 @@ Storage Base Rate Slab
 <ul>
 <li>Example: If you want to charge a VM consuming 100GB of storage at a lower rate ($1 per month) compared to a VM consuming 50GB of storage that is charged at $1.5 per GB per month. In such a case, base rates will be configured as “greater than or equal to:50GB”, “base rate:1”, “default base rate:1.5”. In such a case, a VM having 150GB of storage will be charged $150 a month and a VM having 30GB of storage will be charged $45 a month.</li>
 </ul>
-<p><img src=/images/vcpat-sources/static/images/vta-detailed-design/vta-detailed-design05.png alt="Graphical user interface, application Description automatically generated"></p>
+<p><img src=/images/vta-detailed-design/vta-detailed-design05.png alt="Graphical user interface, application Description automatically generated"></p>
 <h4 id=price-settings>
 Price Settings
 <a class=anchor href=#price-settings>#</a>
@@ -631,11 +631,11 @@ Rate Factors
 <ul>
 <li>Example 1: Discount overall charge on VM by 50% (Rate Factor 0.5) for all VMs tagged with Promo=True. So, if the cost of VM as per the base rate is $100 then after applying the Rate Factor for promotional VMs (or Promo = True), it’ll be $50'</li>
 </ul>
-<p><img src=/images/vcpat-sources/static/images/vta-detailed-design/vta-detailed-design06.png alt="Graphical user interface, application Description automatically generated"></p>
+<p><img src=/images/vta-detailed-design/vta-detailed-design06.png alt="Graphical user interface, application Description automatically generated"></p>
 <ul>
 <li>Example 2: Increase Storage rate by 100% (Rate Factor 2) for all VMs backed up by Avamar with tag ‘Avamar_Backed_Up = True’. In this case, the storage cost of VM as per the base rate is $100, then after applying the mentioned tag, it’ll become $200.</li>
 </ul>
-<p><img src=/images/vcpat-sources/static/images/vta-detailed-design/vta-detailed-design07.png alt="Graphical user interface, application Description automatically generated"></p>
+<p><img src=/images/vta-detailed-design/vta-detailed-design07.png alt="Graphical user interface, application Description automatically generated"></p>
 <h3 id=tanzue-kubernetes-clusters>
 Tanzue Kubernetes Clusters
 <a class=anchor href=#tanzue-kubernetes-clusters>#</a>
@@ -657,7 +657,7 @@ Additional Fixed Cost
 <a class=anchor href=#additional-fixed-cost>#</a>
 </h3>
 <p>This section is used to add any other costs that are to be applied at Org-VDC level. This can be used for charges such as overall tax, overall discounts etc. These can be applied to selective Org-VDCs based on Org-VDC metadata.</p>
-<p><img src=/images/vcpat-sources/static/images/vta-detailed-design/vta-detailed-design08.png alt="Graphical user interface, application Description automatically generated"></p>
+<p><img src=/images/vta-detailed-design/vta-detailed-design08.png alt="Graphical user interface, application Description automatically generated"></p>
 <ol>
 <li>In the above screenshot, any Org-VDC with the above Pricing Policy enabled will be charged with $50 as an additional fixed cost per month</li>
 <li>Additionally, if the Org-VDC is tagged with the metadata ‘Snapshots Enabled = True’ will be charged $10 per day</li>
