@@ -1,0 +1,228 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="What is VMware Cloud Director Object Storage Extension? #  The VMware Cloud Director Object Storage Extension (OSE) allows VMware Cloud Providers who are using VMware Cloud Director to offer object storage services to their customers. The extension acts as middleware which is tightly integrated with VMware Cloud Director to abstract third-party S3 API compatible storage providers in a multi-tenant fashion. OSE runs externally to VMware Cloud Director and integrates through a UI plug-in, which shows either provider or tenant information, depending on the type of logged-in user.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="VMware Cloud Director Object Storage Extension Architecture Reference">
+<meta property="og:description" content="What is VMware Cloud Director Object Storage Extension? #  The VMware Cloud Director Object Storage Extension (OSE) allows VMware Cloud Providers who are using VMware Cloud Director to offer object storage services to their customers. The extension acts as middleware which is tightly integrated with VMware Cloud Director to abstract third-party S3 API compatible storage providers in a multi-tenant fashion. OSE runs externally to VMware Cloud Director and integrates through a UI plug-in, which shows either provider or tenant information, depending on the type of logged-in user.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/developer-ready-cloud/ose-ref-architecture/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-09-02T14:46:00+03:00">
+<title>VMware Cloud Director Object Storage Extension Architecture Reference | VMware Cloud Provider Architecture Toolkit</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.66321db40ef048e8b7a1636594094bceae6708f476b3f7ad353cfcf1b7073569.js integrity="sha256-ZjIdtA7wSOi3oWNllAlLzq5nCPR2s/etNTz88bcHNWk=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>VMware Cloud Provider Architecture Toolkit</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li><a href=/feedback/><em>Feedback</em></a></li>
+<li><a href=/docs/cloud-infrastructure/><strong>Cloud Infrastructure</strong></a>
+<ul>
+<li><a href=/docs/cloud-infrastructure/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/cloud-infrastructure/design/>Design Objectives</a></li>
+<li><a href=/docs/cloud-infrastructure/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/cloud-infrastructure/implementation/>Implementation</a></li>
+<li><a href=/docs/cloud-infrastructure/operations/>Operational Guidance</a></li>
+<li><a href=/docs/cloud-infrastructure/design-decisions/>Design Decisions</a></li>
+<li><a href=/docs/cloud-infrastructure/solution-interop/>Solution Interoperability</a></li>
+</ul>
+</li>
+<li><a href=/docs/networking-security/><strong>Networking and Security</strong></a>
+<ul>
+<li><a href=/docs/networking-security/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/networking-security/design/>Design Objectives</a></li>
+<li><a href=/docs/networking-security/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/networking-security/implementation/>Implementation</a></li>
+<li><a href=/docs/networking-security/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/dr-migration/><strong>DR and Migration</strong></a>
+<ul>
+<li><a href=/docs/dr-migration/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/dr-migration/design/>Design Objectives</a></li>
+<li><a href=/docs/dr-migration/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/dr-migration/implementation/>Implementation</a></li>
+<li><a href=/docs/dr-migration/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/developer-ready-cloud/><strong>Developer Ready Cloud</strong></a>
+<ul>
+<li><a href=/docs/developer-ready-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/developer-ready-cloud/design/>Design Objectives</a></li>
+<li><a href=/docs/developer-ready-cloud/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/developer-ready-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/developer-ready-cloud/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/sovereign-cloud/><strong>Sovereign Cloud</strong></a>
+<ul>
+<li><a href=/docs/sovereign-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/sovereign-cloud/design/>Design Objectives</a></li>
+<li><a href=/docs/sovereign-cloud/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/sovereign-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/sovereign-cloud/operations/>Operational Guidance</a>
+<br></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://cloudsolutions.vmware.com target=_blank rel=noopener>
+VMware Cloud Solutions
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>VMware Cloud Director Object Storage Extension Architecture Reference</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#what-is-vmware-cloud-director-object-storage-extension>What is VMware Cloud Director Object Storage Extension?</a></li>
+<li><a href=#use-cases>Use Cases</a>
+<ul>
+<li><a href=#storing-unstructured-data>Storing Unstructured Data</a></li>
+<li><a href=#persistent-storage-for-application>Persistent Storage for Application</a></li>
+<li><a href=#storing-vapp-templates-and-catalog>Storing vApp Templates and Catalog</a></li>
+<li><a href=#kubernetes-cluster-backup-and-restore>Kubernetes Cluster Backup and Restore</a></li>
+</ul>
+</li>
+<li><a href=#architecture>Architecture</a></li>
+<li><a href=#deployment-options>Deployment Options</a></li>
+<li><a href=#configuration>Configuration</a></li>
+<li><a href=#performance-settings>Performance Settings</a></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=what-is-vmware-cloud-director-object-storage-extension>
+What is VMware Cloud Director Object Storage Extension?
+<a class=anchor href=#what-is-vmware-cloud-director-object-storage-extension>#</a>
+</h1>
+<p>The VMware Cloud Director Object Storage Extension (OSE) allows VMware Cloud Providers who are using VMware Cloud Director to offer object
+storage services to their customers. The extension acts as middleware which is tightly integrated with VMware Cloud Director to abstract third-party S3
+API compatible storage providers in a multi-tenant fashion.
+OSE runs externally to VMware Cloud Director and integrates through a UI plug-in, which shows either provider or tenant information, depending on the type of logged-in user.</p>
+<p>OSE has a 1:1 relationship with VMware Cloud Director, which means that only one instance of OSE can be integrated with a single Cloud Director. OSE 2.1.1 is compatible with VMware Cloud Director version 10.0 and later and the Cloud Director Service.</p>
+<p>An instance of VMware Cloud Director Object Storage Extension can work with a single instance of VMware Cloud Director or a single VMware Cloud Director server group.</p>
+<p>Object Storage Extension can be connected to the following storage providers: Cloudian HyperStore, Dell EMC ECS, AWS S3, or another S3-compatible storage platform1. The provider can selectively enable VMware Cloud Director organizations to consume the service. The unique counterparts for organizations and users are created at the storage provider. The users authenticate to the service with VMware Cloud Director or S3 credentials and access it only through the UI plug-in. The provider can directly access the underlying storage appliance to set quotas or collect usage information for billing purposes.</p>
+<p>Providers can switch between storage platforms with VMware Cloud Director Object Storage Extension but cannot use two different storage platforms simultaneously.</p>
+<p>In addition to the storage platform that OSE will connect with Cloud Director, three or more (for high availability and scalability) RHEL/CentOS/Oracle Linux/Ubuntu/Debian/Photon VM nodes that run OSE, provided as an RPM or DEB package, are required. The number of the OSE VM nodes depends on the used S3 storage and the OSE use case. See for reference: Deployment Options. These VMs are essentially stateless and persist all their data in PostgreSQL DB version from 10. x to 12.x. This could be VMware Cloud Director external PostgreSQL DB (if available) or a dedicated database for Mware Cloud Director Object Storage Extension depending on the OSE use case.</p>
+<p>VMware Cloud Director Object Storage Extension (OSE) enables Cloud Director tenant users to use object storage by native UI experience and support S3 clients to consume the object storage by S3 APIs.</p>
+<p>To connect Cloud Director with the selected S3 object storage platform, OSE uses the following user mapping:
+• VMware Cloud Director service provider is mapped to an ECS/Cloudian admin user, or AWS management account.
+• VMware Cloud Director tenant is mapped to an ECS namespace, Cloudian group, or AWS org unit.
+• VMware Cloud Director user is mapped to an ECS/Cloudian user, or AWS IAM user.</p>
+<p>Other S3-compatible storage can be connected to Cloud Director through the Object Storage Interoperability Service (OSIS).</p>
+<h1 id=use-cases>
+Use Cases
+<a class=anchor href=#use-cases>#</a>
+</h1>
+<p>VMware Cloud Director natively provides Infrastructure as a Service (Iaas) by integrating with the underlying VMware vSphere platform. All native storage services such as storage for virtual machines, named (independent) disks, and catalog storage for virtual machine templates and media are
+using storage attached to vSphere ESXi hosts such as block storage, NFS, or VMware vSAN.</p>
+<p>There is, however, the need for highly scalable, durable, and network-accessible storage that could be utilized by tenants or their workloads without the dependency on the vSphere layer. The VMware Cloud Director Object Storage Extension (OSE) provides access to the object storage either through
+VMware Cloud Director UI extension or via standardized S3 APIs. This allows existing applications to easily access this new type of storage for various use cases.</p>
+<h2 id=storing-unstructured-data>
+Storing Unstructured Data
+<a class=anchor href=#storing-unstructured-data>#</a>
+</h2>
+<p>Through the VMware Cloud Director User Interface, users can create storage buckets and upload and tag unstructured files (objects) of various types.</p>
+<p>These files can be easily accessed with Uniform Resource Locator (URL) links or directly previewed from the OSE plug-in. For protection, versioning and object lock can be applied to the S3 bucket objects. Archived objects in AWS S3 buckets can also be restored, which is basically changing their status
+from archived to frequently accessed objects to view their content. The objects of Cloudian buckets can also be replicated across data centers by setting up an org-level storage policy or changing it individually per a tenant.</p>
+<h2 id=persistent-storage-for-application>
+Persistent Storage for Application
+<a class=anchor href=#persistent-storage-for-application>#</a>
+</h2>
+<p>Users can create application credentials with limited access to a specific bucket. This allows (stateless) applications running in VMware Cloud Director (or outside) to persist their content such as configurations, logs, or static data (web servers) into the object store. The application is using S3 API over the Internet to upload and retrieve object data.</p>
+<h2 id=storing-vapp-templates-and-catalog>
+Storing vApp Templates and Catalog
+<a class=anchor href=#storing-vapp-templates-and-catalog>#</a>
+</h2>
+<p>Because of the close integration with VMware Cloud Director, VMware Cloud Director Object Storage Extension can directly capture and restore a user’s VMware Cloud Director vApps. Users can also share these vApps with other users. Thus, VMware Cloud Director Object Storage Extension provides an additional tier of storage for vApp templates that can be used, for example, for archiving old images.</p>
+<p>Because of the close integration with VMware Cloud Director, VMware Cloud Director Object Storage Extension can directly capture and restore a user’s VMware Cloud Director vApps. Users can also share these vApps with other users. Thus, VMware Cloud Director Object Storage Extension provides an additional tier of storage for vApp templates that can be used, for example, for archiving old images.</p>
+<p>An entire VMware Cloud Director catalog (consisting of vApp templates and media ISO images) can be captured from an existing Org VCD catalog or created from scratch by uploading an individual ISO and OVA files to VMware Cloud Director Object Storage Extension. Then, the catalog can be published, which allows any VMware Cloud Director organization (from any VMware Cloud Director instance) to subscribe to the catalog. As a result, this OSE functionality enables easy distribution of specific catalogs publicly or geographically across VMware Cloud Director instances.</p>
+<h2 id=kubernetes-cluster-backup-and-restore>
+Kubernetes Cluster Backup and Restore
+<a class=anchor href=#kubernetes-cluster-backup-and-restore>#</a>
+</h2>
+<p>In OSE 2.1.1, Kubernetes cluster backups complement the storage of unstructured data, vApps, and catalogs. With the Kubernetes cluster protection, tenants can back up their critical Kubernetes clusters and restore the backups in case of accidental removal of namespaces or a Kubernetes upgrade failure. Tenants can also use the Kubernetes cluster backup to replicate the cluster for debugging, development and staging before rolling their app out in production.</p>
+<h1 id=architecture>
+Architecture
+<a class=anchor href=#architecture>#</a>
+</h1>
+<h1 id=deployment-options>
+Deployment Options
+<a class=anchor href=#deployment-options>#</a>
+</h1>
+<h1 id=configuration>
+Configuration
+<a class=anchor href=#configuration>#</a>
+</h1>
+<h1 id=performance-settings>
+Performance Settings
+<a class=anchor href=#performance-settings>#</a>
+</h1>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#what-is-vmware-cloud-director-object-storage-extension>What is VMware Cloud Director Object Storage Extension?</a></li>
+<li><a href=#use-cases>Use Cases</a>
+<ul>
+<li><a href=#storing-unstructured-data>Storing Unstructured Data</a></li>
+<li><a href=#persistent-storage-for-application>Persistent Storage for Application</a></li>
+<li><a href=#storing-vapp-templates-and-catalog>Storing vApp Templates and Catalog</a></li>
+<li><a href=#kubernetes-cluster-backup-and-restore>Kubernetes Cluster Backup and Restore</a></li>
+</ul>
+</li>
+<li><a href=#architecture>Architecture</a></li>
+<li><a href=#deployment-options>Deployment Options</a></li>
+<li><a href=#configuration>Configuration</a></li>
+<li><a href=#performance-settings>Performance Settings</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>
