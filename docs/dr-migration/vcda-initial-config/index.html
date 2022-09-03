@@ -1,0 +1,170 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="VMware Cloud Director Availability Appliances Initial Configuration #    Login to the appliance at the following URL: https://<Cloud-Replication-Management-Appliance-URL>/admin.
+  Enter the password defined during the deployment process.
+  Since it is the first login to the system, you will be prompted to change the password.
+  Click Run Initial Setup Wizard. Note that all the steps are mandatory, and you cannot skip any of them.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="VMware Cloud Director Availability Appliances Initial Configuration">
+<meta property="og:description" content="VMware Cloud Director Availability Appliances Initial Configuration #    Login to the appliance at the following URL: https://<Cloud-Replication-Management-Appliance-URL>/admin.
+  Enter the password defined during the deployment process.
+  Since it is the first login to the system, you will be prompted to change the password.
+  Click Run Initial Setup Wizard. Note that all the steps are mandatory, and you cannot skip any of them.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/vcda-initial-config/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-09-03T11:04:24+03:00">
+<title>VMware Cloud Director Availability Appliances Initial Configuration | VMware Cloud Provider Architecture Toolkit</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.162ef313a1416b7d5321147fc5c190b07b7dd3eb44aa43e36362578869d4ce9b.js integrity="sha256-Fi7zE6FBa31TIRR/xcGQsHt90+tEqkPjY2JXiGnUzps=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>VMware Cloud Provider Architecture Toolkit</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li><a href=/feedback/><em>Feedback</em></a></li>
+<li><a href=/docs/cloud-infrastructure/><strong>Cloud Infrastructure</strong></a>
+<ul>
+<li><a href=/docs/cloud-infrastructure/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/cloud-infrastructure/design/>Design Objectives</a></li>
+<li><a href=/docs/cloud-infrastructure/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/cloud-infrastructure/implementation/>Implementation</a></li>
+<li><a href=/docs/cloud-infrastructure/operations/>Operational Guidance</a></li>
+<li><a href=/docs/cloud-infrastructure/design-decisions/>Design Decisions</a></li>
+<li><a href=/docs/cloud-infrastructure/solution-interop/>Solution Interoperability</a></li>
+</ul>
+</li>
+<li><a href=/docs/networking-security/><strong>Networking and Security</strong></a>
+<ul>
+<li><a href=/docs/networking-security/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/networking-security/design/>Design Objectives</a></li>
+<li><a href=/docs/networking-security/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/networking-security/implementation/>Implementation</a></li>
+<li><a href=/docs/networking-security/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/dr-migration/><strong>DR and Migration</strong></a>
+<ul>
+<li><a href=/docs/dr-migration/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/dr-migration/design/>Design Objectives</a></li>
+<li><a href=/docs/dr-migration/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/dr-migration/implementation/>Implementation</a></li>
+<li><a href=/docs/dr-migration/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/developer-ready-cloud/><strong>Developer Ready Cloud</strong></a>
+<ul>
+<li><a href=/docs/developer-ready-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/developer-ready-cloud/design/>Design Objectives</a></li>
+<li><a href=/docs/developer-ready-cloud/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/developer-ready-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/developer-ready-cloud/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/sovereign-cloud/><strong>Sovereign Cloud</strong></a>
+<ul>
+<li><a href=/docs/sovereign-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/sovereign-cloud/design/>Design Objectives</a></li>
+<li><a href=/docs/sovereign-cloud/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/sovereign-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/sovereign-cloud/operations/>Operational Guidance</a>
+<br></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=https://cloudsolutions.vmware.com target=_blank rel=noopener>
+VMware Cloud Solutions
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>VMware Cloud Director Availability Appliances Initial Configuration</strong>
+<label for=toc-control>
+</label>
+</div>
+</header>
+<article class=markdown><h1 id=vmware-cloud-director-availability-appliances-initial-configuration>
+VMware Cloud Director Availability Appliances Initial Configuration
+<a class=anchor href=#vmware-cloud-director-availability-appliances-initial-configuration>#</a>
+</h1>
+<ol>
+<li>
+<p>Login to the appliance at the following URL: <a href=https://%5c%3cCloud-Replication-Management-Appliance-URL%5c%3e/admin>https://&lt;Cloud-Replication-Management-Appliance-URL>/admin</a>.</p>
+</li>
+<li>
+<p>Enter the password defined during the deployment process.</p>
+</li>
+<li>
+<p>Since it is the first login to the system, you will be prompted to change the password.</p>
+</li>
+<li>
+<p>Click Run Initial Setup Wizard. Note that all the steps are mandatory, and you cannot skip any of them.</p>
+</li>
+<li>
+<p>Enter your license key.</p>
+</li>
+<li>
+<p>Give the site a name and provide the Service Endpoint address (the public FQDN/IP address and port of the Cloud Tunnel, e.g. <a href=https://vcda-london.cloudhappens.local:443>https://vcda-london.cloudhappens.local:443</a>). In case you are not sure about the address at the moment of setup, you can leave it empty and fill it later in the VMware Cloud Director Availability portal under <strong>Configuration</strong> > <strong>Settings</strong> > <strong>Service Endpoint address</strong>. <br>
+You need to select the <strong>Classic</strong> data engine.</p>
+</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-initial-config/vcda-site-details.png alt="Site details"></p>
+<ol start=7>
+<li>Enter the VMware Cloud Director Endpoint address and a system administrator’s credentials. Note that you only need to type the Endpoint URL, and the wizard will automatically add the https:// prefix and /api suffix. Accept the thumbprint.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-initial-config/vcd-details.png alt="VMware Cloud Director details"></p>
+<ol start=8>
+<li>Connect all the deployed Cloud Replicator Appliance(s). Enter the Lookup Service Address and SSO admin credentials. Leave <strong>Use the above Lookup Service address for Manager, Cloud and Tunnel</strong> checked. Note that all the prefixes and ports are added automatically so you can enter just the address. Accept the thumbprints.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/vcda-initial-config/vcda-replicator-details.png alt="Configure the Cloud Replicator Appliance(s)"></p>
+<p><strong>Note</strong>: If you haven&rsquo;t logged in the Cloud Replicator Appliance UI so far, you will be prompted to change its root password.</p>
+<ol start=9>
+<li>Enter the API URL and the root password. Note that the prefix and port are added automatically. Accept the thumbprint.</li>
+</ol>
+<p><img src=/images/dr-migration/implementation/setup-vcda/vcda-tunnel-details.png alt="Configure the Cloud Tunnel Appliance"></p>
+<p><strong>Note</strong>: If you haven&rsquo;t logged in the Cloud Tunnel Appliance UI so far, you will be prompted to change its root password.</p>
+<ol start=10>
+<li>Review the summary and finalize the wizard.</li>
+</ol>
+<p>To make sure the configuration process completed successfully, you can check the status of the VMware Cloud Director Availability components and connectivity in the <strong>System Health</strong> menu.</p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+</main>
+</body>
+</html>

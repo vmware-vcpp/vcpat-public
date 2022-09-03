@@ -2,23 +2,23 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Implementing {VVS for CP Title} validated solution includes configuring &mldr; and enabling &mldr;
-To implement and configure {VVS for CP services}, two alternative methods exist. You can use the user interface of each component in the solution or you can use PowerShell cmdlets. You can directly reuse the PowerShell commands by replacing the provided sample values with values from your VMware Cloud Foundation Planning and Preparation Workbook.
-This guidance provides a prescriptive path for deploying {VVS for CP solution} using &mldr;, and sample {VVS for CP services} in a {management|VI workload} domain.">
+<meta name=description content="Implementing DR and Migration validated solution includes configuring VMware Cloud Director Availability.
+To implement and configure VMware Cloud Director Availability, you can use the user interface of each component in the solution.
+This guidance provides a prescriptive path for deploying VMware Cloud Director Availability using &mldr;, and sample {VVS for CP services} in a {management|VI workload} domain. For more information on other deployment options and configurations, read the {VVS for CP Products} Configuration and Management guide.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="DR and Migration Implementation">
-<meta property="og:description" content="Implementing {VVS for CP Title} validated solution includes configuring &mldr; and enabling &mldr;
-To implement and configure {VVS for CP services}, two alternative methods exist. You can use the user interface of each component in the solution or you can use PowerShell cmdlets. You can directly reuse the PowerShell commands by replacing the provided sample values with values from your VMware Cloud Foundation Planning and Preparation Workbook.
-This guidance provides a prescriptive path for deploying {VVS for CP solution} using &mldr;, and sample {VVS for CP services} in a {management|VI workload} domain.">
+<meta property="og:description" content="Implementing DR and Migration validated solution includes configuring VMware Cloud Director Availability.
+To implement and configure VMware Cloud Director Availability, you can use the user interface of each component in the solution.
+This guidance provides a prescriptive path for deploying VMware Cloud Director Availability using &mldr;, and sample {VVS for CP services} in a {management|VI workload} domain. For more information on other deployment options and configurations, read the {VVS for CP Products} Configuration and Management guide.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/implementation/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-09-02T15:03:27+03:00">
+<meta property="article:modified_time" content="2022-09-03T11:04:24+03:00">
 <title>DR and Migration Implementation | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.3e34bf88b5337028e11ae6d39ade64769b22196febdc5d85149c39b178abc695.js integrity="sha256-PjS/iLUzcCjhGubTmt5kdpsiGW/r3F2FFJw5sXirxpU=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.162ef313a1416b7d5321147fc5c190b07b7dd3eb44aa43e36362578869d4ce9b.js integrity="sha256-Fi7zE6FBa31TIRR/xcGQsHt90+tEqkPjY2JXiGnUzps=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -109,31 +109,61 @@ VMware Cloud Solutions
 </label>
 </div>
 </header>
-<article class=markdown><p>Implementing {VVS for CP Title} validated solution includes configuring &mldr; and enabling &mldr;</p>
-<p>To implement and configure {VVS for CP services}, two alternative methods exist. You can use the user interface of each component in the solution or you can use PowerShell cmdlets. You can directly reuse the PowerShell commands by replacing the provided sample values with values from your <em>VMware Cloud Foundation Planning and Preparation Workbook.</em></p>
-<p>This guidance provides a prescriptive path for deploying {VVS for CP solution} using &mldr;, and sample {VVS for CP services} in a {management|VI workload} domain. For more information on other deployment options and configurations, read the {VVS for CP Products} Configuration and Management guide. See the {VVS for CP Products} documentation for more details.</p>
+<article class=markdown><p>Implementing DR and Migration validated solution includes configuring VMware Cloud Director Availability.</p>
+<p>To implement and configure VMware Cloud Director Availability, you can use the user interface of each component in the solution.</p>
+<p>This guidance provides a prescriptive path for deploying VMware Cloud Director Availability using &mldr;, and sample {VVS for CP services} in a {management|VI workload} domain. For more information on other deployment options and configurations, read the {VVS for CP Products} Configuration and Management guide. See the {VVS for CP Products} documentation for more details.</p>
 <h2 id=prerequisites>
 Prerequisites
 <a class=anchor href=#prerequisites>#</a>
 </h2>
-<ul>
-<li>Verify that your environment is configured according to Before You Apply This Guidance and the Developer Ready Infrastructure tab of the VMware Cloud Foundation Planning and Preparation Workbook.</li>
-<li>If you want to use the included Microsoft PowerShell cmdlets to perform implementation and configuration procedures, verify that your system fulfils the following prerequisites.
-<ul>
-<li>Verify that your system has Microsoft PowerShell 5.1 installed. See Microsoft PowerShell.</li>
-<li>Install the PowerValidatedSolutions PowerShell module together with the supporting modules from the PowerShell Gallery by running the following commands.
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>Install-Module -Name VMware.PowerCLI -MinimumVersion 12.4.1
-Install-Module -Name VMware.vSphere.SsoAdmin -MinimumVersion 1.3.7
-Install-Module -Name ImportExcel -MinimumVersion 7.1.1
-Install-Module -Name PowerVCF -MinimumVersion 2.2.0
-Install-Module -Name PowerValidatedSolutions -MinimumVersion 1.7.0
-</code></pre></div></li>
-<li>Import the PowerValidatedSolutions and the PowerCLI PowerShell modules by running the following commands.
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>Import-Module -Name VMware.PowerCLI -MinimumVersion 12.4.1
-Import-Module -Name PowerValidatedSolutions -MinimumVersion 1.7.0
-</code></pre></div></li>
-</ul>
+<p>Here is a high-level list of the requirements to deploy VMware Cloud Director Availability. For more details, please refer to the <a href=https://docs.vmware.com/en/VMware-Cloud-Director-Availability/index.html>official documentation</a>.</p>
+<ol>
+<li>
+<p>DNS and NTP server</p>
 </li>
+<li>
+<p>SSO Lookup Service Address</p>
+</li>
+<li>
+<p>SSO admin credentials. If not available, then a user with the following privileges:</p>
+</li>
+</ol>
+<pre tabindex=0><code>   &quot;Cryptographer.ManageKeys&quot;,
+   &quot;Cryptographer.RegisterHost&quot;,
+   &quot;Datastore.Config&quot;,
+   &quot;Extension.Register&quot;,
+   &quot;Extension.Unregister&quot;,
+   &quot;Extension.Update&quot;,
+   &quot;Global.DisableMethods&quot;,
+   &quot;Global.EnableMethods&quot;,
+   &quot;Host.Config.Connection&quot;,
+   &quot;Host.Hbr.HbrManagement&quot;,
+   &quot;VirtualMachine.Inventory.Register&quot;,
+   &quot;VirtualMachine.Inventory.Unregister&quot;,
+   &quot;VirtualMachine.Interact.PowerOff&quot;,
+   &quot;VirtualMachine.Interact.PowerOn&quot;,
+   &quot;VirtualMachine.State.CreateSnapshot&quot;,
+   &quot;VirtualMachine.State.RemoveSnapshot&quot;,
+   &quot;VirtualMachine.Hbr.ConfigureReplication&quot;,
+   &quot;VirtualMachine.Hbr.ReplicaManagement&quot;,
+   &quot;VirtualMachine.Hbr.MonitorReplication&quot;
+</code></pre><ol start=4>
+<li>
+<p>Routing and Firewall Ports in place</p>
+</li>
+<li>
+<p>Compatible versions of vCenter and VMware Cloud Director – <a href="https://interopmatrix.vmware.com/Interoperability?col=570,&row=0,">open the VMware Product Interoperability Matrices</a></p>
+</li>
+<li>
+<p>The ESXi hosts in all paired on-premises sites and in all paired cloud sites must run one of the following vSphere product editions that include the vSphere Replication feature:</p>
+</li>
+</ol>
+<ul>
+<li>vSphere Essentials Plus</li>
+<li>vSphere Standard</li>
+<li>vSphere Enterprise</li>
+<li>vSphere Enterprise Plus</li>
+<li>vSphere Desktop</li>
 </ul>
 <h2 id=proceedure>
 Proceedure
@@ -141,46 +171,22 @@ Proceedure
 </h2>
 <ol>
 <li>
-<p>[Configure Product 1](link md file here)<br>
-Description of proceedure [//]: # (Add [[Read more]] and link to same md file here)</p>
+<p><a href=..//deploy-vcda-appliances>Deploy the VMware Cloud Director Availability appliances</a><br>
+All the steps required for deploying the three VMWare Cloud Director Availability appliances. <a href=..//deploy-vcda-appliances>Read more</a></p>
 </li>
 <li>
-<p>[Configure Product 2](link md file here)<br>
-Description of proceedure [//]: # (Add [[Read more]] and link to same md file here)</p>
+<p><a href=../vcda-initial-config>Configure the VMware Cloud Director Availability appliances</a><br>
+Walk through the steps of the initial setup wizard of VMware Cloud Director Availability. <a href=../vcda-initial-config>Read more</a></p>
 </li>
 <li>
-<p>[Deploy and Configure Product 3](link md file here)<br>
-Description of proceedure [//]: # (Add [[Read more]] and link to same md file here)</p>
+<p><a href=../multi-nic-config>Configure multiple network interfaces</a><br>
+All the instructions if needed to configure multiple network adapters on each of the VMware Cloud Director Availability appliances. <a href=../multi-nic-config>Read more</a></p>
 </li>
 <li>
-<p>[Deploy and Configure Product 4](link md file here)<br>
-Description of proceedure [//]: # (Add [[Read more]] and link to same md file here)</p>
+<p><a href=../attach-um-to-vcda>Attach Usage Meter to the VMware Cloud Director Availability Replication Management appliance</a><br>
+How to add the VMware Cloud Director Availability to Usage meter. <a href=../attach-um-to-vcda>Read more</a></p>
 </li>
 </ol>
-<h1 id=dr-and-migration-implementation>
-DR and Migration Implementation
-<a class=anchor href=#dr-and-migration-implementation>#</a>
-</h1>
-<h2 id=setting-up-vmware-cloud-director-availability-at-vcd-cloud>
-Setting Up VMware Cloud Director Availability at VCD cloud
-<a class=anchor href=#setting-up-vmware-cloud-director-availability-at-vcd-cloud>#</a>
-</h2>
-<p>You can find all the configuration steps needed in the <a href=../setup-vcda>Setting up VMware Cloud Director Availability</a> document.</p>
-<h2 id=setting-up-vmware-cloud-director-availability-at-a-gcve-sddc>
-Setting Up VMware Cloud Director Availability at a GCVE SDDC
-<a class=anchor href=#setting-up-vmware-cloud-director-availability-at-a-gcve-sddc>#</a>
-</h2>
-<p>You can find all the configuration steps needed in the <a href=../vcda-gcve-sddc>Setting up VMware Cloud Director Availability for Cloud Director service with a GCVE SDDC attached</a> document.</p>
-<h2 id=setting-up-vmware-cloud-director-availability-at-a-vmc-on-aws-sddc>
-Setting Up VMware Cloud Director Availability at a VMC on AWS SDDC
-<a class=anchor href=#setting-up-vmware-cloud-director-availability-at-a-vmc-on-aws-sddc>#</a>
-</h2>
-<p>You can find all the configuration steps needed in the <a href=../vcda-gcve-sddc>Setting up VMware Cloud Director Availability for Cloud Director service with a VMC on AWS SDDC attached</a> document.</p>
-<h2 id=upgrading-vmware-cloud-director-availability>
-Upgrading VMware Cloud Director Availability
-<a class=anchor href=#upgrading-vmware-cloud-director-availability>#</a>
-</h2>
-<p>Coming soon!</p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
