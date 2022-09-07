@@ -18,13 +18,13 @@ Header: name: JSESSIONID – value: a valid jsessionid
 Sample bodies #  Deploy VMware Cloud Director - API call at a high level #    Define Environment Name and ID">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/vcd-deployment-using-api/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-09-07T14:50:30+03:00">
+<meta property="article:modified_time" content="2022-09-07T18:14:05+05:30">
 <title>Vcd Deployment Using API | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.d9797b025dc0e06ea9771b0d79200811447af5dc1f6a1584c7582d0f0210d822.js integrity="sha256-2Xl7Al3A4G6pdxsNeSAIEUR69dwfahWEx1gtDwIQ2CI=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.35a300a72327e31c49adc7ea2e62e00368326c048c1096ae4c78f37fdb636131.js integrity="sha256-NaMApyMn4xxJrcfqLmLgA2gybASMEJauTHjzf9tjYTE=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -145,7 +145,7 @@ API Procedure
 </h2>
 <p>To deploy one or several products, a Lifecycle Manager environment must be created. An environment can be created using the below POST request.</p>
 <p><strong>Method</strong>: POST</p>
-<p><strong>URL</strong>: <em>/api/{apiVersion}/lcm/environment?action=DEPLOY</em></p>
+<p><strong>URL</strong>: <code>/api/{apiVersion}/lcm/environment?action=DEPLOY</code></p>
 <p><strong>Header</strong>: name: JSESSIONID – value: a valid jsessionid</p>
 <h3 id=sample-bodies>
 Sample bodies
@@ -300,10 +300,12 @@ Deploy VMware Cloud Director - API call at a high level
 <p><img src=/images/Cloud-Infrastructure-CPLCM-Implementation/vcd-deployment-api.jpg alt=api-call></p>
 <p><strong>Note:</strong> Please refer the API reference and POSTMAN <a href=https://developer.vmware.com/apis/1253>sample collection</a> on <a href=http://code.vmware.com/>code.vmware.com</a> for APIs.</p>
 <p><strong>Response</strong></p>
-<p>{</p>
-<p>    &ldquo;taskId&rdquo;: &ldquo;1&rdquo;</p>
-<p>}</p>
-<p>If the response is OK (200), the request to create the environment has been accepted and is being processed asynchronously.</p>
+<pre tabindex=0><code>{
+
+    &quot;taskId&quot;: &quot;1&quot;
+
+}
+</code></pre><p>If the response is OK (200), the request to create the environment has been accepted and is being processed asynchronously.</p>
 <p>The returned <em>taskId</em> can now be used to check the status of the deployment.</p>
 </blockquote>
 <h3 id=retrieve-task-status>
@@ -313,34 +315,56 @@ Retrieve Task Status
 <blockquote>
 <p>To verify the status of a running task, a GET request must be executed.</p>
 <p><strong>Method</strong>: GET</p>
-<p><strong>URL</strong>: /api/{apiVersion}/task/{taskId}</p>
+<p><strong>URL</strong>: <code>/api/{apiVersion}/task/{taskId}</code></p>
 <p><strong>Header</strong>: name: JSESSIONID - value: a valid jsessionid</p>
 <p><strong>Sample response</strong>:</p>
-<p>{</p>
-<p>&ldquo;id&rdquo;: 1,</p>
-<p>&ldquo;subTasks&rdquo;: {</p>
-<p>&ldquo;c6765081-c5bf-4386-a3d8-498c84e8e497&rdquo;: {</p>
-<p>&ldquo;name&rdquo;: &ldquo;LcmDiscoverStep-USAGE-4.4.0-DISCOVER&rdquo;,</p>
-<p>&ldquo;status&rdquo;: &ldquo;SUCCESS&rdquo;,</p>
-<p>&ldquo;message&rdquo;: [</p>
-<p>{</p>
-<p>&ldquo;name&rdquo;: &ldquo;Discover product&rdquo;,</p>
-<p>&ldquo;status&rdquo;: &ldquo;OK&rdquo;,</p>
-<p>&ldquo;message&rdquo;: &ldquo;Successfully updated product state.&rdquo;,</p>
-<p>&ldquo;start_time&rdquo;: &ldquo;2021-04-08-15:23:06UTC&rdquo;,</p>
-<p>&ldquo;end_time&rdquo;: &ldquo;2021-04-08-15:23:55UTC&rdquo;</p>
-<p>}</p>
-<p>],</p>
-<p>&ldquo;nextSubTasks&rdquo;: {</p>
-<p>&ldquo;SUCCESS&rdquo;: &ldquo;28d7b09e-d16c-4dc3-ba98-17679b989b2f&rdquo;</p>
-<p>}</p>
-<p>}</p>
-<p>},</p>
-<p>&ldquo;status&rdquo;: &ldquo;SUCCESS&rdquo;,</p>
-<p>&ldquo;message&rdquo;: ""</p>
-<p>}</p>
+<pre tabindex=0><code>{
+
+&quot;id&quot;: 1,
+
+&quot;subTasks&quot;: {
+
+&quot;c6765081-c5bf-4386-a3d8-498c84e8e497&quot;: {
+
+&quot;name&quot;: &quot;LcmDiscoverStep-USAGE-4.4.0-DISCOVER&quot;,
+
+&quot;status&quot;: &quot;SUCCESS&quot;,
+
+&quot;message&quot;: \[
+
+{
+
+&quot;name&quot;: &quot;Discover product&quot;,
+
+&quot;status&quot;: &quot;OK&quot;,
+
+&quot;message&quot;: &quot;Successfully updated product state.&quot;,
+
+&quot;start_time&quot;: &quot;2021-04-08-15:23:06UTC&quot;,
+
+&quot;end_time&quot;: &quot;2021-04-08-15:23:55UTC&quot;
+
+}
+
+\],
+
+&quot;nextSubTasks&quot;: {
+
+&quot;SUCCESS&quot;: &quot;28d7b09e-d16c-4dc3-ba98-17679b989b2f&quot;
+
+}
+
+}
+
+},
+
+&quot;status&quot;: &quot;SUCCESS&quot;,
+
+&quot;message&quot;: &quot;&quot;
+
+}
+</code></pre></blockquote>
 <p>Possible values for the status are:</p>
-</blockquote>
 <ul>
 <li>
 <p>IN_PROGRESS</p>
@@ -361,7 +385,7 @@ Cancel a Task
 </h3>
 <p>To cancel a running task, a PUT request must be executed.</p>
 <p><strong>Method</strong>: PUT</p>
-<p><strong>URL</strong>: /api/{apiVersion}/task/{taskId}?action=cancel</p>
+<p><strong>URL</strong>: <code>/api/{apiVersion}/task/{taskId}?action=cancel</code></p>
 <p><strong>Header</strong>: name: JSESSIONID - value: a valid jsessionid</p>
 <p><strong>Expected response code:</strong> 200</p>
 </article>
