@@ -2,21 +2,21 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="DR and Migration Design #  The {VVS for CP Title} validated solution has objectives to deliver prescriptive content about the solution so that it is fast to deploy and is suitable for use in production environments.
-   Objective Description     Main objective Provide {VVS for CP function} for VMware Cloud Foundation infrastructure components. {optionally add: through services in the VVS}   VMware Cloud Foundation architecture support vSAN ReadyNodesConsolidatedStandardSingle VMware Cloud Foundation instanceMultiple VMware Cloud Foundation instances with NSX FederationSingle or multiple VMware Cloud Foundation instances with multiple availability zonesVxRail NodesStandardSingle VMware Cloud Foundation instanceMultiple VMware Cloud Foundation instances with NSX FederationSingle or multiple VMware Cloud Foundation instances with multiple availability zones   Workload domain type support Management Workload domainVI Workload domain   Scope of guidance Detailed design for solution components.">
+<meta name=description content="DR and Migration Design #  The DR and Migration validated solution has objectives to deliver prescriptive content about the solution so that it is fast to deploy and is suitable for use in production environments.
+   Objective Description     Main objective Enable DR and migration services for the VMware Cloud Director Organizations on VMware Cloud Foundation.    VMware Cloud Foundation architecture support vSAN ReadyNodes">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="DR and Migration Design">
-<meta property="og:description" content="DR and Migration Design #  The {VVS for CP Title} validated solution has objectives to deliver prescriptive content about the solution so that it is fast to deploy and is suitable for use in production environments.
-   Objective Description     Main objective Provide {VVS for CP function} for VMware Cloud Foundation infrastructure components. {optionally add: through services in the VVS}   VMware Cloud Foundation architecture support vSAN ReadyNodesConsolidatedStandardSingle VMware Cloud Foundation instanceMultiple VMware Cloud Foundation instances with NSX FederationSingle or multiple VMware Cloud Foundation instances with multiple availability zonesVxRail NodesStandardSingle VMware Cloud Foundation instanceMultiple VMware Cloud Foundation instances with NSX FederationSingle or multiple VMware Cloud Foundation instances with multiple availability zones   Workload domain type support Management Workload domainVI Workload domain   Scope of guidance Detailed design for solution components.">
+<meta property="og:description" content="DR and Migration Design #  The DR and Migration validated solution has objectives to deliver prescriptive content about the solution so that it is fast to deploy and is suitable for use in production environments.
+   Objective Description     Main objective Enable DR and migration services for the VMware Cloud Director Organizations on VMware Cloud Foundation.    VMware Cloud Foundation architecture support vSAN ReadyNodes">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-09-07T18:14:05+05:30">
+<meta property="article:modified_time" content="2022-09-12T18:32:56+03:00">
 <title>DR and Migration Design | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.35a300a72327e31c49adc7ea2e62e00368326c048c1096ae4c78f37fdb636131.js integrity="sha256-NaMApyMn4xxJrcfqLmLgA2gybASMEJauTHjzf9tjYTE=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.2293a439507a5b506709fb9d609a8f1321372253d4468a3b7a9117eb3b1a312d.js integrity="sha256-IpOkOVB6W1BnCfudYJqPEyE3IlPURoo7epEX6zsaMS0=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -111,7 +111,7 @@ VMware Cloud Solutions
 DR and Migration Design
 <a class=anchor href=#dr-and-migration-design>#</a>
 </h1>
-<p>The {VVS for CP Title} validated solution has objectives to deliver prescriptive content about the solution so that it is fast to deploy and is suitable for use in production environments.</p>
+<p>The DR and Migration validated solution has objectives to deliver prescriptive content about the solution so that it is fast to deploy and is suitable for use in production environments.</p>
 <table>
 <thead>
 <tr>
@@ -122,27 +122,27 @@ DR and Migration Design
 <tbody>
 <tr>
 <td>Main objective</td>
-<td>Provide {VVS for CP function} for VMware Cloud Foundation infrastructure components. {optionally add: through services in the VVS}</td>
+<td>Enable DR and migration services for the VMware Cloud Director Organizations on VMware Cloud Foundation. <br></td>
 </tr>
 <tr>
 <td>VMware Cloud Foundation architecture support</td>
-<td><ul><li>vSAN ReadyNodes<ul><li>Consolidated</li><li>Standard<ul><li>Single VMware Cloud Foundation instance</li><li>Multiple VMware Cloud Foundation instances with NSX Federation</li><li>Single or multiple VMware Cloud Foundation instances with multiple availability zones</li></ul></li></ul></li><li>VxRail Nodes<ul><li>Standard<ul><li>Single VMware Cloud Foundation instance</li><li>Multiple VMware Cloud Foundation instances with NSX Federation</li><li>Single or multiple VMware Cloud Foundation instances with multiple availability zones</li></ul></li></ul></li></ul></td>
+<td><ul><li>vSAN ReadyNodes<br><ul><li>Standard<br><ul><li>Single VMware Cloud Foundation instance<br></ul></ul></ul><ul><li>VxRail Nodes<br><ul><li>Standard<br><ul><li>Single VMware Cloud Foundation instance</ul></ul></ul></td>
 </tr>
 <tr>
 <td>Workload domain type support</td>
-<td><ul><li>Management Workload domain</li><li>VI Workload domain</li></ul></td>
+<td><li>Management Workload domain<br><li>VI Workload domain</td>
 </tr>
 <tr>
 <td>Scope of guidance</td>
-<td><ul><li>Detailed design for solution components.</li><li>Deployment and initial configuration of intelligent logging and analytics components for management and VI workload domains.</li><li>Operational guidance for solution components, such as operational verification, password management, and certificate management.</li><li>Solution interoperability with solution components, such as monitoring and life cycle.</li></ul></td>
+<td><li>Detailed design for solution components.<br><li>Deployment and initial configuration of intelligent logging and analytics components for management and VI workload domains.<br><li>Operational guidance for solution components, such as operational verification, password management, and certificate management.</td>
 </tr>
 <tr>
 <td>Scope of implementation</td>
-<td><ul><li>Deployment and configuration of solution components:<ul><li>Component 1</li><li>Component 2</li></ul><li>Configuration of &mldr;<ul><li>Component 1</li><li>Component 2</li></ul></li></ul></td>
+<td>Deployment and configuration of solution components:<br><li>VMware Cloud Director Availability Cloud Replication Management appliance<br><li>VMware Cloud Director Availability Cloud Replicator appliance<br><li>VMware Cloud Director Availability Cloud Tunnel appliance</td>
 </tr>
 <tr>
 <td>Cloud type</td>
-<td>Public Cloud</td>
+<td>Private Cloud</td>
 </tr>
 <tr>
 <td>Number of VMware Cloud Foundation instances</td>
@@ -158,91 +158,14 @@ DR and Migration Design
 </tr>
 <tr>
 <td>Authentication, authorization, and access control</td>
-<td><ul><li>Use of Microsoft Active Directory over LDAP as the identity provider.</li><li>Use of security groups and roles for least-privilege access control.</li><li>Use of service accounts and least-privilege access control for solution integration.</li></ul> The configuration of Microsoft Active Directory Federation Services as the external identity provider is not included in this solution.</td>
+<td><li>Use of VMware Cloud Director security groups and roles for least-privilege access control.<br><li>Use of service accounts and least-privilege access control for solution integration.</td>
 </tr>
 <tr>
 <td>Certificate signing</td>
-<td>Certificates are signed by a certificate authority (CA) that consists of a root and intermediate certificate authority layers.</td>
+<td>Certificate for the Cloud service of VMware Cloud Director Availability Cloud Replication Manager Appliance is signed by a certificate authority (CA) that consists of a root and intermediate certificate authority layers. The certificates for all the other appliances can be self-signed.</td>
 </tr>
 </tbody>
 </table>
-<h2 id=architecture>
-Architecture
-<a class=anchor href=#architecture>#</a>
-</h2>
-<p>The following diagram shows the network flow between the VMware Cloud Director Availability components and the other infrastructure components part of the replication process.</p>
-<p><img src=/images/dr-migration/design/network-flow-in-vcda.png alt="VMware Cloud Director Availability Network Flow"></p>
-<h2 id=other-components>
-Other Components
-<a class=anchor href=#other-components>#</a>
-</h2>
-<h3 id=platform-services-controller>
-Platform Services Controller
-<a class=anchor href=#platform-services-controller>#</a>
-</h3>
-<p>All the VMware Cloud Director Availability appliances need to be configured with a Lookup Service for two purposes:</p>
-<ul>
-<li>Service authentication and resource discovery – the Replicator and Management appliances require registration with a Lookup Service to authenticate to the resource vCenters and discover resources which is required for operations from the VMware Cloud Director Availability workflow.</li>
-<li>Authentication to the VMware Cloud Director Availability service by the administrator which is not mandatory.
-The Lookup Service has to be the one used by vCenters providing compute resources to VMware Cloud Director. For cases when the management and resource vCenters use different Lookup Services and the VMware Cloud Director Availability appliances are deployed at the management vCenter, they need to be configured with the Lookup Service of the resource vCenter(s) from/to which they will protect VMs/vApps.</li>
-</ul>
-<p>The Lookup Service and the associated Single Sign-On (SSO) domain is the boundary of a single VMware Cloud Director Availability instance. This is because a single Cloud Replication Management appliance can be registered with a single Lookup Service providing DR and migration services only for workloads in this SSO domain.
-For cases when the cloud provider has multiple PVDCs in more than one SSO domain, a VMware Cloud Director Availability instance (tunnel, manager, replicators) needs to be deployed per each SSO domain.
-It is possible to deploy a dedicated VMware Cloud Director Availability instance per PVDC, but one can protect as many PVDCs as exist in a single SSO domain.</p>
-<h3 id=vcenter-server>
-vCenter Server
-<a class=anchor href=#vcenter-server>#</a>
-</h3>
-<p>VMware Cloud Director Availability needs to discover the workload VMs that need to be protected or migrated and destination resources (clusters, datastores, networks, etc.) for incoming replications and/or migrations in vCenters that are configured to provide the resources for VMware Cloud Director.</p>
-<p>The Replicator is the component that communicates with the vCenter Servers. The tunnel has no such requirement.</p>
-<h3 id=vmware-cloud-director>
-VMware Cloud Director
-<a class=anchor href=#vmware-cloud-director>#</a>
-</h3>
-<p>The integration with VMware Cloud Director is done through the Cloud Replication Management appliance.
-The Cloud service communicates with VMware Cloud Director to discover the vApps/VMs for outgoing replications/migrations or destination resources (OrgVDC, network, storage) for incoming replications/migrations. VMware Cloud Director Availability uses the VMware Cloud Director API to request the information and initiate any operations.</p>
-<br>
-<p>As part of the initial setup, the administrator provides the VMware Cloud Director API HTTPS Base URL followed by /api and user account, which is a member of the System organization with its password. Then VMware Cloud Director Availability inspects the certificate presented by VMware Cloud Director. If the FQDN of the API HTTPS Base URL is not set as the Subject Alternative Name DNS entry, the registration cannot be completed. It is not enough to have this FQDN present in the certificate Common Name field. When a TLS connection to VMware Cloud Director is established and the authentication with the provided credentials is successful, VMware Cloud Director Availability uses the VMware Cloud Director REST API to discover its UI endpoint. Depending on its value, the VMware Cloud Director Availability HTTP server is dynamically reconfigured - the respective domain is added to the CORS allowlist.</p>
-<br>
-<p><strong>Additional Information:</strong> CORS is an HTTP mechanism that provides better security to end-users. Depending on how the server is configured, browsers may reject attempts to load resources from a server that is on domain A, but someone tries to load it in domain B. The VMware Cloud Director Availability Cloud service is set to allow only one VMware Cloud Director endpoint - the VMware Cloud Director UI endpoint or, if it is not configured, the API endpoint.
-Once the certificate and credentials check are successful, VMware Cloud Director Availability deploys the files required for extension operation in the VMware Cloud Director cells.</p>
-<h2 id=esxi-hosts>
-ESXi hosts
-<a class=anchor href=#esxi-hosts>#</a>
-</h2>
-<p>The Replicators communicate with hosts to:</p>
-<ul>
-<li>Configure the source VM for replication by enabling IO filter and configure it where to send replication data</li>
-<li>Allocate resources in the host for the destination replication</li>
-</ul>
-<p>These operations are performed by the HBRsrv service. For authentication purposes, it needs to communicate to the hosts on port 80/tcp. For the data traffic, it uses 902/tcp to hosts to send the replication data (for incoming replications) and 44046/tcp from the hosts to receive replication data (for outgoing replications).</p>
-<h2 id=data-paths>
-Data Paths
-<a class=anchor href=#data-paths>#</a>
-</h2>
-<p>Two appliances are responsible for the replication data path – the Replicator and the Tunnel. The Cloud Replication Management appliance does not handle any replication data.</p>
-<h3 id=cloud-tunnel>
-Cloud Tunnel
-<a class=anchor href=#cloud-tunnel>#</a>
-</h3>
-<p>The Tunnel is a transparent proxy that is aware of the TLS protocol. It receives the incoming traffic and redirects it to the backend components based on its type. The management and HTTPS/API traffic is sent to the Cloud Replication Management, and the replication data traffic is sent to Replicator. It does not perform any operations on the replication traffic.
-The Tunnel appliance does not consume significant compute resources, but in environments with many replications may handle a significant amount of network traffic. As it is published to the Internet via DNAT, it is recommended to connect it to a DMZ network where all the necessary security measures for such publish rules are taken.</p>
-<h3 id=cloud-replicator>
-Cloud Replicator
-<a class=anchor href=#cloud-replicator>#</a>
-</h3>
-<p>The Replicator appliance runs three services – HBRsrv, LWDproxy, and Replicator.</p>
-<br>
-<p>The HBRsrv is a low-level component that communicates with the replication IO filter in ESXi hosts. The protocol used for communication is called LWD (Light Weight Delta) - a VMware proprietary protocol. This service is not aware of vCenter and does not communicate with it. The HBRsrv service is responsible for saving the VM deltas generated during the RPO window on the destination datastore. It is a common service for other VMware replication products, and VMware Cloud Director Availability reuses it for moving replication data at the last mile.
-It configures the ESXi filter to send the replication traffic between the ESXi host and source Replicator in &ldquo;plain text&rdquo;. When the data is received by the source LWDproxy, it gets encrypted and optionally compressed. On the destination site, there&rsquo;s another LWDproxy that decrypts and decompresses the LWD traffic, and the destination Replicator sends the replication data to an ESXi host.</p>
-<br>
-<p>The LWDproxy is a VMware Cloud Director Availability service that ensures that replication traffic is sent to the Tunnel and is encrypted and compressed outside the local infrastructure. The LWDProxy service communicates with the Tunnel for sending/receiving replication data. Encryption and compression result in increased CPU utilization for the Replicator appliance. This may reduce the number of replications a single Replicator can handle.</p>
-<br>
-<p>The Replicator service is a VMware Cloud Director Availability management service that sends configuration instructions to the HBRsrv and LWDproxy services for every replication handled by the Replicator appliance. It understands the vCenter objects like hosts, VMs, datastores, etc. In this way, the Replicator discovers and prepares the source VMs for replication and creates objects (independent disks) for the incoming replications.
-It is supposed there will be hundreds or thousands of VM replications/migrations in a cloud environment. Even if the number of replications is lower than the maximum supported handled by a single Replicator, it is highly recommended to deploy at least two or more replicators.
-With several Replicators, the load generated by the replications can be spread over multiple hosts.
-Balance the replication traffic on more physical uplinks and distribute the load better.
-A single Replicator can be put in maintenance mode during a maintenance window without affecting replication traffic.</p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
