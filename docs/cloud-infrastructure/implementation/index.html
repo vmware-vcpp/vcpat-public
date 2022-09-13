@@ -2,21 +2,23 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Cloud Infrastructure Implementation #  Implementing {VVS for CP Title} validated solution includes configuring &mldr; and enabling &mldr;
-To implement and configure {VVS for CP services}, two alternative methods exist. You can use the user interface of each component in the solution or you can use PowerShell cmdlets. You can directly reuse the PowerShell commands by replacing the provided sample values with values from your VMware Cloud Foundation Planning and Preparation Workbook.">
+<meta name=description content="Cloud Infrastructure Implementation #  Implementing VMware Cloud Provider Lifecycle Manager validated solution includes deployment of Appliance and setting up the product binary.
+To deploy and configure VMware Cloud Provider Lifecycle Manager, please follow VMware Documentation
+This guidance provides a prescriptive path for deploying VMware Cloud Director, vRealize Operations Manager Tenant App, Usage Meter and RabbitMQ using API feature of VMware Cloud Provider Lifecycle Manager in a management domain of VMware Cloud Foundation .">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Cloud Infrastructure Implementation">
-<meta property="og:description" content="Cloud Infrastructure Implementation #  Implementing {VVS for CP Title} validated solution includes configuring &mldr; and enabling &mldr;
-To implement and configure {VVS for CP services}, two alternative methods exist. You can use the user interface of each component in the solution or you can use PowerShell cmdlets. You can directly reuse the PowerShell commands by replacing the provided sample values with values from your VMware Cloud Foundation Planning and Preparation Workbook.">
+<meta property="og:description" content="Cloud Infrastructure Implementation #  Implementing VMware Cloud Provider Lifecycle Manager validated solution includes deployment of Appliance and setting up the product binary.
+To deploy and configure VMware Cloud Provider Lifecycle Manager, please follow VMware Documentation
+This guidance provides a prescriptive path for deploying VMware Cloud Director, vRealize Operations Manager Tenant App, Usage Meter and RabbitMQ using API feature of VMware Cloud Provider Lifecycle Manager in a management domain of VMware Cloud Foundation .">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/implementation/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-09-12T18:33:14+03:00">
+<meta property="article:modified_time" content="2022-09-13T20:23:16+05:30">
 <title>Cloud Infrastructure Implementation | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.2293a439507a5b506709fb9d609a8f1321372253d4468a3b7a9117eb3b1a312d.js integrity="sha256-IpOkOVB6W1BnCfudYJqPEyE3IlPURoo7epEX6zsaMS0=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.87a0a35386b22b4aba45075322362bb3d7e991a13cecfb7e864a736616459537.js integrity="sha256-h6CjU4ayK0q6RQdTIjYrs9fpkaE87Pt+hkpzZhZFlTc=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -111,31 +113,16 @@ VMware Cloud Solutions
 Cloud Infrastructure Implementation
 <a class=anchor href=#cloud-infrastructure-implementation>#</a>
 </h1>
-<p>Implementing {VVS for CP Title} validated solution includes configuring &mldr; and enabling &mldr;</p>
-<p>To implement and configure {VVS for CP services}, two alternative methods exist. You can use the user interface of each component in the solution or you can use PowerShell cmdlets. You can directly reuse the PowerShell commands by replacing the provided sample values with values from your <em>VMware Cloud Foundation Planning and Preparation Workbook.</em></p>
-<p>This guidance provides a prescriptive path for deploying {VVS for CP solution} using &mldr;, and sample {VVS for CP services} in a {management|VI workload} domain. For more information on other deployment options and configurations, read the {VVS for CP Products} Configuration and Management guide. See the {VVS for CP Products} documentation for more details.</p>
+<p>Implementing VMware Cloud Provider Lifecycle Manager validated solution includes deployment of Appliance and setting up the product binary.</p>
+<p>To deploy and configure VMware Cloud Provider Lifecycle Manager, please follow <a href=https://docs.vmware.com/en/VMware-Cloud-Provider-Lifecycle-Manager/index.html>VMware Documentation</a></p>
+<p>This guidance provides a prescriptive path for deploying VMware Cloud Director, vRealize Operations Manager Tenant App, Usage Meter and RabbitMQ using API feature of VMware Cloud Provider Lifecycle Manager in a management domain of VMware Cloud Foundation . For more information on other deployment options, refer the VMware documentation.</p>
 <h2 id=prerequisites>
 Prerequisites
 <a class=anchor href=#prerequisites>#</a>
 </h2>
 <ul>
-<li>Verify that your environment is configured according to Before You Apply This Guidance and the Developer Ready Infrastructure tab of the VMware Cloud Foundation Planning and Preparation Workbook.</li>
-<li>If you want to use the included Microsoft PowerShell cmdlets to perform implementation and configuration procedures, verify that your system fulfils the following prerequisites.
-<ul>
-<li>Verify that your system has Microsoft PowerShell 5.1 installed. See Microsoft PowerShell.</li>
-<li>Install the PowerValidatedSolutions PowerShell module together with the supporting modules from the PowerShell Gallery by running the following commands.
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>Install-Module -Name VMware.PowerCLI -MinimumVersion 12.4.1
-Install-Module -Name VMware.vSphere.SsoAdmin -MinimumVersion 1.3.7
-Install-Module -Name ImportExcel -MinimumVersion 7.1.1
-Install-Module -Name PowerVCF -MinimumVersion 2.2.0
-Install-Module -Name PowerValidatedSolutions -MinimumVersion 1.7.0
-</code></pre></div></li>
-<li>Import the PowerValidatedSolutions and the PowerCLI PowerShell modules by running the following commands.
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>Import-Module -Name VMware.PowerCLI -MinimumVersion 12.4.1
-Import-Module -Name PowerValidatedSolutions -MinimumVersion 1.7.0
-</code></pre></div></li>
-</ul>
-</li>
+<li>Verify that your environment is configured according to Before <strong>You Apply This Guidance</strong></li>
+<li>Download <a href=https://www.postman.com/downloads/>Postman 9.x</a> if you want to use the postman collection for the deployment and management of the above mentioned products.</li>
 </ul>
 <h2 id=procedure>
 Procedure
@@ -164,23 +151,6 @@ The below secion explains the deployment procedure of Usage Meter using API func
 The below secion explains the deployment procedure of RabbitMQ using API functionality VMware Cloud Provider Lifecycle Manager <a href=../rabbitmq-deployment>Read more</a></p>
 </li>
 </ol>
-<h2 id=configuring-vmware-cloud-director-service-for-sddc-endpoints>
-Configuring VMware Cloud Director service for SDDC Endpoints
-<a class=anchor href=#configuring-vmware-cloud-director-service-for-sddc-endpoints>#</a>
-</h2>
-<p>The following sections describes how to configure various SDDC endpoints for VMware Cloud Director service.</p>
-<h3 id=configuring-vmware-cloud-director-service-for-vmware-cloud-on-aws>
-Configuring VMware Cloud Director service for VMware Cloud on AWS
-<a class=anchor href=#configuring-vmware-cloud-director-service-for-vmware-cloud-on-aws>#</a>
-</h3>
-<p>See the instructions below on how to deploy VMware Cloud on AWS (VMConAWS) for multi-tenancy with VMware Cloud Director service.</p>
-<p><a href=../cds-vmc-deployment-guide-msp>VMware Cloud Director Service for VMware Cloud on AWS Deployment Guide</a></p>
-<h3 id=configuring-vmware-cloud-director-service-for-google-cloud-vmware-engine>
-Configuring VMware Cloud Director service for Google Cloud VMware Engine
-<a class=anchor href=#configuring-vmware-cloud-director-service-for-google-cloud-vmware-engine>#</a>
-</h3>
-<p>See the instructions below on how to deploy Google Cloud VMware Engine for multi-tenancy with VMware Cloud Director service.</p>
-<p><a href=../cds-gcve-deployment-guide-msp>VMware Cloud Director Service for Google Cloud VMware Engine Deployment Guide</a></p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
