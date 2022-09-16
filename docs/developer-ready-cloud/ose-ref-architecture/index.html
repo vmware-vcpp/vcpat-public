@@ -8,13 +8,13 @@
 <meta property="og:description" content="What is VMware Cloud Director Object Storage Extension? #  The VMware Cloud Director Object Storage Extension (OSE) allows VMware Cloud Providers who are using VMware Cloud Director to offer object storage services to their customers. The extension acts as middleware which is tightly integrated with VMware Cloud Director to abstract third-party S3 API compatible storage providers in a multi-tenant fashion. OSE runs externally to VMware Cloud Director and integrates through a UI plug-in, which shows either provider or tenant information, depending on the type of logged-in user.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/developer-ready-cloud/ose-ref-architecture/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-09-13T20:23:16+05:30">
+<meta property="article:modified_time" content="2022-09-16T08:57:06+03:00">
 <title>VMware Cloud Director Object Storage Extension Architecture Reference | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.87a0a35386b22b4aba45075322362bb3d7e991a13cecfb7e864a736616459537.js integrity="sha256-h6CjU4ayK0q6RQdTIjYrs9fpkaE87Pt+hkpzZhZFlTc=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.335f9239ef8cd6bd0bb957dc42db494ba179bef4f0a7c8f8a9a3eebca6659ee7.js integrity="sha256-M1+SOe+M1r0LuVfcQttJS6F5vvTwp8j4qaPuvKZlnuc=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -118,9 +118,42 @@ VMware Cloud Solutions
 </ul>
 </li>
 <li><a href=#architecture>Architecture</a></li>
-<li><a href=#deployment-options>Deployment Options</a></li>
-<li><a href=#configuration>Configuration</a></li>
-<li><a href=#performance-settings>Performance Settings</a></li>
+<li><a href=#deployment-options>Deployment Options</a>
+<ul>
+<li><a href=#small-deployment>Small Deployment</a></li>
+<li><a href=#medium-deployment>Medium Deployment</a></li>
+<li><a href=#large-deployment>Large Deployment</a></li>
+<li><a href=#multi-site-deployment>Multi-site Deployment</a></li>
+</ul>
+</li>
+<li><a href=#configuration>Configuration</a>
+<ul>
+<li><a href=#ose-scalability>OSE Scalability</a></li>
+<li><a href=#deploying-an-ose-cluster>Deploying an OSE Cluster</a></li>
+<li><a href=#configuring-a-single-ose-instance>Configuring a Single OSE Instance</a></li>
+<li><a href=#replicating-configuration-on-ose-nodes-behind-a-load-balancer>Replicating Configuration on OSE Nodes behind a Load Balancer</a></li>
+<li><a href=#ose-java-service>OSE Java Service</a></li>
+<li><a href=#postgresql-database>PostgreSQL Database</a></li>
+<li><a href=#public-s3-endpoint>Public S3 Endpoint</a></li>
+</ul>
+</li>
+<li><a href=#ose-performance-settings>OSE Performance Settings</a>
+<ul>
+<li><a href=#logging>Logging</a></li>
+<li><a href=#tune-io-thread-count>Tune I/O Thread Count</a></li>
+<li><a href=#tune-the-worker-thread-count>Tune the Worker Thread Count</a></li>
+<li><a href=#set-max-connection-count-to-storage-platform>Set Max Connection Count to Storage Platform</a></li>
+<li><a href=#set-max-connection-count-to-the-postgresql-server>Set max Connection Count to the PostgreSQL Server</a></li>
+<li><a href=#turn-off-tenant-server-side-encryption>Turn off Tenant Server-side Encryption</a></li>
+<li><a href=#turn-on-ose-virtual-hosted-style-s3-requests>Turn on OSE Virtual-hosted Style S3 Requests</a></li>
+<li><a href=#tune-object-count-of-bucket>Tune Object Count of Bucket</a></li>
+</ul>
+</li>
+<li><a href=#getting-support>Getting Support</a>
+<ul>
+<li><a href=#generate-support-bundle>Generate Support Bundle</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </aside>
@@ -180,18 +213,277 @@ Kubernetes Cluster Backup and Restore
 Architecture
 <a class=anchor href=#architecture>#</a>
 </h1>
+<p>OSE is a standalone server running on a Linux machine and multi-node deployment. It exposes SSL port 443 as the public endpoint. Both OSE UI plugins and S3 client applications connect to OSE APIs on this port. OSE supports S3-compliant XML APIs and Amazon Signature V4 authentication. It&rsquo;s primarily compatible with any S3 compliant clients.</p>
+<p><img src=/images/ose/ose-architecture.png alt></p>
+<p>OSE connects to Cloud Director and the object storage cluster from the backend. OSE makes REST API calls to Cloud Director for tenant and user mapping for object storage. It also supports object storage-backed catalog contents and vApp backups. OSE connects to the object storage cluster for tenancy management and data transfer. Depending on the type of object storage cluster, there could be one port or multiple ports for the communication between OSE and the object storage cluster.</p>
+<p>OSE uses S3 API to make queries to the underlying S3 storage vendor and user identity and access management service to map Cloud Director user types with those of the connected storage.</p>
+<p>OSE also uses a PostgreSQL database to store metadata. All management data, bucket metadata, and object metadata are stored in the database. If your object storage solution is for internal use or a small business, you can consider re-using Cloud Director&rsquo;s PostgreSQL appliance. For a standard deployment, you should consider deploying a standalone PostgreSQL server for OSE.</p>
+<p>The bandwidth consumption between OSE and the object storage cluster is much higher than the communication between OSE and Cloud Director, so you should consider deploying OSE server nodes into the network with as little latency as the communication with the storage cluster.</p>
+<p>OSE also makes REST API calls to VMware Cloud Analytics to send product usage data. This part of the OSE architecture comes into play only if the tenants agree with the VMware Customer Experience Improvement Program (CEIP) in Cloud Director UI to allow VMware to collect data for analysis.</p>
+<p>OSE also uses a Kubernetes agent called Velero to backup and restore Kubernetes clusters on the underlying S3 storage. This OSE feature uses a deployer that enables the Cloud Director tenants to perform Helm operations to external Kubernetes clusters.</p>
+<p>OSE Catalogs use vSphere catalog synchronization protocol to sync with the content of the Cloud Director Catalogs.</p>
+<p>For vApps, OSE uses REST API to export vApps from Cloud Director to the underlying S3 storage.</p>
 <h1 id=deployment-options>
 Deployment Options
 <a class=anchor href=#deployment-options>#</a>
 </h1>
+<h2 id=small-deployment>
+Small Deployment
+<a class=anchor href=#small-deployment>#</a>
+</h2>
+<p>Usage: Niche use cases
+• Requirement: Minimum resources required. High availability, supported for production.
+• One or more RHEL/CentOS VMs for VMware Cloud Director. External PostgreSQL database (used for VMware Cloud Director and VMware Cloud Director Object Storage Extension). NFS transfer share is needed when more than one VMware Cloud Director cell is used. Protected with vSphere HA.
+• One CentOS Linux 7 or 8/RedHat Enterprise Linux 7/Oracle Linux 7/Ubuntu 18+/Photon 3+/Debian 10+ VM: (4 vCPU, 8 GB RAM, 120 GB HDD) running VMware Cloud Director Object Storage Extension. Protected with vSphere HA.
+• vSphere/NSX: As required for VMware Cloud Director resources.
+• Storage provider: Three CentOS virtual machines running Cloudian HyperStore, or Five CentOS virtual machines running Dell EMC ECS (4 vCPUs, 32 GB RAM, 32+100 GB HDD on shared storage) or AWS S3.
+• Load balancing: VMware Cloud Director cells and Cloudian HyperStore or Dell EMC ECS nodes load balancing provided by NSX.</p>
+<h2 id=medium-deployment>
+Medium Deployment
+<a class=anchor href=#medium-deployment>#</a>
+</h2>
+<p>Usage: typical use cases
+• Requirement: High availability, supported for production.
+• Multiple RHEL/CentOS or appliance VMs for VMware Cloud Director. NFS transfer share. For non-appliance form factor external PostgreSQL database.
+• One or more CentOS Linux 7 or 8/RedHat Enterprise Linux 7/Oracle Linux 7/Ubuntu 18+/Photon 3+/Debian 10+ VMs: (8 vCPU, 8 GB RAM, 120 GB HDD) running VMware Cloud Director Object Storage Extension. Protected with vSphere HA and optionally load balanced. If VMware Cloud Director is deployed in appliance form factor, an external PostgreSQL database is needed.
+• vSphere/NSX: As required for VMware Cloud Director resources.
+• Storage provider: Three CentOS virtual machines running Cloudian HyperStore, Five CentOS virtual machines running Dell EMC ECS on dedicated ESXi hosts with local disks (8 vCPUs, 64 GB RAM, 32 GB HDD + multiple large local disks) or AWS S3.
+• Load balancing: VMware Cloud Director cells and Cloudian HyperStore, or Dell EMC ECS nodes load balancing provided by NSX or external hardware load balancer.</p>
+<h2 id=large-deployment>
+Large Deployment
+<a class=anchor href=#large-deployment>#</a>
+</h2>
+<p>Usage: large scale, low cost per GB use cases
+• Requirement: High scale, performance, and availability, supported for production.
+• Multiple RHEL/CentOS or appliance VMs for VMware Cloud Director. NFS transfer share. For non-appliance form factor external PostgreSQL database.
+• Multiple CentOS Linux 7 or 8/RedHat Enterprise Linux 7/Oracle Linux 7/Ubuntu 18+/Photon 3+/Debian 10+ VMs (12 vCPU, 12 GB RAM, 120 GB HDD) running VMware Cloud Director Object Storage Extension. If VMware Cloud Director is deployed in an appliance form factor, an external HA PostgreSQL database is needed.
+• vSphere/NSX: As required for VMware Cloud Director resources.
+• Storage provider: Three or more dedicated bare-metal physical Cloudian HyperStore, Five or more physical Dell EMC ECS, or AWS S3.
+• Load balancing: an external hardware load balancer</p>
+<h2 id=multi-site-deployment>
+Multi-site Deployment
+<a class=anchor href=#multi-site-deployment>#</a>
+</h2>
+<p>Object Storage Extension supports VMware Cloud Director multisite deployments where different VMware Cloud Director instances are federated (associated) with a trust relationship. As these instances can be deployed in different locations, the end-users can deploy their applications with a higher level of resiliency and not be impacted by local datacenter outages.</p>
+<p>Each VMware Cloud Director instance has its own VMware Cloud Director Object Storage Extension, which communicates with shared S3 object storage deployed in a multi-datacenter configuration. Objects are automatically replicated across all data centers, and VMware Cloud Director users can access them through either VMware Cloud Director or VMware Cloud Director Object Storage Extension endpoint.</p>
+<p><img src=images/ose/multi-site-deployment1.png alt></p>
+<p>Within a multisite architecture, you can configure VMware Cloud Director Object Storage Extension instances with a standalone virtual data center in each site. The following diagram illustrates the architecture.</p>
+<p><img src=images/ose/multi-site-deployment2.png alt></p>
+<p>When you configure the multisite feature, you create a cluster of multiple VMware Cloud Director Object Storage Extension instances to create an availability zone. You can group the VMware Cloud Director Object Storage Extension instances together only in a single region. A region is a collection of the compute resources in a geographic area. Regions are isolated and independent of one another. VMware Cloud Director Object Storage Extension does not support multi-region architectures.</p>
+<p>You can share the same buckets and objects across tenant organizations within a multisite environment. To share buckets and objects across sites, map all tenant organizations to the same storage group. See <a href=https://docs.vmware.com/en/VMware-Cloud-Director-Object-Storage-Extension/2.1.1/Users-Guide-for-Service-Providers/GUID-AAEB562E-07E6-48DB-9F45-DA9A0FABDF42.html>Edit Tenant Mapping Configuration</a>.</p>
 <h1 id=configuration>
 Configuration
 <a class=anchor href=#configuration>#</a>
 </h1>
-<h1 id=performance-settings>
-Performance Settings
-<a class=anchor href=#performance-settings>#</a>
+<h2 id=ose-scalability>
+OSE Scalability
+<a class=anchor href=#ose-scalability>#</a>
+</h2>
+<p>OSE can be deployed as a cluster for high availability and distribution of hardware resources.
+In the typical deployment topology, there are multiple OSE instances, multiple storage platform instances, and the database HA.</p>
+<h2 id=deploying-an-ose-cluster>
+Deploying an OSE Cluster
+<a class=anchor href=#deploying-an-ose-cluster>#</a>
+</h2>
+<p>Taking Cloudian HyperStore as an example, the steps to deploy the OSE cluster are described below.
+Procedure</p>
+<ol>
+<li>Prepare the OSE hosts.</li>
+<li>Install the OSE rpm/deb package and start the OSE keeper.</li>
+<li>Prepare the PostgreSQL database and check if it is accessible from the OSE hosts.</li>
+<li>Prepare the Cloudian HyperStore nodes.</li>
+<li>Prepare the Cloudian HyperStore load balancer so that it is accessible from the OSE hosts.</li>
+</ol>
+<h2 id=configuring-a-single-ose-instance>
+Configuring a Single OSE Instance
+<a class=anchor href=#configuring-a-single-ose-instance>#</a>
+</h2>
+<p>Procedure</p>
+<ol>
+<li>Follow these instructions to configure the OSE certificate, database, and Cloud Director UI plugin.</li>
+<li>Configure the connection to the Cloudian HyperStore Admin endpoint via the load balancer.
+ose cloudian admin set &ndash;url hyperstore-lb-admin-url &ndash;user admin-user &ndash;secret &lsquo;password&rsquo;</li>
+<li>Configure the connection to the Cloudian HyperStore S3 endpoint via the load balancer.
+ose cloudian s3 set hyperstore-lb-s3-url</li>
+<li>Configure the connection to Cloudian HyperStore IAM endpoint via the load balancer.
+ose cloudian iam set hyperstore-lb-iam-url</li>
+<li>Configure the connection to the HyperStore Web Console via the load balancer.
+ose cloudian console set &ndash;url hyperstore-lb-cmc-url &ndash;user admin-user &ndash;secret cmc-sso-shared-key</li>
+<li>Validate the configuration.
+ose config validate</li>
+<li>Start OSE.
+ose service start</li>
+<li>Log in to Cloud Director and launch OSE to check whether it works normally.</li>
+</ol>
+<h2 id=replicating-configuration-on-ose-nodes-behind-a-load-balancer>
+Replicating Configuration on OSE Nodes behind a Load Balancer
+<a class=anchor href=#replicating-configuration-on-ose-nodes-behind-a-load-balancer>#</a>
+</h2>
+<p>Procedure</p>
+<ol>
+<li>Connect to the first OSE host.
+ssh user@host-ip</li>
+<li>Export the OSE configuration.
+ose config export &ndash;file=&ldquo;configuration-file-name&rdquo; &ndash;secret=&ldquo;the password&rdquo;</li>
+<li>Copy the exported configuration file to the VMs of the other OSE instances.</li>
+<li>SSH connect to the VMs of the other OSE instances and replicate the configuration by importing the configuration file.
+ose config import &ndash;file=&ldquo;path-to-the-configuration-file&rdquo; &ndash;secret=&ldquo;the password&rdquo;</li>
+<li>Restart the OSE keeper to make the configuration effective.
+systemctl restart voss-keeper</li>
+</ol>
+<p>Now the OSE cluster is created. In general, OSE instances are stateless, and all data is persisted in the shared database, so it is possible to add more nodes on demand.</p>
+<h2 id=ose-java-service>
+OSE Java Service
+<a class=anchor href=#ose-java-service>#</a>
+</h2>
+<p>OSE Java service is built with Spring Boot, which offers both administrative and S3 APIs for OSE UI plug-in and S3 API users.</p>
+<p>First, the command ose service [start|stop] can launch and shut down the OSE Java service. The dedicated OSE CLI, e.g., ose cloudian admin set, can set basic configuration for the OSE service. The system administrator can also tune the OSE service with many other configurable properties by using the CLI command ose args set. Here are two examples.
+• To make OSE work in virtual-hosted style for S3 API, use the command:
+ose args set -k s3.client.path.style.access -v false
+• For a huge bucket (containing more than one hundred thousand objects), the object count for the bucket is estimated by default for performance consideration. The estimation can be turned off by the command:
+ose args set -k oss.object.count.estimate -v false
+As a Java service, the JVM properties can also be set for the OSE instance. In some cases, the storage platform could be in another network that is accessible by OSE through a configured proxy server. The system administrator can set the JVM proxy options for OSE by using the command:
+ose jvmargs -v &ldquo;Dhttp.proxyHost=proxy.cloud.com -Dhttp.proxyPort=3128&rdquo;</p>
+<h2 id=postgresql-database>
+PostgreSQL Database
+<a class=anchor href=#postgresql-database>#</a>
+</h2>
+<p>OSE uses a PostgreSQL database for storing the metadata of its S3 storage-related operations. The recommended hardware requirements for the database are 8 Core CPUs and 12 GB RAM for most OSE deployments.
+An impact on the database disk usage will have the object count, not the object content size. The more objects you create in the system, the more disk space the database occupies. Many factors determine disk space consumption. Roughly one million objects cost about 0.6GB disk. Database indexes and logs will also consume disk. So, assuming you have one billion objects in an object storage cluster, you need to prepare more than 700GB of disk for the database machine.</p>
+<p>There is a table object_info in the OSE database containing rows for each managed object. If OSE handles twenty million objects, the table will have twenty million rows. Querying such a table could be a performance bottleneck if the database machine has limited CPU and memory resources.</p>
+<p>Now that we have the estimation for the database disk consumption with object count (about 0.6GB/million objects), it’s recommended to allocate a buffer for the disk size at the beginning.</p>
+<h2 id=public-s3-endpoint>
+Public S3 Endpoint
+<a class=anchor href=#public-s3-endpoint>#</a>
+</h2>
+<p>S3-compliant API has two path formats:
+• Path-Style Requests. The path pattern for Amazon S3 is <a href=https://s3.Region.amazonaws.com/bucket-name/key>https://s3.Region.amazonaws.com/bucket-name/key</a> name, for example, <a href=https://s3.us-west-2.amazonaws.com/mybucket/puppy.jpg>https://s3.us-west-2.amazonaws.com/mybucket/puppy.jpg</a>.
+• Virtual Hosted-Style Requests. The path pattern for Amazon S3 is <a href=https://bucket-name.s3.Region.amazonaws.com/key>https://bucket-name.s3.Region.amazonaws.com/key</a> name, for example <a href=https://my-bucket.s3.us-west-2.amazonaws.com/puppy.png>https://my-bucket.s3.us-west-2.amazonaws.com/puppy.png</a>.
+OSE supports both styles of S3 endpoint, but the segment region is not on the S3 URI; assumed your organization&rsquo;s root FQDN is <a href=https://acme.com>https://acme.com</a>.</p>
+<p>Table 2: S3 API Path Formats</p>
+<table>
+<thead>
+<tr>
+<th><strong>S3 API Path Formats</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Examples</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path Style</td>
+<td>The path-style S3 URI has /api/v1/s3 as the root path.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Any FQDN can work.</p>
+<p>By default, OSE S3 API works in path-style. | <a href=https://storage.acme.com:443/api/v1/s3/bucket-1/dog.png>https://storage.acme.com:443/api/v1/s3/bucket-1/dog.png</a></p>
+<p><a href=https://storage.acme.com:443/api/v1/s3/bucket-2/cat.png>https://storage.acme.com:443/api/v1/s3/bucket-2/cat.png</a> |
+| Virtual-Hosted Style | The virtual-hosted style S3 URI has s3. on the FQDN.</p>
+<p>FQDN must use prefix s3. and support wildcard subdomains, i.e., <a href=http://s3.acme.com><em>s3.acme.com</em></a> and *.<a href=http://s3.acme.com><em>s3.acme.com</em></a>. | <a href=https://bucket-1.s3.acme.com:443/dog.png>https://bucket-1.s3.acme.com:443/dog.png</a></p>
+<p><a href=https://bucket-2.s3.acme.com:443/cat.png>https://bucket-2.s3.acme.com:443/cat.png</a> |</p>
+<p>There are additional steps to make OSE work in a virtual-hosted style.</p>
+<p>Procedure</p>
+<ol>
+<li>Run the command to turn off the path style and switch to the virtual-hosted style:
+<code>ose args set -k s3.client.path.style.access -v false</code></li>
+<li>Restart the ose service.
+<code>ose service restart</code></li>
+<li>Configure wildcard DNS mapping for OSE S3 endpoint, i.e., map all *.s3.acme.com to the OSE load balancer.</li>
+<li>Create a wildcard SSL certificate for the wildcard FQDN, i.e., make a common name as *.s3.acme.com.
+ </li>
+</ol>
+<h1 id=ose-performance-settings>
+OSE Performance Settings
+<a class=anchor href=#ose-performance-settings>#</a>
 </h1>
+<p>The following settings can be applied to your OSE deployment to improve its performance.</p>
+<h2 id=logging>
+Logging
+<a class=anchor href=#logging>#</a>
+</h2>
+<p>The OSE logging level has an impact on the performance. To improve the performance, do not turn on the DEBUG logging. Besides, every request access is logged by default. It can be turned off as well.
+The following examples show how to set the logging level to WARN or turn off logging. After changing the log level or turning it off, you need to restart the OSE service.
+• Setting OSE logging level to WARN
+<code>ose args set --k logging.level.com.vmware.voss --v WARN</code>
+• Turning off OSE logging
+<code>ose args set --k server.undertow.accesslog.enabled --v false</code>
+• Restarting the OSE service
+<code>ose service restart</code></p>
+<h2 id=tune-io-thread-count>
+Tune I/O Thread Count
+<a class=anchor href=#tune-io-thread-count>#</a>
+</h2>
+<p>By default, the Undertow server creates server I/O threads per CPU cores on the OSE machine. See for reference: <a href=http://undertow.io/undertow-docs/undertow-docs-1.2.0/listeners.html>http://undertow.io/undertow-docs/undertow-docs-1.2.0/listeners.html</a>.
+If needed, you can increase the I/O thread count to gain performance out of I/O. However, the number should not be too high. For example, if OSE has 8 cores with 1 socket for each host, the default I/O threads for OSE is 2 * 8 = 16. You can increase the number to 24 with the command below:
+<code>ose args set --k server.undertow.threads.io --v 24</code></p>
+<h2 id=tune-the-worker-thread-count>
+Tune the Worker Thread Count
+<a class=anchor href=#tune-the-worker-thread-count>#</a>
+</h2>
+<p>The default working thread count of Spring Boot is 8 * I/O threads for the embedded Undertow server. Increasing the working thread count to match the concurrency is recommended to fully utilize the server capacity for a high concurrency workload.
+```ose args set &ndash;k server.undertow.threads.worker &ndash;v 256``</p>
+<h2 id=set-max-connection-count-to-storage-platform>
+Set Max Connection Count to Storage Platform
+<a class=anchor href=#set-max-connection-count-to-storage-platform>#</a>
+</h2>
+<p>Concurrent connections to storage platform S3 API directly impact the system&rsquo;s scalability and throughput. By default, the max connection count is 1000.
+<code>ose args set --k s3.client.max.connections --v 1000</code></p>
+<h2 id=set-max-connection-count-to-the-postgresql-server>
+Set max Connection Count to the PostgreSQL Server
+<a class=anchor href=#set-max-connection-count-to-the-postgresql-server>#</a>
+</h2>
+<p>Concurrent connections to the database directly impact the system&rsquo;s scalability and throughput. By default, the max connection count is 90.</p>
+<p><strong>Note:</strong> The below setting is insufficient to increase the concurrency of database connections. You should consider increasing the max connection count on the PostgreSQL side simultaneously. For example, if the PostgreSQL server&rsquo;s max connection count is 1000, and you have deployed 5 OSE server nodes, then the average connection count to each OSE node should be less than the max connection count divided by the OSE node count, e.g., &lt; 200.</p>
+<p><code>ose args set --k spring.datasource.hikari.maximumPoolSize --v 180</code></p>
+<p>Other settings for the database connection pool can be seen below. For term explanation, please refer to <a href=https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby>https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby</a>.</p>
+<p><code>ose args set --k spring.datasource.hikari.maxLifetime --v 1800000</code>
+<code>ose args set --k spring.datasource.hikari.idleTimeout --v 600000</code>
+<code>ose args set --k spring.datasource.hikari.connectionTimeout --v 30000</code></p>
+<p>Set Multipart Request Threshold for Upload
+OSE middleware automatically splits the upload content stream into several parts for large objects. Depending on the network performance between the OSE middleware and storage platform, the threshold can be re-configured. The default setting is when the upload object size is over 1 GB, the upload is split, and each part is &lt;= 1GB size.
+<code>ose args set --k s3.client.upload.multipart.threshold --v 1073741824</code>
+<code>ose args set --k s3.client.upload.multipart.mini-part-size --v 1073741824</code>
+<code>ose args set --k s3.client.copy.multipart.threshold --v 1073741824</code>
+<code>ose args set --k s3.client.copy.multipart.mini-part-size --v 1073741824</code></p>
+<h2 id=turn-off-tenant-server-side-encryption>
+Turn off Tenant Server-side Encryption
+<a class=anchor href=#turn-off-tenant-server-side-encryption>#</a>
+</h2>
+<p>Tenant Server-side Encryption (SSE) is a unique feature of the OSE middleware. This feature can be turned off globally if you don&rsquo;t need it, which will improve OSE performance.
+<code>ose args set --k oss.tenant.sse.enabled --v false</code></p>
+<h2 id=turn-on-ose-virtual-hosted-style-s3-requests>
+Turn on OSE Virtual-hosted Style S3 Requests
+<a class=anchor href=#turn-on-ose-virtual-hosted-style-s3-requests>#</a>
+</h2>
+<p>By default, OSE works with path-style S3 requests. The command below will make OSE work with virtual-hosted style S3 requests.
+<code>ose args set -k s3.client.path.style.access -v false</code></p>
+<h2 id=tune-object-count-of-bucket>
+Tune Object Count of Bucket
+<a class=anchor href=#tune-object-count-of-bucket>#</a>
+</h2>
+<p>OSE has a feature showing tenant users the object count of each bucket. However, for buckets containing over 10 million objects, counting the bucket’s objects will impact the performance.
+Object count estimation is adopted for such buckets. The threshold is a hundred thousand objects per bucket. Use the following commands to adjust the threshold or turn off the estimation.
+• Changing the object count estimate threshold
+<code>oss.object.count.estimate.threshold=100000</code>
+• Turning off the object count estimate
+<code>ose args set -k oss.object.count.estimate -v false</code>
+Set Proxy for OSE
+There are cases in which the storage platform is on another network that is accessible by OSE through a proxy server. You can set the JVM proxy options for OSE by using the following command.
+<code>ose jvmargs -v "Dhttp.proxyHost=proxy.cloud.com -Dhttp.proxyPort=3128"</code></p>
+<h1 id=getting-support>
+Getting Support
+<a class=anchor href=#getting-support>#</a>
+</h1>
+<h2 id=generate-support-bundle>
+Generate Support Bundle
+<a class=anchor href=#generate-support-bundle>#</a>
+</h2>
+<p>OSE has a native CLI for support bundle, which will collect OSE information and logs of a specific period. See an example below:
+<code>ose support --start 2020-03-12 --end 2020-05-24</code></p>
+<p>The optional argument <code>--start</code> defines the start time for the logs to be collected. The default value is 2018-01-01.</p>
+<p>The optional argument <code>--end</code> defines the end time for the logs to be collected. If not specified, the end date is the current date.</p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
@@ -216,9 +508,42 @@ Performance Settings
 </ul>
 </li>
 <li><a href=#architecture>Architecture</a></li>
-<li><a href=#deployment-options>Deployment Options</a></li>
-<li><a href=#configuration>Configuration</a></li>
-<li><a href=#performance-settings>Performance Settings</a></li>
+<li><a href=#deployment-options>Deployment Options</a>
+<ul>
+<li><a href=#small-deployment>Small Deployment</a></li>
+<li><a href=#medium-deployment>Medium Deployment</a></li>
+<li><a href=#large-deployment>Large Deployment</a></li>
+<li><a href=#multi-site-deployment>Multi-site Deployment</a></li>
+</ul>
+</li>
+<li><a href=#configuration>Configuration</a>
+<ul>
+<li><a href=#ose-scalability>OSE Scalability</a></li>
+<li><a href=#deploying-an-ose-cluster>Deploying an OSE Cluster</a></li>
+<li><a href=#configuring-a-single-ose-instance>Configuring a Single OSE Instance</a></li>
+<li><a href=#replicating-configuration-on-ose-nodes-behind-a-load-balancer>Replicating Configuration on OSE Nodes behind a Load Balancer</a></li>
+<li><a href=#ose-java-service>OSE Java Service</a></li>
+<li><a href=#postgresql-database>PostgreSQL Database</a></li>
+<li><a href=#public-s3-endpoint>Public S3 Endpoint</a></li>
+</ul>
+</li>
+<li><a href=#ose-performance-settings>OSE Performance Settings</a>
+<ul>
+<li><a href=#logging>Logging</a></li>
+<li><a href=#tune-io-thread-count>Tune I/O Thread Count</a></li>
+<li><a href=#tune-the-worker-thread-count>Tune the Worker Thread Count</a></li>
+<li><a href=#set-max-connection-count-to-storage-platform>Set Max Connection Count to Storage Platform</a></li>
+<li><a href=#set-max-connection-count-to-the-postgresql-server>Set max Connection Count to the PostgreSQL Server</a></li>
+<li><a href=#turn-off-tenant-server-side-encryption>Turn off Tenant Server-side Encryption</a></li>
+<li><a href=#turn-on-ose-virtual-hosted-style-s3-requests>Turn on OSE Virtual-hosted Style S3 Requests</a></li>
+<li><a href=#tune-object-count-of-bucket>Tune Object Count of Bucket</a></li>
+</ul>
+</li>
+<li><a href=#getting-support>Getting Support</a>
+<ul>
+<li><a href=#generate-support-bundle>Generate Support Bundle</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </div>
