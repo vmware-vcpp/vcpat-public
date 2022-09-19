@@ -14,7 +14,7 @@ Automation for This Design in VMware Cloud Foundation #  The implementation task
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.335f9239ef8cd6bd0bb957dc42db494ba179bef4f0a7c8f8a9a3eebca6659ee7.js integrity="sha256-M1+SOe+M1r0LuVfcQttJS6F5vvTwp8j4qaPuvKZlnuc=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.1eef904f595703ca7850d95472d3e2758a4b0f6098449f03737a11071cb1b9a7.js integrity="sha256-Hu+QT1lXA8p4UNlUctPidYpLD2CYRJ8Dc3oRBxyxuac=" crossorigin=anonymous></script>
 <link rel=alternate type=application/rss+xml href=http://vcpat.cloudhappens.io/docs/cloud-infrastructure/index.xml title="VMware Cloud Provider Architecture Toolkit">
 </head>
 <body dir=ltr>
@@ -144,12 +144,12 @@ Software Components in Cloud Infrastructure
 <tr>
 <td>4.4.1</td>
 <td>Products part of VMware Cloud Foundation</td>
-<td>See <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/4.4.1/rn/vmware-cloud-foundation-441-release-notes/index.html>VMware Cloud Foundation 4.4.1 Release Notes</a>.</td>
+<td>See <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/4.4.1/rn/vmware-cloud-foundation-441-release-notes/index.html>VMware Cloud Foundation 4.4.1 Release Notes</a></td>
 </tr>
 <tr>
 <td></td>
 <td>Solution-added products</td>
-<td><ul><li>VMware Cloud Director 10.4</li><li>VMware vCloud Usage Meter 4.5</li><li>VMware vRealize Operations Tenant App for VMware Cloud Director 8.6</li><li>RabbitMQ 3.8</li></ul></td>
+<td><ul><li>VMware Cloud Director 10.4</li><li>VMware vCloud Usage Meter 4.5</li><li>VMware vRealize Operations Tenant App for VMware Cloud Director 8.6</li><li>RabbitMQ 3.8</li><li>VMware Cloud Provider Lifecycle Manager 1.3 </li></ul></td>
 </tr>
 <tr>
 <td>4.4.0</td>
@@ -159,7 +159,7 @@ Software Components in Cloud Infrastructure
 <tr>
 <td></td>
 <td>Solution-added products</td>
-<td><ul><li>VMware Cloud Director 10.3</li><li>VMware vCloud Usage Meter 4.4</li><li>VMware vRealize Operations Tenant App for VMware Cloud Director 2.6</li><li>RabbitMQ 3.8</li></ul></td>
+<td><ul><li>VMware Cloud Director 10.3</li><li>VMware vCloud Usage Meter 4.4</li><li>VMware vRealize Operations Tenant App for VMware Cloud Director 2.6</li><li>RabbitMQ 3.8</li><li>VMware Cloud Provider Lifecycle Manager 1.3 </li></ul></td>
 </tr>
 <tr>
 <td>4.3.1</td>
@@ -169,7 +169,7 @@ Software Components in Cloud Infrastructure
 <tr>
 <td></td>
 <td>Solution-added products</td>
-<td><ul><li>VMware Cloud Director 10.3</li><li>VMware vCloud Usage Meter 4.5</li><li>VMware vRealize Operations Tenant App for VMware Cloud Director 2.6</li><li>RabbitMQ 3.8</li></ul></td>
+<td><ul><li>VMware Cloud Director 10.3</li><li>VMware vCloud Usage Meter 4.5</li><li>VMware vRealize Operations Tenant App for VMware Cloud Director 2.6</li><li>RabbitMQ 3.8</li><li>VMware Cloud Provider Lifecycle Manager 1.3 </li></ul></td>
 </tr>
 <tr>
 <td>4.3.0</td>
@@ -179,10 +179,11 @@ Software Components in Cloud Infrastructure
 <tr>
 <td></td>
 <td>Solution-added products</td>
-<td><ul><li>VMware Cloud Director 10.3</li><li>VMware vCloud Usage Meter 4.5</li><li>VMware vRealize Operations Tenant App for VMware Cloud Director 2.6</li><li>RabbitMQ 3.8</li></ul></td>
+<td><ul><li>VMware Cloud Director 10.3</li><li>VMware vCloud Usage Meter 4.5</li><li>VMware vRealize Operations Tenant App for VMware Cloud Director 2.6</li><li>RabbitMQ 3.8</li><li>VMware Cloud Provider Lifecycle Manager 1.3 </li></ul></td>
 </tr>
 </tbody>
 </table>
+<p>Please refer the <a href="https://interopmatrix.vmware.com/Interoperability?col=799,&row=0,">interoperability matrix</a> for more information about the supported products of VMware Cloud Provider Lifecycle Manager</p>
 <h2 id=before-you-apply-this-guidance>
 Before You Apply This Guidance
 <a class=anchor href=#before-you-apply-this-guidance>#</a>
@@ -202,11 +203,11 @@ Supported VMware Cloud Foundation Deployment
 <tbody>
 <tr>
 <td>Management domain</td>
-<td><ul><li>Automated deployment using VMware Cloud Builder.</li><li>Availability of overlay-backed or VLAN-backed NSX segments in NSX-T Data Center for traffic in the same VMware Cloud Foundation instance and between VMware Cloud Foundation instances not required.</li></ul><br>See the following VMware Cloud Foundation Documentation:<br><ul><li>For information on deploying the management domain, see VMware Cloud Foundation Getting Started Guide and VMware Cloud Foundation Deployment Guide.</li><li>For information on designing the management domain, see VMware Cloud Foundation Design Guide for the Management Domain.</li></ul></td>
+<td><ul><li>Automated deployment using VMware Cloud Builder.</li><li>Availability of overlay-backed or VLAN-backed NSX segments in NSX-T Data Center for traffic in the same VMware Cloud Foundation instance and between VMware Cloud Foundation instances not required.</li></ul><br>See the following <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html>VMware Cloud Foundation</a> Documentation:<br><ul><li>For information on deploying the management domain, see VMware Cloud Foundation Getting Started Guide and VMware Cloud Foundation Deployment Guide.</li><li>For information on designing the management domain, see VMware Cloud Foundation Design Guide for the Management Domain.</li></ul></td>
 </tr>
 <tr>
 <td>One or more virtual infrastructure workload domains</td>
-<td><ul><li>Automated deployment using VMware Cloud Builder.</li></ul><br>See the following VMware Cloud Foundation Documentation:<br><ul><li>For information on deploying the management domain, see VMware Cloud Foundation Getting Started Guide and VMware Cloud Foundation Deployment Guide.</li><li>For information on designing the management domain, see VMware Cloud Foundation Design Guide for the Management Domain.</li></ul></td>
+<td><ul><li>Automated deployment using VMware Cloud Builder.</li></ul><br>See the following <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html>VMware Cloud Foundation</a> Documentation:<br><ul><li>For information on deploying the management domain, see VMware Cloud Foundation Getting Started Guide and VMware Cloud Foundation Deployment Guide.</li><li>For information on designing the management domain, see VMware Cloud Foundation Design Guide for the Management Domain.</li></ul></td>
 </tr>
 </tbody>
 </table>
@@ -214,11 +215,11 @@ Supported VMware Cloud Foundation Deployment
 Overview of Cloud Infrastructure
 <a class=anchor href=#overview-of-cloud-infrastructure>#</a>
 </h2>
-<p>By applying the Cloud Infrastructure validated solution, you implement {describe outcome}.</p>
-<h6 id=implementation-overview-of-cloud-infrastructure>
+<p>By applying the Cloud Infrastructure validated solution, you implement VMware Cloud Director, vRealize Operations Manager Tenant App, Usage Meter and RabbitMQ on VMware Cloud Foundation using VMware Cloud Provider Lifecycle Manager</p>
+<h3 id=implementation-overview-of-cloud-infrastructure>
 Implementation Overview of Cloud Infrastructure
 <a class=anchor href=#implementation-overview-of-cloud-infrastructure>#</a>
-</h6>
+</h3>
 <table>
 <thead>
 <tr>
@@ -228,16 +229,16 @@ Implementation Overview of Cloud Infrastructure
 </thead>
 <tbody>
 <tr>
-<td>1. Stage one description</td>
-<td>Long form description of stage</td>
+<td>1. Deploy VMware Cloud Foundation</td>
+<td>Underline infrastructure i.e VMware Cloud Foundation needs to be deployed and configured as per VMware Documentation.</td>
 </tr>
 <tr>
-<td>2. Stage two description</td>
-<td><ol><li>Step 1 description</li><li>Step 2 description</li><li>Step 3 description</li><li>Step 4 description</li></ul></td>
+<td>2. Deploy VMware Cloud Provider Lifecycle Manager <br> on the management domain of VMware Cloud Foundation</td>
+<td><ol><li>Configure Pre-requisites for deploying VMware Cloud Provider Lifecycle Manager </li><li>Deploy Postman and download Postman collection for product deployment. </li><li>Deploy VMware Cloud Provider Lifecycle Manager Appliance</li><li>Setup the NFS share for product binaries</li></ul></td>
 </tr>
 <tr>
-<td>3. Stage three description</td>
-<td><ol><li>Step 1 description</li><li>Step 2 description</li><li>Step 3 description</li></ul></td>
+<td>3. Deploy VMware Cloud Director, Usage Meter, RabbitMQ and <br>vRealize Operations Manager Tenant App</td>
+<td><ol><li>For deployment of each products, you need to floow respective product documentation for pre-requisites and process.</li><li>Download the product binaries to be deployed and copy them in respective folders in NFS share. </li><li>Modify the variables from the postman collection and initiate the deployment process via respective API call. </li></ul></td>
 </tr>
 </tbody>
 </table>

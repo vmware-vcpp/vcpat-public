@@ -8,13 +8,13 @@
 <meta property="og:description" content="Cloud Infrastructure Design Decisions #  NOTE: For each section below, use either a dedicated decision table for each component in the VVS or a single table with decisions for all components depending on the number of decisions listed. #  Deployment Model for Cloud Infrastructure #  Design Decisions for deploying VMware Cloud Director #     Design ID Design Decision Design Justification Design Implication     VCPLCM-VCD-001 Use VCD appliances instead of installing VCD binaries on Linux VMs.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/design-decisions/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-09-16T08:57:06+03:00">
+<meta property="article:modified_time" content="2022-09-19T21:49:33+05:30">
 <title>Cloud Infrastructure Design Decisions | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.335f9239ef8cd6bd0bb957dc42db494ba179bef4f0a7c8f8a9a3eebca6659ee7.js integrity="sha256-M1+SOe+M1r0LuVfcQttJS6F5vvTwp8j4qaPuvKZlnuc=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.1eef904f595703ca7850d95472d3e2758a4b0f6098449f03737a11071cb1b9a7.js integrity="sha256-Hu+QT1lXA8p4UNlUctPidYpLD2CYRJ8Dc3oRBxyxuac=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -261,71 +261,59 @@ Design Decisions for deploying {VVS component 3}
 Integration of Cloud Infrastructure
 <a class=anchor href=#integration-of-cloud-infrastructure>#</a>
 </h1>
-<h2 id=design-decisions-for-integrating-vvs-component-1>
-Design Decisions for integrating {VVS component 1}
-<a class=anchor href=#design-decisions-for-integrating-vvs-component-1>#</a>
+<h2 id=design-decisions-for-integrating-vmware-cloud-director-with-nsx-t-and-vcenter-for-vmware-cloud-foundation>
+Design Decisions for integrating VMware Cloud Director with NSX-T and vCenter for VMware Cloud Foundation
+<a class=anchor href=#design-decisions-for-integrating-vmware-cloud-director-with-nsx-t-and-vcenter-for-vmware-cloud-foundation>#</a>
 </h2>
 <table>
 <thead>
 <tr>
-<th>Decision ID</th>
+<th>Design ID</th>
 <th>Design Decision</th>
 <th>Design Justification</th>
-<th>Design Implications</th>
+<th>Design Implication</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>VVS-COMP1-001</td>
-<td>Decision comment</td>
-<td>Justification comments</td>
-<td>Implication comments</td>
+<td>VCPLCM-CI-001</td>
+<td>Deploy VMware Cloud Director on the management vCenter Server of VMware Cloud Foundation</td>
+<td>Easy to manage and configure as it comes bundled with VMware Cloud Foundation.<br></td>
+<td>N/A</td>
 </tr>
 <tr>
-<td>VVS-COMP1-002</td>
-<td>Decision comment</td>
-<td>Justification comments</td>
-<td>Implication comments</td>
+<td>VCPLCM-CI-002</td>
+<td>Use NSX-T with comes bundled with VMware Cloud Foundation to integrate with VMware Cloud Director</td>
+<td>Easier to configure and manage.<br> Deployed as a part of validated solution with VMware Cloud Foundation.<br></td>
+<td>N/A</td>
 </tr>
 <tr>
-<td>VVS-COMP1-002</td>
-<td>Decision comment</td>
-<td>Justification comments</td>
-<td>Implication comments</td>
+<td>VCPLCM-CI-003</td>
+<td>Dedicate VI workloads domains vCenter for tenant workload consumption</td>
+<td>Resource Isolation<br> Resource constraints can be avoided as it can be scaled easily based on demand.</td>
+<td>N/A</td>
 </tr>
 </tbody>
 </table>
-<h2 id=design-decisions-for-integrating-vvs-component-2>
-Design Decisions for integrating {VVS component 2}
-<a class=anchor href=#design-decisions-for-integrating-vvs-component-2>#</a>
+<h2 id=design-decisions-for-integrating-vmware-cloud-director-with-rabbitmq>
+Design Decisions for integrating VMware Cloud Director with RabbitMQ
+<a class=anchor href=#design-decisions-for-integrating-vmware-cloud-director-with-rabbitmq>#</a>
 </h2>
 <table>
 <thead>
 <tr>
-<th>Decision ID</th>
+<th>Design ID</th>
 <th>Design Decision</th>
 <th>Design Justification</th>
-<th>Design Implications</th>
+<th>Design Implication</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>VVS-COMP2-001</td>
-<td>Decision comment</td>
-<td>Justification comments</td>
-<td>Implication comments</td>
-</tr>
-<tr>
-<td>VVS-COMP2-002</td>
-<td>Decision comment</td>
-<td>Justification comments</td>
-<td>Implication comments</td>
-</tr>
-<tr>
-<td>VVS-COMP2-002</td>
-<td>Decision comment</td>
-<td>Justification comments</td>
-<td>Implication comments</td>
+<td>VCPLCM-CI-004</td>
+<td>Deploy and Configure RabbitMQ for blocking tasks & notifications.</td>
+<td><br> If you want to use blocking tasks, notifications, or VMware Cloud Director API extensions, like Container Service Extension (CSE) and VMware Cloud Director App Launchpad, you need to install and configure a RabbitMQ AMQP Broker.</td>
+<td>Need to deploy and manage RabbitMQ</td>
 </tr>
 </tbody>
 </table>
@@ -964,14 +952,14 @@ Design Decisions for Lifecycle Management of the Cloud Infrastructure
 <tbody>
 <tr>
 <td>VCPLCM-VCD-009</td>
-<td>Use VMware Cloud Provider Lifecycle Manager for Lifecycle Management of VMware Cloud Director.</td>
-<td>VMware Cloud Provider Lifecycle Manager can help upgrade VMware Cloud Director.</td>
+<td>Use VMware Cloud Provider Lifecycle Manager for Lifecycle Management of VMware Cloud Director, Usage Meterand vRealize Operations Manager Tenant App</td>
+<td>VMware Cloud Provider Lifecycle Manager can help upgrade VMware Cloud Director, Usage Meter, vRealize Operations Manager Tenant App with the expection of RabbitMQ</td>
 <td>You must deploy VMware Cloud Provider Lifecycle Manager in your invironment.</td>
 </tr>
 <tr>
 <td>VCPLCM-VCD-0010</td>
-<td>Use VMware Cloud Provider Lifecycle Manager for Lifecycle Management of VMware Cloud Director.</td>
-<td>Below Day-2 Operations can be performed using VMware Cloud Provider Lifecycle Manager<br> <br> Certificate amanagement: Add and Update VMware Cloud Director Certificates<br> Node management- Add, delete a node and updating node properties like CPU and memory.</td>
+<td>Use VMware Cloud Provider Lifecycle Manager for Lifecycle Management of VMware Cloud Director, Usage Meter, RabbitMQ and vRealize Operations Manager Tenant App</td>
+<td>Below Day-2 Operations can be performed using VMware Cloud Provider Lifecycle Manager<br> <br> Certificate amanagement: Add and Update product Certificates<br> Node management- Add, delete a node and updating node properties like CPU and memory.</td>
 <td>VMware Cloud Provider Lifecycle Manager needs to be deployed first.</td>
 </tr>
 </tbody>
