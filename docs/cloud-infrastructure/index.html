@@ -2,8 +2,8 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="About Cloud Infrastructure #  The Cloud Infrastructure validated solution provides detailed design, implementation, configuration, and operation guidance on &mldr; A VMware validated solution is a technical validated implementation that is built and tested by VMware and VMware cloud providers to help customers resolve common business use cases. VMware validated solutions are cost-effective, performant, reliable, and secure. Each solution contains a detailed design, implementation, and operational guidance.
-Automation for This Design in VMware Cloud Foundation #  The implementation tasks for some design decisions are automated by SDDC Manager.">
+<meta name=description content="About Cloud Infrastructure #  The Cloud Infrastructure validated solution provides detailed design, implementation, configuration, and operation guidance for a workload domain that runs VMware Cloud Director tenant workloads in the Software-Defined Data Center (SDDC).
+A VMware validated solution is a technical validated implementation that is built and tested by VMware and VMware cloud providers to help customers resolve common business use cases. VMware validated solutions are cost-effective, performant, reliable, and secure.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Cloud Infrastructure">
 <meta property="og:description" content>
@@ -14,7 +14,7 @@ Automation for This Design in VMware Cloud Foundation #  The implementation task
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.1eef904f595703ca7850d95472d3e2758a4b0f6098449f03737a11071cb1b9a7.js integrity="sha256-Hu+QT1lXA8p4UNlUctPidYpLD2CYRJ8Dc3oRBxyxuac=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.c7e4a3b39384703c4cbd8af43dcc692c5b8a97a875cafee86ecca2e381b69b1e.js integrity="sha256-x+Sjs5OEcDxMvYr0PcxpLFuKl6h1yv7obsyi44G2mx4=" crossorigin=anonymous></script>
 <link rel=alternate type=application/rss+xml href=http://vcpat.cloudhappens.io/docs/cloud-infrastructure/index.xml title="VMware Cloud Provider Architecture Toolkit">
 </head>
 <body dir=ltr>
@@ -138,19 +138,19 @@ VMware Cloud Solutions
 About Cloud Infrastructure
 <a class=anchor href=#about-cloud-infrastructure>#</a>
 </h1>
-<p>The Cloud Infrastructure validated solution provides detailed design, implementation, configuration, and operation guidance on &mldr;
-A VMware validated solution is a technical validated implementation that is built and tested by VMware and VMware cloud providers to help customers resolve common business use cases. VMware validated solutions are cost-effective, performant, reliable, and secure. Each solution contains a detailed design, implementation, and operational guidance.</p>
+<p>The Cloud Infrastructure validated solution provides detailed design, implementation, configuration, and operation guidance for a workload domain that runs VMware Cloud Director tenant workloads in the Software-Defined Data Center (SDDC).</p>
+<p>A VMware validated solution is a technical validated implementation that is built and tested by VMware and VMware cloud providers to help customers resolve common business use cases. VMware validated solutions are cost-effective, performant, reliable, and secure. Each solution contains a detailed design, implementation, and operational guidance.</p>
 <h2 id=automation-for-this-design-in-vmware-cloud-foundation>
 Automation for This Design in VMware Cloud Foundation
 <a class=anchor href=#automation-for-this-design-in-vmware-cloud-foundation>#</a>
 </h2>
 <p>The implementation tasks for some design decisions are automated by SDDC Manager. You must perform the implementation manually for the rest of the design decisions as noted in the design implication.
-To provide a fast and efficient path to automating the Cloud Infrastructure implementation, this document provides Microsoft PowerShell cmdlets as code-based alternatives to completing certain procedures in each SDDC component&rsquo;s user interface. You can directly reuse the PowerShell commands by replacing the provided sample values with values from your VMware Cloud Foundation Planning and Preparation Workbook.</p>
+To provide a fast and efficient path to automating the Cloud Infrastructure implementation, this document provides Microsoft PowerShell cmdlets as code-based alternatives to completing certain procedures in each SDDC component&rsquo;s user interface. You can directly reuse the PowerShell commands by replacing the provided sample values with values from your VMware Cloud Foundation Planning and Preparation Workbook. Additonal automation is provided using Postman collections for API automation and Terraform workflows for VMware Cloud Director automation.</p>
 <h2 id=intended-audience>
 Intended Audience
 <a class=anchor href=#intended-audience>#</a>
 </h2>
-<p>The Cloud Infrastructure documentation is intended for cloud provider architects and administrators who are familiar with and want to use VMware software and the Cloud Infrastructure solution for VMware Cloud Foundation.</p>
+<p>The Cloud Infrastructure documentation is intended for Cloud Provider Architects and Administrators who are familiar with and want to use VMware software and the Cloud Infrastructure solution for VMware Cloud Foundation.</p>
 <h2 id=support-matrix>
 Support Matrix
 <a class=anchor href=#support-matrix>#</a>
@@ -224,18 +224,42 @@ Supported VMware Cloud Foundation Deployment
 <table>
 <thead>
 <tr>
-<th>Workload Domain</th>
+<th>Workload Domain / Component</th>
 <th>Deployment Details</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Management domain</td>
-<td><ul><li>Automated deployment using VMware Cloud Builder.</li><li>Availability of overlay-backed or VLAN-backed NSX segments in NSX-T Data Center for traffic in the same VMware Cloud Foundation instance and between VMware Cloud Foundation instances not required.</li></ul><br>See the following <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html>VMware Cloud Foundation</a> Documentation:<br><ul><li>For information on deploying the management domain, see VMware Cloud Foundation Getting Started Guide and VMware Cloud Foundation Deployment Guide.</li><li>For information on designing the management domain, see VMware Cloud Foundation Design Guide for the Management Domain.</li></ul></td>
+<td><ul><li>Automated deployment using VMware Cloud Builder.</li><li>Availability of overlay-backed or VLAN-backed NSX segments in NSX-T Data Center for traffic in the same VMware Cloud Foundation instance and between VMware Cloud Foundation instances not required.</li></ul><br>See the following <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html>VMware Cloud Foundation</a> Documentation:<br><ul><li>For information on deploying the management domain, see <em>VMware Cloud Foundation Getting Started Guide</em> and <em>VMware Cloud Foundation Deployment Guide</em>.</li><li>For information on designing the management domain, see <em>VMware Cloud Foundation Design Guide for the Management Domain</em>.</li></ul></td>
 </tr>
 <tr>
 <td>One or more virtual infrastructure workload domains</td>
-<td><ul><li>Automated deployment using VMware Cloud Builder.</li></ul><br>See the following <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html>VMware Cloud Foundation</a> Documentation:<br><ul><li>For information on deploying the management domain, see VMware Cloud Foundation Getting Started Guide and VMware Cloud Foundation Deployment Guide.</li><li>For information on designing the management domain, see VMware Cloud Foundation Design Guide for the Management Domain.</li></ul></td>
+<td><ul><li>Automated deployment using SDDC Manager</li></ul><br>See the following <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html>VMware Cloud Foundation</a> Documentation:<br><ul><li>For information on deploying the VI workload domains, see <em>Getting Started with VMware Cloud Foundation</em> and <em>VMware Cloud Foundation Operations and Administration Guide</em>.</li><li>For information on designing a VI workload domain, see <em>VMware Cloud Foundation Design Guide for a Virtual Infrastructure Workload Domain</em>.</li></ul></td>
+</tr>
+<tr>
+<td>NSX Edge cluster</td>
+<td><ul><li>Automated deployment using SDDC Manager</li></ul><br>See the following <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html>VMware Cloud Foundation</a> Documentation:<br><ul><li>For information on deploying the NSX Edge cluster, see <em>VMware Cloud Foundation Getting Started Guide</em> and <em>VMware Cloud Foundation Operations and Administration Guide</em>.</li><li>For information on designing the NSX Edge cluster, see <em>VMware Cloud Foundation Design Guide for a Virtual Infrastructure Workload Domain</em>.</li></ul></td>
+</tr>
+<tr>
+<td>vRealize Suite Lifecycle Manager and clustered Workspace ONE Access</td>
+<td><ul><li>Automated deployment of vRealize Suite Lifecycle Manager by using SDDC Manager</li><li>Automated deployment of the clustered Workspace ONE Access instance by using vRealize Suite Lifecycle Manager.</li></ul><br>See the following <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html>VMware Cloud Foundation</a> Documentation:<br><ul><li>For information on deploying vRealize Suite Lifecycle Manager and the clustered Workspace ONE Access instance, see <em>Getting Started with VMware Cloud Foundation</em> and <em>VMware Cloud Foundation Operations and Administration Guide</em>.</li><li>For information on designing vRealize Suite Lifecycle Manager and the clustered Workspace ONE Access instance, see <em>Design for vRealize Suite Lifecycle and Access Management</em>.</li></ul></td>
+</tr>
+<tr>
+<td>Identity and Access Management</td>
+<td><ul><li>Manual configuration using Identity and Access Management for VMware Cloud Foundation VMware Validated Solution</li></ul><br>See the following <a href=https://core.vmware.com/vmware-validated-solutions>VMware Validated Solutions</a> Documentation:<br><ul><li>For detailed design, implementation, configuration, and operation guidance on the use of Active Directory as an identity provider and authentication source, and on the use of role-based access control (RBAC) in SDDC Manager, vCenter Server, ESXi, and NSX-T Data Center, see <em>Identity and Access Management for VMware Cloud Foundation</em>.</li></ul></td>
+</tr>
+<tr>
+<td>Advanced Load Balancing</td>
+<td><ul><li>Manual deployment using Advanced Load Balancing for VMware Cloud Foundation VMware Validated Solution</li></ul><br>See the following <a href=https://core.vmware.com/vmware-validated-solutions>VMware Validated Solutions</a> Documentation:<br><ul><li>For detailed design, implementation, configuration, and operation guidance on the use of NSX Advanced Load Balancer as a Load Balancing solution for tenant application workloads within VMware Cloud Director, see <em>Advanced Load Balancing for VMware Cloud Foundation</em>.</li></ul></td>
+</tr>
+<tr>
+<td>Intelligent Operations Management</td>
+<td><ul><li>Manual deployment using Intelligent Operations Management for VMware Cloud Foundation VMware Validated Solution</li></ul><br>See the following <a href=https://core.vmware.com/vmware-validated-solutions>VMware Validated Solutions</a> Documentation:<br><ul><li>For detailed design, implementation, configuration, and operation guidance on the use of VMware vRealize Operations for centralized monitoring and alerting through a single interface to review and act on events and alerts to deliver proactive management of system failures, see <em>Intelligent Operations Management for VMware Cloud Foundation</em>.</li></ul></td>
+</tr>
+<tr>
+<td>Intelligent Logging and Analytics</td>
+<td><ul><li>Manual deployment using Intelligent Logging and Analytics for VMware Cloud Foundation VMware Validated Solution</li></ul><br>See the following <a href=https://core.vmware.com/vmware-validated-solutions>VMware Validated Solutions</a> Documentation:<br><ul><li>For detailed design, implementation, configuration, and operation guidance on the use of VMware vRealize Log Insight as a log analysis tool that delivers highly scalable log management with intuitive and actionable dashboards and sophisticated analytics, see <em>Intelligent Logging and Analytics for VMware Cloud Foundation</em>.</li></ul></td>
 </tr>
 </tbody>
 </table>
