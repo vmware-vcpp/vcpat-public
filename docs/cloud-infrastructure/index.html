@@ -14,7 +14,7 @@ A VMware validated solution is a technical validated implementation that is buil
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.05837478f2a04ee48258d15ee9ac181f623168b7c9bff45e1f35b66c5c90a7f7.js integrity="sha256-BYN0ePKgTuSCWNFe6awYH2IxaLfJv/ReHzW2bFyQp/c=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.4df3e44d3b438cfffc601c046ee6e5312676a0bffa393168e04f2fd0c0f4cb35.js integrity="sha256-TfPkTTtDjP/8YBwEbublMSZ2oL/6OTFo4E8v0MD0yzU=" crossorigin=anonymous></script>
 <link rel=alternate type=application/rss+xml href=http://vcpat.cloudhappens.io/docs/cloud-infrastructure/index.xml title="VMware Cloud Provider Architecture Toolkit">
 </head>
 <body dir=ltr>
@@ -251,7 +251,7 @@ Supported VMware Cloud Foundation Deployment
 </tr>
 <tr>
 <td>Advanced Load Balancing</td>
-<td><ul><li>Manual deployment using Advanced Load Balancing for VMware Cloud Foundation VMware Validated Solution</li></ul><br>See the following <a href=https://core.vmware.com/vmware-validated-solutions>VMware Validated Solutions</a> Documentation:<br><ul><li>For detailed design, implementation, configuration, and operation guidance on the use of NSX Advanced Load Balancer as a Load Balancing solution for tenant application workloads within VMware Cloud Director, see <em>Advanced Load Balancing for VMware Cloud Foundation</em>.</li></ul></td>
+<td><ul><li>Manual deployment using Advanced Load Balancing for VMware Cloud Foundation VMware Validated Solution</li></ul><br>See the following <a href=https://core.vmware.com/vmware-validated-solutions>VMware Validated Solutions</a> Documentation:<br><ul><li>For detailed design, implementation, configuration, and operation guidance on the use of NSX Advanced Load Balancer as a Load Balancing solution for workloads on VMware Cloud Foundation, see <em>Advanced Load Balancing for VMware Cloud Foundation</em>.</li></ul></td>
 </tr>
 <tr>
 <td>Intelligent Operations Management</td>
@@ -297,12 +297,12 @@ Implementation Overview of Cloud Infrastructure
 <td><ol><li>For deployment of each products, you need to floow respective product documentation for pre-requisites and process.</li><li>Download the product binaries to be deployed and copy them in respective folders in NFS share. </li><li>Modify the variables from the postman collection and initiate the deployment process via respective API call. </li></ul></td>
 </tr>
 <tr>
-<td>5. Enable tenant workload provisioning.</td>
-<td><ol><li>Configure Provider resources.</li><li>Configure next step. </li><li>Configure next step. </li><li>Configure next step. </li><li>Configure next step. </li></ul></td>
+<td>5. Enable solution interoperability</td>
+<td><ol><li>Integrate all Cloud Infrastructure components with Identity and Access Management services</li><li>Configure VMware Cloud Director for Advanced Load Balancing. </li><li>Integrate all Cloud Infrastructure components with vRealize Operations Manager. </li><li>Integrate all Cloud Infrastructure components with vRealize Log Insight. </li></ul></td>
 </tr>
 <tr>
-<td>6. Enable solution interoperability</td>
-<td><ol><li>Integrate all Cloud Infrastructure components with Identity and Access Management services</li><li>Configure VMware Cloud Director for Advanced Load Balancing. </li><li>Integrate all Cloud Infrastructure components with vRealize Operations Manager. </li><li>Integrate all Cloud Infrastructure components with vRealize Log Insight. </li></ul></td>
+<td>6. Enable tenant workload provisioning.</td>
+<td><ol><li>Configure Provider resources.</li><li>Configure next step. </li><li>Configure next step. </li><li>Configure next step. </li><li>Configure next step. </li></ul></td>
 </tr>
 </tbody>
 </table>
