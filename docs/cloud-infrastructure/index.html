@@ -14,7 +14,7 @@ A VMware validated solution is a technical validated implementation that is buil
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.c7e4a3b39384703c4cbd8af43dcc692c5b8a97a875cafee86ecca2e381b69b1e.js integrity="sha256-x+Sjs5OEcDxMvYr0PcxpLFuKl6h1yv7obsyi44G2mx4=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.05837478f2a04ee48258d15ee9ac181f623168b7c9bff45e1f35b66c5c90a7f7.js integrity="sha256-BYN0ePKgTuSCWNFe6awYH2IxaLfJv/ReHzW2bFyQp/c=" crossorigin=anonymous></script>
 <link rel=alternate type=application/rss+xml href=http://vcpat.cloudhappens.io/docs/cloud-infrastructure/index.xml title="VMware Cloud Provider Architecture Toolkit">
 </head>
 <body dir=ltr>
@@ -281,16 +281,28 @@ Implementation Overview of Cloud Infrastructure
 </thead>
 <tbody>
 <tr>
-<td>1. Deploy VMware Cloud Foundation</td>
-<td>Underline infrastructure i.e VMware Cloud Foundation needs to be deployed and configured as per VMware Documentation.</td>
+<td>1. Plan and prepare the VMware Cloud Foundation environment.</td>
+<td>Work with the technology team of your organization on configuring the physical servers, network, and storage in the data center. Collect the environment details and write them down in the <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/4.4/vcf-planning-and-preparation-workbook.zip>VMware Cloud Foundation Planning and Preparation Workbook</a>.</td>
 </tr>
 <tr>
-<td>2. Deploy VMware Cloud Provider Lifecycle Manager <br> on the management domain of VMware Cloud Foundation</td>
+<td>2. Deploy VMware Validated Solutions.</td>
+<td>Follow the design and deployment guidance to deploy the required <a href=https://core.vmware.com/vmware-validated-solutions>VMware Validated Solutions</a> described above.</td>
+</tr>
+<tr>
+<td>3. Deploy VMware Cloud Provider Lifecycle Manager</td>
 <td><ol><li>Configure Pre-requisites for deploying VMware Cloud Provider Lifecycle Manager </li><li>Deploy Postman and download Postman collection for product deployment. </li><li>Deploy VMware Cloud Provider Lifecycle Manager Appliance</li><li>Setup the NFS share for product binaries</li></ul></td>
 </tr>
 <tr>
-<td>3. Deploy VMware Cloud Director, Usage Meter, RabbitMQ and <br>vRealize Operations Manager Tenant App</td>
+<td>4. Deploy the Cloud Infrastructure components</td>
 <td><ol><li>For deployment of each products, you need to floow respective product documentation for pre-requisites and process.</li><li>Download the product binaries to be deployed and copy them in respective folders in NFS share. </li><li>Modify the variables from the postman collection and initiate the deployment process via respective API call. </li></ul></td>
+</tr>
+<tr>
+<td>5. Enable tenant workload provisioning.</td>
+<td><ol><li>Configure Provider resources.</li><li>Configure next step. </li><li>Configure next step. </li><li>Configure next step. </li><li>Configure next step. </li></ul></td>
+</tr>
+<tr>
+<td>6. Enable solution interoperability</td>
+<td><ol><li>Integrate all Cloud Infrastructure components with Identity and Access Management services</li><li>Configure VMware Cloud Director for Advanced Load Balancing. </li><li>Integrate all Cloud Infrastructure components with vRealize Operations Manager. </li><li>Integrate all Cloud Infrastructure components with vRealize Log Insight. </li></ul></td>
 </tr>
 </tbody>
 </table>
@@ -309,7 +321,7 @@ Update History
 <tbody>
 <tr>
 <td>1. 31 MAY 2022</td>
-<td>Long form description of revision</td>
+<td>Draft content collection</td>
 </tr>
 <tr>
 <td>2. 28 APR 2022</td>
