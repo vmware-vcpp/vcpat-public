@@ -2,19 +2,23 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Cloud Infrastructure Deployment Specification #  ">
+<meta name=description content="Cloud Infrastructure Deployment Specification #  The deployment specification covers the design decisions regarding the design and sizing of the VMware Cloud Director Availability appliances.
+Deployment Model #  You consider the deployment model according to the design objectives and scale of your DR and migration services.
+A VMware Cloud Director Availability instance is required in each VMware Cloud Foundation instance that is intended to be utilized for the DR and migration services offered to tenants.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Cloud Infrastructure Deployment Specification">
-<meta property="og:description" content="Cloud Infrastructure Deployment Specification #  ">
+<meta property="og:description" content="Cloud Infrastructure Deployment Specification #  The deployment specification covers the design decisions regarding the design and sizing of the VMware Cloud Director Availability appliances.
+Deployment Model #  You consider the deployment model according to the design objectives and scale of your DR and migration services.
+A VMware Cloud Director Availability instance is required in each VMware Cloud Foundation instance that is intended to be utilized for the DR and migration services offered to tenants.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/deployment-spec/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-09-21T16:50:12-04:00">
+<meta property="article:modified_time" content="2022-10-05T17:57:25+03:00">
 <title>Cloud Infrastructure Deployment Specification | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.088b845077b3a2dd4e95fd1e07eba5ae7cddacdd9a0863db69357f742cd98705.js integrity="sha256-CIuEUHezot1Olf0eB+ulrnzdrN2aCGPbaTV/dCzZhwU=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.a03dacbe745784dac317f49b807e47b121f3094f939856177e5728e43c8b686d.js integrity="sha256-oD2svnRXhNrDF/SbgH5HsSHzCU+TmFYXflco5DyLaG0=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -137,6 +141,94 @@ VMware Cloud Solutions
 Cloud Infrastructure Deployment Specification
 <a class=anchor href=#cloud-infrastructure-deployment-specification>#</a>
 </h1>
+<p>The deployment specification covers the design decisions regarding the design and sizing of the VMware Cloud Director Availability appliances.</p>
+<h2 id=deployment-model>
+Deployment Model
+<a class=anchor href=#deployment-model>#</a>
+</h2>
+<p>You consider the deployment model according to the design objectives and scale of your DR and migration services.</p>
+<p>A VMware Cloud Director Availability instance is required in each VMware Cloud Foundation instance that is intended to be utilized for the DR and migration services offered to tenants. You deploy the VMware Cloud Director Availability Cloud Replication Management and Cloud Tunnel appliances in the management domain and the Cloud Replicator(s) in the Workload domain(s).</p>
+<h3 id=design-decisions-on-site-recovery-manager-deployment>
+Design Decisions on Site Recovery Manager​ Deployment
+<a class=anchor href=#design-decisions-on-site-recovery-manager-deployment>#</a>
+</h3>
+<h2 id=sizing-compute-and-storage-resources-for-vmware-cloud-director-availability>
+Sizing Compute and Storage Resources for VMware Cloud Director Availability
+<a class=anchor href=#sizing-compute-and-storage-resources-for-vmware-cloud-director-availability>#</a>
+</h2>
+<p>VMware Cloud Director Availability offers different deployment options based on the estimated number of replications that manages. Scale-out is made possible by deploying additional Cloud Replicator appliances.</p>
+<h3 id=vmware-cloud-director-availability-appliances-sizing>
+VMware Cloud Director Availability Appliances Sizing
+<a class=anchor href=#vmware-cloud-director-availability-appliances-sizing>#</a>
+</h3>
+<table>
+<thead>
+<tr>
+<th>Appliance Type</th>
+<th>Description and Services</th>
+<th>Hardware Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cloud Replication Management Appliance</td>
+<td>A dedicated appliance, that runs the following VMware Cloud Director Availability services: * Manager Service * Cloud Service with embedded VMware Cloud Director Availability Tenant Portal</td>
+<td>- 2 vCPUs <br>- 4 GB RAM<br>- 10 GB Storage</td>
+</tr>
+<tr>
+<td>Cloud Replicator Appliance</td>
+<td>A dedicated appliance for the Replicator Service that handles the replication traffic for a site. For large-scale environments, you can deploy more than one Cloud Replicator Appliance per cloud site.</td>
+<td>- 4 vCPUs <br>- 6 GB RAM <br>- 10 GB Storage</td>
+</tr>
+<tr>
+<td>Cloud Tunnel Appliance</td>
+<td>A dedicated appliance for the Tunnel Service.</td>
+<td>- 2 vCPUs <br>- 2 GB RAM<br>- 10 GB Storage</td>
+</tr>
+</tbody>
+</table>
+<h3 id=vmware-cloud-director-availability-recommended-deployment>
+VMware Cloud Director Availability Recommended Deployment
+<a class=anchor href=#vmware-cloud-director-availability-recommended-deployment>#</a>
+</h3>
+<p>The VMware Cloud Director Availability recommended deployment consists of the following components.</p>
+<table>
+<thead>
+<tr>
+<th>Appliance name</th>
+<th>Number of appliances</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VMware Cloud Director Availability Cloud Replication Management</td>
+<td>1</td>
+</tr>
+<tr>
+<td>VMware Cloud Director Availability Cloud Replicator</td>
+<td>2</td>
+</tr>
+<tr>
+<td>VMware Cloud Director Availability Cloud Tunnel</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>One VMware Cloud Director Availability Cloud Replicator appliance supports up to 1000 active replications. This number can be lower due to several factors such as VM size, RPO settings, retention rules, etc.</p>
+<h3 id=scalability>
+Scalability
+<a class=anchor href=#scalability>#</a>
+</h3>
+<p>To scale-out VMware Cloud Director Availability, you can deploy an additional Cloud Replicator every time the active replication numbers are close to the maximums.</p>
+<p>For optimal performance, deploy the Cloud Replicators on different hosts if possible.</p>
+<h2 id=replication-technology-and-flow>
+Replication Technology and Flow
+<a class=anchor href=#replication-technology-and-flow>#</a>
+</h2>
+<p>VMware Cloud Director Availability uses Host Based Replication (HBR) technology as a data mover. A HBR Server runs in the VMware Cloud Director Availability Cloud Replicator and communicates with the source VM vSCSI IO Filter via one of the vmkernel interfaces of the source host. When VM is configured for replication this IO Filter is enabled and configured with the IP address and port of the listening HBR server plus several other replication settings like RPO time, quiescing, compression, and encryption.</p>
+<p>The VM IO stream to the underlying datastore is handled by the vSCSI interface where the IO Filter works too.</p>
+<p>When a VM is configured for replication the IO Filter tracks the addresses of the blocks that are changed. A few moments before the RPO timer expires the IO Filter starts to read the content of the changed blocks and sends them to the HBR server that is afterward responsible for delivering the replication data to the recovery site.</p>
+<p>Both the IO Filter and HBR server ensure when the RPO timer expires and gets reset that the content from all dirty blocks is replicated. When this process is completed on time we have an RPO violation-free replication and the IO Filter starts new dirty block tracking. If this process cannot be completed on time we see an RPO violation.</p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">

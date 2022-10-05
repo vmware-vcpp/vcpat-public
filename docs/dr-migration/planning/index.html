@@ -12,13 +12,13 @@ Use the VMware Cloud Foundation Planning and Preparation Workbook to capture env
 Carefully review the VMware Cloud Foundation Planning and Preparation Workbook before implementation to avoid costly rework and delays.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/planning/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-09-21T16:50:12-04:00">
+<meta property="article:modified_time" content="2022-10-05T17:57:25+03:00">
 <title>DR and Migration Planning and Preparation | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.088b845077b3a2dd4e95fd1e07eba5ae7cddacdd9a0863db69357f742cd98705.js integrity="sha256-CIuEUHezot1Olf0eB+ulrnzdrN2aCGPbaTV/dCzZhwU=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.a03dacbe745784dac317f49b807e47b121f3094f939856177e5728e43c8b686d.js integrity="sha256-oD2svnRXhNrDF/SbgH5HsSHzCU+TmFYXflco5DyLaG0=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -145,8 +145,11 @@ DR and Migration Planning and Preparation
 <p>Use the VMware Cloud Foundation Planning and Preparation Workbook to capture environment specific input values that are required during the implementation.</p>
 <p>Carefully review the VMware Cloud Foundation Planning and Preparation Workbook before implementation to avoid costly rework and delays. Capture input values that are specific to your environment and verify that the components that are required by this solution are available.</p>
 <p>The VMware Cloud Foundation Planning and Preparation Workbook contains inputs for each implementation and configuration procedure. Reference your values from the VMware Cloud Foundation Planning and Preparation Workbook to complete UI or PowerShell procedures.</p>
-<p>#External Services
-You use services that are external to VMware Cloud Foundation when implementing the solution-name solution.</p>
+<h2 id=external-services>
+External Services
+<a class=anchor href=#external-services>#</a>
+</h2>
+<p>You use services that are external to VMware Cloud Foundation when implementing the solution-name solution.</p>
 <table>
 <thead>
 <tr>
@@ -173,42 +176,6 @@ You use services that are external to VMware Cloud Foundation when implementing 
 </tr>
 </tbody>
 </table>
-<p>Everything you need to know before deploying VMware Cloud Director Availability.</p>
-<h2 id=hardware-requirements>
-Hardware Requirements
-<a class=anchor href=#hardware-requirements>#</a>
-</h2>
-<table>
-<thead>
-<tr>
-<th>Appliance Type</th>
-<th>Description and Services</th>
-<th>Hardware Requirements</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Cloud Replication Management Appliance</td>
-<td>A dedicated appliance, that runs the following VMware Cloud Director Availability services: * Manager Service * Cloud Service with embedded VMware Cloud Director Availability Tenant Portal</td>
-<td>- 2 vCPUs <br>- 4 GB RAM<br>- 10 GB Storage</td>
-</tr>
-<tr>
-<td>Cloud Replicator Appliance</td>
-<td>A dedicated appliance for the Replicator Service that handles the replication traffic for a site. For large-scale environments, you can deploy more than one Cloud Replicator Appliance per cloud site.</td>
-<td>- 4 vCPUs <br>- 6 GB RAM <br>- 10 GB Storage</td>
-</tr>
-<tr>
-<td>Cloud Tunnel Appliance</td>
-<td>A dedicated appliance for the Tunnel Service.</td>
-<td>- 2 vCPUs <br>- 2 GB RAM<br>- 10 GB Storage</td>
-</tr>
-</tbody>
-</table>
-<h2 id=other-requirements>
-Other Requirements
-<a class=anchor href=#other-requirements>#</a>
-</h2>
-<p>The resource vCenter Server instances within a VMware Cloud Director site must be within the same single sign-on domain. All Replicator Service, Manager Service, Cloud Service, and Tunnel Service instances within the respective site must be configured with that same single sign-on domain.</p>
 <h2 id=network-ports>
 Network Ports
 <a class=anchor href=#network-ports>#</a>
