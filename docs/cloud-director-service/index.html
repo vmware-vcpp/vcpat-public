@@ -1,0 +1,242 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="About VMware Cloud Director service #  VMware Cloud Director service is a cloud-service delivery application that uses an underlying infrastructure, such as the infrastructure provided by VMware Cloud on AWS, by Google Cloud VMware Engine, or by on-premises environments. By using the VMware Cloud Director service, service providers can deliver virtual infrastructure resources in a multitenant cloud environment.
+With VMware Cloud Director service, cloud providers can build secure, multitenant clouds by pooling virtual infrastructure resources into virtual data centers.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="VMware Cloud Director service">
+<meta property="og:description" content>
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-director-service/">
+<title>VMware Cloud Director service | VMware Cloud Provider Architecture Toolkit</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.d93e43509aabc9872f542f63b8532698ff75f5f908a002250b98bb67086cd57c.js integrity="sha256-2T5DUJqryYcvVC9juFMmmP919fkIoAIlC5i7Zwhs1Xw=" crossorigin=anonymous></script>
+<link rel=alternate type=application/rss+xml href=http://vcpat.cloudhappens.io/docs/cloud-director-service/index.xml title="VMware Cloud Provider Architecture Toolkit">
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>VMware Cloud Provider Architecture Toolkit</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li><a href=/feedback/><em>Feedback</em></a></li>
+</ul>
+<h2 id=draft-validated-solutions>
+Draft Validated Solutions:
+<a class=anchor href=#draft-validated-solutions>#</a>
+</h2>
+<ul>
+<li><a href=/docs/cloud-infrastructure/><strong>Cloud Infrastructure</strong></a>
+<ul>
+<li><a href=/docs/cloud-infrastructure/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/cloud-infrastructure/design/>Design Objectives</a></li>
+<li><a href=/docs/cloud-infrastructure/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/cloud-infrastructure/implementation/>Implementation</a></li>
+<li><a href=/docs/cloud-infrastructure/operations/>Operational Guidance</a></li>
+<li><a href=/docs/cloud-infrastructure/design-decisions/>Design Decisions</a></li>
+<li><a href=/docs/cloud-infrastructure/solution-interop/>Solution Interoperability</a></li>
+</ul>
+</li>
+<li><a href=/docs/networking-security/><strong>Networking and Security</strong></a>
+<ul>
+<li><a href=/docs/networking-security/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/networking-security/design/>Design Objectives</a></li>
+<li><a href=/docs/networking-security/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/networking-security/implementation/>Implementation</a></li>
+<li><a href=/docs/networking-security/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/dr-migration/><strong>DR and Migration</strong></a>
+<ul>
+<li><a href=/docs/dr-migration/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/dr-migration/design/>Design Objectives</a></li>
+<li><a href=/docs/dr-migration/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/dr-migration/implementation/>Implementation</a></li>
+<li><a href=/docs/dr-migration/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/developer-ready-cloud/><strong>Developer Ready Cloud</strong></a>
+<ul>
+<li><a href=/docs/developer-ready-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/developer-ready-cloud/design/>Design Objectives</a></li>
+<li><a href=/docs/developer-ready-cloud/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/developer-ready-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/developer-ready-cloud/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/sovereign-cloud/><strong>Sovereign Cloud</strong></a>
+<ul>
+<li><a href=/docs/sovereign-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/sovereign-cloud/design/>Design Objectives</a></li>
+<li><a href=/docs/sovereign-cloud/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/sovereign-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/sovereign-cloud/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+</ul>
+<h2 id=toolkit-documents>
+Toolkit Documents:
+<a class=anchor href=#toolkit-documents>#</a>
+</h2>
+<ul>
+<li><strong>VMware Cloud Provider Lifecycle Manager</strong></li>
+<li><strong>VMware Cloud Director</strong>
+<ul>
+<li>Scale</li>
+<li>Multi-site</li>
+<li>Extensibility</li>
+<li>Branding & Themes</li>
+<li>Automation</li>
+</ul>
+</li>
+<li><strong>VMware Cloud Director service</strong>
+<ul>
+<li><a href=/docs/cloud-director-service/implementation/>Implementation</a></li>
+</ul>
+</li>
+<li><strong>VMware Cloud Director Availability</strong></li>
+<li><strong>VMware vCloud Usage Meter</strong></li>
+<li><strong>VMware Cloud Director Container Service Extension</strong></li>
+<li><strong>VMware Cloud Director Oject Storage Extension</strong></li>
+<li><strong>VMware Cloud Director Application Launchpad</strong>
+<br></li>
+</ul>
+<ul>
+<li>
+<a href=https://cloudsolutions.vmware.com target=_blank rel=noopener>
+VMware Cloud Solutions
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>VMware Cloud Director service</strong>
+<label for=toc-control>
+</label>
+</div>
+</header>
+<article class=markdown><h1 id=about-vmware-cloud-director-service>
+About VMware Cloud Director service
+<a class=anchor href=#about-vmware-cloud-director-service>#</a>
+</h1>
+<p>VMware Cloud Director service is a cloud-service delivery application that uses an underlying infrastructure, such as the infrastructure provided by VMware Cloud on AWS, by Google Cloud VMware Engine, or by on-premises environments. By using the VMware Cloud Director service, service providers can deliver virtual infrastructure resources in a multitenant cloud environment.</p>
+<p>With VMware Cloud Director service, cloud providers can build secure, multitenant clouds by pooling virtual infrastructure resources into virtual data centers. Cloud providers can then expose the clouds to users by using Web-based portals and programmatic interfaces as a fully automated, catalog-based service.</p>
+<h2 id=intended-audience>
+Intended Audience
+<a class=anchor href=#intended-audience>#</a>
+</h2>
+<p>The VMware Cloud Director service documentation is intended for Cloud Provider Architects and Administrators who are familiar with and want to use VMware software and the Cloud Infrastructure solution for VMware Cloud Foundation.</p>
+<h2 id=support-matrix>
+Support Matrix
+<a class=anchor href=#support-matrix>#</a>
+</h2>
+<p>The VMware Cloud Director service solution is compatible with certain versions of the VMware and third party products that are used for implementing the solution.</p>
+<h3 id=software-components-in-vmware-cloud-director-service>
+Software Components in VMware Cloud Director service
+<a class=anchor href=#software-components-in-vmware-cloud-director-service>#</a>
+</h3>
+<p>VMware Cloud Director service is compatible with certain versions of VMware and third party products that are used for implementing the solution.</p>
+<p>Please refer the <a href="https://interopmatrix.vmware.com/Interoperability?col=581,&row=0,">interoperability matrix</a> for more information about the supported products of VMware Cloud Director service.</p>
+<h2 id=before-you-apply-this-guidance>
+Before You Apply This Guidance
+<a class=anchor href=#before-you-apply-this-guidance>#</a>
+</h2>
+<p>Before getting started with VMware Cloud Director service, you should complete the steps described here <a href=https://docs.vmware.com/en/VMware-Cloud-Director-service/services/getting-started-with-vmware-cloud-director-service/GUID-40F9E4E8-9034-4E45-9360-03E62136160D.html>Before You Begin with VMware Cloud Director service</a>.</p>
+<h2 id=overview-of-vmware-cloud-director-service>
+Overview of VMware Cloud Director service
+<a class=anchor href=#overview-of-vmware-cloud-director-service>#</a>
+</h2>
+<p>By applying the VMware Cloud Director solution, you implement VMware Cloud Director service, SDDC endpoint(s), and associate the SDDC endpoint to the VMware Cloud Director service instance.</p>
+<h3 id=implementation-overview-of-cloud-infrastructure>
+Implementation Overview of Cloud Infrastructure
+<a class=anchor href=#implementation-overview-of-cloud-infrastructure>#</a>
+</h3>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Steps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Plan for the VMware Cloud Director service environment.</td>
+<td><ol><li>VMware Cloud Director service decisions include what type of use case will the environment serve (product, disaster recovery), connectivity requirements from any on-prem services to the cloud provider and how many workloads you desire to support per SDDC. For details about the configuration maximums for VMware Cloud Director service see <a href=https://docs.vmware.com/en/VMware-Cloud-Director-service/services/rn/VMware-Cloud-Director-Service-Configuration-Maximums.html>Configuration Maximums for VMware Cloud Director service</a>. </li><li> Plan for your VMware Cloud on AWS SDDC <a href=https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws.getting-started/GUID-3D741363-F66A-4CF9-80EA-AA2866D1834E.html>Getting Started With VMware Cloud on AWS</a>. </li><li>Plan for your Google Cloud VMware Engine SDDC <a href=https://cloud.google.com/vmware-engine/docs/#docs>Google Cloud VMware Engine documentation</a>. </li><li>Plan for your Microsoft Azure VMware Solution SDDC <a href=https://learn.microsoft.com/en-us/azure/azure-vmware/plan-private-cloud-deployment>Plan the Azure VMware Solution deployment</a>.</td>
+</tr>
+<tr>
+<td>2. Create VMware Cloud Director Service instance(s).</td>
+<td>Follow the deployment guidance to create required instance(s) <a href=https://docs.vmware.com/en/VMware-Cloud-Director-service/services/using-vmware-cloud-director-service/GUID-26D98BA1-CF4B-4A57-971E-E58A0B482EBB.html>How Do I Create a VMware Cloud Director Instance</a>.</td>
+</tr>
+<tr>
+<td>3. Deploy an SDDC Instance for VMware Cloud Director service to consume for tenants.</td>
+<td><ol><li>To deploy a VMware Cloud on AWS SDDC instace, see <a href=https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws.getting-started/GUID-EF198D55-03E3-44D1-AC48-6E2ABA31FF02.html>Deploy an SDDC from the VMware Cloud Console</a> </li><li>To deploy a Google Cloud VMware Engine SDDC instance, first configure the provider project requirements per <a href=https://docs.vmware.com/en/VMware-Cloud-Director-service/services/using-vmware-cloud-director-service/GUID-CCB1C577-30B2-4013-87A8-C283AC5662D9.html#GUID-DDC9D536-8568-4511-B42C-4690F028C5D0__GUID-608FA1CE-2D52-4D16-8945-76645EB87A6F>Configure the Provider Project</a>, then create the SDDC <a href=https://cloud.google.com/vmware-engine/docs/private-clouds/howto-create-private-cloud>Creating a VMware Engine private cloud</a>. </li><li>To deploy a Microsoft Azure VMware Solution SDDC instance, see <a href="https://learn.microsoft.com/en-us/azure/azure-vmware/deploy-azure-vmware-solution?tabs=azure-portal">Deploy and configure Azure VMware solution</a>.</td>
+</tr>
+<tr>
+<td>4. Associate VMware Cloud Director service instance with the SDDC.</td>
+<td><ol><li>To associate a VMware Cloud on AWS SDDC, see <a href=https://docs.vmware.com/en/VMware-Cloud-Director-service/services/using-vmware-cloud-director-service/GUID-58F82FB5-E73B-4FBC-86A0-039B33854A26.html>How Do I Associate My VMware Cloud Director Instance with a VMware Cloud on AWS SDDC</a>.</li><li>To associate an Google Cloud VMware Engine, Azure VMware Solution, or on-premises SDDC, see <a href=https://docs.vmware.com/en/VMware-Cloud-Director-service/services/using-vmware-cloud-director-service/GUID-FF6678D9-322F-48E6-9116-BE387AAB3F21.html>How Do I Associate a VMware Cloud Director Instance with an SDDC via VMware Reverse Proxy</a>.</td>
+</tr>
+<tr>
+<td>5. Configure VMware Cloud Director service and Cloud Specific Networking.</td>
+<td><ol><li>To configure VMware Cloud Director service with VMware Cloud on AWS networking, see <a href=https://cloudsolutions.vmware.com/content/dam/digitalmarketing/microsites/en/images/cloud-solutions/pdfs/WhitePaper_Multi_Tenancy_Cloud_Director_service.pdf>Configure the External Network</a></li><li>To configure VMware Cloud Director service with Google Cloud VMware Engine, configure the required tenant projects per <a href=https://docs.vmware.com/en/VMware-Cloud-Director-service/services/using-vmware-cloud-director-service/GUID-CCB1C577-30B2-4013-87A8-C283AC5662D9.html#GUID-9445F26C-3D65-4608-83D1-A8BF5ACF6B39__GUID-8AAFFC3F-4684-45FA-9122-0F0D77B12A48>Configure the Tenant Project</a>, then deploy and configure the required IPsec VPN tunnels per <a href=https://docs.vmware.com/en/VMware-Cloud-Director-service/services/using-vmware-cloud-director-service/GUID-CCB1C577-30B2-4013-87A8-C283AC5662D9.html#GUID-DFB83C86-4BF5-453D-AB14-BAD64CAD363F__GUID-561313A1-6A9C-4531-B732-BFF72429B4B4>Deploy and Configure IPsec Tunnel</a> </li><li>To configure VMware Cloud Director service with Microsoft Azure VMware Solution, see <a href=https://docs.vmware.com/en/VMware-Cloud-Director-service/services/using-vmware-cloud-director-service/GUID-602DE9DD-E7F6-4114-BD89-347F9720A831.html#GUID-8F1887EB-8895-4302-A92E-5E2AB5FB4014__GUID-5C737405-FAEB-447D-95A0-30992F2EA491>Configure Network Connections</a>.</td>
+</tr>
+<tr>
+<td>6. Onboard Tenants.</td>
+<td><ol><li>To onboard tenant organizations see <a href=https://docs.vmware.com/en/VMware-Cloud-Director/10.4/VMware-Cloud-Director-Service-Provider-Admin-Portal-Guide/GUID-2F217F99-48C1-42F3-BF06-5ABBACADE2BA.html>Managing Organizations</a>.</li><li>To onboard organization virtual datacenters see <a href=https://docs.vmware.com/en/VMware-Cloud-Director/10.4/VMware-Cloud-Director-Service-Provider-Admin-Portal-Guide/GUID-18EF9903-891D-4ACE-A86A-181922D659D3.html>Managing Organization Virtual Data Centers</a>. </li><li>To onboard tenant edge gateway see <a href=https://docs.vmware.com/en/VMware-Cloud-Director/10.4/VMware-Cloud-Director-Service-Provider-Admin-Portal-Guide/GUID-7437E556-FCA1-439A-B484-E2731F732BED.html>Add an Edge Gateway Backed by a NSX-T Data Center Tier-0 Gateway</a>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id=update-history>
+Update History
+<a class=anchor href=#update-history>#</a>
+</h2>
+<p>This VMware Cloud Director service solution is updated when necessary.</p>
+<table>
+<thead>
+<tr>
+<th>Revision</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. 29 SEPTEMBER 2022</td>
+<td>Draft content collection</td>
+</tr>
+</tbody>
+</table>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+</main>
+</body>
+</html>
