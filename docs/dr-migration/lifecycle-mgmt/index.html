@@ -2,19 +2,21 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Cloud Infrastructure Lifecycle Management #  ">
+<meta name=description content="DR and Migration Lifecycle Management #  The lifecycle management of VMware Cloud Director Availability is provided using the native tools in each of the appliances. All deployment, patching, and upgrade operations are performed manually by the system administrator without or with minimal native automation.
+Most of the operations (deployment, upgrades) can be performed through the graphical user interface of VMware Cloud Director Availability while some of them are also available through the command-line.">
 <meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="Cloud Infrastructure Lifecycle Management">
-<meta property="og:description" content="Cloud Infrastructure Lifecycle Management #  ">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="DR and Migration Lifecycle Management">
+<meta property="og:description" content="DR and Migration Lifecycle Management #  The lifecycle management of VMware Cloud Director Availability is provided using the native tools in each of the appliances. All deployment, patching, and upgrade operations are performed manually by the system administrator without or with minimal native automation.
+Most of the operations (deployment, upgrades) can be performed through the graphical user interface of VMware Cloud Director Availability while some of them are also available through the command-line.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/lifecycle-mgmt/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-10-05T17:57:25+03:00">
-<title>Cloud Infrastructure Lifecycle Management | VMware Cloud Provider Architecture Toolkit</title>
+<meta property="article:modified_time" content="2022-10-07T10:18:13+03:00">
+<title>DR and Migration Lifecycle Management | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.a03dacbe745784dac317f49b807e47b121f3094f939856177e5728e43c8b686d.js integrity="sha256-oD2svnRXhNrDF/SbgH5HsSHzCU+TmFYXflco5DyLaG0=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.3162f5596c9318cf88d56be76b94281f5d76214ce791aa6b2297d869fb6fe793.js integrity="sha256-MWL1WWyTGM+I1Wvna5QoH112IUznkaprIpfYaftv55M=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -128,15 +130,23 @@ VMware Cloud Solutions
 <label for=menu-control>
 <img src=/svg/menu.svg class=book-icon alt=Menu>
 </label>
-<strong>Cloud Infrastructure Lifecycle Management</strong>
+<strong>DR and Migration Lifecycle Management</strong>
 <label for=toc-control>
 </label>
 </div>
 </header>
-<article class=markdown><h1 id=cloud-infrastructure-lifecycle-management>
-Cloud Infrastructure Lifecycle Management
-<a class=anchor href=#cloud-infrastructure-lifecycle-management>#</a>
+<article class=markdown><h1 id=dr-and-migration-lifecycle-management>
+DR and Migration Lifecycle Management
+<a class=anchor href=#dr-and-migration-lifecycle-management>#</a>
 </h1>
+<p>The lifecycle management of VMware Cloud Director Availability is provided using the native tools in each of the appliances. All deployment, patching, and upgrade operations are performed manually by the system administrator without or with minimal native automation.</p>
+<p>Most of the operations (deployment, upgrades) can be performed through the graphical user interface of VMware Cloud Director Availability while some of them are also available through the command-line.</p>
+<h2 id=backup-and-restore>
+Backup and Restore
+<a class=anchor href=#backup-and-restore>#</a>
+</h2>
+<p>Before performing any lifecyle operations, you need to backup the VMware Cloud Director Availability appliances. This way you will prevent extended loss of service in case of a potential problem caused by these operations.</p>
+<p>This is how to generate a backup and then restore it. <a href=../backup-restore>[Read more]</a></p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">

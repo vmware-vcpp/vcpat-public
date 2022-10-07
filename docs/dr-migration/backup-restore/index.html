@@ -1,0 +1,285 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="DR and Migration Backup and Restore #  You can generate a new backup for each VMware Cloud Director Availability appliances in their own UI or do it directly from the Cloud Replication Manager appliance, where backups for all appliances will be generated.
+The backup archive contains the following information from each appliance in the cloud site:
+ Configuration files Public certificate Keystore Database dump  The backup does not contain:">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="DR and Migration Backup and Restore">
+<meta property="og:description" content="DR and Migration Backup and Restore #  You can generate a new backup for each VMware Cloud Director Availability appliances in their own UI or do it directly from the Cloud Replication Manager appliance, where backups for all appliances will be generated.
+The backup archive contains the following information from each appliance in the cloud site:
+ Configuration files Public certificate Keystore Database dump  The backup does not contain:">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/backup-restore/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-10-07T10:18:13+03:00">
+<title>DR and Migration Backup and Restore | VMware Cloud Provider Architecture Toolkit</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.3162f5596c9318cf88d56be76b94281f5d76214ce791aa6b2297d869fb6fe793.js integrity="sha256-MWL1WWyTGM+I1Wvna5QoH112IUznkaprIpfYaftv55M=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>VMware Cloud Provider Architecture Toolkit</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li><a href=/feedback/><em>Feedback</em></a></li>
+</ul>
+<h2 id=draft-validated-solutions>
+Draft Validated Solutions:
+<a class=anchor href=#draft-validated-solutions>#</a>
+</h2>
+<ul>
+<li><a href=/docs/cloud-infrastructure/><strong>Cloud Infrastructure</strong></a>
+<ul>
+<li><a href=/docs/cloud-infrastructure/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/cloud-infrastructure/design/>Design Objectives</a></li>
+<li><a href=/docs/cloud-infrastructure/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/cloud-infrastructure/implementation/>Implementation</a></li>
+<li><a href=/docs/cloud-infrastructure/operations/>Operational Guidance</a></li>
+<li><a href=/docs/cloud-infrastructure/design-decisions/>Design Decisions</a></li>
+<li><a href=/docs/cloud-infrastructure/solution-interop/>Solution Interoperability</a></li>
+</ul>
+</li>
+<li><a href=/docs/networking-security/><strong>Networking and Security</strong></a>
+<ul>
+<li><a href=/docs/networking-security/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/networking-security/design/>Design Objectives</a></li>
+<li><a href=/docs/networking-security/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/networking-security/implementation/>Implementation</a></li>
+<li><a href=/docs/networking-security/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/dr-migration/><strong>DR and Migration</strong></a>
+<ul>
+<li><a href=/docs/dr-migration/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/dr-migration/design/>Design Objectives</a></li>
+<li><a href=/docs/dr-migration/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/dr-migration/implementation/>Implementation</a></li>
+<li><a href=/docs/dr-migration/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/developer-ready-cloud/><strong>Developer Ready Cloud</strong></a>
+<ul>
+<li><a href=/docs/developer-ready-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/developer-ready-cloud/design/>Design Objectives</a></li>
+<li><a href=/docs/developer-ready-cloud/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/developer-ready-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/developer-ready-cloud/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/sovereign-cloud/><strong>Sovereign Cloud</strong></a>
+<ul>
+<li><a href=/docs/sovereign-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/sovereign-cloud/design/>Design Objectives</a></li>
+<li><a href=/docs/sovereign-cloud/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/sovereign-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/sovereign-cloud/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+</ul>
+<h2 id=toolkit-documents>
+Toolkit Documents:
+<a class=anchor href=#toolkit-documents>#</a>
+</h2>
+<ul>
+<li><strong>VMware Cloud Provider Lifecycle Manager</strong></li>
+<li><strong>VMware Cloud Director</strong>
+<ul>
+<li>Scale</li>
+<li>Multi-site</li>
+<li>Extensibility</li>
+<li>Branding & Themes</li>
+<li>Automation</li>
+</ul>
+</li>
+<li><strong>VMware Cloud Director service</strong></li>
+<li><strong>VMware Cloud Director Availability</strong></li>
+<li><strong>VMware vCloud Usage Meter</strong></li>
+<li><strong>VMware Cloud Director Container Service Extension</strong></li>
+<li><strong>VMware Cloud Director Oject Storage Extension</strong></li>
+<li><strong>VMware Cloud Director Application Launchpad</strong>
+<br></li>
+</ul>
+<ul>
+<li>
+<a href=https://cloudsolutions.vmware.com target=_blank rel=noopener>
+VMware Cloud Solutions
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>DR and Migration Backup and Restore</strong>
+<label for=toc-control>
+</label>
+</div>
+</header>
+<article class=markdown><h1 id=dr-and-migration-backup-and-restore>
+DR and Migration Backup and Restore
+<a class=anchor href=#dr-and-migration-backup-and-restore>#</a>
+</h1>
+<p>You can generate a new backup for each VMware Cloud Director Availability appliances in their own UI or do it directly from the Cloud Replication Manager appliance, where backups for all appliances will be generated.</p>
+<p>The backup archive contains the following information from each appliance in the cloud site:</p>
+<ul>
+<li>Configuration files</li>
+<li>Public certificate</li>
+<li>Keystore</li>
+<li>Database dump</li>
+</ul>
+<p>The backup does not contain:</p>
+<ul>
+<li>The appliance root user password.</li>
+<li>Any previous backup archives.</li>
+<li>Any support bundles.</li>
+<li>The NTP time server configuration.</li>
+<li>Enable SSH state.</li>
+<li>The network configuration provided in the OVF wizard during appliance deployment.</li>
+<li>Static routes configured on appliances with multiple network interface cards (NICs).</li>
+</ul>
+<p>The backups are encrypted and password protected. They can be downloaded from the VMware Cloud Director Availability UI or API and stored outside of the VMware Cloud Director Availability
+appliances.</p>
+<h2 id=generate-a-backup-archive>
+Generate a Backup Archive
+<a class=anchor href=#generate-a-backup-archive>#</a>
+</h2>
+<p>Follow these steps from the Cloud Replication Manager appliance to back up all appliances:</p>
+<ol>
+<li>Log in to the VMware Cloud Director Availability UI at <a href=https://Appliance-IP-Address/ui/admin>https://Appliance-IP-Address/ui/admin</a>.</li>
+<li>Navigate to the <strong>Backup Archives</strong> menu.</li>
+<li>Click <strong>GENERATE NEW</strong>.</li>
+<li>The backup window pops-up. There you need to enter a password and click the <strong>GENERATE</strong> button.</li>
+</ol>
+<p><img src=/images/dr-migration/detailed-design/lifecycle-mgmt/vcda-generate-backup.png alt="Generate a backup of all VMware Cloud Director Availability appliances"></p>
+<ol start=5>
+<li>Shortly, the backup archive will be ready and can be downloaded by clicking the download button.</li>
+</ol>
+<p><img src=/images/dr-migration/detailed-design/lifecycle-mgmt/vcda-backup-generated-download.png alt="Download the backup archive of all VMware Cloud Director Availability appliances"></p>
+<p>Note: If you perform backups per appliance, you can follow the same steps in the UI of each VMware Cloud Director Availability appliance.</p>
+<h2 id=restore-a-backup>
+Restore a Backup
+<a class=anchor href=#restore-a-backup>#</a>
+</h2>
+<p>VMware Cloud Director Availability support in-place restore of backups. It also does not require powering off of the appliance before the in-place restore.</p>
+<p>Restoring always requires an appliance with exactly the same version as the remaining cloud appliances in the site and with exactly the same version as the downloaded backup archive.</p>
+<p>Unlike the backup generation, the restore operation has to be performed on each appliance through its UI.</p>
+<p>Note: If you need to restore all the appliances, this is the correct order:</p>
+<ol>
+<li>Tunnel service</li>
+<li>Replicator service(s)</li>
+<li>Cloud service</li>
+</ol>
+<p>These are the steps to perform a restore operation:</p>
+<ol>
+<li>Extract the backup archive. As a result, you will have a .enc file for each registered appliance. Since you might have multiple replicators, the file name of each one ends with its IP address.</li>
+<li>Log in to the VMware Cloud Director Availability UI at https://Appliance-IP-Address/ui/admin.</li>
+<li>Navigate to the <strong>Backup Archives</strong> menu.</li>
+<li>Click <strong>RESTORE</strong>.</li>
+<li>Select the correct .enc file for the component that is being restored, enter the password specified during the backup archive creation, and click <strong>RESTORE</strong>. If you have selected a wrong backup for another component, you will see the <strong>The appliance role does not match the one in the backup archive.</strong> error message.</li>
+</ol>
+<p><img src=/images/dr-migration/detailed-design/lifecycle-mgmt/vcda-restore-backup.png alt="Restore a backup of a VMware Cloud Director Availability appliance"></p>
+<ol start=6>
+<li>When the process is completed, you will be able to access the VMware Cloud Director Availability appliance that you have just restored.</li>
+</ol>
+<h2 id=generate-a-backup-through-the-api>
+Generate a Backup through the API
+<a class=anchor href=#generate-a-backup-through-the-api>#</a>
+</h2>
+<p>As an addition to the UI backup generation, there is an option for the administrator to generate one directly through the API, which is a convenient option for automating the backup process.</p>
+<p>To generate and download the archive for each appliance through the API, you will need to perform the following steps:</p>
+<ol>
+<li>Open a terminal and execute this command:</li>
+</ol>
+<pre tabindex=0><code>curl 'https://Appliance-IP-Address:8046/sessions' -i -X POST \
+ 
+    -H 'Content-Type: application/json' \
+ 
+    -H 'Accept: application/vnd.vmware.h4-v4.1+json;charset=UTF-8' \
+ 
+    -d '{
+ 
+  &quot;type&quot; : &quot;localUser&quot;,
+ 
+  &quot;localUser&quot; : &quot;root&quot;,
+ 
+  &quot;localPassword&quot; : &quot;root_password&quot;
+ 
+}'
+</code></pre><p>Please note this is for local user authentication. For more authentication options, please refer to the API programming guide.</p>
+<ol start=2>
+<li>If the command is executed successfully, in the output you will find a parameter called X-VCAV-Auth. For example:</li>
+</ol>
+<p><img src=/images/dr-migration/detailed-design/lifecycle-mgmt/vcda-api-auth.png alt="VMware Cloud Director Availability API Authentication"></p>
+<p>Copy its value as this is the authentication token that will be used in the next steps.</p>
+<ol start=3>
+<li>To generate a new backup, execute the following command:</li>
+</ol>
+<pre tabindex=0><code>curl 'https://Appliance-IP-Address:8046/backups' -i -X POST \
+ 
+    -H 'Content-Type: application/json' \
+ 
+    -H 'Accept: application/vnd.vmware.h4-v4.1+json;charset=UTF-8' \
+ 
+    -H 'X-VCAV-Auth: &lt;&lt;token&gt;&gt;' \
+ 
+    -d '{
+ 
+  &quot;password&quot; : &quot;&lt;&lt;password&gt;&gt;&quot;
+ 
+}'
+</code></pre><p>&lt;&lt;token&#187; should be the value collected in the previous step and &lt;&lt;password&#187; is the password that you would like to define for the backup archive.</p>
+<p>This is the expected result.</p>
+<p><img src=/images/dr-migration/detailed-design/lifecycle-mgmt/vcda-api-backup-generated.png alt="VMware Cloud Director Availability API Backup generated"></p>
+<ol start=4>
+<li>To download the archive, you need to execute:</li>
+</ol>
+<pre tabindex=0><code>curl 'https://Appliance-IP-Address:8046/backups/&lt;&lt;backup_id&gt;&gt;' -i -X GET \
+ 
+    -H 'Accept: application/vnd.vmware.h4-v4.1+octet-stream;charset=UTF-8' \
+ 
+    -H 'X-VCAV-Auth: &lt;&lt;token&gt;&gt;' --output &lt;&lt;destination/file.tar.bz2&gt;&gt;
+</code></pre><p>The &lt;&lt;backup_id&#187; is the ID parameter (the first one) in the response of the previous step, &lt;&lt;token&#187; is the value collected in step 1 results and &lt;&lt;destination/file.tar.bz2&#187; is the destination file.</p>
+<p>If you would like to download another backup archive, you can list all available archives with the following:</p>
+<pre tabindex=0><code>curl 'https://Appliance-IP-Address:8046/backups' -i -X GET \
+ 
+    -H 'Accept: application/vnd.vmware.h4-v4.1+json;charset=UTF-8' \
+ 
+    -H 'X-VCAV-Auth: &lt;&lt;token&gt;&gt;'
+</code></pre><p>&lt;&lt;token&#187; is the value collected in step 1 results.</p>
+<p>In case of a problem with the certificates, you can use -k as a curl parameter like this:</p>
+<pre tabindex=0><code>curl -k ‘https://Appliance-IP-Address:8046/backups’ …
+</code></pre></article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+</main>
+</body>
+</html>
