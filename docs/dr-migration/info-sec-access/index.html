@@ -2,19 +2,21 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Cloud Infrastructure Information Security and Access #  ">
+<meta name=description content="DR and Migration Information Security and Access #  Identity Management Design #  Each VMware Cloud Director Availability appliance has just a single system administrator user (root). Its password is configured during the appliance deployment and must be changed during the initial setup wizard or at the first login to this appliance.
+Additionally, a VMware Cloud Director service account with system administrator privileges needs to be created for the VMware Cloud Director Availability registration to the VMware Cloud Director instance.">
 <meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="Cloud Infrastructure Information Security and Access">
-<meta property="og:description" content="Cloud Infrastructure Information Security and Access #  ">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="DR and Migration Information Security and Access">
+<meta property="og:description" content="DR and Migration Information Security and Access #  Identity Management Design #  Each VMware Cloud Director Availability appliance has just a single system administrator user (root). Its password is configured during the appliance deployment and must be changed during the initial setup wizard or at the first login to this appliance.
+Additionally, a VMware Cloud Director service account with system administrator privileges needs to be created for the VMware Cloud Director Availability registration to the VMware Cloud Director instance.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/info-sec-access/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-10-07T13:01:05+05:30">
-<title>Cloud Infrastructure Information Security and Access | VMware Cloud Provider Architecture Toolkit</title>
+<meta property="article:modified_time" content="2022-10-07T17:38:56+03:00">
+<title>DR and Migration Information Security and Access | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.f646cf6a2d1aa5cd5bc7c7a6c32c2b5c0cee3329b0d101ef654fd223b73817ac.js integrity="sha256-9kbPai0apc1bx8emwywrXAzuMymw0QHvZU/SI7c4F6w=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.aa0e77e715d6226d6c6092bb8b165db7fb860deb72712cd1c47b301780e8749d.js integrity="sha256-qg535xXWIm1sYJK7ixZdt/uGDetycSzRxHswF4DodJ0=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -128,15 +130,28 @@ VMware Cloud Solutions
 <label for=menu-control>
 <img src=/svg/menu.svg class=book-icon alt=Menu>
 </label>
-<strong>Cloud Infrastructure Information Security and Access</strong>
+<strong>DR and Migration Information Security and Access</strong>
 <label for=toc-control>
 </label>
 </div>
 </header>
-<article class=markdown><h1 id=cloud-infrastructure-information-security-and-access>
-Cloud Infrastructure Information Security and Access
-<a class=anchor href=#cloud-infrastructure-information-security-and-access>#</a>
+<article class=markdown><h1 id=dr-and-migration-information-security-and-access>
+DR and Migration Information Security and Access
+<a class=anchor href=#dr-and-migration-information-security-and-access>#</a>
 </h1>
+<h2 id=identity-management-design>
+Identity Management Design
+<a class=anchor href=#identity-management-design>#</a>
+</h2>
+<p>Each VMware Cloud Director Availability appliance has just a single system administrator user (root). Its password is configured during the appliance deployment and must be changed during the initial setup wizard or at the first login to this appliance.</p>
+<p>Additionally, a VMware Cloud Director service account with system administrator privileges needs to be created for the VMware Cloud Director Availability registration to the VMware Cloud Director instance. As an alternative, an existing system administrator account (administrator, root, etc.) can be used.</p>
+<p>As part of this registration process, the Setup DRaaS and Migration and Availability plug-in is installed in VMware Cloud Director.</p>
+<h2 id=certificate-management-design>
+Certificate Management Design
+<a class=anchor href=#certificate-management-design>#</a>
+</h2>
+<p>Replace the default self-signed certificate of the Cloud service of VMware Cloud Director Availability Replication Management with a CA-signed certificate to provide secure access and communication for VMware Cloud Director Availability.</p>
+<p>As the rest of the appliances are not publicly exposed, they do not need a CA-signed certificate. They can operate with their initially self-signed certificates until they expire or with newly generated self-signed certificates.</p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
