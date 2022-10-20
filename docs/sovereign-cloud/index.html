@@ -2,8 +2,7 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="About Sovereign Cloud #  The Sovereign Cloud validated solution provides detailed design, implementation, configuration, and operation guidance on &mldr; A VMware validated solution is a technical validated implementation that is built and tested by VMware and VMware cloud providers to help customers resolve common business use cases. VMware validated solutions are cost-effective, performant, reliable, and secure. Each solution contains a detailed design, implementation, and operational guidance.
-Automation for This Design in VMware Cloud Foundation #  The implementation tasks for some design decisions are automated by SDDC Manager.">
+<meta name=description content="About Sovereign Cloud #  The Sovereign Cloud validated solution provides detailed design, implementation, configuration, and operational guidance on VMware Cloud Director with a single tenant SDDC. A VMware validated solution is a technical validated implementation that is built and tested by VMware and VMware cloud providers to help customers resolve common business use cases. VMware validated solutions are cost-effective, performant, reliable, and secure. Each solution contains a detailed design, implementation, and operational guidance.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Sovereign Cloud">
 <meta property="og:description" content>
@@ -14,7 +13,7 @@ Automation for This Design in VMware Cloud Foundation #  The implementation task
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.11f26fdcbe4f39b31b388935e5d8b62fb15ed80c5ea70daf519e4c106bd7c533.js integrity="sha256-EfJv3L5PObMbOIk15di2L7Fe2Axepw2vUZ5MEGvXxTM=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.00594d2aed33f28aacd728f7081a3cbbb718f7faa1c9eb52e8a6ad9bc2f76a94.js integrity="sha256-AFlNKu0z8oqs1yj3CBo8u7cY9/qhyetS6Katm8L3apQ=" crossorigin=anonymous></script>
 <link rel=alternate type=application/rss+xml href=http://vcpat.cloudhappens.io/docs/sovereign-cloud/index.xml title="VMware Cloud Provider Architecture Toolkit">
 </head>
 <body dir=ltr>
@@ -142,19 +141,19 @@ VMware Cloud Solutions
 About Sovereign Cloud
 <a class=anchor href=#about-sovereign-cloud>#</a>
 </h1>
-<p>The Sovereign Cloud validated solution provides detailed design, implementation, configuration, and operation guidance on &mldr;
+<p>The Sovereign Cloud validated solution provides detailed design, implementation, configuration, and operational guidance on VMware Cloud Director with a single tenant SDDC.
 A VMware validated solution is a technical validated implementation that is built and tested by VMware and VMware cloud providers to help customers resolve common business use cases. VMware validated solutions are cost-effective, performant, reliable, and secure. Each solution contains a detailed design, implementation, and operational guidance.</p>
-<h2 id=automation-for-this-design-in-vmware-cloud-foundation>
-Automation for This Design in VMware Cloud Foundation
-<a class=anchor href=#automation-for-this-design-in-vmware-cloud-foundation>#</a>
+<h2 id=automation-for-this-design>
+Automation for This Design
+<a class=anchor href=#automation-for-this-design>#</a>
 </h2>
-<p>The implementation tasks for some design decisions are automated by SDDC Manager. You must perform the implementation manually for the rest of the design decisions as noted in the design implication.
-To provide a fast and efficient path to automating the Sovereign Cloud implementation, this document provides Microsoft PowerShell cmdlets as code-based alternatives to completing certain procedures in each SDDC component&rsquo;s user interface. You can directly reuse the PowerShell commands by replacing the provided sample values with values from your VMware Cloud Foundation Planning and Preparation Workbook.</p>
+<p>The automation of implementation tasks for some design decisions are provided. You must perform the implementation manually for the rest of the design decisions as noted in the design implication.
+To provide a fast and efficient path to automating the Sovereign Cloud implementation, this document provides reference to different cmdlets, shell scripts , or other automation based tools as code-based alternatives to completing certain procedures in configuring or implementing each component of the Sovereign Cloud. You can directly reuse these examples by replacing the provided sample values with values from your own environmental variables.</p>
 <h2 id=intended-audience>
 Intended Audience
 <a class=anchor href=#intended-audience>#</a>
 </h2>
-<p>The Sovereign Cloud documentation is intended for cloud provider architects and administrators who are familiar with and want to use VMware software and a {VVS for CP topic} for VMware Cloud Foundation.</p>
+<p>The Sovereign Cloud documentation is intended for cloud provider architects and administrators who are familiar with and want to use VMware software and the VMware Sovereign Cloud solution for Cloud Providers.</p>
 <h2 id=support-matrix>
 Support Matrix
 <a class=anchor href=#support-matrix>#</a>
@@ -167,51 +166,41 @@ Software Components in Sovereign Cloud
 <table>
 <thead>
 <tr>
-<th>VMware Cloud Foundation Version</th>
-<th>Product Group</th>
-<th>Component Versions</th>
+<th>Component</th>
+<th>Core/Optional</th>
+<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>4.4.1</td>
-<td>Products part of VMware Cloud Foundation</td>
-<td>See <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/4.4.1/rn/vmware-cloud-foundation-441-release-notes/index.html>VMware Cloud Foundation 4.4.1 Release Notes</a>.</td>
+<td>VMware Cloud Foundation</td>
+<td>Core</td>
+<td>See <a href=https://vcpat.cloudhappens.io/docs/cloud-infrastructure/>Cloud Infrastructure Validated Solution</a>. for curent versions.</td>
 </tr>
 <tr>
-<td></td>
-<td>Solution-added products</td>
-<td><ul><li>Product One 2.2.x</li><li>Product Two 3.4.x</li></ul></td>
+<td>VMware vSAN</td>
+<td>Core</td>
+<td>This installs along with VMware Cloud Foundation. See <a href=https://vcpat.cloudhappens.io/docs/cloud-infrastructure/>Cloud Infrastructure Validated Solution</a>. for more information.</td>
 </tr>
 <tr>
-<td>4.4.0</td>
-<td>Products part of VMware Cloud Foundation</td>
-<td>See <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/4.4/rn/vmware-cloud-foundation-44-release-notes/index.html>VMware Cloud Foundation 4.4 Release Notes</a>.</td>
+<td>VMware NSX</td>
+<td>Core</td>
+<td>See <a href=https://vcpat.cloudhappens.io/docs/networking-security/>Networking and Security Validated Solution</a>. for current versions.</td>
 </tr>
 <tr>
-<td></td>
-<td>Solution-added products</td>
-<td><ul><li>Product One 2.0.x</li><li>Product Two 3.3.x</li></ul></td>
+<td>VMware Cloud Director</td>
+<td>Core</td>
+<td>See <a href=https://vcpat.cloudhappens.io/docs/cloud-infrastructure/>Cloud Infrastructure Validated Solution</a>. for current version.</td>
 </tr>
 <tr>
-<td>4.3.1</td>
-<td>Products part of VMware Cloud Foundation</td>
-<td>See <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/4.3.1/rn/vmware-cloud-foundation-431-release-notes/index.html>VMware Cloud Foundation 4.3.1 Release Notes</a>.</td>
+<td>VMware Usage Meter</td>
+<td>Core</td>
+<td>See <a href=https://vcpat.cloudhappens.io/docs/cloud-infrastructure/>Cloud Infrastructure Validated Solution</a>. for current versions.</td>
 </tr>
 <tr>
-<td></td>
-<td>Solution-added products</td>
-<td><ul><li>Product One 1.1.x</li><li>Product Two 3.2.x</li></ul></td>
-</tr>
-<tr>
-<td>4.3.0</td>
-<td>Products part of VMware Cloud Foundation</td>
-<td>See <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/4.3/rn/vmware-cloud-foundation-43-release-notes/index.html>VMware Cloud Foundation 4.3 Release Notes</a>.</td>
-</tr>
-<tr>
-<td></td>
-<td>Solution-added products</td>
-<td><ul><li>Product One 1.0.x</li><li>Product Two 3.1.x</li></ul></td>
+<td>VMware Cloud Verified Certification</td>
+<td>Core</td>
+<td>See <a href=https://cloudsolutions.vmware.com/content/dam/digitalmarketing/microsites/en/images/cloud-solutions/pdfs/Cloud_Verified_Requirements_One-Pager.pdf>How to Achieve Cloud Verified</a>. for more information.</td>
 </tr>
 </tbody>
 </table>
