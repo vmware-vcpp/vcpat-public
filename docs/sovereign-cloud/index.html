@@ -13,7 +13,7 @@
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.bb1d1d693b41911c4e27d9e83d2b572391b15ed88be8d560e6916b8a10794be4.js integrity="sha256-ux0daTtBkRxOJ9noPStXI5GxXtiL6NVg5pFrihB5S+Q=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.2b2d5d8ef2bbba58e0b1f6ea8a7be1029fdbdd9d5ea70b540bc80f1e9fbe20a0.js integrity="sha256-Ky1djvK7uljgsfbqinvhAp/b3Z1epwtUC8gPHp++IKA=" crossorigin=anonymous></script>
 <link rel=alternate type=application/rss+xml href=http://vcpat.cloudhappens.io/docs/sovereign-cloud/index.xml title="VMware Cloud Provider Architecture Toolkit">
 </head>
 <body dir=ltr>
@@ -209,25 +209,33 @@ Before You Apply This Guidance
 <a class=anchor href=#before-you-apply-this-guidance>#</a>
 </h2>
 <p>To design and implement the Sovereign Cloud validated solution, your environment must have a certain configuration.</p>
-<h6 id=supported-vmware-cloud-foundation-deployment>
-Supported VMware Cloud Foundation Deployment
-<a class=anchor href=#supported-vmware-cloud-foundation-deployment>#</a>
+<h6 id=supported-vmware-sovereign-cloud-deployment>
+Supported VMware Sovereign Cloud Deployment
+<a class=anchor href=#supported-vmware-sovereign-cloud-deployment>#</a>
 </h6>
 <table>
 <thead>
 <tr>
-<th>Workload Domain</th>
-<th>Deployment Details</th>
+<th>Component</th>
+<th>Component Details</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Management domain</td>
-<td><ul><li>Automated deployment using VMware Cloud Builder.</li><li>Availability of overlay-backed or VLAN-backed NSX segments in NSX-T Data Center for traffic in the same VMware Cloud Foundation instance and between VMware Cloud Foundation instances not required.</li></ul><br>See the following VMware Cloud Foundation Documentation:<br><ul><li>For information on deploying the management domain, see VMware Cloud Foundation Getting Started Guide and VMware Cloud Foundation Deployment Guide.</li><li>For information on designing the management domain, see VMware Cloud Foundation Design Guide for the Management Domain.</li></ul></td>
+<td>VMware Validated Solution for Cloud Infrastructure</td>
+<td>This VVS should be implemented as a core requirement to allow for the proper configuration of a VMware Sovereign Cloud. Please see <a href=https://vcpat.cloudhappens.io/docs/cloud-infrastructure/>Cloud Infrastructure Validated Solution</a> for this guidance.</td>
 </tr>
 <tr>
-<td>(Optional) One or more virtual infrastructure workload domains</td>
-<td><ul><li>Automated deployment using VMware Cloud Builder.</li></ul><br>See the following VMware Cloud Foundation Documentation:<br><ul><li>For information on deploying the management domain, see VMware Cloud Foundation Getting Started Guide and VMware Cloud Foundation Deployment Guide.</li><li>For information on designing the management domain, see VMware Cloud Foundation Design Guide for the Management Domain.</li></ul></td>
+<td>VMware Validated Solution for Networking and Security</td>
+<td>The networking and secuirty VVS is a core component of the VMware Sovereign Cloud. However the final configuration of these components will be dictated by the design of the Sovereign Cloud requirements for the jurisdiction where it is deployed. Please see the <a href=https://vcpat.cloudhappens.io/docs/networking-security/>Networking and Security Validated Solution</a> to implement this component.</td>
+</tr>
+<tr>
+<td>VMware Validated Solution for DR and Migration</td>
+<td>Having a validated Disaster Recovery and Migration strategy and implementation is critical for a successful Sovereign Cloud solution. This is a core component. Please refer to the <a href=https://vcpat.cloudhappens.io/docs/dr-migration/>DR and Migration</a> section in this document to implemment this solution.</td>
+</tr>
+<tr>
+<td>VMware Validated Solution for Developer Ready Cloud</td>
+<td>This component is optional, however, may in many cases be deemed as a core component and can be implemented by following the guidance in the <a href=https://vcpat.cloudhappens.io/docs/developer-ready-cloud/>Developer Ready Cloud</a> section of this toolkit.</td>
 </tr>
 </tbody>
 </table>
@@ -235,7 +243,7 @@ Supported VMware Cloud Foundation Deployment
 Overview of Sovereign Cloud
 <a class=anchor href=#overview-of-sovereign-cloud>#</a>
 </h2>
-<p>By applying the Sovereign Cloud validated solution, you implement {describe outcome}.</p>
+<p>By applying the Sovereign Cloud validated solution, you implement a highly secure, flexible, and efficient environment which will provide enforcement of data and workload residency, extend data sovereignty protections beyond the immediate platform where possible and to enable secure, audited connectivity and data transaction between resident, sovereign and non-sovereign data classifications.</p>
 <h6 id=implementation-overview-of-sovereign-cloud>
 Implementation Overview of Sovereign Cloud
 <a class=anchor href=#implementation-overview-of-sovereign-cloud>#</a>
@@ -249,16 +257,20 @@ Implementation Overview of Sovereign Cloud
 </thead>
 <tbody>
 <tr>
-<td>1. Stage one description</td>
-<td>Long form description of stage</td>
+<td>1. Plan and prepare the different default customer use cases for the Sovereign Cloud</td>
+<td><ol><li> 1. Determine the jurisdictional policies that are applicable to your region/country. </li><li> 2. Research and document how these policies will affect the design and implementation of the Sovereign Cloud. </li><li> 3. Work with the architecture, security. and business teams to determine the different default use-cases that will be designed that will accomodate the jurisdictional requirments for the sovereign cloud.</li></td>
 </tr>
 <tr>
-<td>2. Stage two description</td>
-<td><ol><li>Step 1 description</li><li>Step 2 description</li><li>Step 3 description</li><li>Step 4 description</li></ul></td>
+<td>2. Develop the design objectives and detailed design</td>
+<td><ol><li> 1. Based on the determined use-cases, build out the design objectives that incorportate the compliance policies that are required for your jurisdiction.</li><li> 2. Document a detailed design for the implementation of the design objectives with a conceptual, logical, and physical design. This design will include considerations and requirements in order to result in a successful implementation.</li></td>
 </tr>
 <tr>
-<td>3. Stage three description</td>
-<td><ol><li>Step 1 description</li><li>Step 2 description</li><li>Step 3 description</li></ul></td>
+<td>3. Implement Design</td>
+<td><ol><li> 1. Impleement all design requirements and considerations that are applicable to your environment and jurisdiction.</li><li> 2. Validate and test the implementation of the design to make sure all components still interoperate efficiently. </li></td>
+</tr>
+<tr>
+<td>4. Onboard Tenants</td>
+<td><ol><li> 1. Configure tenant environment and validate that all sovereign controls are functioning correctly.</li><li> 2. Onboard a production tenant as your first Sovereign Cloud customer.</li></td>
 </tr>
 </tbody>
 </table>
@@ -276,16 +288,8 @@ Update History
 </thead>
 <tbody>
 <tr>
-<td>1. 31 MAY 2022</td>
-<td>Long form description of revision</td>
-</tr>
-<tr>
-<td>2. 28 APR 2022</td>
-<td><ol><li>Revision 1 description</li><li>Revision 2 description</li><li>Revision 3 description</li><li>Revision 4 description</li></ul></td>
-</tr>
-<tr>
-<td>3. 29 MAR 2022</td>
-<td><ol><li>Revision 1 description</li><li>Revision 2 description</li><li>Revision 3 description</li></ul></td>
+<td>1. 21 OCT 2022</td>
+<td>Initial document configuration for Sovereign Cloud</td>
 </tr>
 </tbody>
 </table>
