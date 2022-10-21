@@ -14,7 +14,7 @@ Automation for This Design in VMware Cloud Foundation #  The implementation task
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.68e5f39c7c9d1448455d2e697f228376e077d2672ec06c4770cc505499c04825.js integrity="sha256-aOXznHydFEhFXS5pfyKDduB30mcuwGxHcMxQVJnASCU=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.bb1d1d693b41911c4e27d9e83d2b572391b15ed88be8d560e6916b8a10794be4.js integrity="sha256-ux0daTtBkRxOJ9noPStXI5GxXtiL6NVg5pFrihB5S+Q=" crossorigin=anonymous></script>
 <link rel=alternate type=application/rss+xml href=http://vcpat.cloudhappens.io/docs/dr-migration/index.xml title="VMware Cloud Provider Architecture Toolkit">
 </head>
 <body dir=ltr>
@@ -169,15 +169,6 @@ VMware Cloud Solutions
 <li><a href=#migration>Migration</a></li>
 </ul>
 </li>
-<li><a href=#appliances>Appliances</a>
-<ul>
-<li><a href=#cloud-replication-management-appliance>Cloud Replication Management Appliance</a></li>
-<li><a href=#cloud-replicator>Cloud Replicator</a></li>
-<li><a href=#cloud-tunnel>Cloud Tunnel</a></li>
-<li><a href=#on-premises-appliance>On-premises Appliance</a></li>
-</ul>
-</li>
-<li><a href=#reference>Reference</a></li>
 </ul>
 </li>
 </ul>
@@ -377,62 +368,6 @@ Migration
 <a class=anchor href=#migration>#</a>
 </h3>
 <p>When tenants plan to migrate workloads to the cloud, they may use the Migration workflow to simplify the process. When a “New Migration” is configured, VMware Cloud Director Availability starts replication of the vApp/VM from the source to the destination.</p>
-<h2 id=appliances>
-Appliances
-<a class=anchor href=#appliances>#</a>
-</h2>
-<p>There are three VMware Cloud Director Availability appliances required for the setup in the cloud and one on-premises appliance to be deployed at the tenant&rsquo;s on-premises site.</p>
-<h3 id=cloud-replication-management-appliance>
-Cloud Replication Management Appliance
-<a class=anchor href=#cloud-replication-management-appliance>#</a>
-</h3>
-<p>The Cloud Replication Management appliance is responsible for the communication with VMware Cloud Director. Based on this communication, it discovers resources (OrgVCD, storage policies, datastores, networks, etc.) managed by VMware Cloud Director and used by the tenants. This information is required for discovering vApps/VMs that can be replicated/migrated or suitable destination locations for incoming replications/migrations.</p>
-<p>It also provides the VMware Cloud Director Availability UI and API interfaces. Another role of this appliance is to communicate with all the local and remote Replicators and receive data regarding each protected/migrated workload.
-Two VMware Cloud Director Availability services cover these functionalities in Cloud Replication Management appliance – the cloud.service and the manager.service.</p>
-<h4 id=cloud-service>
-Cloud Service
-<a class=anchor href=#cloud-service>#</a>
-</h4>
-<p>This service understands the VMware Cloud Director constructs – OrgVCD, vApps, networks managed by VMware Cloud Director, storage policies, etc. To achieve this VMware Cloud Director Availability Cloud Management appliance communicates with the VMware Cloud Director API through the VMware Cloud Director LB. The Cloud Replication Management appliance does not communicate with the VMware Cloud Director consoleproxy cells/interfaces. Based on this, VMware Cloud Director Availability can:</p>
-<ul>
-<li>discover VMware Cloud Director managed vApps/VMs and protect/migrate them to another DR-enabled cloud or on-premises vCenter</li>
-<li>discover a suitable destination for incoming replications/migrations</li>
-</ul>
-<p>The cloud service manages pairings with other DR-enabled clouds, policies, SLA profiles, and their assignment to VMware Cloud Director organizations. It provides information about the replication and system tasks. Also, it reports the replication compute resources consumption per tenant and per PVDC, the storage consumption per datastore, plus many other high- and low-level details.
-The cloud service management interface is available on <a href=https://vcda_manager_fqdn:443/admin>https://vcda_manager_fqdn:443/admin</a>. It is possible to log in with the local OS root account, an SSO account if the appliance has registration in an SSO domain, or with a VMware Cloud Director System Administrator account if the initial configuration is already completed.</p>
-<h4 id=manager-service>
-Manager Service
-<a class=anchor href=#manager-service>#</a>
-</h4>
-<p>The manager service manages the registrations of local and remote replicators. During the pairing process, remote replicators are registered in the Cloud Replication Management appliance. For each replication, it chooses one replicator from the source site and one from the destination site. The destination replicator is responsible for discovering the appropriate resources to create the replica disks at the destination and write data. Replicators send information to the Cloud Replication Management appliance about their operation – statuses, amount of data replicated, operation start time, time to complete, etc.
-The manager service is also used to manage replicators. It can trigger the rebalancing of replications across all replicators or put a replicator in maintenance mode, which leads to assigning each of its replications to another one. This is useful when the current replicators need to be offloaded by adding a new replicator in the solution.</p>
-<p>The manager service management interface is available at <a href=https://vcda_manager_fqdn:8441>https://vcda_manager_fqdn:8441</a>. It is possible to log in with the local OS root account and an SSO account if the appliance is already registered in Lookup Service.</p>
-<h3 id=cloud-replicator>
-Cloud Replicator
-<a class=anchor href=#cloud-replicator>#</a>
-</h3>
-<p>Cloud Replicator is responsible for moving the replication data around - to and from the ESXi hosts and the cloud.
-For outgoing replications/migrations, it communicates with the VMKernel interface of the ESXi host, captures and encrypts replication data, optionally compresses it, and sends it to the remote replicator, which can be another Cloud Replicator or on-premises Replicator.
-For incoming replications/migrations the Cloud Replicator receives replication data from a Replicator (cloud or on-premises), decompresses and decrypts this data, and sends it to the ESXi to be written on a datastore.
-Cloud Replicator is the only component that can scale out as the number of protections/migrations increases.</p>
-<h3 id=cloud-tunnel>
-Cloud Tunnel
-<a class=anchor href=#cloud-tunnel>#</a>
-</h3>
-<p>The Cloud Tunnel appliance is the single-entry point to the VMware Cloud Director Availability instance in the cloud. Its role is to handle and forward the incoming management and replication traffic. It is the only VMware Cloud Director Availability appliance that needs a dedicated Internet-accessible endpoint.</p>
-<h3 id=on-premises-appliance>
-On-premises Appliance
-<a class=anchor href=#on-premises-appliance>#</a>
-</h3>
-<p>The VMware Cloud Director Availability on-premises appliance is deployed in the tenant data center. It creates a pairing relation to VMware Cloud Director Availability in the cloud and can protect and/or migrate VMs running locally.
-The on-premises appliance does not require a public endpoint as it only initiates connectivity to the cloud.
-A single on-premises appliance can protect VMs from a single SSO domain even if there are multiple vCenter Servers in this SSO domain. If the requirement is to do replications from the cloud to on-premises, then a single appliance is required for each vCenter due to how placement works.
-Also, one on-premises appliance can be paired to a single VMware Cloud Director Availability instance in the cloud. If the tenant intends to use more than one DR service in the cloud, a dedicated appliance is required for each cloud DR service.</p>
-<h2 id=reference>
-Reference
-<a class=anchor href=#reference>#</a>
-</h2>
-<p><a href=https://docs.vmware.com/en/VMware-Cloud-Director-Availability/index.html>Official documentation</a></p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
@@ -475,15 +410,6 @@ Reference
 <li><a href=#migration>Migration</a></li>
 </ul>
 </li>
-<li><a href=#appliances>Appliances</a>
-<ul>
-<li><a href=#cloud-replication-management-appliance>Cloud Replication Management Appliance</a></li>
-<li><a href=#cloud-replicator>Cloud Replicator</a></li>
-<li><a href=#cloud-tunnel>Cloud Tunnel</a></li>
-<li><a href=#on-premises-appliance>On-premises Appliance</a></li>
-</ul>
-</li>
-<li><a href=#reference>Reference</a></li>
 </ul>
 </li>
 </ul>
