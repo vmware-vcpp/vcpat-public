@@ -3,20 +3,20 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="Sovereign Cloud Design #  The Sovereign Cloud validated solution has objectives to deliver prescriptive content about the solution so that it is fast to deploy and is suitable for use in production environments.
-   Objective Description     Main objective Provide VMware Validated Solution for Soveriegn Cloud evnvironments.   Network security profile support Segration between security domainsMultiple Availability ZonesResident Domain security profileManagement plane traffic policy creationFirewall exception rules for external servicesSovereign Domain security profileTraffic policy creationFirewall exception rules for inbound and outbound traffic   Workload domain type support Management Workload domainVI Workload domain   Scope of guidance Detailed design for solution components.">
+   Objective Description     Main objective Provide VMware Validated Solution for Soveriegn Cloud evnvironments.   Network security profile support Segration between security domainsMultiple Availability ZonesResident Domain security profileManagement plane traffic policy creationFirewall exception rules for external servicesSovereign Domain security profileTraffic policy creationFirewall exception rules for inbound and outbound traffic   Encryption support KMS ProvisioningVM EncryptionStorage EncryptionReplication of encrypted objects   Scope of guidance Detailed design for solution components.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Sovereign Cloud Design">
 <meta property="og:description" content="Sovereign Cloud Design #  The Sovereign Cloud validated solution has objectives to deliver prescriptive content about the solution so that it is fast to deploy and is suitable for use in production environments.
-   Objective Description     Main objective Provide VMware Validated Solution for Soveriegn Cloud evnvironments.   Network security profile support Segration between security domainsMultiple Availability ZonesResident Domain security profileManagement plane traffic policy creationFirewall exception rules for external servicesSovereign Domain security profileTraffic policy creationFirewall exception rules for inbound and outbound traffic   Workload domain type support Management Workload domainVI Workload domain   Scope of guidance Detailed design for solution components.">
+   Objective Description     Main objective Provide VMware Validated Solution for Soveriegn Cloud evnvironments.   Network security profile support Segration between security domainsMultiple Availability ZonesResident Domain security profileManagement plane traffic policy creationFirewall exception rules for external servicesSovereign Domain security profileTraffic policy creationFirewall exception rules for inbound and outbound traffic   Encryption support KMS ProvisioningVM EncryptionStorage EncryptionReplication of encrypted objects   Scope of guidance Detailed design for solution components.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/sovereign-cloud/design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-10-24T14:20:46-04:00">
+<meta property="article:modified_time" content="2022-10-24T14:35:14-04:00">
 <title>Sovereign Cloud Design | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.7f476c154af475dc69763093040a41cf381516d578656cde0fe5c68555c90c87.js integrity="sha256-f0dsFUr0ddxpdjCTBApBzzgVFtV4ZWzeD+XGhVXJDIc=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.5c8c735f5a2943dbb908239e5ebba541edc26ce1d08be0783ef877176324ed84.js integrity="sha256-XIxzX1opQ9u5CCOeXrulQe3CbOHQi+B4Pvh3F2Mk7YQ=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -158,15 +158,15 @@ Sovereign Cloud Design
 </tr>
 <tr>
 <td>Network security profile support</td>
-<td><ul><li>Segration between security domains<ul><li>Multiple Availability Zones</li><li>Resident Domain security profile<ul><li>Management plane traffic policy creation</li><li>Firewall exception rules for external services</li></ul></li><li>Sovereign Domain security profile<ul><li>Traffic policy creation</li><li>Firewall exception rules for inbound and outbound traffic</li></ul></li><li></ul></td>
+<td><ul><li>Segration between security domains<ul><li>Multiple Availability Zones</li><li>Resident Domain security profile<ul><li>Management plane traffic policy creation</li><li>Firewall exception rules for external services</li></ul></li><li>Sovereign Domain security profile<ul><li>Traffic policy creation</li><li>Firewall exception rules for inbound and outbound traffic</li></ul></li></ul></td>
 </tr>
 <tr>
-<td>Workload domain type support</td>
-<td><ul><li>Management Workload domain</li><li>VI Workload domain</li></ul></td>
+<td>Encryption support</td>
+<td><ul><li>KMS Provisioning</li><li>VM Encryption</li><li>Storage Encryption</li><li>Replication of encrypted objects</li></ul></td>
 </tr>
 <tr>
 <td>Scope of guidance</td>
-<td><ul><li>Detailed design for solution components.</li><li>Deployment and initial configuration of intelligent logging and analytics components for management and VI workload domains.</li><li>Operational guidance for solution components, such as operational verification, password management, and certificate management.</li><li>Solution interoperability with solution components, such as monitoring and life cycle.</li></ul></td>
+<td><ul><li>Detailed design for solution components.</li><li>Deployment and initial configuration of solution.</li><li>Operational guidance for solution components</li></ul></td>
 </tr>
 <tr>
 <td>Scope of implementation</td>
@@ -174,7 +174,7 @@ Sovereign Cloud Design
 </tr>
 <tr>
 <td>Cloud type</td>
-<td>Public Cloud</td>
+<td>Sovereign Cloud</td>
 </tr>
 <tr>
 <td>Number of VMware Cloud Foundation instances</td>
@@ -182,11 +182,11 @@ Sovereign Cloud Design
 </tr>
 <tr>
 <td>Load Balancing</td>
-<td>&mdash;</td>
+<td>NSX Advanced Load Balancer (AVI)</td>
 </tr>
 <tr>
 <td>Availability</td>
-<td>99%</td>
+<td>99.999%</td>
 </tr>
 <tr>
 <td>Authentication, authorization, and access control</td>
