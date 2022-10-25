@@ -2,8 +2,7 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="About DR and Migration #  The DR and Migration validated solution provides detailed design, implementation, configuration, and operation guidance on &mldr; A VMware validated solution is a technical validated implementation that is built and tested by VMware and VMware cloud providers to help customers resolve common business use cases. VMware validated solutions are cost-effective, performant, reliable, and secure. Each solution contains a detailed design, implementation, and operational guidance.
-Automation for This Design in VMware Cloud Foundation #  The implementation tasks for some design decisions are automated by SDDC Manager.">
+<meta name=description content="About DR and Migration #  The DR and Migration validated solution provides detailed design, implementation, configuration, and operation guidance on how to properly utilize VMware Cloud Director Availability. A VMware validated solution is a technical validated implementation that is built and tested by VMware and VMware cloud providers to help customers resolve common business use cases. VMware validated solutions are cost-effective, performant, reliable, and secure. Each solution contains a detailed design, implementation, and operational guidance.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="DR and Migration">
 <meta property="og:description" content>
@@ -14,7 +13,7 @@ Automation for This Design in VMware Cloud Foundation #  The implementation task
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.5c8c735f5a2943dbb908239e5ebba541edc26ce1d08be0783ef877176324ed84.js integrity="sha256-XIxzX1opQ9u5CCOeXrulQe3CbOHQi+B4Pvh3F2Mk7YQ=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.74b90ed9b4117dd3c119dbadcc32dc591dc4f880dfca29d09e21420f7c70103b.js integrity="sha256-dLkO2bQRfdPBGdutzDLcWR3E+IDfyinQniFCD3xwEDs=" crossorigin=anonymous></script>
 <link rel=alternate type=application/rss+xml href=http://vcpat.cloudhappens.io/docs/dr-migration/index.xml title="VMware Cloud Provider Architecture Toolkit">
 </head>
 <body dir=ltr>
@@ -161,14 +160,6 @@ VMware Cloud Solutions
 </ul>
 </li>
 <li><a href=#update-history>Update History</a></li>
-<li><a href=#introduction>Introduction</a></li>
-<li><a href=#vmware-cloud-director-availability>VMware Cloud Director Availability</a></li>
-<li><a href=#use-cases>Use Cases</a>
-<ul>
-<li><a href=#disaster-recovery>Disaster Recovery</a></li>
-<li><a href=#migration>Migration</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -179,19 +170,19 @@ VMware Cloud Solutions
 About DR and Migration
 <a class=anchor href=#about-dr-and-migration>#</a>
 </h1>
-<p>The DR and Migration validated solution provides detailed design, implementation, configuration, and operation guidance on &mldr;
+<p>The DR and Migration validated solution provides detailed design, implementation, configuration, and operation guidance on how to properly utilize VMware Cloud Director Availability.
 A VMware validated solution is a technical validated implementation that is built and tested by VMware and VMware cloud providers to help customers resolve common business use cases. VMware validated solutions are cost-effective, performant, reliable, and secure. Each solution contains a detailed design, implementation, and operational guidance.</p>
 <h2 id=automation-for-this-design-in-vmware-cloud-foundation>
 Automation for This Design in VMware Cloud Foundation
 <a class=anchor href=#automation-for-this-design-in-vmware-cloud-foundation>#</a>
 </h2>
 <p>The implementation tasks for some design decisions are automated by SDDC Manager. You must perform the implementation manually for the rest of the design decisions as noted in the design implication.
-To provide a fast and efficient path to automating the DR and Migration implementation, this document provides Microsoft PowerShell cmdlets as code-based alternatives to completing certain procedures in each SDDC component&rsquo;s user interface. You can directly reuse the PowerShell commands by replacing the provided sample values with values from your VMware Cloud Foundation Planning and Preparation Workbook.</p>
+Currently, there are no automation options for the deployment and configuration of VMware Cloud Director Availability, so the process needs to be performed manually.</p>
 <h2 id=intended-audience>
 Intended Audience
 <a class=anchor href=#intended-audience>#</a>
 </h2>
-<p>The DR and Migration documentation is intended for cloud provider architects and administrators who are familiar with and want to use VMware software and a {VVS for CP topic} for VMware Cloud Foundation.</p>
+<p>The DR and Migration documentation is intended for cloud provider architects and administrators who are familiar with VMware software and and want to support the offering of DR and migration services.</p>
 <h2 id=support-matrix>
 Support Matrix
 <a class=anchor href=#support-matrix>#</a>
@@ -218,7 +209,7 @@ Software Components in DR and Migration
 <tr>
 <td></td>
 <td>Solution-added products</td>
-<td><ul><li>Product One 2.2.x</li><li>Product Two 3.4.x</li></ul></td>
+<td>VMware Cloud Director Availability 4.4.1</td>
 </tr>
 <tr>
 <td>4.4.0</td>
@@ -228,7 +219,7 @@ Software Components in DR and Migration
 <tr>
 <td></td>
 <td>Solution-added products</td>
-<td><ul><li>Product One 2.0.x</li><li>Product Two 3.3.x</li></ul></td>
+<td>VMware Cloud Director Availability 4.4.1</td>
 </tr>
 <tr>
 <td>4.3.1</td>
@@ -238,7 +229,7 @@ Software Components in DR and Migration
 <tr>
 <td></td>
 <td>Solution-added products</td>
-<td><ul><li>Product One 1.1.x</li><li>Product Two 3.2.x</li></ul></td>
+<td>VMware Cloud Director Availability 4.4.1</td>
 </tr>
 <tr>
 <td>4.3.0</td>
@@ -248,7 +239,7 @@ Software Components in DR and Migration
 <tr>
 <td></td>
 <td>Solution-added products</td>
-<td><ul><li>Product One 1.0.x</li><li>Product Two 3.1.x</li></ul></td>
+<td>VMware Cloud Director Availability 4.4.1</td>
 </tr>
 </tbody>
 </table>
@@ -271,11 +262,19 @@ Supported VMware Cloud Foundation Deployment
 <tbody>
 <tr>
 <td>Management domain</td>
-<td><ul><li>Automated deployment using VMware Cloud Builder.</li><li>Availability of overlay-backed or VLAN-backed NSX segments in NSX-T Data Center for traffic in the same VMware Cloud Foundation instance and between VMware Cloud Foundation instances not required.</li></ul><br>See the following VMware Cloud Foundation Documentation:<br><ul><li>For information on deploying the management domain, see VMware Cloud Foundation Getting Started Guide and VMware Cloud Foundation Deployment Guide.</li><li>For information on designing the management domain, see VMware Cloud Foundation Design Guide for the Management Domain.</li></ul></td>
+<td>* Automated deployment using VMware Cloud Builder.<br>* Availability of overlay-backed or VLAN-backed NSX segments in NSX-T Data Center for traffic in the same VMware Cloud Foundation instance and between VMware Cloud Foundation instances not required.<br><br>See the following <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html>VMware Cloud Foundation Documentation</a>:<br><br>* For information on deploying the management domain, see VMware Cloud Foundation Getting Started Guide and VMware Cloud Foundation Deployment Guide.<br>* For information on designing the management domain, see VMware Cloud Foundation Design Guide for the Management Domain.</td>
 </tr>
 <tr>
-<td>(Optional) One or more virtual infrastructure workload domains</td>
-<td><ul><li>Automated deployment using VMware Cloud Builder.</li></ul><br>See the following VMware Cloud Foundation Documentation:<br><ul><li>For information on deploying the management domain, see VMware Cloud Foundation Getting Started Guide and VMware Cloud Foundation Deployment Guide.</li><li>For information on designing the management domain, see VMware Cloud Foundation Design Guide for the Management Domain.</li></ul></td>
+<td>One or more virtual infrastructure workload domains</td>
+<td>* Automated deployment using VMware Cloud Builder.<br><br>See the following <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html>VMware Cloud Foundation Documentation</a>:<br><br>* For information on deploying the management domain, see VMware Cloud Foundation Getting Started Guide and VMware Cloud Foundation Deployment Guide.<br>* For information on designing the management domain, see VMware Cloud Foundation Design Guide for the Management Domain.</td>
+</tr>
+<tr>
+<td>NSX Edge cluster</td>
+<td>* Automated deployment using SDDC Manager<br><br>See the following <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html>VMware Cloud Foundation Documentation</a>:<br><br>* For information on deploying the NSX Edge cluster, see VMware Cloud Foundation Getting Started Guide and VMware Cloud Foundation Operations and Administration Guide.<br>* For information on designing the NSX Edge cluster, see VMware Cloud Foundation Design Guide for a Virtual Infrastructure Workload Domain.</td>
+</tr>
+<tr>
+<td>VMware Cloud Director</td>
+<td>* Deployed via VMware Cloud Provider Lifecycle Manager<br><br>See the <a href=../cloud-infrastructure/implementation>Cloud Infrastructure Implementation</a> for more information. <br></td>
 </tr>
 </tbody>
 </table>
@@ -283,7 +282,12 @@ Supported VMware Cloud Foundation Deployment
 Overview of DR and Migration
 <a class=anchor href=#overview-of-dr-and-migration>#</a>
 </h2>
-<p>By applying the DR and Migration validated solution, you implement {describe outcome}.</p>
+<p>By applying the DR and Migration validated solution, you manually implement the 3 VMware Cloud Director Availability appliances:</p>
+<ul>
+<li>VMware Cloud Director Availability Cloud Replication Management appliance</li>
+<li>VMware Cloud Director Availability Cloud Replicator</li>
+<li>VMware Cloud Director Availability Cloud Tunnel</li>
+</ul>
 <h6 id=implementation-overview-of-dr-and-migration>
 Implementation Overview of DR and Migration
 <a class=anchor href=#implementation-overview-of-dr-and-migration>#</a>
@@ -297,16 +301,20 @@ Implementation Overview of DR and Migration
 </thead>
 <tbody>
 <tr>
-<td>1. Stage one description</td>
-<td>Long form description of stage</td>
+<td>1. Prerequisites check</td>
+<td>Validate whether the VMware Cloud Foundation environment is in place and VMware Cloud Director is already deployed.</td>
 </tr>
 <tr>
-<td>2. Stage two description</td>
-<td><ol><li>Step 1 description</li><li>Step 2 description</li><li>Step 3 description</li><li>Step 4 description</li></ul></td>
+<td>2. Deploy the VMware Cloud Director Availability appliances</td>
+<td>1. Deploy the VMware Cloud Director Availability Cloud Replication Management appliance in the Management Domain.<br>2. Deploy the VMware Cloud Director Availability Cloud Tunnel appliance in the Management Domain.<br>3. Deploy at least one VMware Cloud Director Availability Replicator appliance in each VI Workload domain. It is highly recommended to deploy at least 2 Cloud Replicators per VI Workload Domain.</td>
 </tr>
 <tr>
-<td>3. Stage three description</td>
-<td><ol><li>Step 1 description</li><li>Step 2 description</li><li>Step 3 description</li></ul></td>
+<td>3. Initial setup</td>
+<td>1. Run the VMware Cloud Director Availability initial setup wizard where the license, site details, and VMware Cloud Director details are provided.<br>2. Verify that the VMware Cloud Director Availability Plug-in for VMware Cloud Director is successfully deployed after the initial setup wizard is completed.<br>3. (Optional) Configure additional network adapters for the appliances if needed.<br>4. (Optional) Pair with other VMware Cloud Director Availability Cloud sites if present.</td>
+</tr>
+<tr>
+<td>4. Tenant onboarding</td>
+<td>1. Create and assign a replication policy to each tenant organization and customize their replication options.<br>2. Create and assign SLA profiles to each tenant organization.<br>3. Provide the VMware Cloud Director Availability On-Premises appliance bits and Organization Administrator credentials to each of the tenant organizations so they can pair their on-premises sites to the Cloud.</td>
 </tr>
 </tbody>
 </table>
@@ -324,50 +332,11 @@ Update History
 </thead>
 <tbody>
 <tr>
-<td>1. 31 MAY 2022</td>
-<td>Long form description of revision</td>
-</tr>
-<tr>
-<td>2. 28 APR 2022</td>
-<td><ol><li>Revision 1 description</li><li>Revision 2 description</li><li>Revision 3 description</li><li>Revision 4 description</li></ul></td>
-</tr>
-<tr>
-<td>3. 29 MAR 2022</td>
-<td><ol><li>Revision 1 description</li><li>Revision 2 description</li><li>Revision 3 description</li></ul></td>
+<td>1. 31 OCT 2022</td>
+<td>Initial version of this solution is published.</td>
 </tr>
 </tbody>
 </table>
-<h2 id=introduction>
-Introduction
-<a class=anchor href=#introduction>#</a>
-</h2>
-<p>Welcome! Here you can find suggestions on how to plan, set up and operate your DR and Migration services.</p>
-<h2 id=vmware-cloud-director-availability>
-VMware Cloud Director Availability
-<a class=anchor href=#vmware-cloud-director-availability>#</a>
-</h2>
-<p>VMware Cloud Director Availability is a Disaster-Recovery-as-a-Service solution. It is specially designed and available for participants in VMware Cloud Provider Program and allows them to protect and migrate vApps and VMs:</p>
-<ul>
-<li>From on-premises vCenter Server site to a VMware Cloud Director cloud</li>
-<li>From VMware Cloud Director cloud to an on-premises vCenter Server environment</li>
-<li>Between VMware Cloud Director managed clouds</li>
-</ul>
-<h2 id=use-cases>
-Use Cases
-<a class=anchor href=#use-cases>#</a>
-</h2>
-<p>VMware Cloud Director Availability supports two different use cases – disaster recovery and migration of vApps/VMs. Both of them rely on replication of virtual machines. In both cases at least one of the sides is a VMware Cloud Director managed cloud and the other side could be another VMware Cloud Director cloud or vCenter on-premises site. VMware Cloud Director Availability cannot protect or migrate bare metal servers or VMs managed by non-VMware hypervisors.</p>
-<p><img src=/images/dr-migration/index/vcda-use-cases.png alt="VMware Cloud Director Availability Use Cases"></p>
-<h3 id=disaster-recovery>
-Disaster Recovery
-<a class=anchor href=#disaster-recovery>#</a>
-</h3>
-<p>A tenant can purchase DRaaS provided by a public cloud and based on VMware Cloud Director Availability to protect their virtual machines running in their on-premises datacenter. The Cloud Provider assigns a portion of compute, storage, and network resources from their cloud and groups them in an Organization Virtual Data Center (OrgVDC) that belongs to the tenant. Also, the Cloud Provider can enable this OrgVDC (respectively, the tenant) to protect their on-premises virtual workloads to the cloud with specific parameters like minimum RPO, bandwidth control, direction of the protection, and more. It allows the tenant to failover their VMs in case of an outage in their on-premises data center.</p>
-<h3 id=migration>
-Migration
-<a class=anchor href=#migration>#</a>
-</h3>
-<p>When tenants plan to migrate workloads to the cloud, they may use the Migration workflow to simplify the process. When a “New Migration” is configured, VMware Cloud Director Availability starts replication of the vApp/VM from the source to the destination.</p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
@@ -402,14 +371,6 @@ Migration
 </ul>
 </li>
 <li><a href=#update-history>Update History</a></li>
-<li><a href=#introduction>Introduction</a></li>
-<li><a href=#vmware-cloud-director-availability>VMware Cloud Director Availability</a></li>
-<li><a href=#use-cases>Use Cases</a>
-<ul>
-<li><a href=#disaster-recovery>Disaster Recovery</a></li>
-<li><a href=#migration>Migration</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
