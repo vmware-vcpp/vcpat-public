@@ -14,13 +14,13 @@ Reg.Mgmt and X.Reg.Mgmt
   Existing Reg. Mgmt is used for a secondary interface for VCD cells, vSAN FS, Usage meter, vRealize Operations">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/network-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-10-26T14:38:47+05:30">
+<meta property="article:modified_time" content="2022-10-26T18:24:13+05:30">
 <title>Cloud Infrastructure Network Design | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.898b30793095c5bed7a043d4aa5ac7a1410a2bb510de197611e18b8ecfd6d859.js integrity="sha256-iYsweTCVxb7XoEPUqlrHoUEKK7UQ3hl2EeGLjs/W2Fk=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.cce6308438a389febd5c304a4018fb27b97ca59e319c997ca759ee11f38529c1.js integrity="sha256-zOYwhDijif69XDBKQBj7J7l8pZ4xnJl8p1nuEfOFKcE=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -175,6 +175,88 @@ Network Design of Management Cluster for VMware Cloud Foundation
 <p>VCD Cells have the primary (eth0) interface connected to this network with NSX-T load balancer in its own Tier-1 gateway.</p>
 </li>
 </ul>
+<br>
+<h2 id=vmware-cloud-provider-lifecycle-manager-firewall-ports>
+VMware Cloud Provider Lifecycle Manager Firewall Ports
+<a class=anchor href=#vmware-cloud-provider-lifecycle-manager-firewall-ports>#</a>
+</h2>
+<p>The below table provides a list of ports used by VMware Cloud Provider Lifecycle Manager for product and integration communication.</p>
+<table>
+<thead>
+<tr>
+<th>Port</th>
+<th>Protocol</th>
+<th>Direction</th>
+<th>Target</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9443</td>
+<td>TCP</td>
+<td>Inbound / Outbound</td>
+<td>Management network</td>
+<td>Port used for VMware Cloud Provider Lifecycle Manager REST API.</td>
+</tr>
+<tr>
+<td>22</td>
+<td>TCP</td>
+<td>Inbound / Outbound</td>
+<td>Management network</td>
+<td>SSH connection to the VMware Cloud Provider Lifecycle Manager machine to configure and set up deployment binaries.</td>
+</tr>
+<tr>
+<td>22</td>
+<td>TCP</td>
+<td>Outbound</td>
+<td>Deployed products (VCD, RMQ, vROPS TA, UM)</td>
+<td>SSH used to configure deployed products.</td>
+</tr>
+<tr>
+<td>53</td>
+<td>TCP/UDP</td>
+<td>Inbound / Outbound</td>
+<td>DNS Server</td>
+<td>DNS will be used to resolve IPs and hostnames and validate corresponding records for requested deployments.<br> <br> The DNS server provided in the payload will be used for validation purposes.</td>
+</tr>
+<tr>
+<td>123</td>
+<td>UDP</td>
+<td>Outbound</td>
+<td>NTP server</td>
+<td>Configure NTP server to ensure time is in sync.</td>
+</tr>
+<tr>
+<td>443</td>
+<td>TCP</td>
+<td>Outbound</td>
+<td>vCenter (Mgmt and resource)<br> NSX Manager<br> VCD (cells and load balancer)<br> vROPS<br> vROPS Tenant App<br> Usage Meter</td>
+<td>HTTPS traffic to access and configure deployed products as well as validate infrastructure components.</td>
+</tr>
+<tr>
+<td>5671 *</td>
+<td>TCP, UDP</td>
+<td>Outbound</td>
+<td>RabbitMQ</td>
+<td>AMQP port used for RabbitMQ AMQP service. This port can be customized; thus, the corresponding port must be accessible.</td>
+</tr>
+<tr>
+<td>15671 *</td>
+<td>TCP</td>
+<td>Outbound</td>
+<td>RabbitMQ Management Interface</td>
+<td>Management port used for RabbitMQ Management Interface. This port can be customized; thus, the corresponding port must be accessible.</td>
+</tr>
+<tr>
+<td></td>
+<td>ICMP</td>
+<td>Inbound / Outbound</td>
+<td>VCD cells<br> VCD cells<br> vROPS Tenant App<br> Usage Meter<br> RabbitMQ</td>
+<td>Ping is performed to check if deployed machines are running or existing prior to deployment.</td>
+</tr>
+</tbody>
+</table>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
