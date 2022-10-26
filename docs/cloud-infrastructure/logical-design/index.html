@@ -16,13 +16,13 @@ VMware VMware Cloud Director
 VMware VMware Cloud Director is VMware’s flagship cloud services platform for Cloud Providers. It is a pervasive cloud infrastructure control plane for cloud providers’ service-delivery needs, and the management entity for a global VMware cloud estate.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/logical-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-10-25T18:02:27+03:00">
+<meta property="article:modified_time" content="2022-10-26T14:38:47+05:30">
 <title>Cloud Infrastructure Logical Design | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.74b90ed9b4117dd3c119dbadcc32dc591dc4f880dfca29d09e21420f7c70103b.js integrity="sha256-dLkO2bQRfdPBGdutzDLcWR3E+IDfyinQniFCD3xwEDs=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.898b30793095c5bed7a043d4aa5ac7a1410a2bb510de197611e18b8ecfd6d859.js integrity="sha256-iYsweTCVxb7XoEPUqlrHoUEKK7UQ3hl2EeGLjs/W2Fk=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -173,7 +173,7 @@ Cloud Infrastructure Architecture for VMware Cloud Foundation
 <p>Tenant App diagram here</p>
 <p><em>RabbitMQ</em></p>
 <p>RabbitMQ diagram here</p>
-<p><br><br></p>
+<br>
 <h2 id=logical-design-for-product-deployment-using-vmware-cloud-provider-lifecycle-manager>
 Logical Design For Product Deployment Using VMware Cloud Provider Lifecycle Manager
 <a class=anchor href=#logical-design-for-product-deployment-using-vmware-cloud-provider-lifecycle-manager>#</a>
@@ -250,31 +250,6 @@ Workflow Execution Process Of VMware Cloud Provider Lifecycle Manager
 <p><strong>Workflow Execution</strong></p>
 <p>The below diagram represents the product deployment process using VMware Cloud Provider Lifecyclle Manager.</p>
 <p><img src=/images/vcplcm-detailed-design/image3.jpg alt="Workflow Execution"></p>
-<h2 id=logical-design-of-management-cluster-for-vmware-cloud-foundation>
-Logical Design of Management Cluster for VMware Cloud Foundation
-<a class=anchor href=#logical-design-of-management-cluster-for-vmware-cloud-foundation>#</a>
-</h2>
-<p>The following picture shows the typical logical architecture of the management cluster where VMware Cloud Director and its associated components will be deployed.</p>
-<p><img src=/images/vcplcm-detailed-design/image4.jpg alt="Logical design"></p>
-<p><strong>Reg.Mgmt and X.Reg.Mgmt</strong></p>
-<ul>
-<li>
-<p>These are overlay Segments</p>
-</li>
-<li>
-<p>Existing Reg. Mgmt is used for a secondary interface for VCD cells, vSAN FS, Usage meter, vRealize Operations</p>
-<p>Manager Tenant App and VMware Cloud provider Lifecycle Manager</p>
-</li>
-</ul>
-<p><strong>VCD DMZ</strong></p>
-<ul>
-<li>
-<p>VCD DMZ network has been added to separate the internet traffic. It is routed via a separate Tier-1 gateway and connected to existing Tier-0.</p>
-</li>
-<li>
-<p>VCD Cells have the primary (eth0) interface connected to this network with NSX-T load balancer in its own Tier-1 gateway.</p>
-</li>
-</ul>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
