@@ -8,7 +8,7 @@
 <meta property="og:description" content="DR and Migration Network Design #  Inside data centers, while the cloud providers typically use links with 10 Gbps or more between the components, the routing of replication data traffic might still benefit from optimizing. The way the Cloud Tunnel Appliance and the Cloud Replicator Appliance instances connect in the local cloud site is important. This connectivity can be routed or switched. Routed connectivity is easier for deployment and configuration.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/network-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-10-27T11:03:37+03:00">
+<meta property="article:modified_time" content="2022-10-27T11:08:11+03:00">
 <title>DR and Migration Network Design | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
@@ -145,7 +145,7 @@ DR and Migration Network Design
 and configuration. However, the routers might bottleneck replications. The intensive replication traffic might impact the operations of the routers, causing issues for other types of traffic.</p>
 <p>To bypass the routers and optimize the replication data traffic, use multiple network interfaces for the cloud appliances and connect the Cloud Replicator Appliance instances with the Cloud Tunnel Appliance at a common Layer 2 port group. By using such optimization, only the connectivity with the Cloud Replication Management Appliance and with the management infrastructure remains over routed networks. However, the management traffic is negligible compared to the replication data traffic.</p>
 <p>The following network diagram shows this topology.</p>
-<p><img src=/images/dr-migration/detailed-design/network-design/vcda-network-traffic.png alt="Recommended network design for VMware Cloud Director Availability"></p>
+<p><img src=/images/dr-migration/detailed-design/network-design/vcda-vcf-network.png alt="Recommended network design for VMware Cloud Director Availability"></p>
 <h2 id=network-ports>
 Network Ports
 <a class=anchor href=#network-ports>#</a>
