@@ -2,25 +2,23 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Register Datacenter vCenter Server #  To enable VMware Cloud Provider Lifecycle Manager to manage products, first, you must register a datacenter component.
+<meta name=description content="Register Datacenter #  To enable VMware Cloud Provider Lifecycle Manager to manage products, first, you must register a datacenter component.
 The datacenter components are instances or services available in the datacenter that VMware Cloud Provider Lifecycle Manager does not manage. You can register vCenter Server, NSX-T, and vRealize Operations Manager as datacenter components.
-Register vCenter Server #  API Procedure
-  Download & import Postman collection Read More">
+Register a Datacenter Component #  Using th below steps you can register vCenter, NSX-T or vROPS as a datacenter Component.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content>
-<meta property="og:description" content="Register Datacenter vCenter Server #  To enable VMware Cloud Provider Lifecycle Manager to manage products, first, you must register a datacenter component.
+<meta property="og:description" content="Register Datacenter #  To enable VMware Cloud Provider Lifecycle Manager to manage products, first, you must register a datacenter component.
 The datacenter components are instances or services available in the datacenter that VMware Cloud Provider Lifecycle Manager does not manage. You can register vCenter Server, NSX-T, and vRealize Operations Manager as datacenter components.
-Register vCenter Server #  API Procedure
-  Download & import Postman collection Read More">
+Register a Datacenter Component #  Using th below steps you can register vCenter, NSX-T or vROPS as a datacenter Component.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/vc-dc-register/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-11-02T12:56:29+05:30">
+<meta property="article:modified_time" content="2022-11-02T15:38:13+05:30">
 <title>VC Dc Register | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.e65cbccc78c4b7831bc91c4384f6fbd267da4e5c7b1307587389880f9a63208f.js integrity="sha256-5ly8zHjEt4MbyRxDhPb70mfaTlx7EwdYc4mID5pjII8=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.8ce917c7c061accef38fe99141a1715edac46bc1c3a1e03e17589fee07e0441c.js integrity="sha256-jOkXx8BhrM7zj+mRQaFxXtrEa8HDoeA+F1if7gfgRBw=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -146,169 +144,66 @@ VMware Cloud Solutions
 <aside class="hidden clearfix">
 <nav id=TableOfContents>
 <ul>
-<li><a href=#register-datacenter-vcenter-server>Register Datacenter vCenter Server</a>
+<li><a href=#register-datacenter>Register Datacenter</a>
 <ul>
-<li><a href=#register-vcenter-server>Register vCenter Server</a>
-<ul>
-<li><a href=#retrieve-task-status>Retrieve Task Status</a></li>
-</ul>
-</li>
+<li><a href=#register-a-datacenter-component>Register a Datacenter Component</a></li>
 </ul>
 </li>
 </ul>
 </nav>
 </aside>
 </header>
-<article class=markdown><h1 id=register-datacenter-vcenter-server>
-Register Datacenter vCenter Server
-<a class=anchor href=#register-datacenter-vcenter-server>#</a>
+<article class=markdown><h1 id=register-datacenter>
+Register Datacenter
+<a class=anchor href=#register-datacenter>#</a>
 </h1>
 <p>To enable VMware Cloud Provider Lifecycle Manager to manage products, first, you must register a datacenter component.</p>
 <p>The datacenter components are instances or services available in the datacenter that VMware Cloud Provider Lifecycle Manager does not manage. You can register vCenter Server, NSX-T, and vRealize Operations Manager as datacenter components.</p>
-<h2 id=register-vcenter-server>
-Register vCenter Server
-<a class=anchor href=#register-vcenter-server>#</a>
+<h2 id=register-a-datacenter-component>
+Register a Datacenter Component
+<a class=anchor href=#register-a-datacenter-component>#</a>
 </h2>
-<br>
-<p><strong>API Procedure</strong></p>
+<p>Using th below steps you can register vCenter, NSX-T or vROPS as a datacenter Component.<br></p>
+<p><strong>UI Procedure</strong></p>
 <ol>
-<li>
-<p>Download & import Postman collection <a href=../vcd-deploy-subpage>Read More</a></p>
-</li>
-<li>
-<p>Authenticate Session ID <a href=../vcd-deploy-subpage>Read More</a></p>
-</li>
-<li>
-<p>Validate API version <a href=../vcd-deploy-subpage>Read More</a></p>
-</li>
-<li>
-<p>Create POST Request - To deploy one or several products, Datacenter needs to be registered. Registration of Datacenter can be done using the below POST request.</p>
-</li>
+<li>To access the VMware Cloud Provider Lifecycle Manager UI, navigate to https://vcplcmhost-name and login as <strong>vcplcm</strong>.</li>
+<li>In the top navigation bar, click <strong>Datacenters</strong>.</li>
+<li>Click <strong>Register Datacenter</strong>.</li>
+<li>Enter the information about the data center component.</li>
 </ol>
-<blockquote>
-<p><strong>Method</strong>: POST</p>
-<p><strong>URL:</strong> /api/{api version}/lcm/datacenter?action=REGISTER</p>
-<p><strong>Header</strong>: name: JSESSIONID – value: a valid jsessionid</p>
-<p><strong>Sample Bodies:</strong></p>
-</blockquote>
 <ul>
 <li>
-<p>Provide vCenter Server Version</p>
-</li>
-<li>
-<p>Data Center Type- “VCENTER, VROPS or NSX-T”</p>
-</li>
-<li>
-<p>Fully Qualified Domain Name</p>
-</li>
-<li>
-<p>Username</p>
-</li>
-<li>
-<p>Password</p>
-</li>
-<li>
-<p>Content</p>
+<p>Register Datacenter using JSON File</p>
 <ul>
+<li>Expand the <strong>Upload datacenter Component</strong> section and by clicking on <strong>Browse</strong> navigate to the JSON file containing the datacenter configuration details.</li>
+<li>Upload the JSON and click <strong>Next</strong>.<br>
+<img src=/images/Cloud-Infrastructure-CPLCM-Implementation/dec-register-first.jpg alt=dc-register></li>
+<li>To confirm the information about the datacenter component, expand the <strong>Datacenter Component</strong> section and click <strong>Next</strong>.<br>
+<img src=/images/Cloud-Infrastructure-CPLCM-Implementation/dec-register-second.jpg alt=dc-register-confirm><br></li>
+</ul>
+</li>
 <li>
-<p>Networks</p>
+<p>Register Datacenter without JSON File</p>
 <ul>
-<li>
-<p>Port Group Names and the below network details:</p>
-</li>
-<li>
-<p>Gateway</p>
-</li>
-<li>
-<p>Subnet Mask</p>
-</li>
-<li>
-<p>Domain Name</p>
-</li>
-<li>
-<p>Search Path</p>
-</li>
-<li>
-<p>DHCP</p>
-</li>
-<li>
-<p>DNS</p>
-</li>
-<li>
-<p>NTP</p>
-</li>
+<li>Expand the <strong>Upload datacenter component</strong> section and click <strong>Next</strong>.</li>
+<li>To enter the information about datacenter componenr, expand the <strong>Datacenter Component</strong> drction and click <strong>Next</strong>.</li>
+<li>(Optional) In the case of a vCenter Server, Expand the <strong>Network</strong> section and enter the network configuration details.</li>
+<li>Click <strong>Next</strong>.<br>
+<img src=/images/Cloud-Infrastructure-CPLCM-Implementation/dc-register-network.jpg alt=dc-register-network></li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<p><img src=/images/Cloud-Infrastructure-CPLCM-Implementation/register-vcd-dc.jpg alt=api-call></p>
-<h3 id=retrieve-task-status>
-Retrieve Task Status
-<a class=anchor href=#retrieve-task-status>#</a>
-</h3>
-<blockquote>
-<p>To verify the status of a running task, a GET request must be executed.</p>
-<p><strong>Method</strong>: GET</p>
-<p><strong>URL</strong>: /api/{apiVersion}/task/{taskId}</p>
-<p><strong>Header</strong>: name: JSESSIONID - value: a valid jsessionid</p>
-<p><strong>Sample response</strong>:</p>
-<p>{</p>
-<p>&ldquo;id&rdquo;: 2,</p>
-<p>&ldquo;taskType&rdquo;: &ldquo;DATACENTER_REGISTER&rdquo;,</p>
-<p>&ldquo;subTasks&rdquo;: {</p>
-<p>&ldquo;c0a0c045-2b20-4838-a9b1-820a5f4e3f94&rdquo;: {</p>
-<p>&ldquo;name&rdquo;: &ldquo;DataCenterRegisterStep-VCENTER-7.0.1-DC_DISCOVER&rdquo;,</p>
-<p>&ldquo;status&rdquo;: &ldquo;SUCCESS&rdquo;,</p>
-<p>&ldquo;message&rdquo;: [</p>
-<p>{</p>
-<p>&ldquo;name&rdquo;: &ldquo;Discover product&rdquo;,</p>
-<p>&ldquo;status&rdquo;: &ldquo;OK&rdquo;,</p>
-<p>&ldquo;message&rdquo;: &ldquo;Successfully updated product state.&rdquo;,</p>
-<p>&ldquo;start_time&rdquo;: &ldquo;2022-08-20-08:49:49UTC&rdquo;,</p>
-<p>&ldquo;end_time&rdquo;: &ldquo;2022-08-20-08:50:01UTC&rdquo;</p>
-<p>},</p>
-<p>{</p>
-<p>&ldquo;name&rdquo;: &ldquo;Retrieve resource pool data from vCenter.&rdquo;,</p>
-<p>&ldquo;status&rdquo;: &ldquo;OK&rdquo;,</p>
-<p>&ldquo;message&rdquo;: &ldquo;Successfully retrieved resource pool data from vCenter.&rdquo;,</p>
-<p>&ldquo;start_time&rdquo;: &ldquo;2022-08-20-08:50:00UTC&rdquo;,</p>
-<p>&ldquo;end_time&rdquo;: &ldquo;2022-08-20-08:50:00UTC&rdquo;</p>
-<p>},</p>
-<p>{</p>
-<p>&ldquo;name&rdquo;: &ldquo;Retrieve certificate data from vCenter.&rdquo;,</p>
-<p>&ldquo;status&rdquo;: &ldquo;OK&rdquo;,</p>
-<p>&ldquo;message&rdquo;: &ldquo;Successfully certificate pool data from vCenter.&rdquo;,</p>
-<p>&ldquo;start_time&rdquo;: &ldquo;2022-08-20-08:50:00UTC&rdquo;,</p>
-<p>&ldquo;end_time&rdquo;: &ldquo;2022-08-20-08:50:01UTC&rdquo;</p>
-<p>}</p>
-<p>],</p>
-<p>&ldquo;nextSubTasks&rdquo;: {},</p>
-<p>&ldquo;ignoreStatus&rdquo;: false</p>
-<p>}</p>
-<p>},</p>
-<p>&ldquo;environmentId&rdquo;: &ldquo;<a href=mailto:xxxxxxxx_administrator@vsphere.local>xxxxxxxx_administrator@vsphere.local</a>&rdquo;,</p>
-<p>&ldquo;taskName&rdquo;: &ldquo;DATACENTER_REGISTER_ref:xxxxxxxxxadministrator@vsphere.local_2&rdquo;,</p>
-<p>&ldquo;status&rdquo;: &ldquo;SUCCESS&rdquo;,</p>
-<p>&ldquo;message&rdquo;: &ldquo;&rdquo;,</p>
-<p>&ldquo;next_tasks&rdquo;: []</p>
-<p>}</p>
-</blockquote>
-<p><strong>Possible values for the status are:</strong></p>
-<ul>
-<li>
-<p>IN_PROGRESS</p>
-</li>
-<li>
-<p>SUCCESS</p>
-</li>
-<li>
-<p>ERROR</p>
-</li>
-<li>
-<p><strong>Note.</strong> Please refer to the API reference and POSTMAN <a href=https://developer.vmware.com/apis/1253>sample collection</a> on <a href=http://code.vmware.com/>code.vmware.com</a> for APIs.</p>
-</li>
-</ul>
+<ol start=5>
+<li>(Optional) To validate the registration of the data center component, on the <strong>Complete
+datacenter setup</strong> tab, click <strong>Validate</strong>.<br>
+<img src=/images/Cloud-Infrastructure-CPLCM-Implementation/dec-register-validate.jpg alt=dc-register-validate></li>
+<li>To complete the registration of the data center component, on the <strong>Complete datacenter
+setup</strong> tab, click <strong>Register</strong>.<br>
+<img src=/images/Cloud-Infrastructure-CPLCM-Implementation/dec-register-register.jpg alt=dc-register-register>
+<br> <br> Optionally, you can download the information about the data center as a JSON file.
+If the registration completes successfully, the UI displays a Success message and you can find
+information about the data center when you select <strong>Datacenters</strong> from the top navigation.</li>
+</ol>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
@@ -323,13 +218,9 @@ Retrieve Task Status
 <div class=book-toc-content>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#register-datacenter-vcenter-server>Register Datacenter vCenter Server</a>
+<li><a href=#register-datacenter>Register Datacenter</a>
 <ul>
-<li><a href=#register-vcenter-server>Register vCenter Server</a>
-<ul>
-<li><a href=#retrieve-task-status>Retrieve Task Status</a></li>
-</ul>
-</li>
+<li><a href=#register-a-datacenter-component>Register a Datacenter Component</a></li>
 </ul>
 </li>
 </ul>
