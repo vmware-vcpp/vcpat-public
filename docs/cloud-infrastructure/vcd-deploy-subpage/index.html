@@ -2,25 +2,23 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Deployment of VMware Cloud Director using VMware Cloud Provider Lifecycle Manager #  Multi-node VMware Cloud Director to be deployed using API feature of VMware Cloud provider Lifecycle Manager
+<meta name=description content="Deployment of VMware Cloud Director using VMware Cloud Provider Lifecycle Manager #  Multi-node VMware Cloud Director to be deployed using GUI of VMware Cloud provider Lifecycle Manager
 Begin implementation of this solution by deploying VMware Cloud Provider Lifecycle Manager
-Prerequisites #  Verify that your environment fulfils the prerequisites for the deployment of VMware Cloud Director.
-To deploy a product by using the VMware Cloud Provider Lifecycle Manager UI, you must first register an infrastructure vCenter Server as data center component.">
+Prerequisites #   You must meet all requirements for deployment of VMware Cloud Director. For information, see Before you deploy VMware Cloud Director.. Verify that VMware Cloud Provider Lifecycle Manager supports the VMware Cloud Director version you want to deploy.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content>
-<meta property="og:description" content="Deployment of VMware Cloud Director using VMware Cloud Provider Lifecycle Manager #  Multi-node VMware Cloud Director to be deployed using API feature of VMware Cloud provider Lifecycle Manager
+<meta property="og:description" content="Deployment of VMware Cloud Director using VMware Cloud Provider Lifecycle Manager #  Multi-node VMware Cloud Director to be deployed using GUI of VMware Cloud provider Lifecycle Manager
 Begin implementation of this solution by deploying VMware Cloud Provider Lifecycle Manager
-Prerequisites #  Verify that your environment fulfils the prerequisites for the deployment of VMware Cloud Director.
-To deploy a product by using the VMware Cloud Provider Lifecycle Manager UI, you must first register an infrastructure vCenter Server as data center component.">
+Prerequisites #   You must meet all requirements for deployment of VMware Cloud Director. For information, see Before you deploy VMware Cloud Director.. Verify that VMware Cloud Provider Lifecycle Manager supports the VMware Cloud Director version you want to deploy.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/vcd-deploy-subpage/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-11-09T09:23:33-05:00">
+<meta property="article:modified_time" content="2022-11-09T16:56:40-05:00">
 <title>Vcd Deploy Subpage | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.aa256a12742602557203443bff8ac1256b4f5f9710eb80b883813088c67fd61f.js integrity="sha256-qiVqEnQmAlVyA0Q7/4rBJWtPX5cQ64C4g4EwiMZ/1h8=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.738ad4f6c3b6f1bcbc9c843a410c3bc5c5c2892723eda38fb5b02e3194f0fc24.js integrity="sha256-c4rU9sO28by8nIQ6QQw7xcXCiScj7aOPtbAuMZTw/CQ=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -100,10 +98,11 @@ Toolkit Documents:
 </h2>
 <ul>
 <li><strong>VMware Cloud Provider Lifecycle Manager</strong></li>
-<li><strong>VMware Cloud Director</strong>
+<li><a href=/docs/cloud-director/><strong>VMware Cloud Director</strong></a>
 <ul>
 <li>Scale</li>
 <li>Multi-site</li>
+<li><a href=/docs/cloud-director/identity-access/>Identity & Access</a></li>
 <li>Extensibility</li>
 <li>Branding & Themes</li>
 <li>Automation</li>
@@ -160,13 +159,24 @@ VMware Cloud Solutions
 Deployment of VMware Cloud Director using VMware Cloud Provider Lifecycle Manager
 <a class=anchor href=#deployment-of-vmware-cloud-director-using-vmware-cloud-provider-lifecycle-manager>#</a>
 </h1>
-<p>Multi-node VMware Cloud Director to be deployed using API feature of VMware Cloud provider Lifecycle Manager</p>
+<p>Multi-node VMware Cloud Director to be deployed using GUI of VMware Cloud provider Lifecycle Manager</p>
 <p>Begin implementation of this solution by deploying VMware Cloud Provider Lifecycle Manager</p>
 <h2 id=prerequisites>
 Prerequisites
 <a class=anchor href=#prerequisites>#</a>
 </h2>
-<p>Verify that your environment fulfils the prerequisites for the deployment of VMware Cloud Director.</p>
+<ol>
+<li>You must meet all requirements for deployment of VMware Cloud Director. For information,
+see <a href=../https://docs.vmware.com/en/VMware-Cloud-Provider-Lifecycle-Manager/1.4/vmware-cloud-provider-lifecycle-manager-14-deployment-administration.pdf>Before you deploy VMware Cloud Director</a>..</li>
+<li>Verify that VMware Cloud Provider Lifecycle Manager supports the VMware Cloud Director
+version you want to deploy. For information about the interoperability between VMware
+Cloud Provider Lifecycle Manager and other VMware products, see the see the VMware <a href="../https://interopmatrix.vmware.com/Interoperability?col=799,&row=0,">Product Interoperability Matrix</a>.</li>
+<li>Save the VMware Cloud Director OVA file to the vcd/version-number/ova directory on the
+VMware Cloud Provider Lifecycle Manager host.</li>
+<li>Verify that you have the password for the VMware Cloud Director database user.</li>
+<li>Verify that you have the path to the mounted NFS server.
+Verify that your environment fulfils the prerequisites for the deployment of VMware Cloud Director.</li>
+</ol>
 <p>To deploy a product by using the VMware Cloud Provider Lifecycle Manager UI, you must first
 register an infrastructure vCenter Server as data center component.</p>
 <p>The datacenter components are instances or services available in the datacenter that VMware Cloud Provider Lifecycle Manager does not manage. You can register the below components for integration.</p>
@@ -230,7 +240,7 @@ information without specifiyng the product nodes, integrations, and certificates
 <li>Configure the product nodes.
 <ul>
 <li>Expand the <strong>Nodes</strong> tab.</li>
-<li>On the displayed node card, click Configure.<br>
+<li>On the displayed node card, click <strong>Configure</strong>.<br>
 <img src=/images/Cloud-Infrastructure-CPLCM-Implementation/vcd-deploy-node-1.jpg alt=vcd-deploy-node-1><br></li>
 <li>Provide the node details and click <strong>OK</strong>.<br>
 <img src=/images/Cloud-Infrastructure-CPLCM-Implementation/vcd-deploy-node-2.jpg alt=vcd-deploy-node-2><br></li>
