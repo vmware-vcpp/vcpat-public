@@ -12,13 +12,13 @@ For validated load balancing solutions, see Advanced Load Balancing Validated So
 Integration with NSX Advanced Load Balancer #  If your environment is running NSX Advanced Load Balancer, you can connect VMware Cloud Director to the Advanced Load Balancing service.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/solution-interop-lb/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-11-10T17:43:40-05:00">
+<meta property="article:modified_time" content="2022-11-10T17:48:30-05:00">
 <title>Advanced Load Balancing for Cloud Infrastructure | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.dda70ff8fee48636c2a34590d782edf68585bab043dc9647332ce5195e679fd8.js integrity="sha256-3acP+P7khjbCo0WQ14Lt9oWFurBD3JZHMyzlGV5nn9g=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.232cb5e1b17588fd52c1855f8c9c4f034aeb2d1165c16a73aea221527e775fe9.js integrity="sha256-Iyy14bF1iP1SwYVfjJxPA0rrLRFlwWpzrqIhUn53X+k=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -260,18 +260,45 @@ If VLAN-backed logical segments are used instead of overlay transport zone for t
 <li>Enable DHCP Server at the tier-1 gateway level and configure DHCP on the management segment.</li>
 </ol>
 <p>More details here: <a href=https://avinetworks.com/docs/21.1/avi-nsx-t-integration/#configuring-management-networking-for-se>Configuring Management Networking for SE</a>.</p>
+<h3 id=vmware-cloud-director-support>
+VMware Cloud Director Support
+<a class=anchor href=#vmware-cloud-director-support>#</a>
+</h3>
+<p>Starting with version 10.2, VMware Cloud Director provides load-balancing services by using the capabilities of VMware NSX Advanced Load Balancer (Avi). VMware Cloud Director supports L4 and L7 load balancing that you can configure on an NSX-T Data Center edge gateway.</p>
+<p>As a system administrator, you deploy the NSX Advanced Load Balancer controller cluster with the other management solutions in the management infrastructure.</p>
+<p><img src=/images/lbaas/lbaas-vcd-architecture.png alt="Load Balancing as a Service in VMware Cloud Director"></p>
+<p>The NSX Advanced Load Balancer Controller uses APIs to interface with NSX Manager and vCenter Server to discover the infrastructure. It also manages the lifecycle and network configuration of Service Engines (SE). The Avi Controller cluster uploads the SE OVA image to the vCenter Server content library and uses vCenter APIs to deploy the SE VMs.</p>
+<p>This integration happens through an NSX-T Cloud configured in NSX ALB before being imported into VMware Cloud Director.</p>
+<p>Load balancing services are associated with NSX-T edge gateways, which can be scoped to an organization VDC or a data center Group.</p>
+<p><img src=/images/lbaas/lbaas-vcd-logical-diagram.png alt="Load Balancing as a Service in VMware Cloud Director - Logical Design"></p>
+<p>The system administrator has the flexibility to decide whether a service engine group is dedicated to a single edge gateway or shared between several edge gateways.</p>
+<p>Tenant users have full self-service UI and API load balancing capabilities in VMware Cloud Director.</p>
+<p><img src=/images/lbaas/lbaas-vcd-topology-diagram.png alt="Load Balancing as a Service in VMware Cloud Director - Topology"></p>
+<p>A service engine node is a VM with up to 10 network interfaces (NICs). The first NIC is always used for the management and control traffic. The other nine are used to connect to the NSX-T edge gateway (tier-1 gateway) using a service network logical segment. The service networks are created by VMware Cloud Director when you enable the load balancing service on an edge gateway with the DHCP service to provide IP addresses for the attached SEs.</p>
+<p>By default, the IP address used is 10.255.255.0/25 subnet. The system administrator can change the IP address if it coincides with the existing organization&rsquo;s VDC networks.</p>
+<p>Service Engines run each service interface in a different VRF. As a result, IP conflicts or cross-tenant communication does not occur. Avi automatically picks a service engine to instantiate the load balancing service when the tenant configures a load balancing pool and virtual service.</p>
+<p>When an SE is assigned, Avi configures a static route (/32) on the organization VDC edge gateway pointing the virtual service VIP (virtual IP) to the service engine IP address from the tenant&rsquo;s load balancing service network.</p>
+<h3 id=provider-and-tenant-responsibilities>
+Provider and Tenant Responsibilities
+<a class=anchor href=#provider-and-tenant-responsibilities>#</a>
+</h3>
+<p>As a <strong>system administrator</strong>, you deploy an Avi Controller Cluster, complete the initial configuration and the association with NSX-T and VMware Cloud Director. Once the integration is ready, you deploy and enable load balancing on an NSX-T edge gateway and assign it a service engine group.</p>
+<p>An <strong>organization administrator</strong> creates load balancer server pools and virtual services.</p>
+<h2 id=deployment--configuration>
+Deployment & Configuration
+<a class=anchor href=#deployment--configuration>#</a>
+</h2>
+<p><img src=/images/lbaas/lbaas-vcd-steps.png alt="Load Balancing as a Service in VMware Cloud Director - Implementation Steps"></p>
+<h3 id=requirements-1>
+Requirements
+<a class=anchor href=#requirements-1>#</a>
+</h3>
+<p>Please find the full list of requirements in the <a href=../vcd-lbaas-planning-and-preparation>planning and preparation page</a>.</p>
 <h2 id=proceedure>
 Proceedure
 <a class=anchor href=#proceedure>#</a>
 </h2>
-<ol>
-<li>Step 1 Title - may link to sub document
-Description of step with [Read more link] or just describe the process if short</li>
-<li>Step 2 Title - may link to sub document
-Description of step with [Read more link] or just describe the process if short</li>
-<li>Step 3 Title - may link to sub document
-Description of step with [Read more link] or just describe the process if short</li>
-</ol>
+<p><a href=../solution-interop-lb-proceedure.md>Integrate NSX Advanced Load Balancer with VMware Cloud Director</a></p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
