@@ -1,0 +1,192 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="vRealize Automation 7.x Metering and Reporting #  VMware vRealize Automation (vRA) 7.x is available to service providers in two editions:
+ vRealize Automation Advanced vRealize Automation Enterprise  Product Detection #  Service Provider registers vRA instance(s) in the Usage Meter web application. Then the service provider enters a Cafe and IaaS hostname, port, username, and password. A validation of the user credentials is performed and if correct, the data collection starts.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="vRealize Automation 7.x Metering and Reporting">
+<meta property="og:description" content="vRealize Automation 7.x Metering and Reporting #  VMware vRealize Automation (vRA) 7.x is available to service providers in two editions:
+ vRealize Automation Advanced vRealize Automation Enterprise  Product Detection #  Service Provider registers vRA instance(s) in the Usage Meter web application. Then the service provider enters a Cafe and IaaS hostname, port, username, and password. A validation of the user credentials is performed and if correct, the data collection starts.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/vra7x-metering/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-11-11T15:16:34+02:00">
+<title>vRealize Automation 7.x Metering and Reporting | VMware Cloud Provider Architecture Toolkit</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.f1ae372c10d8b924310f631d62ca84f0dfbf29e45a6f9d4b0e822243ba473577.js integrity="sha256-8a43LBDYuSQxD2MdYsqE8N+/KeRab51LDoIiQ7pHNXc=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>VMware Cloud Provider Architecture Toolkit</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li><a href=/feedback/><em>Feedback</em></a></li>
+</ul>
+<h2 id=draft-validated-solutions>
+Draft Validated Solutions:
+<a class=anchor href=#draft-validated-solutions>#</a>
+</h2>
+<ul>
+<li><a href=/docs/cloud-infrastructure/><strong>Cloud Infrastructure</strong></a>
+<ul>
+<li><a href=/docs/cloud-infrastructure/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/cloud-infrastructure/design/>Design Objectives</a></li>
+<li><a href=/docs/cloud-infrastructure/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/cloud-infrastructure/implementation/>Implementation</a></li>
+<li><a href=/docs/cloud-infrastructure/operations/>Operational Guidance</a></li>
+<li><a href=/docs/cloud-infrastructure/design-decisions/>Design Decisions</a></li>
+<li><a href=/docs/cloud-infrastructure/solution-interop/>Solution Interoperability</a></li>
+</ul>
+</li>
+<li><a href=/docs/dr-migration/><strong>DR and Migration</strong></a>
+<ul>
+<li><a href=/docs/dr-migration/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/dr-migration/design/>Design Objectives</a></li>
+<li><a href=/docs/dr-migration/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/dr-migration/implementation/>Implementation</a></li>
+<li><a href=/docs/dr-migration/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/developer-ready-cloud/><strong>Developer Ready Cloud</strong></a>
+<ul>
+<li><a href=/docs/developer-ready-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/developer-ready-cloud/design/>Design Objectives</a></li>
+<li><a href=/docs/developer-ready-cloud/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/developer-ready-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/developer-ready-cloud/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/sovereign-cloud/><strong>Sovereign Cloud</strong></a>
+<ul>
+<li><a href=/docs/sovereign-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/sovereign-cloud/design/>Design Objectives</a></li>
+<li><a href=/docs/sovereign-cloud/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/sovereign-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/sovereign-cloud/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+</ul>
+<h2 id=toolkit-documents>
+Toolkit Documents:
+<a class=anchor href=#toolkit-documents>#</a>
+</h2>
+<ul>
+<li><strong>VMware Cloud Provider Lifecycle Manager</strong></li>
+<li><a href=/docs/cloud-director/><strong>VMware Cloud Director</strong></a>
+<ul>
+<li>Automation</li>
+<li>Branding & Themes</li>
+<li>Extensibility</li>
+<li><a href=/docs/cloud-director/identity-access/>Identity & Access</a></li>
+<li>Multi-site</li>
+<li>Networking</li>
+<li>Scale</li>
+<li>Security</li>
+</ul>
+</li>
+<li><strong>VMware Cloud Director service</strong>
+<ul>
+<li><a href=/docs/cloud-director-service/implementation/>Implementation</a></li>
+</ul>
+</li>
+<li><strong>VMware Cloud Director Availability</strong></li>
+<li><strong>VMware vCloud Usage Meter</strong></li>
+<li><strong>VMware Cloud Director Container Service Extension</strong></li>
+<li><strong>VMware Cloud Director Oject Storage Extension</strong></li>
+<li><strong>VMware Cloud Director Application Launchpad</strong>
+<br></li>
+</ul>
+<ul>
+<li>
+<a href=https://cloudsolutions.vmware.com target=_blank rel=noopener>
+VMware Cloud Solutions
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>vRealize Automation 7.x Metering and Reporting</strong>
+<label for=toc-control>
+</label>
+</div>
+</header>
+<article class=markdown><h1 id=vrealize-automation-7x-metering-and-reporting>
+vRealize Automation 7.x Metering and Reporting
+<a class=anchor href=#vrealize-automation-7x-metering-and-reporting>#</a>
+</h1>
+<p>VMware vRealize Automation (vRA) 7.x is available to service providers in two editions:</p>
+<ul>
+<li>vRealize Automation Advanced</li>
+<li>vRealize Automation Enterprise</li>
+</ul>
+<h2 id=product-detection>
+Product Detection
+<a class=anchor href=#product-detection>#</a>
+</h2>
+<p>Service Provider registers vRA instance(s) in the Usage Meter web application. Then the service provider enters a Cafe and IaaS hostname, port, username, and password. A validation of the user credentials is performed and if correct, the data collection starts. Usage Meter connects to the vRA Café server and collects its license edition. The appliance also connects to vRA IaaS and collects the number of managed VMs. Data is collected on an hourly basis.</p>
+<h2 id=metering>
+Metering
+<a class=anchor href=#metering>#</a>
+</h2>
+<p>The metering of vRealize Automation is per VM. The reported usage is calculated by the monthly average hourly count of non-unique VMs in the month.
+Example: If during the first 15 days of the month, there are 2 VMs and the last 15 days of the same reporting month, there are 4 VMs, the at the end of the month, the Monthly Usage Report will report 3 VMs (an average count of the non-unique VMs detected throughout the month).</p>
+<h2 id=reporting>
+Reporting
+<a class=anchor href=#reporting>#</a>
+</h2>
+<p>Sample Monthly Usage Report adds a new line item for vRA.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Product</strong></th>
+<th><strong>Version</strong></th>
+<th><strong>Unit of Measure</strong></th>
+<th><strong>Units to be Reported</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>vRealize Automation Advanced</td>
+<td></td>
+<td>Managed VMs</td>
+<td>1547</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> When VMware Cloud Foundation is added for metering, all vRA lines are visible on vCloud Usage Insight but will not be sent to the VMware Commerce Portal. Providers update manually their vRA reporting in the Commerce Portal after reviewing the report in vCloud Usage Insight.</p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+</main>
+</body>
+</html>

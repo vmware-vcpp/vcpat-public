@@ -3,22 +3,20 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="VMware vCloud Usage Meter Design #  Detailed design information for Usage Meter goes here.
- Deployment model Design decisions Sizing Others  VMware vCloud Usage Meter is a virtual appliance for tracking the usage of the VMware products part of the VMware Cloud Provider Program that are deployed on-prem and payed based on pay-as-you-grow model.
-Deployment Model #  The Usage Meter appliance is installed on-prem through vSphere and connects to the metered products through their IPs and the users who are able to connect to them.">
+Deployment model #  vCloud Usage Meter is deployed as an OVA file through vSphere. It must be registered with a VCPP contract (Rental or Sovereign Cloud) to complete its configuration. 1 vCloud Usage Meter can be registered with only 1 VCPP contract. A single VCPP contract can have many registered vCloud Usage Meters. Usage Meter can also be registered with a provider org&rsquo;s site.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="VMware vCloud Usage Meter Design">
 <meta property="og:description" content="VMware vCloud Usage Meter Design #  Detailed design information for Usage Meter goes here.
- Deployment model Design decisions Sizing Others  VMware vCloud Usage Meter is a virtual appliance for tracking the usage of the VMware products part of the VMware Cloud Provider Program that are deployed on-prem and payed based on pay-as-you-grow model.
-Deployment Model #  The Usage Meter appliance is installed on-prem through vSphere and connects to the metered products through their IPs and the users who are able to connect to them.">
+Deployment model #  vCloud Usage Meter is deployed as an OVA file through vSphere. It must be registered with a VCPP contract (Rental or Sovereign Cloud) to complete its configuration. 1 vCloud Usage Meter can be registered with only 1 VCPP contract. A single VCPP contract can have many registered vCloud Usage Meters. Usage Meter can also be registered with a provider org&rsquo;s site.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/um-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-11-11T17:53:56+05:30">
+<meta property="article:modified_time" content="2022-11-11T15:16:34+02:00">
 <title>VMware vCloud Usage Meter Design | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.e224c75e36eac8236c6b76dd661a0ed3c3ce3274df9860434c7cce59f18ad023.js integrity="sha256-4iTHXjbqyCNsa3bdZhoO08POMnTfmGBDTHzOWfGK0CM=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.f1ae372c10d8b924310f631d62ca84f0dfbf29e45a6f9d4b0e822243ba473577.js integrity="sha256-8a43LBDYuSQxD2MdYsqE8N+/KeRab51LDoIiQ7pHNXc=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -140,124 +138,197 @@ VMware vCloud Usage Meter Design
 <a class=anchor href=#vmware-vcloud-usage-meter-design>#</a>
 </h1>
 <p>Detailed design information for Usage Meter goes here.</p>
-<ul>
-<li>Deployment model</li>
-<li>Design decisions</li>
-<li>Sizing</li>
-<li>Others</li>
-</ul>
-<p>VMware vCloud Usage Meter is a virtual appliance for tracking the usage of the VMware products part of the VMware Cloud Provider Program that are deployed on-prem and payed based on pay-as-you-grow model.</p>
 <h2 id=deployment-model>
-Deployment Model
+Deployment model
 <a class=anchor href=#deployment-model>#</a>
 </h2>
-<p>The Usage Meter appliance is installed on-prem through vSphere and connects to the metered products through their IPs and the users who are able to connect to them. After the successful connection to the metered product is established, the collection of usage data starts.</p>
-<p>The data is collected every 1 hour for most VMware products and used by vCloud Usage Insight. The latter is a cloud service that aggregates the usage data and generated reports out of it. The aggregated data appears during the first few days of the following month in the VMware Commerce Portal (VCP). This data is used for the generation of the VCP Monthly Billing Order (MBO).</p>
-<p>Here is a glimpse of how Usage Meter and Usage Insight work together:</p>
-<p><img src=/images/usage-meter-product-detection/Usage%20Meter%20Workflow.png alt="Usage Meter Workflow"></p>
+<p>vCloud Usage Meter is deployed as an OVA file through vSphere. It must be registered with a VCPP contract (Rental or Sovereign Cloud) to complete its configuration. 1 vCloud Usage Meter can be registered with only 1 VCPP contract. A single VCPP contract can have many registered vCloud Usage Meters. Usage Meter can also be registered with a provider org&rsquo;s site.</p>
+<p>To collect accurate usage data, vCloud Usage Meter requires a specific configuration of the metered vCenter Server instances. To access the vCloud Usage Meter Web interface, you must allow access on the appropriate TCP ports.</p>
+<h3 id=vcenter-server-clusters>
+vCenter Server Clusters
+<a class=anchor href=#vcenter-server-clusters>#</a>
+</h3>
+<p>Service providers normally host customer and administrative virtual machines on a single vCenter Server instance. Tenants consume compute resources from the customer virtual machines, whereas service providers use the administrative virtual machines for internal purposes. To ensure accurate reporting to service providers and to VMware, you must apply a degree of separation between customer and administrative virtual machines. The best practice is to create a dedicated cluster for each type. For example, create a Customer cluster to host all customer virtual machines and a Management cluster to host all virtual machines that are vital to the service provider business operations. The separation of the virtual machines based on their function, ensures that vCloud Usage Meter reports do not contain mixed usage data of customer and administrative virtual machines.</p>
+<h3 id=esxi-licenses>
+ESXi Licenses
+<a class=anchor href=#esxi-licenses>#</a>
+</h3>
+<p>After you create dedicated clusters for the virtual machines based on their functions, you must assign proper ESXi licenses to the cluster hosts.</p>
+<h3 id=tcp-ports>
+TCP Ports
+<a class=anchor href=#tcp-ports>#</a>
+</h3>
+<p>vCloud Usage Meter uses predefined TCP ports. If you manage network components from outside a firewall, you might need to configure the firewall to allow access to the appropriate ports. For information about the ports that vCloud Usage Meter requires, see VMware Ports and Protocols.</p>
+<p>VMware Ports and Protocols</p>
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Releases</th>
+<th>Port</th>
+<th>Protocol</th>
+<th>Source</th>
+<th>Destination</th>
+<th>Service Description</th>
+<th>Purpose</th>
+<th>Classification</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>vCloud Usage Meter</td>
+<td>4.3, 4.4, 4.5, 4.6</td>
+<td>22</td>
+<td>SSH</td>
+<td>Platform</td>
+<td>UM Appliance</td>
+<td>Usage Meter agent access. User/Password or SSH key-based authentication.</td>
+<td>Inbound communication port for Usage Meter to login using SSH</td>
+<td>SSL Enabled</td>
+<td></td>
+</tr>
+<tr>
+<td>vCloud Usage Meter</td>
+<td>4.3, 4.4, 4.5, 4.6</td>
+<td>443</td>
+<td>HTTPS</td>
+<td>UM Appliance</td>
+<td>ums.cloud.vmware.com</td>
+<td>Outbound communication to VMware Cloud</td>
+<td>Sending Usage Data to VMware cloud</td>
+<td>Sensitive and SSL Enabled</td>
+<td></td>
+</tr>
+<tr>
+<td>vCloud Usage Meter</td>
+<td>4.3, 4.4, 4.5, 4.6</td>
+<td>Proxy server port</td>
+<td>HTTPS</td>
+<td></td>
+<td></td>
+<td>Serves requests from proxy and sends commands to proxy</td>
+<td>Communication port for proxy connection</td>
+<td>Sensitive and SSL Enabled</td>
+<td></td>
+</tr>
+<tr>
+<td>vCloud Usage Meter</td>
+<td>4.3, 4.4, 4.5, 4.6</td>
+<td>443</td>
+<td>TCP</td>
+<td>UM Appliance</td>
+<td>All Metered Products</td>
+<td>Default port to access products and execute API</td>
+<td>To access products and execute API commands</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>vCloud Usage Meter</td>
+<td>4.3, 4.4, 4.5, 4.6</td>
+<td>8443</td>
+<td>HTTPS</td>
+<td>Platform</td>
+<td>UM Appliance</td>
+<td>API access and communication with Usage Meter. SSL channel encrypted with 2048 RSA key based SHA2 cert.</td>
+<td>Inbound communication port for Usage Meter</td>
+<td>Sensitive and SSL Enabled</td>
+<td></td>
+</tr>
+<tr>
+<td>vCloud Usage Meter</td>
+<td>4.3, 4.4, 4.5, 4.6</td>
+<td>7444</td>
+<td>TCP</td>
+<td>UM Appliance</td>
+<td>Product PSC server for vCenter Lookup service</td>
+<td>Default port to access PSC server product and execute API</td>
+<td>To access PSC server product and execute API</td>
+<td>API calls, Authentication</td>
+<td></td>
+</tr>
+<tr>
+<td>vCloud Usage Meter</td>
+<td>4.3, 4.4, 4.5, 4.6</td>
+<td>8443</td>
+<td>TCP</td>
+<td>Client browser</td>
+<td>vCloud Usage Meter</td>
+<td>Used for the Web application.</td>
+<td>vCloud Usage Meter UI</td>
+<td>Used for the Web application.</td>
+<td></td>
+</tr>
+<tr>
+<td>vCloud Usage Meter</td>
+<td>4.5, 4.6</td>
+<td>5480</td>
+<td>TCP</td>
+<td>Client Browser</td>
+<td>Virtual Appliance Management Interface (VAMI)</td>
+<td>Used for VAMI Web application</td>
+<td>To access VAMI UI.</td>
+<td>URL access</td>
+<td></td>
+</tr>
+<tr>
+<td>vCloud Usage Meter</td>
+<td>4.3, 4.4, 4.5, 4.6</td>
+<td>80, 8080, 443</td>
+<td>TCP</td>
+<td>Client Browser</td>
+<td>UM Appliance</td>
+<td>Accepts HTTP connections and upgrades them to HTTPS connections on port 443. This port is optional and is not required to be open if you connect over HTTPS exclusively</td>
+<td>HTTPS access to web UI or HTTPS upgrade for Usage Meter web UI</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2 id=design-decisions>
-Design Decisions
+Design decisions
 <a class=anchor href=#design-decisions>#</a>
 </h2>
-<p>Need to pull in the details from the <a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-6156F647-6DA6-4EAA-AEDD-21C36F1008C3.html>Deployment Properties</a> as necessary design decisions to be made before deployment.</p>
-<p>*Is there an HA option? When should more than one UM appliance be deployed? This needs to be covered here.</p>
+<p>vCloud Usage Meter is a virtual appliance that you deploy with vSphere Web Client. To set up the virtual appliance, you must set the required passwords, configure your network, and add a vCenter Server instance for metering.</p>
+<p>To manage who can use the application, you can set up an LDAP authentication.</p>
+<p>The size of your data set and the vCenter Server inventories that vCloud Usage Meter meters affect the speed of a consumption data collection. For large data sets and vCenter Server inventories, consider deploying more than one vCloud Usage Meter appliances. You can consolidate the reported data from multiple virtual appliances in monthly reports to your VMware Cloud Provider Program aggregator.</p>
+<p>To avoid configuration problems and ensure accurate metering of products, you must synchronize the vCloud Usage Meter date and time with the date and time of the metered products. As a best practice, use the same NTP server for the vCloud Usage Meter appliance and the metered products.</p>
 <h2 id=sizing>
 Sizing
 <a class=anchor href=#sizing>#</a>
 </h2>
-<p>vCloud Usage Meter requires the following hardware resources. (Are there other sizing options? If yes, when should they be used?)</p>
-<ul>
-<li>Two virtual CPU cores</li>
-<li>12 GB of memory</li>
-<li>80 GB storage</li>
-</ul>
-<h2 id=vcloud-usage-meter-security-and-privacy-guidelines>
-vCloud Usage Meter Security and Privacy Guidelines
-<a class=anchor href=#vcloud-usage-meter-security-and-privacy-guidelines>#</a>
+<pre><code>vCloud Usage Meter requires the following hardware resources.
+* Two virtual CPU cores
+* 12 GB of memory
+* 80 GB storage
+Download the vCloud Usage Meter OVA file from the VMware Customer Connect download product page and save it locally.
+
+Verify that you have access and sufficient privileges to deploy an OVA file with vSphere Web Client.
+</code></pre>
+<h2 id=others>
+Others
+<a class=anchor href=#others>#</a>
 </h2>
-<p>*(Not sure if this information should go in Detailed Design section. Please review the rest of the VVS to determine if there is a better fit)
-vCloud Usage Meter collects usage data from the metered products in a transparent and secure way. It anonymizes data such as vSAN cluster name, VM name, hostname, target vCenter, etc. The anonymization is conducted prior to transmitting to VMware using SHA1 to create a one-way hash. From the hash, VMware cannot obtain the original value.</p>
-<p>Moreover, vCloud Usage Meter does not collect any PII data. Providers can see at any time what data their Usage Meter collects by downloading the usage data locally.</p>
-<p>The full list of data collected by vCloud Usage Meter per supported VMware product can be found in the <a href=https://vmstarcommunity.force.com/partnerconnect/s/contentdocument/06934000002FN7L>Usage Meter Data Privacy and Sharing Guidelines</a> whitepaper.</p>
-<p>vCloud Usage Meter is also <a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.5/Getting-Started-vCloud-Usage-Meter/GUID-CBF5E838-24F3-4A3F-9B53-752E41AD9806>FIPS-compliant</a>
-which testifies to its high level of security and data privacy.</p>
-<h2 id=preparing-to-meter-your-vcpp-products-with-usage-meter>
-Preparing to meter your VCPP products with Usage Meter
-<a class=anchor href=#preparing-to-meter-your-vcpp-products-with-usage-meter>#</a>
-</h2>
-<p>Before metering the VMware products that you use, you need a signed VCPP contract with VMware and a deployed Usage Meter appliance. The latter must be registered with your VCPP license (Rental or Sovereing Cloud) before you can start metering the usage of your VMware products.</p>
-<p>Then, you must add the details of each product like IP address or hostname, and the credentials of the user who is able to connect to it. Use the information recorded in the Planning and Preparation Workbook.</p>
-<p>*(Below moves to Implementation section)
-The process of adding a VMware product for metering is explained in details in the following <a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.5/Using-and-Managing-vCloud-Usage-Meter/GUID-7EC97E1C-D51C-4DEC-9EB3-7DD2F4E6D8A9.html>page</a>.</p>
-<p>*(Not sure if the below information should go in Detailed Design section. Please review the rest of the VVS to determine if there is a better fit)</p>
-<h2 id=how-does-the-metering-work>
-How does the metering work
-<a class=anchor href=#how-does-the-metering-work>#</a>
-</h2>
-<p>The following information helps you understand how the metering of product usage data works.</p>
-<p>It also provides insight into how the reported usage data is calculated and appears in the vCloud Usage Insight reports.</p>
-<p>The metering information goes into the following categories.</p>
-<p>*(Below moves to Implementation section)</p>
-<h3 id=metering-cloud-infrastructure-products>
-Metering Cloud Infrastructure Products
-<a class=anchor href=#metering-cloud-infrastructure-products>#</a>
+<h3 id=offline-reporting>
+Offline Reporting
+<a class=anchor href=#offline-reporting>#</a>
 </h3>
-<ol>
-<li>
-<p><a href=../vcenter-metering>vCenter Server</a> - The vCenter Server usage is calculated by the average capped billed vRAM per a managed VM. The vCenter Server usage is reported as part of the Flex Core bundle.</p>
-</li>
-<li>
-<p><a href=../vcf-metering>VMware Cloud Foundation</a> - The usage of VCF is calculated as the time-based average of host CPU core count, aggregated by different VCF editions except for the SDDC Manager license edition. The SDDC Manager license edition is metered as an average Capped Billed vRAM GB per VM. The VCF editon that is reported is the one selected when the VCF is added to the Usage Meter web application.</p>
-</li>
-<li>
-<p><a href=../vsan-metering>vSAN</a> - The vSAN usage is calculated as a monthly average of an hourly count of used capacity (datastore space used). The vSAN license edition is determined by the vSAN features used by the vCenter VMs.</p>
-</li>
-<li>
-<p><a href=../nsx-metering>NSX- V</a> - The NSX-V usage is calculated as an average capped billed vRAM GB per VM using NSX-V features if bundled or a monthly average of an hourly count of non-unique VMs serviced for the NSX-V Enterprise edition only. The edition is determined by the NSX- V features used by the vCenter VMs.</p>
-</li>
-<li>
-<p><a href=../nsx-metering>NSX-T</a> - The NSX-T usage is calculated by the average capped billed vRAM in GB per VM using NSX-T features. The reported license edition is determined by the NSX-T features used by the vCenter VMs.</p>
-</li>
-<li>
-<p><a href=../cloud-director-metering>Cloud Director</a> - The Cloud Director usage is calculated by the number of VMs under management.</p>
-</li>
-</ol>
-<h3 id=metering-other-solutions>
-Metering Other Solutions
-<a class=anchor href=#metering-other-solutions>#</a>
+<p>Usage Meter can be confiugured to work without connection to the Internet and automatically sending data to the vCloud Usage Insight service responsible for the aggregation of the usage data.</p>
+<p>The offline mode of Usage Meter is when it has no connection to vCloud Usage Insight and stores the collected usage data in raw format locally - on the appliance.</p>
+<p>When the provider is using Usage Meter in offline mode, then the usage data must be manually uploaded to Cloud Partner Navigator, from where it is sent to the vCloud Usage Insight and the latter aggregates the received data and shows it back to Cloud Partner Navigator within 24 hours of the upload.</p>
+<p>Read the following <a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-5CDE6332-6CE0-4C97-8A51-8A1309E965F5.html#GUID-5CDE6332-6CE0-4C97-8A51-8A1309E965F5>information</a> to learn how to configure Usage Meter to work in offline mode.</p>
+<h3 id=configuring-a-proxy-server>
+Configuring a Proxy Server
+<a class=anchor href=#configuring-a-proxy-server>#</a>
 </h3>
-<ol>
-<li>
-<p><a href=../cloud-director-availability-metering>Cloud Director Availability</a> - Usage is calculated based on the number of protected VMs.</p>
-</li>
-<li>
-<p><a href=../tanzu-metering>Tanzu</a> - Usage is calculated based on the vRAM or CPU cores used by the Tanzu-related VMs.</p>
-</li>
-<li>
-<p><a href=../srm-metering>SRM</a> - Metered based on the number of protected VMs.</p>
-</li>
-<li>
-<p><a href=../vrops-metering>Aria Operations</a> - Usage is metered either based on the average capped billed vRAM used by the VMs monitored by Aria Operations when the latter is used as a Flex Add-on product, or the hourly count of non-uniques VMs under monitoring throughout the month when Aria Operations is reported as a standalone product.</p>
-</li>
-<li>
-<p><a href=../vrni-metering>vRealize Network Insight</a> - Usage is metered either based on the average capped billed vRAM used by the VMs monitored by Aria Operations when the latter is used as a Flex Add-on product, or the hourly count of non-uniques VMs under monitoring throughout the month when vROPs is reported as a standalone product.</p>
-</li>
-<li>
-<p><a href=../vra-metering>vRealize Automation</a> - Usage is calculated based on the monthly average of an hourly count of non-unique VMs in the month.</p>
-</li>
-</ol>
-<h3 id=metering-other-products>
-Metering Other Products
-<a class=anchor href=#metering-other-products>#</a>
+<p>To establish secure connection from Usage Meter to the Internet, you may use a proxy server to filter the requests to Usage Meter.</p>
+<p>The following [information]/https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-9338C8F7-77AC-49C6-A641-0679FC2A54DA.html) helps you configure Usage Meter to establish connection to the Internet through a proxy server. The proxy server setting is made in the Virtual Appliance Management Interface (VAMI) of Usage Meter.</p>
+<h3 id=configuring-a-syslog-server>
+Configuring a Syslog Server
+<a class=anchor href=#configuring-a-syslog-server>#</a>
 </h3>
-<ol>
-<li>
-<p><a href=../horizon-metering>Horizon</a> - Usage is calculated as a maximum number of desktop VMs under management for VDI or maximum number of sessions under management for RDSH.</p>
-</li>
-<li>
-<p><a href=../horizon-daas-metering>Horizon DaaS</a> - Usage is calculated based on the maximum number of concurrent connections to Horizon Connection Server per license edition.</p>
-</li>
-</ol>
+<p>Usage Meter logs can be sent to a Syslog server and monitored together with other VMware products that the provider is using. The syslog server settings are made in the VAMI page of the Usage Meter web appliacation. Learn how to configure those settings <a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-D32044D4-81DC-4029-977E-65C170C5792E.html>here</a>.</p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">

@@ -2,21 +2,19 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="vRealize Automation Metering and Reporting #  VMware vRealize Automation (vRA) is available to service providers in two editions:
- vRealize Automation Advanced vRealize Automation Enterprise  Product Detection #  Service Provider registers vRA instance(s) in the Usage Meter 4.5.0.1 web application. Then the service provider enters a Cafe and IaaS hostname, port, username, and password. A validation of the user credentials is performed and if correct, the data collection starts.">
+<meta name=description content="Tanzu Kubernetes Grid Multi-cloud (TKGm) Metering and Reporting #  Configuration #  To start metering Tanzu Kubernetes Grid Multi-cloud, you need to provide the TKGm management cluster IP address or hostname, bearer token that you will use to authenticate with the cluster, the Tanzu edition, and metric that will be used to calculate your TKGm consumption. Metering For each TKGm management cluster added for metering to Usage Meter 4.6, the latter will get information about the cluster and its workload clusters.">
 <meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="vRealize Automation Metering and Reporting">
-<meta property="og:description" content="vRealize Automation Metering and Reporting #  VMware vRealize Automation (vRA) is available to service providers in two editions:
- vRealize Automation Advanced vRealize Automation Enterprise  Product Detection #  Service Provider registers vRA instance(s) in the Usage Meter 4.5.0.1 web application. Then the service provider enters a Cafe and IaaS hostname, port, username, and password. A validation of the user credentials is performed and if correct, the data collection starts.">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Tanzu Kubernetes Grid Multi-Cloud Metering and Reporting">
+<meta property="og:description" content="Tanzu Kubernetes Grid Multi-cloud (TKGm) Metering and Reporting #  Configuration #  To start metering Tanzu Kubernetes Grid Multi-cloud, you need to provide the TKGm management cluster IP address or hostname, bearer token that you will use to authenticate with the cluster, the Tanzu edition, and metric that will be used to calculate your TKGm consumption. Metering For each TKGm management cluster added for metering to Usage Meter 4.6, the latter will get information about the cluster and its workload clusters.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/vra-metering/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-11-11T17:53:56+05:30">
-<title>vRealize Automation Metering and Reporting | VMware Cloud Provider Architecture Toolkit</title>
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/tkgm-metering/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2022-11-11T15:16:34+02:00">
+<title>Tanzu Kubernetes Grid Multi-Cloud Metering and Reporting | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.e224c75e36eac8236c6b76dd661a0ed3c3ce3274df9860434c7cce59f18ad023.js integrity="sha256-4iTHXjbqyCNsa3bdZhoO08POMnTfmGBDTHzOWfGK0CM=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.f1ae372c10d8b924310f631d62ca84f0dfbf29e45a6f9d4b0e822243ba473577.js integrity="sha256-8a43LBDYuSQxD2MdYsqE8N+/KeRab51LDoIiQ7pHNXc=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -128,55 +126,66 @@ VMware Cloud Solutions
 <label for=menu-control>
 <img src=/svg/menu.svg class=book-icon alt=Menu>
 </label>
-<strong>vRealize Automation Metering and Reporting</strong>
+<strong>Tanzu Kubernetes Grid Multi-Cloud Metering and Reporting</strong>
 <label for=toc-control>
 </label>
 </div>
 </header>
-<article class=markdown><h1 id=vrealize-automation-metering-and-reporting>
-vRealize Automation Metering and Reporting
-<a class=anchor href=#vrealize-automation-metering-and-reporting>#</a>
+<article class=markdown><h1 id=tanzu-kubernetes-grid-multi-cloud-tkgm-metering-and-reporting>
+Tanzu Kubernetes Grid Multi-cloud (TKGm) Metering and Reporting
+<a class=anchor href=#tanzu-kubernetes-grid-multi-cloud-tkgm-metering-and-reporting>#</a>
 </h1>
-<p>VMware vRealize Automation (vRA) is available to service providers in two editions:</p>
-<ul>
-<li>vRealize Automation Advanced</li>
-<li>vRealize Automation Enterprise</li>
-</ul>
-<h2 id=product-detection>
-Product Detection
-<a class=anchor href=#product-detection>#</a>
+<h2 id=configuration>
+Configuration
+<a class=anchor href=#configuration>#</a>
 </h2>
-<p>Service Provider registers vRA instance(s) in the Usage Meter 4.5.0.1 web application. Then the service provider enters a Cafe and IaaS hostname, port, username, and password. A validation of the user credentials is performed and if correct, the data collection starts. Usage Meter connects to the vRA Café server and collects its license edition. The appliance also connects to vRA IaaS and collects the number of managed VMs. Data is collected on an hourly basis.</p>
-<h2 id=metering>
+<p>To start metering Tanzu Kubernetes Grid Multi-cloud, you need to provide the TKGm management cluster IP address or hostname, bearer token that you will use to authenticate with the cluster, the Tanzu edition, and metric that will be used to calculate your TKGm consumption.
 Metering
-<a class=anchor href=#metering>#</a>
-</h2>
-<p>The metering of vRealize Automation is per VM. The reported usage is calculated by the monthly average hourly count of non-unique VMs in the month.
-Example: If during the first 15 days of the month, there are 2 VMs and the last 15 days of the same reporting month, there are 4 VMs, the at the end of the month, the Monthly Usage Report will report 3 VMs (an average count of the non-unique VMs detected throughout the month).</p>
+For each TKGm management cluster added for metering to Usage Meter 4.6, the latter will get information about the cluster and its workload clusters. For each workload cluster, Usage Meter 4.6 will get information about the VMs that are part of it. The information that it gets for each TKGm VM is its UUID. The collected TKGm VM information then goes into the usage reports. The VMs that will be reported as TKGm VMs are management and workload cluster VMs. They will be marked as TKGm-MGMT and TKGm-WLD in the Virtual Machine History Report.</p>
 <h2 id=reporting>
 Reporting
 <a class=anchor href=#reporting>#</a>
 </h2>
-<p>Sample Monthly Usage Report adds a new line item for vRA.</p>
+<p>The TKGm usage is reported as either vRAM-based, which is the average capped billed vRAM used by the TKGm VMs for the reporting period, or as the average CPU cores used by the TKGm VMs for the reporting period. The metric is chosen by the Usage Meter administrator in the Usage Meter 4.6 web application. The collected usage is reported against the Tanzu edition that is also selected by the Usage Meter administrator in the Usage Meter 4.6 web application. The available license editions for selection include:
+• Tanzu Basic
+• Tanzu Standard
+• Tanzu Advanced</p>
+<p><strong>Note:</strong> Currently, only Tanzu Basic and Standard are reported for TKGm usage. If you select to report your usage against the Tanzu Advanced license, it will be reported as Tanzu Standard.</p>
+<h3 id=sample-monthly-usage-report>
+Sample Monthly Usage Report
+<a class=anchor href=#sample-monthly-usage-report>#</a>
+</h3>
 <table>
 <thead>
 <tr>
-<th><strong>Product</strong></th>
-<th><strong>Version</strong></th>
-<th><strong>Unit of Measure</strong></th>
-<th><strong>Units to be Reported</strong></th>
+<th>Product</th>
+<th>Unit of Measure</th>
+<th>Units to be Reported</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>vRealize Automation Advanced</td>
-<td></td>
-<td>Managed VMs</td>
-<td>1547</td>
+<td>Tanzu Basic</td>
+<td>GBvRAM</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Tanzu Basic</td>
+<td>Avg Number of Cores</td>
+<td>255</td>
+</tr>
+<tr>
+<td>Tanzu Standard</td>
+<td>GBvRAM</td>
+<td>80</td>
+</tr>
+<tr>
+<td>Tanzu Standard</td>
+<td>Avg Number of Cores</td>
+<td>356</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Note:</strong> When VMware Cloud Foundation is added for metering, all vRA lines are visible on vCloud Usage Insight but will not be sent to the VMware Commerce Portal. Providers update manually their vRA reporting in the Commerce Portal after reviewing the report in vCloud Usage Insight.</p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
