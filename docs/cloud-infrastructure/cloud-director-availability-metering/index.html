@@ -2,23 +2,21 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Cloud Director Availability Metering and Reporting #  Usage Meter 4.5.0.1 can detect configured for protection or migration virtual machines using VMware Cloud Director Availability, where the source or destination is a replication-enabled VMware Cloud Director.
-Configuration #  VMware Cloud Director Availability Management Appliance instance must be registered with Usage Meter by providing the appliance IP address or hostname and root credentials.
-Feature Detection #  Usage Meter collects the number of all replications (migrations and protections) during the month.">
+<meta name=description content="Cloud Director Availability Metering and Reporting #  vCloud Usage Meter 4.6 detects configured for protection or migration of virtual machines using VMware Cloud Director Availability, where the source or destination is a replication-enabled VMware Cloud Director or a dedicated VMware vSphere cloud.
+Configuration #  VMware Cloud Director Availability Management Appliance or vCenter Replication Management Appliance instance must be registered with Usage Meter by providing the appliance IP address, or hostname and root credentials.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Cloud Director Availability Metering and Reporting">
-<meta property="og:description" content="Cloud Director Availability Metering and Reporting #  Usage Meter 4.5.0.1 can detect configured for protection or migration virtual machines using VMware Cloud Director Availability, where the source or destination is a replication-enabled VMware Cloud Director.
-Configuration #  VMware Cloud Director Availability Management Appliance instance must be registered with Usage Meter by providing the appliance IP address or hostname and root credentials.
-Feature Detection #  Usage Meter collects the number of all replications (migrations and protections) during the month.">
+<meta property="og:description" content="Cloud Director Availability Metering and Reporting #  vCloud Usage Meter 4.6 detects configured for protection or migration of virtual machines using VMware Cloud Director Availability, where the source or destination is a replication-enabled VMware Cloud Director or a dedicated VMware vSphere cloud.
+Configuration #  VMware Cloud Director Availability Management Appliance or vCenter Replication Management Appliance instance must be registered with Usage Meter by providing the appliance IP address, or hostname and root credentials.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/cloud-director-availability-metering/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-11-11T15:16:34+02:00">
+<meta property="article:modified_time" content="2022-11-11T17:16:53+02:00">
 <title>Cloud Director Availability Metering and Reporting | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.f1ae372c10d8b924310f631d62ca84f0dfbf29e45a6f9d4b0e822243ba473577.js integrity="sha256-8a43LBDYuSQxD2MdYsqE8N+/KeRab51LDoIiQ7pHNXc=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.af43ff7a8c8ae3e0aac0d92cfba91018e25c5bcc385b1e36217d78d2d5ce1e02.js integrity="sha256-r0P/eoyK4+CqwNks+6kQGOJcW8w4Wx42IX140tXOHgI=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -139,29 +137,34 @@ VMware Cloud Solutions
 Cloud Director Availability Metering and Reporting
 <a class=anchor href=#cloud-director-availability-metering-and-reporting>#</a>
 </h1>
-<p>Usage Meter 4.5.0.1 can detect configured for protection or migration virtual machines using VMware Cloud Director Availability, where the source or destination is a replication-enabled VMware Cloud Director.</p>
+<p>vCloud Usage Meter 4.6 detects configured for protection or migration of virtual machines using VMware Cloud Director Availability, where the source or destination is a replication-enabled VMware Cloud Director or a dedicated VMware vSphere cloud.</p>
 <h2 id=configuration>
 Configuration
 <a class=anchor href=#configuration>#</a>
 </h2>
-<p>VMware Cloud Director Availability Management Appliance instance must be registered with Usage Meter by providing the appliance IP address or hostname and root credentials.</p>
+<p>VMware Cloud Director Availability Management Appliance or vCenter Replication Management Appliance instance must be registered with Usage Meter by providing the appliance IP address, or hostname and root credentials.
+If the VMware Cloud Director Availability Management Appliance or vCenter Replication Management Appliance is registered over the Internet, then “Allow admin access from anywhere” should be enabled.</p>
 <h2 id=feature-detection>
 Feature Detection
 <a class=anchor href=#feature-detection>#</a>
 </h2>
-<p>Usage Meter collects the number of all replications (migrations and protections) during the month. The collection is performed on an hourly basis. Replications for both powered-on and powered-off VMs are counted. At the end of the month, the report shows the number of all the unique migrated VMs and all the unique protected VMs.
+<p>Usage Meter collects the number of all replications (migrations and protections) during the month. The collection is performed on an hourly basis. Replications for both powered-on and powered-off VMs are counted. At the end of the month, the report shows the number of all unique migrated and protected VMs.
 Replications are reported in the following cases:</p>
 <ul>
-<li>Cloud-to-Cloud migrations and protection, where the registered VMware Cloud Director Availability is the destination</li>
-<li>vCenter-to-Cloud migrations and protection, where the registered VMware Cloud Director Availability is the destination</li>
-<li>Cloud-to-vCenter migrations and protections where the registered VMware Cloud Director Availability is the source</li>
+<li>Cloud-to-Cloud migrations and protections, where the registered VMware Cloud Director Availability is the destination.</li>
+<li>vCenter-to-Cloud migrations and protections, where the registered VMware Cloud Director Availability is the destination.</li>
+<li>Cloud-to-vCenter migrations and protections, where the registered VMware Cloud Director Availability is the source.</li>
+<li>vCenter Cloud-to-vCenter Cloud migrations and protections, where the registered VMware Cloud Director Availability is the destination.</li>
+<li>vCenter-to-vCenter Cloud migrations and protections, where the registered VMware Cloud Director Availability is the destination.</li>
+<li>vCenter Cloud-to-vCenter migrations and protections, where the registered VMware Cloud Director Availability is the source.</li>
 </ul>
-<p>When Usage Meter fails to connect to a registered VMware Cloud Director Availability Management Appliance instance, the following actions are taken:</p>
+<p><strong>Note:</strong> For vCloud Usage Meter versions prior to Usage Meter 4.6, the new vSphere-to-vSphere disaster recovery and migration use cases will be mapped to the supported cases by the respective Usage Meter version in the reports. For example, vSphere-to-vSphere migration and protection will be mapped to vSphere-to-VMware-Cloud-Director migration and protection for Usage Meter 4.4 and Usage Meter 4.5.0.1.
+When Usage Meter fails to connect to a registered VMware Cloud Director Availability Management Appliance or vCenter Replication Management Appliance instance, the following actions are taken:</p>
 <ul>
-<li>The failure is logged in the Usage Meter log files</li>
-<li>An error message is shown on the Notifications page in the Usage Meter web application</li>
-<li>An email is sent to the defined Usage Meter admin email account
-If the metering fails due to VMware Cloud Director Availability not being available or Usage Meter is not functioning, Usage Meter will report the last known &ldquo;Protected VMs&rdquo; count. This can lead to some replications not being reported in the total number of unique replications for the month.</li>
+<li>The failure is logged in the Usage Meter log files.</li>
+<li>An error message is shown on the Notifications page in the Usage Meter web application.</li>
+<li>An email is sent to the defined Usage Meter admin email account.</li>
+<li>If the metering fails due to VMware Cloud Director Availability not being available or Usage Meter not functioning, Usage Meter will report the last known &ldquo;Protected VMs&rdquo; count. This can lead to some replications not being reported in the total number of unique replications for the month.</li>
 </ul>
 <p>If there is no successful collection during the month, VMware Cloud Director Availability usage will not be reported.</p>
 <h2 id=reporting>
@@ -207,6 +210,36 @@ Reporting
 <td>VMware Cloud Director Availability vCenter-to-Cloud Protections</td>
 <td>Protected VMs</td>
 <td>27</td>
+</tr>
+<tr>
+<td>VMware Cloud Director Availability vCenter Cloud-to-vCenter Cloud Migrations</td>
+<td>Protected VMs</td>
+<td>10</td>
+</tr>
+<tr>
+<td>VMware Cloud Director Availability vCenter Cloud-to-vCenter Cloud Protections</td>
+<td>Protected VMs</td>
+<td>11</td>
+</tr>
+<tr>
+<td>VMware Cloud Director Availability vCenter Cloud-to-vCenter Migrations</td>
+<td>Protected VMs</td>
+<td>20</td>
+</tr>
+<tr>
+<td>VMware Cloud Director Availability vCenter Cloud-to-vCenter Protections</td>
+<td>Protected VMs</td>
+<td>21</td>
+</tr>
+<tr>
+<td>VMware Cloud Director Availability vCenter-to-vCenter Cloud Migrations</td>
+<td>Protected VMs</td>
+<td>30</td>
+</tr>
+<tr>
+<td>VMware Cloud Director Availability vCenter-to-vCenter Cloud Protections</td>
+<td>Protected VMs</td>
+<td>33</td>
 </tr>
 </tbody>
 </table>

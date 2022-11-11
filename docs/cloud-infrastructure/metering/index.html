@@ -10,13 +10,13 @@ The Usage Meter appliance is installed on-prem through vSphere and connects to t
 The Usage Meter appliance is installed on-prem through vSphere and connects to the metered products through their IPs and the users who are able to connect to them. After the successful connection to the metered products is established, the collection of usage data starts.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/metering/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-11-11T15:16:34+02:00">
+<meta property="article:modified_time" content="2022-11-11T17:16:53+02:00">
 <title>Cloud Infrastructure Metering | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.f1ae372c10d8b924310f631d62ca84f0dfbf29e45a6f9d4b0e822243ba473577.js integrity="sha256-8a43LBDYuSQxD2MdYsqE8N+/KeRab51LDoIiQ7pHNXc=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.af43ff7a8c8ae3e0aac0d92cfba91018e25c5bcc385b1e36217d78d2d5ce1e02.js integrity="sha256-r0P/eoyK4+CqwNks+6kQGOJcW8w4Wx42IX140tXOHgI=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -157,7 +157,7 @@ vCloud Usage Meter Security and Privacy Guidelines
 <p>vCloud Usage Meter collects usage data from the metered products in a transparent and secure way. It anonymizes data such as vSAN cluster name, VM name, hostname, target vCenter, etc. The anonymization is conducted prior to transmitting to VMware using SHA1 to create a one-way hash. From the hash, VMware cannot obtain the original value.</p>
 <p>Moreover, vCloud Usage Meter does not collect any PII data. Providers can see at any time what data their Usage Meter collects by downloading the usage data locally.</p>
 <p>The full list of data collected by vCloud Usage Meter per supported VMware product can be found in the <strong>Usage Meter Data Privacy and Sharing Guidelines whitepaper</strong>.</p>
-<p>vCloud Usage Meter is also [FIPS-compliant] (<a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.5/Getting-Started-vCloud-Usage-Meter/GUID-CBF5E838-24F3-4A3F-9B53-752E41AD9806.html>https://docs.vmware.com/en/vCloud-Usage-Meter/4.5/Getting-Started-vCloud-Usage-Meter/GUID-CBF5E838-24F3-4A3F-9B53-752E41AD9806.html</a>) which testifies to its high level of security and data privacy.</p>
+<p>vCloud Usage Meter is also <a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.5/Getting-Started-vCloud-Usage-Meter/GUID-CBF5E838-24F3-4A3F-9B53-752E41AD9806.html>FIPS-compliant</a> which testifies to its high level of security and data privacy.</p>
 <h2 id=how-to-start-metering-your-vcpp-products-with-usage-meter>
 How to start metering your VCPP products with Usage Meter
 <a class=anchor href=#how-to-start-metering-your-vcpp-products-with-usage-meter>#</a>
@@ -193,7 +193,7 @@ Metering Cloud Infrastructure Products
 <p><a href=../vsan-metering>vSAN</a> - Metered based on Monthly average of an hourly count of used capacity (datastore space used). The vSAN license edition is determined by the vSAN features used by the vCenter VMs.</p>
 </li>
 <li>
-<p><a href=../nsx-metering>NSX- V</a> - Metering is based on the average capped billed vRAM GB per a VM using a NSX-V features if bundled or a monthly average of an hourly count of non-unique VMs serviced for the NSX-V Enterprise edition only. The edition is determined by the NSX- V features that are used by the vCenter VMs.</p>
+<p><a href=../nsx-metering>NSX-V</a> - Metering is based on the average capped billed vRAM GB per a VM using a NSX-V features if bundled or a monthly average of an hourly count of non-unique VMs serviced for the NSX-V Enterprise edition only. The edition is determined by the NSX- V features that are used by the vCenter VMs.</p>
 </li>
 <li>
 <p>[NSX-T] (../nsx-metering) - Metered based on the average capped billed vRAM in GB per VM using NSX-T features. The reported license edition is determined by the NSX-T features used by the vCenter VMs.</p>
@@ -211,10 +211,10 @@ Metering Other Solutions
 <p><a href=../cloud-director-availability-metering>Cloud Director Availability</a> - Usage is calculated based on the number of protected VMs.</p>
 </li>
 <li>
-<p><a href=../tkgs-metering>Tanzu Kubenetes Grid Service</a> - Usage is calculated based on the vRAM or CPU cores used by the Tanzu-related VMs.</p>
+<p><a href=../tkgs-metering>Tanzu Kubenetes Grid Service</a> - Usage is calculated based on the vRAM or CPU cores used by the TKGs-related VMs.</p>
 </li>
 <li>
-<p><a href=../tkgm-metering>Tanzu Kubenetes Grid Multi-cloud</a> - Usage is calculated based on the vRAM or CPU cores used by the Tanzu-related VMs.</p>
+<p><a href=../tkgm-metering>Tanzu Kubenetes Grid Multi-cloud</a> - Usage is calculated based on the vRAM or CPU cores used by the TKGm-related VMs.</p>
 </li>
 <li>
 <p><a href=../srm-metering>SRM</a> - Metered based on the number of protected VMs.</p>
