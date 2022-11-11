@@ -12,13 +12,13 @@ Begin implementation of this solution by deploying VMware Cloud Provider Lifecyc
 Prerequisites #   You must meet all requirements before deploying vRealize Operations Manager Tenant App. For information, see Before you deploy vRealize Operations Manager Tenant App. Verify that the vRealize Operations Manager Tenant App version you want to deploy is supported by VMware Cloud Provider Lifecycle Manager.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/vrops-ta-deployment-subpage/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-11-10T17:54:02-05:00">
+<meta property="article:modified_time" content="2022-11-11T13:03:35+05:30">
 <title>Vrops Ta Deployment Subpage | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.232cb5e1b17588fd52c1855f8c9c4f034aeb2d1165c16a73aea221527e775fe9.js integrity="sha256-Iyy14bF1iP1SwYVfjJxPA0rrLRFlwWpzrqIhUn53X+k=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.8536767d6cc736211b280b20dde2cf621ba26dde04401cd6255a0606fbf1753a.js integrity="sha256-hTZ2fWzHNiEbKAsg3eLPYhuibd4EQBzWJVoGBvvxdTo=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -168,7 +168,7 @@ products, see the VMware <a href="../https://interopmatrix.vmware.com/Interopera
 <li>In the vropsta/vrops_version-number/ova directory on the VMware Cloud Provider
 Lifecycle Manager host, save the vRealize Operations Manager Tenant App OVA file.</li>
 <li>Verify that you installed vRealize Operations Manager. You must specify the vRealize
-Operations Manager installation as an integration in the REST AP payload.</li>
+Operations Manager installation as an integration during deployment.</li>
 </ol>
 <p>To deploy a product by using the VMware Cloud Provider Lifecycle Manager UI, you must first
 register an infrastructure vCenter Server as data center component.</p>
@@ -200,7 +200,7 @@ Procedure
 <ul>
 <li>Expand the <strong>Environment Details</strong> section and by clicking on <strong>Choose File</strong> navigate to the JSON file containing the datacenter configuration details.</li>
 <li>Upload the JSON and click <strong>Next</strong>.<br>
-<img src=/images/Cloud-Infrastructure-CPLCM-Implementation/vcd-deploy-1.jpg alt=vcd-deploy-1></li>
+<img src=/images/Cloud-Infrastructure-CPLCM-Implementation/vrops-ta-13.jpg alt=vcd-deploy-1></li>
 <li>To verify and confirm the information about VMware Cloud Director to be deployed, go through the <strong>Datacenter</strong> and <strong>Datacenter Configurations</strong> section by clicking on <strong>Next</strong>.<br></li>
 <li>Verify the Cluster, Resource Pool, Datastore and Datacenter details as per JSON<br>
 <img src=/images/Cloud-Infrastructure-CPLCM-Implementation/vcd-deploy-2.jpg alt=vcd-deploy-2><br></li>
@@ -234,7 +234,7 @@ information without specifiyng the product nodes, integrations, and certificates
 <ul>
 <li>Expand the <strong>Nodes</strong> tab.</li>
 <li>On the displayed node card, click <strong>Configure</strong>.<br>
-<img src=/images/Cloud-Infrastructure-CPLCM-Implementation/vcd-deploy-node-1.jpg alt=vcd-deploy-node-1><br></li>
+<img src=/images/Cloud-Infrastructure-CPLCM-Implementation/vrops-ta-2.jpg alt=vcd-deploy-node-1><br></li>
 <li>Provide the node details and click <strong>OK</strong>.<br>
 <img src=/images/Cloud-Infrastructure-CPLCM-Implementation/vrops-ta-12.jpg alt=vcd-deploy-node-2><br></li>
 </ul>
