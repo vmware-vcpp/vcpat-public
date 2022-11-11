@@ -3,20 +3,20 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="Implementation of VMware Cloud Provider Lifecycle Manager #  Implementation of VMware Cloud provider Lifecycle Manager(cplcm) includes deployment of the necessary components like VMware Cloud Provider Lifecycle Manager Appliance, NFS share for storing product binaries in VMware Cloud Foundation for automated deployment of products like VMware Cloud Director, Usage Meter, vRealize Operations Tenant App and RabbitQ
-For information on the VMware Cloud Provider Lifecycle Manager design, refer to the Detailed design of VMware Cloud Provider Lifecycle Manager section.">
+For information on the VMware Cloud Provider Lifecycle Manager design, refer to the Detailed design of VMware Cloud Provider Lifecycle Manager section.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content>
 <meta property="og:description" content="Implementation of VMware Cloud Provider Lifecycle Manager #  Implementation of VMware Cloud provider Lifecycle Manager(cplcm) includes deployment of the necessary components like VMware Cloud Provider Lifecycle Manager Appliance, NFS share for storing product binaries in VMware Cloud Foundation for automated deployment of products like VMware Cloud Director, Usage Meter, vRealize Operations Tenant App and RabbitQ
-For information on the VMware Cloud Provider Lifecycle Manager design, refer to the Detailed design of VMware Cloud Provider Lifecycle Manager section.">
+For information on the VMware Cloud Provider Lifecycle Manager design, refer to the Detailed design of VMware Cloud Provider Lifecycle Manager section.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/cplcm-deployment/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-11-11T13:03:35+05:30">
+<meta property="article:modified_time" content="2022-11-11T13:47:08+05:30">
 <title>Cplcm Deployment | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.8536767d6cc736211b280b20dde2cf621ba26dde04401cd6255a0606fbf1753a.js integrity="sha256-hTZ2fWzHNiEbKAsg3eLPYhuibd4EQBzWJVoGBvvxdTo=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.e224c75e36eac8236c6b76dd661a0ed3c3ce3274df9860434c7cce59f18ad023.js integrity="sha256-4iTHXjbqyCNsa3bdZhoO08POMnTfmGBDTHzOWfGK0CM=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -151,17 +151,20 @@ Implementation of VMware Cloud Provider Lifecycle Manager
 <a class=anchor href=#implementation-of-vmware-cloud-provider-lifecycle-manager>#</a>
 </h1>
 <p>Implementation of VMware Cloud provider Lifecycle Manager(cplcm) includes deployment of the necessary components like VMware Cloud Provider Lifecycle Manager Appliance, NFS share for storing product binaries in VMware Cloud Foundation for automated deployment of products like VMware Cloud Director, Usage Meter, vRealize Operations Tenant App and RabbitQ</p>
-<p>For information on the VMware Cloud Provider Lifecycle Manager design, refer to the <strong>Detailed design of VMware Cloud Provider Lifecycle Manager</strong> section.</p>
+<p>For information on the VMware Cloud Provider Lifecycle Manager design, refer to the <a href=../logical-design><strong>Detailed design of VMware Cloud Provider Lifecycle Manager</strong></a>  section.</p>
 <h2 id=prerequisites>
 Prerequisites
 <a class=anchor href=#prerequisites>#</a>
 </h2>
-<p>Verify that your environment is configured according to Before <strong>You Apply This Guidance</strong> and the  <strong>Planning and Preparation of VMware Cloud Provider Lifecycle Manager for VMware Cloud Foundation</strong> section.</p>
+<p>Verify that your environment is configured according to Before <a href=../cloud-infrastructure><strong>You Apply This Guidance</strong></a>  and the  <a href=../planning><strong>Planning and Preparation of VMware Cloud Provider Lifecycle Manager for VMware Cloud Foundation</strong></a> section.</p>
 <h2 id=procedure>
 Procedure
 <a class=anchor href=#procedure>#</a>
 </h2>
-<p><a href=../Deploy-vmware-cloud-provider-lifecycle-manager-2><li> Deploy VMware Cloud Provider Lifecycle Manager</a></p>
+<p><a href=../cplcm-appliance-deployment><strong>Deploy VMware Cloud Provider Lifecycle Manager On VMware Cloud Foundation</strong></a></p>
+<p>Deploy VMware Cloud Provider Lifecycle Manager on VMware Cloud Foundation for automated deployment of products like VMware Cloud director, vRealize Operations manager Tenant App, Usage Meter and Rabbit MQ <a href=../cplcm-appliance-deployment>Read More</a></p>
+<p><a href=../cplcm-configuration><strong>Configure VMware Cloud provider Lifecycle Manager</strong></a></p>
+<p>After deploying the VMware Cloud Provider Lifecycle Manager appliance, you must configure the repositories for the product OVA files and the VMware Cloud Provider Lifecycle Manager certificate <a href=../cplcm-configuration>Read More</a></p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
