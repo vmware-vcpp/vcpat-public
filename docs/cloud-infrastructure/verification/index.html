@@ -2,19 +2,21 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Cloud Infrastructure Verification #  ">
+<meta name=description content="Cloud Infrastructure Verification #  Cloud Infrastructure deployment Verification #  After the initial deployment of the products, refer the below options to check system health It is highly recommended to verify the status after the initial setup or any maintenance operations such as an upgrade, certificate changes, password changes or other.
+VMware Cloud Provider Lifecycle Manager: #  Service status : #  Verify the connectivity statuses of the VMware Cloud Provider Lifecycle manager to the infrastructure services.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Cloud Infrastructure Verification">
-<meta property="og:description" content="Cloud Infrastructure Verification #  ">
+<meta property="og:description" content="Cloud Infrastructure Verification #  Cloud Infrastructure deployment Verification #  After the initial deployment of the products, refer the below options to check system health It is highly recommended to verify the status after the initial setup or any maintenance operations such as an upgrade, certificate changes, password changes or other.
+VMware Cloud Provider Lifecycle Manager: #  Service status : #  Verify the connectivity statuses of the VMware Cloud Provider Lifecycle manager to the infrastructure services.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/verification/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-11-11T17:16:53+02:00">
+<meta property="article:modified_time" content="2022-11-14T21:46:30+05:30">
 <title>Cloud Infrastructure Verification | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.af43ff7a8c8ae3e0aac0d92cfba91018e25c5bcc385b1e36217d78d2d5ce1e02.js integrity="sha256-r0P/eoyK4+CqwNks+6kQGOJcW8w4Wx42IX140tXOHgI=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.3950ddfa42f2bee58a0079e75fbbeb6046c5d7a646d8cea164fc5ca1177cb5c3.js integrity="sha256-OVDd+kLyvuWKAHnnX7vrYEbF16ZG2M6hZPxcoRd8tcM=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -135,6 +137,49 @@ VMware Cloud Solutions
 Cloud Infrastructure Verification
 <a class=anchor href=#cloud-infrastructure-verification>#</a>
 </h1>
+<h2 id=cloud-infrastructure-deployment-verification>
+Cloud Infrastructure deployment Verification
+<a class=anchor href=#cloud-infrastructure-deployment-verification>#</a>
+</h2>
+<p>After the initial deployment of the products, refer the below options to check system health
+It is highly recommended to verify the status after the initial setup or any maintenance operations such as an upgrade, certificate changes, password changes or other.</p>
+<h3 id=vmware-cloud-provider-lifecycle-manager>
+VMware Cloud Provider Lifecycle Manager:
+<a class=anchor href=#vmware-cloud-provider-lifecycle-manager>#</a>
+</h3>
+<h3 id=service-status->
+Service status :
+<a class=anchor href=#service-status->#</a>
+</h3>
+<p>Verify the connectivity statuses of the VMware Cloud Provider Lifecycle manager to the infrastructure services.</p>
+<ul>
+<li>Connectivity to the vCenter Server Its deployed and Cluster where the products needs to be deployed.</li>
+<li>Connectivity to the repository if its an NFS server.</li>
+<li>Connectivity to DNS server</li>
+<li>Connectivity to the <a href=https://downloads.vmware.com>https://downloads.vmware.com</a></li>
+<li>Connectivity to the NTP server.</li>
+</ul>
+<p><strong>Example</strong>:</p>
+<p>System health status can be viewed from Virtual appliance management interface (VAMI) page of VMware Cloud Provider Lifecycle Manager.
+in a Web browser, navigate to https://vcplcm-hostname:5480/.</p>
+<p>Below you can see an example from the System Health page.</p>
+<p><img src=/images/Cloud-Infrastructure-CPLCM-Implementation/cplcm-health.jpg alt=health-status><br></p>
+<h3 id=vmware-cloud-director>
+VMware Cloud Director:
+<a class=anchor href=#vmware-cloud-director>#</a>
+</h3>
+<h3 id=usage-meter>
+Usage Meter:
+<a class=anchor href=#usage-meter>#</a>
+</h3>
+<h3 id=rabbitmq>
+RabbitMQ:
+<a class=anchor href=#rabbitmq>#</a>
+</h3>
+<h3 id=chargeback>
+Chargeback:
+<a class=anchor href=#chargeback>#</a>
+</h3>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
