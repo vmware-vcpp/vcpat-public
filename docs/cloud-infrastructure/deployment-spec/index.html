@@ -2,19 +2,19 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Cloud Infrastructure Deployment Specification #  ">
+<meta name=description content="Cloud Infrastructure Deployment Specification #     Component Version Size Resources Optional Components that can be deployed by VMware Cloud Provider Lifecycle Manager     VMware Cloud Director 10.4 Virtual appliance Extra Large Configuration 1 Primary (Large) 2 Standby cells (Large) 2 Application Cells (Large) Each Primary Cell RAM: 32 GB CPU: 24 Storage: 202 GB (increased root partition to 50 GB for logs, increased PostgreSQL database disk to 150 GB) Each Standby Cell RAM: 32 GB CPU: 24 Storage: 202 GB (increased root partition to 50 GB for logs, increased PostgreSQL database disk to 150 GB) Each Application Cell RAM: 8 GB CPU: 8 Storage: 132 GB (increased root partition to 50 GB for logs) •	Usage Meter">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Cloud Infrastructure Deployment Specification">
-<meta property="og:description" content="Cloud Infrastructure Deployment Specification #  ">
+<meta property="og:description" content="Cloud Infrastructure Deployment Specification #     Component Version Size Resources Optional Components that can be deployed by VMware Cloud Provider Lifecycle Manager     VMware Cloud Director 10.4 Virtual appliance Extra Large Configuration 1 Primary (Large) 2 Standby cells (Large) 2 Application Cells (Large) Each Primary Cell RAM: 32 GB CPU: 24 Storage: 202 GB (increased root partition to 50 GB for logs, increased PostgreSQL database disk to 150 GB) Each Standby Cell RAM: 32 GB CPU: 24 Storage: 202 GB (increased root partition to 50 GB for logs, increased PostgreSQL database disk to 150 GB) Each Application Cell RAM: 8 GB CPU: 8 Storage: 132 GB (increased root partition to 50 GB for logs) •	Usage Meter">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/deployment-spec/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-11-15T15:42:40+05:30">
+<meta property="article:modified_time" content="2022-11-15T15:49:39+05:30">
 <title>Cloud Infrastructure Deployment Specification | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.d7f07d9e031273892ab13aae858ea14b39b8db166c1fa6d0e4f11852b3e0dad7.js integrity="sha256-1/B9ngMSc4kqsTquhY6hSzm42xZsH6bQ5PEYUrPg2tc=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.af15de32832d8bd04e7d01aae7223cac46db891691b59437791eda66d5f3bf8b.js integrity="sha256-rxXeMoMti9BOfQGq5yI8rEbbiRaRtZQ3eR7aZtXzv4s=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -135,6 +135,82 @@ VMware Cloud Solutions
 Cloud Infrastructure Deployment Specification
 <a class=anchor href=#cloud-infrastructure-deployment-specification>#</a>
 </h1>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Version</th>
+<th>Size</th>
+<th>Resources</th>
+<th>Optional Components that can be deployed by VMware Cloud Provider Lifecycle Manager</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VMware Cloud Director</td>
+<td>10.4</td>
+<td><strong>Virtual appliance Extra Large Configuration</strong> <br> 1 Primary (Large) 2 Standby cells (Large) 2 Application Cells (Large)</td>
+<td><strong>Each Primary Cell</strong> <br> RAM: 32 GB <br> CPU: 24 <br> Storage: 202 GB (increased root partition to 50 GB for logs, increased PostgreSQL database disk to 150 GB) <br> <strong>Each Standby Cell</strong> RAM: 32 GB <br> CPU: 24 <br> Storage: 202 GB (increased root partition to 50 GB for logs, increased PostgreSQL database disk to 150 GB) <br> <strong>Each Application Cell</strong> RAM: 8 GB <br> CPU: 8 <br> Storage: 132 GB (increased root partition to 50 GB for logs)</td>
+<td>• Usage Meter<br> • RabbitMQ<br> • Chargeback</td>
+</tr>
+<tr>
+<td>VMware Cloud Director Database<br> <br> PostgreSQL</td>
+<td>10.17</td>
+<td></td>
+<td>Database is embedded with the VMware Cloud Director virtual appliance</td>
+<td></td>
+</tr>
+<tr>
+<td>NFS Share for VMware Cloud Director</td>
+<td>NFS v4</td>
+<td><to discuss></td>
+<td>A traditional Linux-based NFS server or other solutions like Microsoft Windows Server, the VMware vSAN File Service NFS feature, and so on, can provide the shared storage. <br> Starting with vSAN 7.0, you can use the vSAN File Service functionality to export NFS shares by using NFS 3.0 and NFS 4.1 protocols. <br> For more information about vSAN File Service, see the Administering VMware vSAN guide in the VMware vSphere Product Documentation.</td>
+<td></td>
+</tr>
+<tr>
+<td>Load Balancer for VCD Cells</td>
+<td>NSX-T</td>
+<td>N/A</td>
+<td>NSX-T is used to provide load balancing for clustered management components<br> VCD API/Portal and Console<br> <strong>Application profile:</strong> HTTP<br> <strong>Members Port:</strong> 443<br> <strong>Monitor:</strong> • HTTP Request Configuration: GET /cloud/server_status, HTTP Request Version: 1<br> • HTTP Response Configuration: HTTP response body: Service is up.<br> • SSL Configuration: Enabled, Client Certificate: None</td>
+<td></td>
+</tr>
+<tr>
+<td>Chargeback</td>
+<td>8.6.2</td>
+<td>To Be updated</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>RabbitMQ</td>
+<td>3.9</td>
+<td>To Be updated</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Usage Meter</td>
+<td>4.6</td>
+<td>To Be updated</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>VMware Cloud Provider Lifecycle Manager</td>
+<td>1.4</td>
+<td>N/A</td>
+<td>RAM: 8 GB <br> CPU: 2 <br> Storage: 89GB (Maximum Size -1.42TB)</td>
+<td></td>
+</tr>
+<tr>
+<td>NFS share for VMware Cloud Provider Lifecycle Manager</td>
+<td>NFS v4</td>
+<td>100GB</td>
+<td>Starting with vSAN 7.0, you can use the vSAN File Service functionality to export NFS shares by using NFS 3.0 and NFS 4.1 protocols.<br> <br> For more information about vSAN File Service, see the Administering VMware vSAN guide in the VMware vSphere Product Documentation.<br></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
