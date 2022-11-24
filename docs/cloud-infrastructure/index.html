@@ -14,7 +14,7 @@ A VMware validated solution is a technical validated implementation that is buil
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.af15de32832d8bd04e7d01aae7223cac46db891691b59437791eda66d5f3bf8b.js integrity="sha256-rxXeMoMti9BOfQGq5yI8rEbbiRaRtZQ3eR7aZtXzv4s=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.433ad962caf491644b8a2c0a01b5eba9579b94dd0aef7812ff0ac10d01cc8982.js integrity="sha256-QzrZYsr0kWRLiiwKAbXrqVeblN0K73gS/wrBDQHMiYI=" crossorigin=anonymous></script>
 <link rel=alternate type=application/rss+xml href=http://vcpat.cloudhappens.io/docs/cloud-infrastructure/index.xml title="VMware Cloud Provider Architecture Toolkit">
 </head>
 <body dir=ltr>
@@ -365,32 +365,34 @@ Disclaimer:
 Configuration:
 <a class=anchor href=#configuration>#</a>
 </h2>
-<p>Testing as of ////Date//// , ///year////, by VMware and based on one person deploying this solution.</p>
+<p>Testing as of &#171;:Date&#187;> , &#171;&lt;:Year&#187;>, by VMware and based on one person deploying this solution.</p>
 <p>Testbed configuration included:</p>
 <ul>
-<li>VMware Cloud Foundation 4.4.0 Enterprise Edition.
-<ul>
-<li>DellEMC PowerEdge R640
-<ul>
-<li>CPU: Intel(R) Xeon(R) Silver 4114 CPU @ 2.20GHz</li>
-<li>CPU Sockets: 2</li>
-<li>CPU Cores: 20 (10 per socket)</li>
-<li>Memory: 128GB</li>
-<li>Disk: Hybrid configuration
-<ul>
-<li>1x SSD 224 GB</li>
-<li>3x SAS 900 GB</li>
+<li>VMware Cloud Foundation 4.4.0 Enterprise Edition.- To be updated</li>
 </ul>
-</li>
-<li>1x four-node VMware Cloud Foundation instances</li>
-<li>1x four-node management domain per VMware Cloud Foundation instance</li>
-<li>1x four-node virtual infrastructure workload domain per VMware Cloud Foundation instance</li>
+<p><strong>Management Cluster</strong>:</p>
+<ul>
+<li>13 x Cisco UCSC-C240-M5SX - Physical Servers
+<ul>
+<li>CPU Sockets: 28</li>
+<li>Memory: 192GB</li>
+<li>vSAN -21TB</li>
+<li>iSCSI- 14TB</li>
 </ul>
 </li>
 </ul>
+<p><strong>Resource Cluster</strong></p>
+<ul>
+<li>27 x Cisco UCSC-C240-M5SX - Physical Servers
+<ul>
+<li>CPU Sockets: 28</li>
+<li>Memory: 192GB</li>
+<li>vSAN -15.72TB</li>
+<li>iSCSI- 10 TB iSCSI (Shared) and 4TB iSCSI for each cluster</li>
+</ul>
 </li>
 </ul>
-<p>The following third-party and VMware software was used in the testbed configuration:</p>
+<p>The following third-party and VMware software was used in the testbed configuration:&ndash; To be updated.</p>
 <ul>
 <li>Microsoft Active Directory Directory Services 2019</li>
 <li>Microsoft Active Directory Certificate Services 2019</li>
