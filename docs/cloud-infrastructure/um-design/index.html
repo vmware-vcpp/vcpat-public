@@ -10,13 +10,13 @@ Deployment model #  vCloud Usage Meter is deployed as an OVA file through vSpher
 Deployment model #  vCloud Usage Meter is deployed as an OVA file through vSphere. It must be registered with a VCPP contract (Rental or Sovereign Cloud) to complete its configuration. 1 vCloud Usage Meter can be registered with only 1 VCPP contract. A single VCPP contract can have many registered vCloud Usage Meters. Usage Meter can also be registered with a provider org&rsquo;s site.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/um-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-11-28T17:04:41+02:00">
+<meta property="article:modified_time" content="2022-11-28T17:12:38+02:00">
 <title>VMware vCloud Usage Meter Design | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.15c175a18c2daeced868d2025acfb87ff0926cc5dab155b91e7245f02be3000f.js integrity="sha256-FcF1oYwtrs7YaNICWs+4f/CSbMXasVW5HnJF8CvjAA8=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.3c9c8ae349ea17d63844b80a1ff0a45514777bede22648f01e30b0b25dc33f3d.js integrity="sha256-PJyK40nqF9Y4RLgKH/CkVRR3e+3iJkjwHjCwsl3DPz0=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -306,26 +306,6 @@ Sizing
 </ul>
 <p>Download the vCloud Usage Meter OVA file from the <a href=https://customerconnect.vmware.com>VMware Customer Connect</a> download product page and save it locally.</p>
 <p>Verify that you have access and sufficient privileges to deploy an OVA file with vSphere Web Client.</p>
-<h2 id=others>
-Others
-<a class=anchor href=#others>#</a>
-</h2>
-<h3 id=configuring-a-proxy-server>
-Configuring a Proxy Server
-<a class=anchor href=#configuring-a-proxy-server>#</a>
-</h3>
-<p>To establish secure connection from Usage Meter to the Internet, you may use a proxy server to filter the requests to Usage Meter.</p>
-<p>The following <a href=/https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-9338C8F7-77AC-49C6-A641-0679FC2A54DA.html>information</a> helps you configure Usage Meter to establish connection to the Internet through a proxy server. The proxy server setting is made in the Virtual Appliance Management Interface (VAMI) of Usage Meter.</p>
-<h3 id=configuring-a-syslog-server>
-Configuring a Syslog Server
-<a class=anchor href=#configuring-a-syslog-server>#</a>
-</h3>
-<p>Usage Meter logs can be sent to a Syslog server and monitored together with other VMware products that the provider is using. The syslog server settings are made in the VAMI page of the Usage Meter web appliacation. Learn how to configure those settings <a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-D32044D4-81DC-4029-977E-65C170C5792E.html>here</a>.</p>
-<h3 id=configure-ldap-authentication-for-vcloud-usage-meter>
-Configure LDAP Authentication for vCloud Usage Meter
-<a class=anchor href=#configure-ldap-authentication-for-vcloud-usage-meter>#</a>
-</h3>
-<p>Read the folloiwing <a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.5/Getting-Started-vCloud-Usage-Meter/GUID-DE31427C-BEC0-41CD-BB9D-01082C783921.html>information</a> to learn how to do it.</p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
