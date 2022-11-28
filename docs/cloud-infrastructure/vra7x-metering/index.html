@@ -2,21 +2,21 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="vRealize Automation 7.x Metering and Reporting #  VMware vRealize Automation (vRA) 7.x is available to service providers in two editions:
- vRealize Automation Advanced vRealize Automation Enterprise  Product Detection #  Service Provider registers vRA instance(s) in the Usage Meter web application. Then the service provider enters a Cafe and IaaS hostname, port, username, and password. A validation of the user credentials is performed and if correct, the data collection starts.">
+<meta name=description content="VMware Aria Automation 7.x Metering and Reporting #  VMware Aria Automation 7.x is available to service providers in two editions:
+ VMware Aria Automation Advanced VMware Aria Automation Enterprise  Product Detection #  The cloud provider must register the VMware Aria Automation instance in the Usage Meter web application. Then the cloud provider must enter the Cafe and IaaS hostname, port, username, and password. A validation of the user credentials is performed and if correct, the data collection starts.">
 <meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="vRealize Automation 7.x Metering and Reporting">
-<meta property="og:description" content="vRealize Automation 7.x Metering and Reporting #  VMware vRealize Automation (vRA) 7.x is available to service providers in two editions:
- vRealize Automation Advanced vRealize Automation Enterprise  Product Detection #  Service Provider registers vRA instance(s) in the Usage Meter web application. Then the service provider enters a Cafe and IaaS hostname, port, username, and password. A validation of the user credentials is performed and if correct, the data collection starts.">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="VMware Aria Automation 7.x Metering and Reporting">
+<meta property="og:description" content="VMware Aria Automation 7.x Metering and Reporting #  VMware Aria Automation 7.x is available to service providers in two editions:
+ VMware Aria Automation Advanced VMware Aria Automation Enterprise  Product Detection #  The cloud provider must register the VMware Aria Automation instance in the Usage Meter web application. Then the cloud provider must enter the Cafe and IaaS hostname, port, username, and password. A validation of the user credentials is performed and if correct, the data collection starts.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/vra7x-metering/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-11-24T14:37:15+01:00">
-<title>vRealize Automation 7.x Metering and Reporting | VMware Cloud Provider Architecture Toolkit</title>
+<meta property="article:modified_time" content="2022-11-28T10:15:02+02:00">
+<title>VMware Aria Automation 7.x Metering and Reporting | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.433ad962caf491644b8a2c0a01b5eba9579b94dd0aef7812ff0ac10d01cc8982.js integrity="sha256-QzrZYsr0kWRLiiwKAbXrqVeblN0K73gS/wrBDQHMiYI=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.ef7be69004d250da9e818d0905f0f3518fcb17f3120a4eb9574084c8856098b4.js integrity="sha256-73vmkATSUNqegY0JBfDzUY/LF/MSCk65V0CEyIVgmLQ=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -128,36 +128,36 @@ VMware Cloud Solutions
 <label for=menu-control>
 <img src=/svg/menu.svg class=book-icon alt=Menu>
 </label>
-<strong>vRealize Automation 7.x Metering and Reporting</strong>
+<strong>VMware Aria Automation 7.x Metering and Reporting</strong>
 <label for=toc-control>
 </label>
 </div>
 </header>
-<article class=markdown><h1 id=vrealize-automation-7x-metering-and-reporting>
-vRealize Automation 7.x Metering and Reporting
-<a class=anchor href=#vrealize-automation-7x-metering-and-reporting>#</a>
+<article class=markdown><h1 id=vmware-aria-automation-7x-metering-and-reporting>
+VMware Aria Automation 7.x Metering and Reporting
+<a class=anchor href=#vmware-aria-automation-7x-metering-and-reporting>#</a>
 </h1>
-<p>VMware vRealize Automation (vRA) 7.x is available to service providers in two editions:</p>
+<p>VMware Aria Automation 7.x is available to service providers in two editions:</p>
 <ul>
-<li>vRealize Automation Advanced</li>
-<li>vRealize Automation Enterprise</li>
+<li>VMware Aria Automation Advanced</li>
+<li>VMware Aria Automation Enterprise</li>
 </ul>
 <h2 id=product-detection>
 Product Detection
 <a class=anchor href=#product-detection>#</a>
 </h2>
-<p>Service Provider registers vRA instance(s) in the Usage Meter web application. Then the service provider enters a Cafe and IaaS hostname, port, username, and password. A validation of the user credentials is performed and if correct, the data collection starts. Usage Meter connects to the vRA Café server and collects its license edition. The appliance also connects to vRA IaaS and collects the number of managed VMs. Data is collected on an hourly basis.</p>
+<p>The cloud provider must register the VMware Aria Automation instance in the Usage Meter web application. Then the cloud provider must enter the Cafe and IaaS hostname, port, username, and password. A validation of the user credentials is performed and if correct, the data collection starts. Usage Meter connects to the Aria Automation Café server and collects its license edition. The appliance also connects to Aria Automation IaaS and collects the number of managed VMs. Data is collected on an hourly basis.</p>
 <h2 id=metering>
 Metering
 <a class=anchor href=#metering>#</a>
 </h2>
-<p>The metering of vRealize Automation is per VM. The reported usage is calculated by the monthly average hourly count of non-unique VMs in the month.
+<p>The metering of VMware Aria Automation is per VM. The reported usage is calculated by the monthly average hourly count of non-unique VMs in the month.
 Example: If during the first 15 days of the month, there are 2 VMs and the last 15 days of the same reporting month, there are 4 VMs, the at the end of the month, the Monthly Usage Report will report 3 VMs (an average count of the non-unique VMs detected throughout the month).</p>
 <h2 id=reporting>
 Reporting
 <a class=anchor href=#reporting>#</a>
 </h2>
-<p>Sample Monthly Usage Report adds a new line item for vRA.</p>
+<p>Sample Monthly Usage Report adds a new line item for VMware Aria Automation.</p>
 <table>
 <thead>
 <tr>
@@ -169,14 +169,15 @@ Reporting
 </thead>
 <tbody>
 <tr>
-<td>vRealize Automation Advanced</td>
+<td>VMware Aria Automation Advanced (legacy)</td>
 <td></td>
 <td>Managed VMs</td>
 <td>1547</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Note:</strong> When VMware Cloud Foundation is added for metering, all vRA lines are visible on vCloud Usage Insight but will not be sent to the VMware Commerce Portal. Providers update manually their vRA reporting in the Commerce Portal after reviewing the report in vCloud Usage Insight.</p>
+<p><strong>Note:</strong> The legacy label next to the VMware Aria Automation license line on the Monthly Usage Report in Cloud Partner Navigator indicates that the version of the VMware Aria Automation instance is 7.x.</p>
+<p><strong>Note:</strong> When VMware Cloud Foundation is added for metering, all VMware Aria Automation lines are visible on the CLoud Partner Navigator Usage page but will not be sent to the VMware Commerce Portal. Providers must update manually their VMware Aria Automation 7.x reporting in the Commerce Portal after reviewing the usage report in Cloud Partner Navigator.</p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">

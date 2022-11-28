@@ -2,21 +2,21 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="vRealize Operations Metering and Reporting #  Usage Meter supports several vRealize Operations (vROps) configurations:
- A Service Provider managed vRealize Operations server monitoring a single tenant. A Service Provider hosted vRealize Operations server for multiple tenants. A Service Provider hosted vRealize Operations server that manages VMs hosted by SP or hosted on customer’s premises. A vRealize Operations server configured with multiple vCenter servers.  Configuration #  vRealize Operations in Usage Meter 4.">
+<meta name=description content="VMware Aria Operations Metering and Reporting #  Usage Meter supports several VMware Aria Operations (vROps) configurations:
+ A Service Provider managed VMware Aria Operations server monitoring a single tenant. A Service Provider hosted VMware Aria Operations server for multiple tenants. A Service Provider hosted VMware Aria Operations server that manages VMs hosted by SP or hosted on customer’s premises. A VMware Aria Operations server configured with multiple vCenter servers.  Configuration #  VMware Aria Operations in Usage Meter 4.">
 <meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="vRealize Operations Metering and Reporting">
-<meta property="og:description" content="vRealize Operations Metering and Reporting #  Usage Meter supports several vRealize Operations (vROps) configurations:
- A Service Provider managed vRealize Operations server monitoring a single tenant. A Service Provider hosted vRealize Operations server for multiple tenants. A Service Provider hosted vRealize Operations server that manages VMs hosted by SP or hosted on customer’s premises. A vRealize Operations server configured with multiple vCenter servers.  Configuration #  vRealize Operations in Usage Meter 4.">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="VMware Aria Operations Metering and Reporting">
+<meta property="og:description" content="VMware Aria Operations Metering and Reporting #  Usage Meter supports several VMware Aria Operations (vROps) configurations:
+ A Service Provider managed VMware Aria Operations server monitoring a single tenant. A Service Provider hosted VMware Aria Operations server for multiple tenants. A Service Provider hosted VMware Aria Operations server that manages VMs hosted by SP or hosted on customer’s premises. A VMware Aria Operations server configured with multiple vCenter servers.  Configuration #  VMware Aria Operations in Usage Meter 4.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/vrops-metering/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-11-24T14:37:15+01:00">
-<title>vRealize Operations Metering and Reporting | VMware Cloud Provider Architecture Toolkit</title>
+<meta property="article:modified_time" content="2022-11-28T10:15:02+02:00">
+<title>VMware Aria Operations Metering and Reporting | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.433ad962caf491644b8a2c0a01b5eba9579b94dd0aef7812ff0ac10d01cc8982.js integrity="sha256-QzrZYsr0kWRLiiwKAbXrqVeblN0K73gS/wrBDQHMiYI=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.ef7be69004d250da9e818d0905f0f3518fcb17f3120a4eb9574084c8856098b4.js integrity="sha256-73vmkATSUNqegY0JBfDzUY/LF/MSCk65V0CEyIVgmLQ=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -128,32 +128,32 @@ VMware Cloud Solutions
 <label for=menu-control>
 <img src=/svg/menu.svg class=book-icon alt=Menu>
 </label>
-<strong>vRealize Operations Metering and Reporting</strong>
+<strong>VMware Aria Operations Metering and Reporting</strong>
 <label for=toc-control>
 </label>
 </div>
 </header>
-<article class=markdown><h1 id=vrealize-operations-metering-and-reporting>
-vRealize Operations Metering and Reporting
-<a class=anchor href=#vrealize-operations-metering-and-reporting>#</a>
+<article class=markdown><h1 id=vmware-aria-operations-metering-and-reporting>
+VMware Aria Operations Metering and Reporting
+<a class=anchor href=#vmware-aria-operations-metering-and-reporting>#</a>
 </h1>
-<p>Usage Meter supports several vRealize Operations (vROps) configurations:</p>
+<p>Usage Meter supports several VMware Aria Operations (vROps) configurations:</p>
 <ul>
-<li>A Service Provider managed vRealize Operations server monitoring a single tenant.</li>
-<li>A Service Provider hosted vRealize Operations server for multiple tenants.</li>
-<li>A Service Provider hosted vRealize Operations server that manages VMs hosted by SP or hosted on customer’s premises.</li>
-<li>A vRealize Operations server configured with multiple vCenter servers.</li>
+<li>A Service Provider managed VMware Aria Operations server monitoring a single tenant.</li>
+<li>A Service Provider hosted VMware Aria Operations server for multiple tenants.</li>
+<li>A Service Provider hosted VMware Aria Operations server that manages VMs hosted by SP or hosted on customer’s premises.</li>
+<li>A VMware Aria Operations server configured with multiple vCenter servers.</li>
 </ul>
 <h2 id=configuration>
 Configuration
 <a class=anchor href=#configuration>#</a>
 </h2>
-<p>vRealize Operations in Usage Meter 4.5.0.1 is added the same way as the rest supported VMware products. Providers need to enter the endpoint IP address or hostname, username, and password. If a vCenter server monitored by vROps is added to Usage Meter, then this vCenter will appear as a referenced vCenter in the details of the added vROps instance.</p>
-<p>vCenter servers monitored by a vRealize Operations server, which are also added for metering by Usage Meter, are named “Managed vCenter” servers. vCenter servers monitored by a vRealize Operations server but not added for metering to Usage Meter are named “Unmanaged Servers”. Both Managed and Unmanaged vCenter servers are listed in Usage Meter vRealize Operations report lines.</p>
-<p>“Unmanaged Servers” can be associated with only one vRealize Operations instance if monitored by multiple instances. This will be the vRealize Operations instance with the highest edition. Virtual machines part of that “Unmanaged Servers” will be billed once no matter how many vRealize Operations instances are monitoring them. For the billing of monitored VMs will be taken the vRealize Operations instance with the highest edition.</p>
-<p>Usage Meter connects to a vRealize Operations server using the account provided by the Usage Meter administrator. Usage Meter will meter all VMs that are visible through the provided account.</p>
-<p>To meter only a subset of monitored VMs, for example, to divide monitoring by Tenant, vRealize Operations should be configured to filter the monitored virtual machines to include only a subset of the VMs deployed to the monitored vCenter instance.</p>
-<p>This is accomplished by creating a new account in vRealize Operations and configuring Role Base Access Controls to restrict the view of the account to the desired Virtual Machines. The RBAC restricted account and credentials are provided to Usage Meter when the vRealize Operations server registration is completed.<br>
+<p>VMware Aria Operations in Usage Meter 4.5.0.1 is added the same way as the rest supported VMware products. Providers need to enter the endpoint IP address or hostname, username, and password. If a vCenter server monitored by vROps is added to Usage Meter, then this vCenter will appear as a referenced vCenter in the details of the added vROps instance.</p>
+<p>vCenter servers monitored by a VMware Aria Operations server, which are also added for metering by Usage Meter, are named “Managed vCenter” servers. vCenter servers monitored by a VMware Aria Operations server but not added for metering to Usage Meter are named “Unmanaged Servers”. Both Managed and Unmanaged vCenter servers are listed in Usage Meter VMware Aria Operations report lines.</p>
+<p>“Unmanaged Servers” can be associated with only one VMware Aria Operations instance if monitored by multiple instances. This will be the VMware Aria Operations instance with the highest edition. Virtual machines part of that “Unmanaged Servers” will be billed once no matter how many VMware Aria Operations instances are monitoring them. For the billing of monitored VMs will be taken the VMware Aria Operations instance with the highest edition.</p>
+<p>Usage Meter connects to a VMware Aria Operations server using the account provided by the Usage Meter administrator. Usage Meter will meter all VMs that are visible through the provided account.</p>
+<p>To meter only a subset of monitored VMs, for example, to divide monitoring by Tenant, VMware Aria Operations should be configured to filter the monitored virtual machines to include only a subset of the VMs deployed to the monitored vCenter instance.</p>
+<p>This is accomplished by creating a new account in VMware Aria Operations and configuring Role Base Access Controls to restrict the view of the account to the desired Virtual Machines. The RBAC restricted account and credentials are provided to Usage Meter when the VMware Aria Operations server registration is completed.<br>
  
 Refer to the <a href="https://vmstarcommunity.force.com/partnerconnect/PC_Login?ec=302&startURL=%2Fpartnerconnect%2Fs%2Fcontentdocument%2F06980000000bpky">Product Usage Guide</a>for detailed configuration instructions.</p>
 <p><img src=/images/usage-meter-product-detection/vrops-1.png alt>)
@@ -162,45 +162,45 @@ Figure 10</p>
 Metering
 <a class=anchor href=#metering>#</a>
 </h2>
-<p>The vRealize Operations license edition is retrieved by Usage Meter from the vRealize Operations server during each data collection.
-vRealize Operations metering is based on Virtual Machines monitored by a vRealize Operations Server. Service providers are responsible for reporting usage for monitored VMs and OSI Instances (which represent non-virtualized servers). Usage Meter 4.5.0.1 does not track OSI instances monitored by vRealize Operations or add-on packages such as Blue Medora.
-Usage Meter 4.5.0.1 automatically detects the following vRealize Operations editions:</p>
+<p>The VMware Aria Operations license edition is retrieved by Usage Meter from the VMware Aria Operations server during each data collection.
+VMware Aria Operations metering is based on Virtual Machines monitored by a VMware Aria Operations Server. Service providers are responsible for reporting usage for monitored VMs and OSI Instances (which represent non-virtualized servers). Usage Meter 4.5.0.1 does not track OSI instances monitored by VMware Aria Operations or add-on packages such as Blue Medora.
+Usage Meter 4.5.0.1 automatically detects the following VMware Aria Operations editions:</p>
 <ul>
-<li>vRealize Operations Standard</li>
-<li>vRealize Operations Advanced</li>
-<li>vRealize Operations Enterprise</li>
+<li>VMware Aria Operations Standard</li>
+<li>VMware Aria Operations Advanced</li>
+<li>VMware Aria Operations Enterprise</li>
 </ul>
-<p>When Usage Meter connects to a vRealize Operations instance, it checks for its version. If the version of the metered vRealize Operations instance is 8.6 or later, Usage Meter checks if there are VMs part of a license group. If there are such VMs, Usage Meter 4.5.0.1 reports them against the highest vRealize Operations edition assigned to that license group. In case there is a VM part of multiple license groups, then Usage Meter will report the highest edition of the first license group it queries.</p>
-<p>For vRealize Operations instances with previous versions, Usage Meter 4.5.0.1 will only report the monitored VMs against the highest vRealize Operations edition that it detects. Usage Meter 4.5.0.1 will not check if there are VMs part of license groups for vRealize Operations before version 8.6.</p>
-<p>For example, if Usage Meter 4.5.0.1 connects to vRealize Operations 8.5 and it detects two license editions: Advanced and Standard, then for all VMs monitored by that vROps, the reported license by Usage Meter 4.5.0.1 will be Advanced.
+<p>When Usage Meter connects to a VMware Aria Operations instance, it checks for its version. If the version of the metered VMware Aria Operations instance is 8.6 or later, Usage Meter checks if there are VMs part of a license group. If there are such VMs, Usage Meter 4.5.0.1 reports them against the highest VMware Aria Operations edition assigned to that license group. In case there is a VM part of multiple license groups, then Usage Meter will report the highest edition of the first license group it queries.</p>
+<p>For VMware Aria Operations instances with previous versions, Usage Meter 4.5.0.1 will only report the monitored VMs against the highest VMware Aria Operations edition that it detects. Usage Meter 4.5.0.1 will not check if there are VMs part of license groups for VMware Aria Operations before version 8.6.</p>
+<p>For example, if Usage Meter 4.5.0.1 connects to VMware Aria Operations 8.5 and it detects two license editions: Advanced and Standard, then for all VMs monitored by that vROps, the reported license by Usage Meter 4.5.0.1 will be Advanced.
 In the Monthly Usage Report, the highest detected vROps license edition by Usage Meter will be reported irrespective of the vROps version. The highest license against which a VM is reported can be checked in the Virtual Machine History Report.</p>
 <h2 id=reporting>
 Reporting
 <a class=anchor href=#reporting>#</a>
 </h2>
-<p>vRealize Operations is reported by Usage Meter 4.5.0.1 as either Flex Add-on or standalone.
+<p>VMware Aria Operations is reported by Usage Meter 4.5.0.1 as either Flex Add-on or standalone.
 When usage is reported as a Flex Add-on, the metric is the Avg Capped Billed vRAM value of the monitored Virtual Machine.
-When reported standalone, the metric is the Average Number of Virtual Machines monitored by vRealize Operations during the reporting month.</p>
-<p>The following rules apply to the reporting of vRealize Operations:</p>
+When reported standalone, the metric is the Average Number of Virtual Machines monitored by VMware Aria Operations during the reporting month.</p>
+<p>The following rules apply to the reporting of VMware Aria Operations:</p>
 <ul>
-<li>vRealize Operations Standard, Advanced and Enterprise editions are reported as a Flex add-on or standalone depending on the customer’s preference.</li>
-<li>vCenter servers using vRealize Operations will always be reported as a standalone line item on the monthly usage report as (unmanaged) if they are not added to vCloud Usage Meter.</li>
-<li>When vRealize Operations edition is reported as standalone, and the vCenter servers monitored by it are added to Usage Meter 4.5.0.1, then the monthly usage report will include a single line vRealize Operations edition (managed).</li>
-<li>Unmanaged vCenter Servers are associated with only one vRealize Operations instances if monitored by multiple vRealize Operations instances. The VMs of those unmanaged vCenter Servers will be billed once based on the vRealize Operations instance with the highest edition.</li>
+<li>VMware Aria Operations Standard, Advanced and Enterprise editions are reported as a Flex add-on or standalone depending on the customer’s preference.</li>
+<li>vCenter servers using VMware Aria Operations will always be reported as a standalone line item on the monthly usage report as (unmanaged) if they are not added to vCloud Usage Meter.</li>
+<li>When VMware Aria Operations edition is reported as standalone, and the vCenter servers monitored by it are added to Usage Meter 4.5.0.1, then the monthly usage report will include a single line VMware Aria Operations edition (managed).</li>
+<li>Unmanaged vCenter Servers are associated with only one VMware Aria Operations instances if monitored by multiple VMware Aria Operations instances. The VMs of those unmanaged vCenter Servers will be billed once based on the VMware Aria Operations instance with the highest edition.</li>
 </ul>
 <h2 id=metering-scenarios>
 Metering Scenarios
 <a class=anchor href=#metering-scenarios>#</a>
 </h2>
-<p><strong>Scenario One:</strong> vRealize Operations Server monitoring both SP and Tenant vCenters</p>
+<p><strong>Scenario One:</strong> VMware Aria Operations Server monitoring both SP and Tenant vCenters</p>
 <p><img src=/images/usage-meter-product-detection/vrops-2.png alt></p>
 <p>Figure 11</p>
 <p>Consider the following reporting scenario:
 A vCenter server is registered with Usage Meter.<br>
-A vRealize Operations server that monitors the same vCenter is also added for metering to Usage Meter 4.5.0.1.
-Usage Meter queries the vRealize Operations server to determine what vCenter servers it monitors.
-The vRealize Operations server returns a list of three vCenter servers, only one of which is registered with Usage Meter.
-Usage Meter monthly report will include 2 Unmanaged vRealize Operations servers and 1 Managed vRealize Operations server line items.</p>
+A VMware Aria Operations server that monitors the same vCenter is also added for metering to Usage Meter 4.5.0.1.
+Usage Meter queries the VMware Aria Operations server to determine what vCenter servers it monitors.
+The VMware Aria Operations server returns a list of three vCenter servers, only one of which is registered with Usage Meter.
+Usage Meter monthly report will include 2 Unmanaged VMware Aria Operations servers and 1 Managed VMware Aria Operations server line items.</p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
