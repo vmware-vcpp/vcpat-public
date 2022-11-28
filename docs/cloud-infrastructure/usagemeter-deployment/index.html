@@ -2,23 +2,21 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Implementation of Usage Meter using VMware Cloud Provider Lifecycle Manager #  Implementation of Usage Meter includes deployment of VMware Cloud Director on VMware Cloud Foundation using GUI of VMware Cloud Provider Lifecycle Manager
-For information on the VMware Cloud Provider Lifecycle Manager design, refer to the Detailed design of Usage Meter section.
+<meta name=description content="Deployment of Usage Meter using the VMware Cloud Provider Lifecycle Manager #  The deployment of Usage Meter is part of the deployment of VMware Cloud Director on VMware Cloud Foundation using the GUI of VMware Cloud Provider Lifecycle Manager. For information on the VMware Cloud Provider Lifecycle Manager design, refer to the Detailed design of Usage Meter section.
 Prerequisites #  Verify that your environment is configured according to Before You Apply This Guidance and the Planning and Preparation of Usage Meter section.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content>
-<meta property="og:description" content="Implementation of Usage Meter using VMware Cloud Provider Lifecycle Manager #  Implementation of Usage Meter includes deployment of VMware Cloud Director on VMware Cloud Foundation using GUI of VMware Cloud Provider Lifecycle Manager
-For information on the VMware Cloud Provider Lifecycle Manager design, refer to the Detailed design of Usage Meter section.
+<meta property="og:description" content="Deployment of Usage Meter using the VMware Cloud Provider Lifecycle Manager #  The deployment of Usage Meter is part of the deployment of VMware Cloud Director on VMware Cloud Foundation using the GUI of VMware Cloud Provider Lifecycle Manager. For information on the VMware Cloud Provider Lifecycle Manager design, refer to the Detailed design of Usage Meter section.
 Prerequisites #  Verify that your environment is configured according to Before You Apply This Guidance and the Planning and Preparation of Usage Meter section.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/usagemeter-deployment/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-11-28T15:12:26+02:00">
+<meta property="article:modified_time" content="2022-11-28T15:27:49+02:00">
 <title>Usagemeter Deployment | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.653d3b967ed2b369e1fd8d8a2620cfdfe333b647f397789ad355b86fdf2be7c7.js integrity="sha256-ZT07ln7Ss2nh/Y2KJiDP3+Mztkfzl3ia01W4b98r58c=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.028392f87cdd4c57a787e9ca1278e10594e3de2aad5c517e375fe123cf3e6793.js integrity="sha256-AoOS+HzdTFenh+nKEnjhBZTj3iqtXFF+N1/hI88+Z5M=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -138,11 +136,15 @@ VMware Cloud Solutions
 <aside class="hidden clearfix">
 <nav id=TableOfContents>
 <ul>
-<li><a href=#implementation-of-usage-meter-using-vmware-cloud-provider-lifecycle-manager>Implementation of Usage Meter using VMware Cloud Provider Lifecycle Manager</a>
+<li><a href=#deployment-of-usage-meter-using-the-vmware-cloud-provider-lifecycle-manager>Deployment of Usage Meter using the VMware Cloud Provider Lifecycle Manager</a>
 <ul>
 <li><a href=#prerequisites>Prerequisites</a></li>
 <li><a href=#procedure>Procedure</a></li>
-<li><a href=#configuration>Configuration</a>
+</ul>
+</li>
+<li><a href=#usage-meter-configuration>Usage Meter Configuration</a>
+<ul>
+<li>
 <ul>
 <li><a href=#direct-connection-to-vcloud-usage-insight>Direct Connection to vCloud Usage Insight</a></li>
 <li><a href=#using-a-proxy-server-for-the-vcloud-usage-meter-connection-to-vcloud-usage-insight>Using a Proxy Server for the vCloud Usage Meter Connection to vCloud Usage Insight</a></li>
@@ -156,12 +158,11 @@ VMware Cloud Solutions
 </nav>
 </aside>
 </header>
-<article class=markdown><h1 id=implementation-of-usage-meter-using-vmware-cloud-provider-lifecycle-manager>
-Implementation of Usage Meter using VMware Cloud Provider Lifecycle Manager
-<a class=anchor href=#implementation-of-usage-meter-using-vmware-cloud-provider-lifecycle-manager>#</a>
+<article class=markdown><h1 id=deployment-of-usage-meter-using-the-vmware-cloud-provider-lifecycle-manager>
+Deployment of Usage Meter using the VMware Cloud Provider Lifecycle Manager
+<a class=anchor href=#deployment-of-usage-meter-using-the-vmware-cloud-provider-lifecycle-manager>#</a>
 </h1>
-<p>Implementation of Usage Meter includes deployment of VMware Cloud Director on VMware Cloud Foundation using GUI of VMware Cloud Provider Lifecycle Manager</p>
-<p>For information on the VMware Cloud Provider Lifecycle Manager design, refer to the <strong>Detailed design of Usage Meter</strong> section.</p>
+<p>The deployment of Usage Meter is part of the deployment of VMware Cloud Director on VMware Cloud Foundation using the GUI of VMware Cloud Provider Lifecycle Manager. For information on the VMware Cloud Provider Lifecycle Manager design, refer to the <strong>Detailed design of Usage Meter</strong> section.</p>
 <h2 id=prerequisites>
 Prerequisites
 <a class=anchor href=#prerequisites>#</a>
@@ -171,13 +172,14 @@ Prerequisites
 Procedure
 <a class=anchor href=#procedure>#</a>
 </h2>
-<p><a href=../usagemeter-deployment-using-api>Deployment of Usage Meter using VMware Cloud Provider Lifecycle Manager</a></p>
-<p>Usage Meter can also be deployed through the GUI of VMware Cloud provider Lifecycle Manager <a href=../usagemeter-deployment-subpage>Read More</a></p>
-<h2 id=configuration>
-Configuration
-<a class=anchor href=#configuration>#</a>
-</h2>
-<p>After Usage Meter is deployed with VMware Cloud Provider Lifecycle Manager, you need to configure it. To do so, turn on your Usage Meter virtual appliance. Then, log in to the Usage Meter web application with the <em>usagementer</em> account. The Usage Meter web application URL consitutes the IP address that you have set for the appliance <em>https://usage-meter-ip-address</em>. On your first login to the web application , you will see the Usage Meter Initalization wizard. There, you need to configure the following:</p>
+<p><a href=../usagemeter-deployment-using-api>Deployment of Usage Meter using VMware Cloud Provider Lifecycle Manager APIs</a></p>
+<p>Usage Meter can also be deployed through the GUI of VMware Cloud provider Lifecycle Manager. <a href=../usagemeter-deployment-subpage>See for reference:</a></p>
+<h1 id=usage-meter-configuration>
+Usage Meter Configuration
+<a class=anchor href=#usage-meter-configuration>#</a>
+</h1>
+<p>After Usage Meter is deployed with VMware Cloud Provider Lifecycle Manager, you need to configure it. To do so, first make sure your Usage Meter virtual appliance is turned on in vSphere. Then, log in to the Usage Meter web application with the <em>usagementer</em> account. The Usage Meter web application URL consitutes the IP address that you have set for the appliance <em>https://usage-meter-ip-address</em>.</p>
+<p>On your first login to the web application , you will see the Usage Meter Initalization wizard. There, you need to configure the following:</p>
 <ol>
 <li>Read and agree with the Usage Meter terms and conditions.</li>
 <li>Choose how Usage Meter will send the usage data:</li>
@@ -279,11 +281,15 @@ Registering Usage Meter in the VMware Commerce Portal
 <div class=book-toc-content>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#implementation-of-usage-meter-using-vmware-cloud-provider-lifecycle-manager>Implementation of Usage Meter using VMware Cloud Provider Lifecycle Manager</a>
+<li><a href=#deployment-of-usage-meter-using-the-vmware-cloud-provider-lifecycle-manager>Deployment of Usage Meter using the VMware Cloud Provider Lifecycle Manager</a>
 <ul>
 <li><a href=#prerequisites>Prerequisites</a></li>
 <li><a href=#procedure>Procedure</a></li>
-<li><a href=#configuration>Configuration</a>
+</ul>
+</li>
+<li><a href=#usage-meter-configuration>Usage Meter Configuration</a>
+<ul>
+<li>
 <ul>
 <li><a href=#direct-connection-to-vcloud-usage-insight>Direct Connection to vCloud Usage Insight</a></li>
 <li><a href=#using-a-proxy-server-for-the-vcloud-usage-meter-connection-to-vcloud-usage-insight>Using a Proxy Server for the vCloud Usage Meter Connection to vCloud Usage Insight</a></li>

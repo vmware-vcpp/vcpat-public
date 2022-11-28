@@ -10,13 +10,13 @@ Deployment model #  vCloud Usage Meter is deployed as an OVA file through vSpher
 Deployment model #  vCloud Usage Meter is deployed as an OVA file through vSphere. It must be registered with a VCPP contract (Rental or Sovereign Cloud) to complete its configuration. 1 vCloud Usage Meter can be registered with only 1 VCPP contract. A single VCPP contract can have many registered vCloud Usage Meters. Usage Meter can also be registered with a provider org&rsquo;s site.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/um-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-11-28T15:12:26+02:00">
+<meta property="article:modified_time" content="2022-11-28T15:27:49+02:00">
 <title>VMware vCloud Usage Meter Design | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.653d3b967ed2b369e1fd8d8a2620cfdfe333b647f397789ad355b86fdf2be7c7.js integrity="sha256-ZT07ln7Ss2nh/Y2KJiDP3+Mztkfzl3ia01W4b98r58c=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.028392f87cdd4c57a787e9ca1278e10594e3de2aad5c517e375fe123cf3e6793.js integrity="sha256-AoOS+HzdTFenh+nKEnjhBZTj3iqtXFF+N1/hI88+Z5M=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -310,14 +310,6 @@ Sizing
 Others
 <a class=anchor href=#others>#</a>
 </h2>
-<h3 id=offline-reporting>
-Offline Reporting
-<a class=anchor href=#offline-reporting>#</a>
-</h3>
-<p>Usage Meter can be confiugured to work without connection to the Internet and automatically sending data to the vCloud Usage Insight service responsible for the aggregation of the usage data.</p>
-<p>The offline mode of Usage Meter is when it has no connection to vCloud Usage Insight and stores the collected usage data in raw format locally - on the appliance.</p>
-<p>When the provider is using Usage Meter in offline mode, then the usage data must be manually uploaded to Cloud Partner Navigator, from where it is sent to the vCloud Usage Insight and the latter aggregates the received data and shows it back to Cloud Partner Navigator within 24 hours of the upload.</p>
-<p>Read the following <a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-5CDE6332-6CE0-4C97-8A51-8A1309E965F5.html#GUID-5CDE6332-6CE0-4C97-8A51-8A1309E965F5>information</a> to learn how to configure Usage Meter to work in offline mode.</p>
 <h3 id=configuring-a-proxy-server>
 Configuring a Proxy Server
 <a class=anchor href=#configuring-a-proxy-server>#</a>
@@ -329,6 +321,11 @@ Configuring a Syslog Server
 <a class=anchor href=#configuring-a-syslog-server>#</a>
 </h3>
 <p>Usage Meter logs can be sent to a Syslog server and monitored together with other VMware products that the provider is using. The syslog server settings are made in the VAMI page of the Usage Meter web appliacation. Learn how to configure those settings <a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-D32044D4-81DC-4029-977E-65C170C5792E.html>here</a>.</p>
+<h3 id=configure-ldap-authentication-for-vcloud-usage-meter>
+Configure LDAP Authentication for vCloud Usage Meter
+<a class=anchor href=#configure-ldap-authentication-for-vcloud-usage-meter>#</a>
+</h3>
+<p>Read the folloiwing <a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.5/Getting-Started-vCloud-Usage-Meter/GUID-DE31427C-BEC0-41CD-BB9D-01082C783921.html>information</a> to learn how to do it.</p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
