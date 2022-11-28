@@ -10,13 +10,13 @@ Pre-requisites #  To meter successfully VMware Aria Automation 8.X, ensure the f
 Pre-requisites #  To meter successfully VMware Aria Automation 8.X, ensure the following prerequisites have been met. •	Verify that the VMware Aria Automation 8.x is imported or deployed in a VMware Aria Suite Lifecycle Manager environment. •	Verify that the VMware Aria Automation 8.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/vra8x-metering/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-11-28T10:15:02+02:00">
+<meta property="article:modified_time" content="2022-11-28T14:47:14+02:00">
 <title>VMware Aria Automation 8.x Metering and Reporting | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.ef7be69004d250da9e818d0905f0f3518fcb17f3120a4eb9574084c8856098b4.js integrity="sha256-73vmkATSUNqegY0JBfDzUY/LF/MSCk65V0CEyIVgmLQ=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.51f3cbeac3d9c334b77b29ad195d91754b4ec70795dfc01710fac6701f7ade70.js integrity="sha256-UfPL6sPZwzS3eymtGV2RdUtOxweV38AXEPrGcB963nA=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -157,9 +157,9 @@ Product Detection
 Metering
 <a class=anchor href=#metering>#</a>
 </h2>
-<p>For VMware Aria Automation 8.X, vCloud Usage Meter 4.6 collects all VM workloads managed by vRA on-prem, including Google Cloud, AWS, and Azure VMs. In addition, it collects vRAM consumption for all VMs running in a vCenter Server (cloud type is vSphere). These VMs are managed. VMs that are running in GCP, Azure, and AWS are unmanaged. The vRA collector will collect both managed and unmanaged VMs and send them to Cloud Partner Navigator for reporting. Also, data about the vRA product version and license(s) will be collected.</p>
-<p>The vRA collector will collect vRAM for virtual machines running on vCenter managed by Usage Meter regardless of the billing metric selection (users can switch the billing metric in the middle of the month).</p>
-<p>The vRA collector collects usage on an hourly basis. It will send VM details along with cloud type [aws,vcenter,gcs].</p>
+<p>For VMware Aria Automation 8.X, vCloud Usage Meter 4.6 collects all VM workloads managed by VMware Aria Automation on-prem, including Google Cloud, AWS, and Azure VMs. In addition, it collects vRAM consumption for all VMs running in a vCenter Server (cloud type is vSphere). These VMs are managed. VMs that are running in GCP, Azure, and AWS are unmanaged. The VMware Aria Automation collector will collect both managed and unmanaged VMs and send them to Cloud Partner Navigator for reporting. Also, data about the VMware Aria Automation product version and license(s) will be collected.</p>
+<p>The VMware Aria Automation collector will collect vRAM for virtual machines running on vCenter managed by Usage Meter regardless of the billing metric selection (users can switch the billing metric in the middle of the month).</p>
+<p>The VMware Aria Automation collector collects usage on an hourly basis. It will send VM details along with cloud type [aws,vcenter,gcs].</p>
 <h2 id=reporting>
 Reporting
 <a class=anchor href=#reporting>#</a>
