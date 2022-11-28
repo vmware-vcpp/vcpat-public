@@ -10,13 +10,13 @@ Deployment model #  vCloud Usage Meter is deployed as an OVA file through vSpher
 Deployment model #  vCloud Usage Meter is deployed as an OVA file through vSphere. It must be registered with a VCPP contract (Rental or Sovereign Cloud) to complete its configuration. 1 vCloud Usage Meter can be registered with only 1 VCPP contract. A single VCPP contract can have many registered vCloud Usage Meters. Usage Meter can also be registered with a provider org&rsquo;s site.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/um-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-11-28T14:47:14+02:00">
+<meta property="article:modified_time" content="2022-11-28T15:12:26+02:00">
 <title>VMware vCloud Usage Meter Design | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.51f3cbeac3d9c334b77b29ad195d91754b4ec70795dfc01710fac6701f7ade70.js integrity="sha256-UfPL6sPZwzS3eymtGV2RdUtOxweV38AXEPrGcB963nA=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.653d3b967ed2b369e1fd8d8a2620cfdfe333b647f397789ad355b86fdf2be7c7.js integrity="sha256-ZT07ln7Ss2nh/Y2KJiDP3+Mztkfzl3ia01W4b98r58c=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -298,14 +298,14 @@ Design decisions
 Sizing
 <a class=anchor href=#sizing>#</a>
 </h2>
-<pre><code>vCloud Usage Meter requires the following hardware resources.
-* Two virtual CPU cores
-* 12 GB of memory
-* 80 GB storage
-Download the vCloud Usage Meter OVA file from the VMware Customer Connect download product page and save it locally.
-
-Verify that you have access and sufficient privileges to deploy an OVA file with vSphere Web Client.
-</code></pre>
+<p>vCloud Usage Meter requires the following hardware resources.</p>
+<ul>
+<li>Two virtual CPU cores</li>
+<li>12 GB of memory</li>
+<li>80 GB storage</li>
+</ul>
+<p>Download the vCloud Usage Meter OVA file from the <a href=customerconnect.vmware.com>VMware Customer Connect</a> download product page and save it locally.</p>
+<p>Verify that you have access and sufficient privileges to deploy an OVA file with vSphere Web Client.</p>
 <h2 id=others>
 Others
 <a class=anchor href=#others>#</a>
@@ -323,7 +323,7 @@ Configuring a Proxy Server
 <a class=anchor href=#configuring-a-proxy-server>#</a>
 </h3>
 <p>To establish secure connection from Usage Meter to the Internet, you may use a proxy server to filter the requests to Usage Meter.</p>
-<p>The following [information]/https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-9338C8F7-77AC-49C6-A641-0679FC2A54DA.html) helps you configure Usage Meter to establish connection to the Internet through a proxy server. The proxy server setting is made in the Virtual Appliance Management Interface (VAMI) of Usage Meter.</p>
+<p>The following <a href=/https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-9338C8F7-77AC-49C6-A641-0679FC2A54DA.html>information</a> helps you configure Usage Meter to establish connection to the Internet through a proxy server. The proxy server setting is made in the Virtual Appliance Management Interface (VAMI) of Usage Meter.</p>
 <h3 id=configuring-a-syslog-server>
 Configuring a Syslog Server
 <a class=anchor href=#configuring-a-syslog-server>#</a>
