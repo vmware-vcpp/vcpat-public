@@ -10,13 +10,13 @@ Prerequisites #  Verify that your environment is configured according to Before 
 Prerequisites #  Verify that your environment is configured according to Before You Apply This Guidance and the Planning and Preparation of Usage Meter section.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/usagemeter-deployment/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-11-28T15:37:30+02:00">
+<meta property="article:modified_time" content="2022-11-28T17:04:41+02:00">
 <title>Usagemeter Deployment | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.8cfd7afdc34582a3f82bb008110de845c4bf0eca9a84e6570954a693b8c62275.js integrity="sha256-jP16/cNFgqP4K7AIEQ3oRcS/DsqahOZXCVSmk7jGInU=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.15c175a18c2daeced868d2025acfb87ff0926cc5dab155b91e7245f02be3000f.js integrity="sha256-FcF1oYwtrs7YaNICWs+4f/CSbMXasVW5HnJF8CvjAA8=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -148,6 +148,7 @@ VMware Cloud Solutions
 <li><a href=#using-a-proxy-server-for-the-vcloud-usage-meter-connection-to-vcloud-usage-insight>Using a Proxy Server for the vCloud Usage Meter Connection to vCloud Usage Insight</a></li>
 <li><a href=#setting-up-usage-meter-in-offline-mode>Setting up Usage Meter in Offline Mode</a></li>
 <li><a href=#registering-usage-meter-in-the-vmware-commerce-portal>Registering Usage Meter in the VMware Commerce Portal</a></li>
+<li><a href=#adding-vcpp-products-for-metering>Adding VCPP Products for Metering</a></li>
 </ul>
 </li>
 </ul>
@@ -263,6 +264,30 @@ Registering Usage Meter in the VMware Commerce Portal
 <ol start=8>
 <li>Click <strong>OK</strong> to register the appliance.</li>
 </ol>
+<h2 id=adding-vcpp-products-for-metering>
+Adding VCPP Products for Metering
+<a class=anchor href=#adding-vcpp-products-for-metering>#</a>
+</h2>
+<p>The following information guides you through the process of adding your VMware Cloud Provider Program products for metering.</p>
+<ul>
+<li><a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-7D86EF1E-E43F-4E13-9D74-9AA56045E522.html>Adding vCenter Server for Metering</a></li>
+<li><a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-1E77F089-848F-4CAB-ABD3-360304B6BC80.html>Adding VMware Cloud Foundation for Metering</a></li>
+<li>Adding vSAN for Metering - vSAN is automatically detected as part of vCenter Server.</li>
+<li><a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-FC1CC210-821E-41EF-A225-279F9A82281A.html>Adding VMware Site Recovery Manager for Metering</a></li>
+<li><a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-38D3C252-8DCE-4F85-B0A7-DC43E9A9B3FF.html>Adding NSX-V for Metering</a></li>
+<li><a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-26DB6E72-B52A-4B74-848E-9026AC080770.html>Adding NSX-T for Metering</a></li>
+<li>Adding Tanzu Kubernetes Grid Service for Metering - Added as part of vCenter Server.</li>
+<li><a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-5A11EDBC-EC25-4FBE-B610-D869C91BF3BA.html#GUID-5A11EDBC-EC25-4FBE-B610-D869C91BF3BA>Adding Tanzu Kubernetes Grid Multi-cloud for Metering</a></li>
+<li><a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-72D4F250-A8CC-430C-86E9-458BC3881C67.html>Adding VMware Cloud Director for Metering</a></li>
+<li><a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-7C778B16-299C-477B-8D99-C3B753DA8042.html>Adding VMware Cloud Director Availability for Metering</a></li>
+<li><a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-E0D01718-9A77-4691-AF65-543A72CCC446.html>Adding VMware Aria Operations for Metering</a></li>
+<li><a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-6B1D08F8-FC9D-4E90-A2B3-9BFB481B8748.html>Adding VMware Aria Automation 7.x for Metering</a></li>
+<li><a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-93562FAF-5CFC-4517-B172-BC6C3E4B554F.html>Adding VMware Aria Automation 8.x for Metering</a></li>
+<li><a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-D96094BD-1333-4259-B714-825FC869D222.html>Adding VMware Aria Operations for Networks</a></li>
+<li><a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-323ECBD7-3022-4F4E-9E81-10C27A3C1EA0.html>Adding VMware Aria Suite Lifecycle Manager</a></li>
+<li><a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-8773A9EF-C17A-4008-AEC2-406EDCC62C89.html>Adding VMware Horizon DaaS for Metering</a></li>
+<li><a href=https://docs.vmware.com/en/vCloud-Usage-Meter/4.6/Deployment-and-Administration/GUID-92993DF8-29A1-42B7-9B7C-5C6CAF064687.html>Adding VMware Horizon for Metering</a></li>
+</ul>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
@@ -289,6 +314,7 @@ Registering Usage Meter in the VMware Commerce Portal
 <li><a href=#using-a-proxy-server-for-the-vcloud-usage-meter-connection-to-vcloud-usage-insight>Using a Proxy Server for the vCloud Usage Meter Connection to vCloud Usage Insight</a></li>
 <li><a href=#setting-up-usage-meter-in-offline-mode>Setting up Usage Meter in Offline Mode</a></li>
 <li><a href=#registering-usage-meter-in-the-vmware-commerce-portal>Registering Usage Meter in the VMware Commerce Portal</a></li>
+<li><a href=#adding-vcpp-products-for-metering>Adding VCPP Products for Metering</a></li>
 </ul>
 </li>
 </ul>
