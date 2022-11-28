@@ -10,13 +10,13 @@ Prerequisites #  Verify that your environment is configured according to Before 
 Prerequisites #  Verify that your environment is configured according to Before You Apply This Guidance and the Planning and Preparation of Usage Meter section.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/usagemeter-deployment/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-11-28T15:31:23+02:00">
+<meta property="article:modified_time" content="2022-11-28T15:37:30+02:00">
 <title>Usagemeter Deployment | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.028392f87cdd4c57a787e9ca1278e10594e3de2aad5c517e375fe123cf3e6793.js integrity="sha256-AoOS+HzdTFenh+nKEnjhBZTj3iqtXFF+N1/hI88+Z5M=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.8cfd7afdc34582a3f82bb008110de845c4bf0eca9a84e6570954a693b8c62275.js integrity="sha256-jP16/cNFgqP4K7AIEQ3oRcS/DsqahOZXCVSmk7jGInU=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -144,14 +144,10 @@ VMware Cloud Solutions
 </li>
 <li><a href=#usage-meter-configuration>Usage Meter Configuration</a>
 <ul>
-<li>
-<ul>
-<li><a href=#direct-connection-to-vcloud-usage-insight>Direct Connection to vCloud Usage Insight</a></li>
+<li><a href=#setting-up-a-direct-connection-to-vcloud-usage-insight>Setting up a Direct Connection to vCloud Usage Insight</a></li>
 <li><a href=#using-a-proxy-server-for-the-vcloud-usage-meter-connection-to-vcloud-usage-insight>Using a Proxy Server for the vCloud Usage Meter Connection to vCloud Usage Insight</a></li>
 <li><a href=#setting-up-usage-meter-in-offline-mode>Setting up Usage Meter in Offline Mode</a></li>
 <li><a href=#registering-usage-meter-in-the-vmware-commerce-portal>Registering Usage Meter in the VMware Commerce Portal</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -173,7 +169,7 @@ Procedure
 <a class=anchor href=#procedure>#</a>
 </h2>
 <p><a href=../usagemeter-deployment-using-api>Deployment of Usage Meter using VMware Cloud Provider Lifecycle Manager APIs</a></p>
-<p>Usage Meter can also be deployed through the GUI of VMware Cloud provider Lifecycle Manager. <a href=../usagemeter-deployment-subpage>See for reference:</a></p>
+<p>Usage Meter can also be deployed through the GUI of VMware Cloud provider Lifecycle Manager. See the following <a href=../usagemeter-deployment-subpage>information</a>.</p>
 <h1 id=usage-meter-configuration>
 Usage Meter Configuration
 <a class=anchor href=#usage-meter-configuration>#</a>
@@ -192,10 +188,10 @@ Usage Meter Configuration
 <ol start=3>
 <li>Use the vCloud Usage Meter unique ID identifier (UUID) to register it in the VMware Commerce Portal with a VCPP contract.</li>
 </ol>
-<h3 id=direct-connection-to-vcloud-usage-insight>
-Direct Connection to vCloud Usage Insight
-<a class=anchor href=#direct-connection-to-vcloud-usage-insight>#</a>
-</h3>
+<h2 id=setting-up-a-direct-connection-to-vcloud-usage-insight>
+Setting up a Direct Connection to vCloud Usage Insight
+<a class=anchor href=#setting-up-a-direct-connection-to-vcloud-usage-insight>#</a>
+</h2>
 <p>Here are the steps to configure Usage Meter to connect directly to vCloud Usage Insight:</p>
 <ol>
 <li>Log in to the vCloud Usage Meter web application as <em>usagemeter</em>.</li>
@@ -204,10 +200,10 @@ Direct Connection to vCloud Usage Insight
 <li>On the <strong>Summary</strong> page, register the vCloud Usage Meter appliance for an automatic reporting of product consumption data. See the below section <strong>Registering Usage Meter in the VMware Commerce Portal</strong> for reference. If the registration is successful, you receive a success message.</li>
 <li>Click <strong>Finish</strong>.</li>
 </ol>
-<h3 id=using-a-proxy-server-for-the-vcloud-usage-meter-connection-to-vcloud-usage-insight>
+<h2 id=using-a-proxy-server-for-the-vcloud-usage-meter-connection-to-vcloud-usage-insight>
 Using a Proxy Server for the vCloud Usage Meter Connection to vCloud Usage Insight
 <a class=anchor href=#using-a-proxy-server-for-the-vcloud-usage-meter-connection-to-vcloud-usage-insight>#</a>
-</h3>
+</h2>
 <p>Here are the steps to set up the connection between vCloud Usage Meter and vCloud Usage Insight with a proxy server:</p>
 <ol>
 <li>Log in to vCloud Usage Meter web application as <em>usagemeter</em>.</li>
@@ -217,10 +213,10 @@ Using a Proxy Server for the vCloud Usage Meter Connection to vCloud Usage Insig
 <li>Next to <strong>Proxy Settings</strong>, click <strong>Edit</strong>.</li>
 <li>Enter the proxy server information, and click <strong>Save</strong>.</li>
 </ol>
-<h3 id=setting-up-usage-meter-in-offline-mode>
+<h2 id=setting-up-usage-meter-in-offline-mode>
 Setting up Usage Meter in Offline Mode
 <a class=anchor href=#setting-up-usage-meter-in-offline-mode>#</a>
-</h3>
+</h2>
 <p>The offline Usage Meter mode is suitable for air-gapped environments that have no connection to the Internet.</p>
 <p>In case providers don&rsquo;t want to send usage data to vCloud Usage Insight automatically , they need to download the data from their Usage Meter in offline mode and upload it to Cloud Partner Navigator.</p>
 <p>To set up your Usage Meter in offline mode, you need to do the following:</p>
@@ -234,10 +230,10 @@ Setting up Usage Meter in Offline Mode
 <li>Click <strong>Next</strong>.</li>
 <li>On the <strong>Summary</strong> page, click <strong>Finish</strong>.</li>
 </ol>
-<h3 id=registering-usage-meter-in-the-vmware-commerce-portal>
+<h2 id=registering-usage-meter-in-the-vmware-commerce-portal>
 Registering Usage Meter in the VMware Commerce Portal
 <a class=anchor href=#registering-usage-meter-in-the-vmware-commerce-portal>#</a>
-</h3>
+</h2>
 <p>The last step of the Usage Meter configuration is to register it with the VMware Commerce Portal. In this step, you need to associate your Usage Meter with a VCPP contract that you have with VMware and create a record for it. This way, all the data associated with the Usage Meters that you have, will be aggregated and presented in an MBO at the end of the month in your account.</p>
 <p>To register Usage Meter in the VMware Commerce Portal, do the following:</p>
 <ol>
@@ -289,14 +285,10 @@ Registering Usage Meter in the VMware Commerce Portal
 </li>
 <li><a href=#usage-meter-configuration>Usage Meter Configuration</a>
 <ul>
-<li>
-<ul>
-<li><a href=#direct-connection-to-vcloud-usage-insight>Direct Connection to vCloud Usage Insight</a></li>
+<li><a href=#setting-up-a-direct-connection-to-vcloud-usage-insight>Setting up a Direct Connection to vCloud Usage Insight</a></li>
 <li><a href=#using-a-proxy-server-for-the-vcloud-usage-meter-connection-to-vcloud-usage-insight>Using a Proxy Server for the vCloud Usage Meter Connection to vCloud Usage Insight</a></li>
 <li><a href=#setting-up-usage-meter-in-offline-mode>Setting up Usage Meter in Offline Mode</a></li>
 <li><a href=#registering-usage-meter-in-the-vmware-commerce-portal>Registering Usage Meter in the VMware Commerce Portal</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
