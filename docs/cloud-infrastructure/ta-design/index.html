@@ -2,21 +2,21 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="VMware vRealize Tenant App Design #  VMware supports thousands of partners to host and sell clouds built on VMware technology using vCenter and Cloud Director (VCD). While vCenter provides the core of virtualization, Cloud Director provides needed constructs for segmenting the virtual infrastructure appropriately and offering it as a service to tenants of these partners.
+<meta name=description content="VMware Chargeback (formerly vRealize Operations Tenant App) Design #  VMware supports thousands of partners to host and sell clouds built on VMware technology using vCenter and Cloud Director (VCD). While vCenter provides the core of virtualization, Cloud Director provides needed constructs for segmenting the virtual infrastructure appropriately and offering it as a service to tenants of these partners.
 As can be imagined, there are several variants of infrastructure that can be sold by these partners such as “Pay as you go”, “Raw capacity” aka “Allocation based”, “Raw capacity with minimum guarantee” aka “Reservation based”, “Flex” i.">
 <meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="VMware vRealize Tenant App Design">
-<meta property="og:description" content="VMware vRealize Tenant App Design #  VMware supports thousands of partners to host and sell clouds built on VMware technology using vCenter and Cloud Director (VCD). While vCenter provides the core of virtualization, Cloud Director provides needed constructs for segmenting the virtual infrastructure appropriately and offering it as a service to tenants of these partners.
+<meta name=color-scheme content="light dark"><meta property="og:title" content="VMware Chargeback (formerly vRealize Operations Tenant App) Design">
+<meta property="og:description" content="VMware Chargeback (formerly vRealize Operations Tenant App) Design #  VMware supports thousands of partners to host and sell clouds built on VMware technology using vCenter and Cloud Director (VCD). While vCenter provides the core of virtualization, Cloud Director provides needed constructs for segmenting the virtual infrastructure appropriately and offering it as a service to tenants of these partners.
 As can be imagined, there are several variants of infrastructure that can be sold by these partners such as “Pay as you go”, “Raw capacity” aka “Allocation based”, “Raw capacity with minimum guarantee” aka “Reservation based”, “Flex” i.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/ta-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-11-29T13:19:40+05:30">
-<title>VMware vRealize Tenant App Design | VMware Cloud Provider Architecture Toolkit</title>
+<meta property="article:modified_time" content="2022-11-30T15:49:16-05:00">
+<title>VMware Chargeback (formerly vRealize Operations Tenant App) Design | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.376e0af109b8c8e7e3dc72978545c4d092b8c759cd5c6f171bd31ac2d405fced.js integrity="sha256-N24K8Qm4yOfj3HKXhUXE0JK4x1nNXG8XG9MawtQF/O0=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.8ea219a68605af02e32d512e6424f8551872128b239f51e47068d8d6612c9fb3.js integrity="sha256-jqIZpoYFrwLjLVEuZCT4VRhyEosjn1HkcGjY1mEsn7M=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -128,27 +128,27 @@ VMware Cloud Solutions
 <label for=menu-control>
 <img src=/svg/menu.svg class=book-icon alt=Menu>
 </label>
-<strong>VMware vRealize Tenant App Design</strong>
+<strong>VMware Chargeback (formerly vRealize Operations Tenant App) Design</strong>
 <label for=toc-control>
 </label>
 </div>
 </header>
-<article class=markdown><h1 id=vmware-vrealize-tenant-app-design>
-VMware vRealize Tenant App Design
-<a class=anchor href=#vmware-vrealize-tenant-app-design>#</a>
+<article class=markdown><h1 id=vmware-chargeback-formerly-vrealize-operations-tenant-app-design>
+VMware Chargeback (formerly vRealize Operations Tenant App) Design
+<a class=anchor href=#vmware-chargeback-formerly-vrealize-operations-tenant-app-design>#</a>
 </h1>
 <p>VMware supports thousands of partners to host and sell clouds built on VMware technology using vCenter and Cloud Director (VCD). While vCenter provides the core of virtualization, Cloud Director provides needed constructs for segmenting the virtual infrastructure appropriately and offering it as a service to tenants of these partners.</p>
 <p>As can be imagined, there are several variants of infrastructure that can be sold by these partners such as “Pay as you go”, “Raw capacity” aka “Allocation based”, “Raw capacity with minimum guarantee” aka “Reservation based”, “Flex” i.e. “a combination of others”. Potentially combination of these could be offered to same tenants. It becomes challenging to track usage over a period and charge appropriately due to this complexity. In addition, tenants demand for a transparency in this billing, and it is imperative that service providers offer it.</p>
-<p>vRealize Operations Tenant App (TA) sets out to solve these problems by metering the infrastructure. Further, it provides options to configure different models for pricing this metered infrastructure. Finally, it closes the loop by providing tenant specific views that help tenants validate their charges by looking at usage.</p>
-<p>Architecture of TA is based on</p>
+<p>VMware Chargeback (Chargeback) sets out to solve these problems by metering the infrastructure. Further, it provides options to configure different models for pricing this metered infrastructure. Finally, it closes the loop by providing tenant specific views that help tenants validate their charges by looking at usage.</p>
+<p>Architecture of Chargeback is based on</p>
 <ul>
-<li>Data collector that collects data from vCenter, VCD and NSX,</li>
+<li>Data collector that collects data from vCenter, VCD and NSX.</li>
 <li>Pricing engine, that applies the charging policies defined by provider on the collected data</li>
 </ul>
-<p>The collector and the pricing engine reside inside vRealize Operations Manager (vROps). TA appliance acts as a simple interface for creating pricing policies and storing generated “Bill”. TA appliance also provides a plugin to expose Tenant views inside VCD.</p>
-<p>Because of these criterion, deployment of TA needs two Virtual Appliances namely the TA Virtual Appliance and the vROps Virtual Appliance. Partners who are already running vROps will be able to just connect Tenant App and begin, and those who do not can start with deploying the Chargeback Licensed edition of vROps.</p>
-<p>Configuration of TA post deployment involves configuring vROps, Cloud Director, vCenter, and NSX. vROps connection is used for metering of collected data and bill generation. Cloud director connection is used for user management, providing Tenant view, and for collection of data from VCD using vROps VA. vCenter connection is used for collecting inventory changes and metering data about virtual machines using vROps. NSX connection is used for collecting usage information on network elements such as edges, load balancers, firewalls, etc. using vROps data collectors.</p>
-<p>A functional flow of using TA involves</p>
+<p>The collector and the pricing engine reside inside VMware Aira Operations (formerly vRealize Operations Manager). Chargeback appliance acts as a simple interface for creating pricing policies and storing generated “Bill”. Chargeback appliance also provides a plugin to expose Tenant views inside VCD.</p>
+<p>Because of these criterion, deployment of Chargeback needs two Virtual Appliances namely the Chargeback Virtual Appliance and the Aria Operations Virtual Appliance. Partners who are already running Aria Operations will be able to just connect Chargeback and begin, and those who do not can start with deploying the Chargeback Licensed edition of Aria Operations.</p>
+<p>Configuration of Chargeback post deployment involves configuring Aria Operations (previously vRealize Operations Manager), Cloud Director, vCenter, and NSX. Aria Operations connection is used for metering of collected data and bill generation. Cloud director connection is used for user management, providing Tenant view, and for collection of data from VCD using Aria Operations VA. vCenter connection is used for collecting inventory changes and metering data about virtual machines using Aria Operations. NSX connection is used for collecting usage information on network elements such as edges, load balancers, firewalls, etc. using Aria Operations data collectors.</p>
+<p>A functional flow of using Chargeback involves</p>
 <ul>
 <li>Defining pricing policies</li>
 <li>Associating these pricing policies to Org- VDCs coming from VCD</li>
@@ -158,60 +158,61 @@ VMware vRealize Tenant App Design
 </ul>
 <p>Functional Flow Diagram</p>
 <p><img src=/images/vta-detailed-design/vta-detailed-design04.png alt="Graphical user interface, application Description automatically generated"></p>
-<p>Pricing policies have several variants such as their infrastructure scope of application (e.g.: Allocation pool, PAYG, Reservation pool), charge rates for different resources (e.g.: 2$/vCPU/Day, 1$/GB RAM configuration/Day) and conditions for applying the rates (E.g.: Only when powered on, slabbed rate or overage). Associating pricing policies to org VDCs sets up a combination that can be used henceforth for all metering and billing. Bills are created on-demand based on provider’s request and contain a detailed result of applying a pricing policy on and Org-VDC. Reports are customizable entities containing historical data about pricing and usage. They can be scheduled and exported to formats such as CSV and PDF. A plugin to VCD allows these bills and usage data to be exposed to tenants. In addition, Tenant App provides a set of dashboards that can be exposed to tenants.</p>
+<p>Pricing policies have several variants such as their infrastructure scope of application (e.g.: Allocation pool, PAYG, Reservation pool), charge rates for different resources (e.g.: 2$/vCPU/Day, 1$/GB RAM configuration/Day) and conditions for applying the rates (E.g.: Only when powered on, slabbed rate or overage). Associating pricing policies to org VDCs sets up a combination that can be used henceforth for all metering and billing. Bills are created on-demand based on provider’s request and contain a detailed result of applying a pricing policy on and Org-VDC. Reports are customizable entities containing historical data about pricing and usage. They can be scheduled and exported to formats such as CSV and PDF. A plugin to VCD allows these bills and usage data to be exposed to tenants. In addition, Chargeback provides a set of dashboards that can be exposed to tenants.</p>
+<p>In order to provide the most robust information to tenants, Chargeback should be deployed along with Aria Operations (formerly vRealize Operations Manager). If Aria Operations is not present, the only information provided by Chargeback will be billing data.</p>
 <h2 id=licensing>
 Licensing
 <a class=anchor href=#licensing>#</a>
 </h2>
-<p>Tenant App works in one of the two license modes.</p>
+<p>Chargeback works in one of the two license modes.</p>
 <ul>
-<li>Chargeback License: This license mode enables basic functionalities of Tenant App including metering for Cloud Director, vCenter and NSX based infrastructure. The license key is applied from vROps UI, post which the UI of vROps is turned off and can be used only as a headless data collection and pricing engine.</li>
-<li>vROps entitled mode: If the partner is entitled to any variant of vROps already, he can continue to use the same vROps as a backend for Tenant App. In such cases, the partner gets additional flexibility of using vROps UI and perform customizations such as custom reports and dashboards based on his entitlement.</li>
+<li>Chargeback License: This license mode enables basic functionalities of Chargeback including metering for Cloud Director, vCenter and NSX based infrastructure. The license key is applied from Aria Operations UI, post which the UI of Aria Operations is turned off and can be used only as a headless data collection and pricing engine.</li>
+<li>Aria Operations entitled mode: If the partner is entitled to any variant of Aria Operations already, he can continue to use the same Aria Operations as a backend for Chargeback. In such cases, the partner gets additional flexibility of using Aria Operations UI and perform customizations such as custom reports and dashboards based on his entitlement.</li>
 </ul>
-<h2 id=deployment-architecture-for-vrealize-operations-tenant-app-for-vcloud-director>
-Deployment Architecture for vRealize Operations Tenant App for vCloud Director
-<a class=anchor href=#deployment-architecture-for-vrealize-operations-tenant-app-for-vcloud-director>#</a>
+<h2 id=deployment-architecture-for-vmware-chargeback-for-vcloud-director>
+Deployment Architecture for VMware Chargeback for vCloud Director
+<a class=anchor href=#deployment-architecture-for-vmware-chargeback-for-vcloud-director>#</a>
 </h2>
-<p>The following architecture provides an overview of integration of Tenant App with vCenter, vCloud Director, and NSX Management Packs.</p>
+<p>The following architecture provides an overview of integration of Chargeback with vCenter, vCloud Director, and NSX Management Packs.</p>
 <p><img src=/images/vta-detailed-design/vta-detailed-design01.png alt="Graphical user interface, application Description automatically generated"></p>
 <p>You can receive data from vCenter, vCloud Director, and NSX Management Packs.</p>
 <ul>
 <li>vRealize Operations Manager collects resources from vCenter, vCloud Director, and NSX Management Packs using their respective Management Pack plugins and displays it in the vRealize Operations Manager Database.</li>
-<li>vRealize Operations Tenant App for vCloud Director interacts with vRealize Operations Manager using the Suite APIs (internal/external) to collect resources and pricing information.</li>
-<li>A service provider performs configuration actions using the standalone Tenant App UI.</li>
-<li>The tenant can either use vRealize Operations Manager Tenant App Plugin UI or the standalone Tenant App UI.</li>
-<li>All requests from Tenant App for vRealize OperationsvCloud Director are sent through Nginx Forward Proxy and the configuration is as displayed in the Deployment Architecture workflow diagram.</li>
+<li>VMware Chargeback for vCloud Director interacts with vRealize Operations Manager using the Suite APIs (internal/external) to collect resources and pricing information.</li>
+<li>A service provider performs configuration actions using the standalone Chargeback UI.</li>
+<li>The tenant can either use vRealize Operations Manager Chargeback Plugin UI or the standalone Chargeback UI.</li>
+<li>All requests from Chargeback for vRealize OperationsvCloud Director are sent through Nginx Forward Proxy and the configuration is as displayed in the Deployment Architecture workflow diagram.</li>
 </ul>
-<p>As can be seen in the diagram, combination of Tenant App appliance and vROps appliance together help service providers meter their infrastructure. vROps acts as the data collection engine talking to endpoints such as vCenter and Cloud Director using its management packs. Installation and configuration of these management packs are covered in Administration Guide of Tenant App. Tenant App adds a pricing layer on top of these collected metrics by allowing configuration of the pricing engine. The pricing engine itself runs inside the vROps appliance and outputs the pricing metrics back into vROps. So in essence for a provider, Tenant App VA acts as the configuration interface for pricing policies, whereas vROps acts as the single source of metrics for all collected and processed information. Full list of collected and processed metrics can be found in the addendum at the end of this white paper.</p>
-<p>Tenant App VA also acts as the User interface that can be configured and plugged into Cloud Director to be accessed by Tenant Administrators. It provides summary information of usage and metered charges to Tenants of a provider.</p>
-<p>Virtual Machines are priced depending on how long they live in the environment. Tenant App and vROps can track VMs to a minimum granularity of 5 minutes and charge them i.e. even if the VM is alive only for 5 minutes, pricing engine will be able to associate a charge with this VM and roll it up.</p>
+<p>As can be seen in the diagram, combination of Chargeback appliance and Aria Operations appliance together help service providers meter their infrastructure. Aria Operations acts as the data collection engine talking to endpoints such as vCenter and Cloud Director using its management packs. Installation and configuration of these management packs are covered in Administration Guide of Chargeback. Chargeback adds a pricing layer on top of these collected metrics by allowing configuration of the pricing engine. The pricing engine itself runs inside the Aria Operations appliance and outputs the pricing metrics back into Aria Operations. So in essence for a provider, Chargeback VA acts as the configuration interface for pricing policies, whereas Aria Operations acts as the single source of metrics for all collected and processed information. Full list of collected and processed metrics can be found in the addendum at the end of this white paper.</p>
+<p>Chargeback VA also acts as the User interface that can be configured and plugged into Cloud Director to be accessed by Tenant Administrators. It provides summary information of usage and metered charges to Tenants of a provider.</p>
+<p>Virtual Machines are priced depending on how long they live in the environment. Chargeback and Aria Operations can track VMs to a minimum granularity of 5 minutes and charge them i.e. even if the VM is alive only for 5 minutes, pricing engine will be able to associate a charge with this VM and roll it up.</p>
 <h2 id=architecture-and-port-requirements>
 Architecture and Port Requirements
 <a class=anchor href=#architecture-and-port-requirements>#</a>
 </h2>
-<p>The following architecture provides the port requirement for the integration of vRealize Operations Tenant App for vCloud Director.</p>
-<h3 id=integration-of-vrealize-operations-tenant-app-for-vcloud-director-as-a-plug-in>
-Integration of vRealize Operations Tenant App for vCloud Director as a plug-in
-<a class=anchor href=#integration-of-vrealize-operations-tenant-app-for-vcloud-director-as-a-plug-in>#</a>
+<p>The following architecture provides the port requirement for the integration of VMware Chargeback for vCloud Director.</p>
+<h3 id=integration-of-vmware-chargeback-for-vcloud-director-as-a-plug-in>
+Integration of VMware Chargeback for vCloud Director as a plug-in
+<a class=anchor href=#integration-of-vmware-chargeback-for-vcloud-director-as-a-plug-in>#</a>
 </h3>
 <p><img src=/images/vta-detailed-design/vta-detailed-design02.png alt="Graphical user interface, application Description automatically generated"></p>
-<p>The following architecture provides the port requirement of the vRealize Operations Tenant App for vCloud Director as a stand-alone app.</p>
-<h3 id=integration-of-vrealize-operations-tenant-app-for-vcloud-director-as-a-stand-alone-app>
-Integration of vRealize Operations Tenant App for vCloud Director as a stand-alone App
-<a class=anchor href=#integration-of-vrealize-operations-tenant-app-for-vcloud-director-as-a-stand-alone-app>#</a>
+<p>The following architecture provides the port requirement of the VMware Chargeback for vCloud Director as a stand-alone app.</p>
+<h3 id=integration-of-vmware-chargeback-for-vcloud-director-as-a-stand-alone-app>
+Integration of VMware Chargeback for vCloud Director as a stand-alone App
+<a class=anchor href=#integration-of-vmware-chargeback-for-vcloud-director-as-a-stand-alone-app>#</a>
 </h3>
 <p><img src=/images/vta-detailed-design/vta-detailed-design03.png alt="Graphical user interface, application Description automatically generated"></p>
 <h2 id=deployment-model>
 Deployment Model
 <a class=anchor href=#deployment-model>#</a>
 </h2>
-<p>If the deployment is in a vCloud Director based cloud deployment, follow the design for vRealize Operations Tenant App for vCloud Director as a plug-in.</p>
+<p>If the deployment is in a vCloud Director based cloud deployment, follow the design for VMware Chargeback for vCloud Director as a plug-in.</p>
 <h2 id=design-decisions>
 Design Decisions
 <a class=anchor href=#design-decisions>#</a>
 </h2>
-<p>Deploy a vRealize Operations Tenant App appliance at each physical site where there&rsquo;s a vCloud Director deployment that will use the plug-in. IE - if you have two physical sites; one in New York and one in Los Angeles, deploy a Tenat App appliance at each site that will connect to the local vCloud Director.</p>
-<p>A public DNS name and IP will need to be allocated for each site that will resolve to the local Tenant App appliance, such as vta01.ny.cloud.mycompany.com. You can DNAT the public IP to the private IP assigned to the Tenant App appliance.</p>
+<p>Deploy a VMware Chargeback appliance at each physical site where there&rsquo;s a vCloud Director deployment that will use the plug-in. IE - if you have two physical sites; one in New York and one in Los Angeles, deploy a Tenat App appliance at each site that will connect to the local vCloud Director.</p>
+<p>A public DNS name and IP will need to be allocated for each site that will resolve to the local Chargeback appliance, such as vta01.ny.cloud.mycompany.com. You can DNAT the public IP to the private IP assigned to the Chargeback appliance.</p>
 <h2 id=pricing-policies>
 Pricing Policies
 <a class=anchor href=#pricing-policies>#</a>
@@ -221,47 +222,123 @@ Pricing Policies
 Base Settings
 <a class=anchor href=#base-settings>#</a>
 </h3>
-<h4 id=policy-name>
-Policy Name
-<a class=anchor href=#policy-name>#</a>
+<h4 id=table-1>
+Table 1
+<a class=anchor href=#table-1>#</a>
 </h4>
-<p>Service provider admin will provide a relevant name to policy; one policy can be eventually assigned to multiple organization VDC. Each Organization in Cloud Director corresponds to one tenant, so pricing policy provides flexibility at much granular level (Org-VDC) so that differential charging can be done for different tenants (organizations) as well as multiple Org-VDCs within same tenant (organization).</p>
-<h4 id=pricing-policy-type>
-Pricing Policy Type
-<a class=anchor href=#pricing-policy-type>#</a>
-</h4>
-<p>This corresponds to types of allocation models (Allocation pool, Reservation pool and Pay-as-you-go) in VCD. This field is just used as an identifier only, so that when you create a policy you can assign a label to it so as to later associate it with appropriate organization VDC of same allocation model selected.</p>
-<p>The choice here decides how you charge for CPU and memory. For details, refer to Table 1.1</p>
-<h4 id=currency>
-Currency
-<a class=anchor href=#currency>#</a>
-</h4>
-<p>This is the currency in which pricing is setup and bills are generated, this currency is same as set in vROps. In vROps navigate to Administration > Management > Global Settings > Currency to set this value. Please note that this can be set only once per installation and cannot be modified once set.</p>
-<h4 id=policy-description>
-Policy Description
-<a class=anchor href=#policy-description>#</a>
-</h4>
-<p>Any additional details to be mentioned about pricing policy.</p>
-<h3 id=cpu-rate>
-CPU Rate
-<a class=anchor href=#cpu-rate>#</a>
+<table>
+<thead>
+<tr>
+<th>Policy Type</th>
+<th>Policy Name</th>
+<th>Pricing Policy Type</th>
+<th>Currency</th>
+<th>Policy Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base</td>
+<td>Provide a relevant name to policy, one policy can be applied to multiple org VDCs.</td>
+<td>Allocation Pool, Reservation Pool, and/or Pay-as-you-go</td>
+<td>The currency in which pricing is setup and bills are generated</td>
+<td>Any additional details to be mentioned about the procing policy</td>
+</tr>
+</tbody>
+</table>
+<h3 id=component-rates>
+Component Rates
+<a class=anchor href=#component-rates>#</a>
 </h3>
-<h4 id=charge-cpu-based-on>
-Charge CPU based on
-<a class=anchor href=#charge-cpu-based-on>#</a>
+<p>This section provides details on the main VM components; CPU, RAM, storage, and network, and possible ways to charge on how they are consumed.</p>
+<p>The following table provides details on how to charge for the VM components based on various models available to the provider.</p>
+<h4 id=table-2>
+Table 2
+<a class=anchor href=#table-2>#</a>
 </h4>
-<p>This is applicable when admin selects policy type as PAYG, where pricing happens at virtual machine level, and admin can choose to charge CPU based on either gHZ or based on vCPU count.</p>
-<h4 id=charge-period>
-Charge Period
-<a class=anchor href=#charge-period>#</a>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Charge Based On</th>
+<th>Charge Period</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>Power State</td>
+<td>Charge based on three available options; Always, Only when powered-on, Powered-on at least once</td>
+<td>Always: do no consider VM update, irrespective of that. <br> Only when powered on: Charge will be prorated based on uptime - IE - if daily charge is 10$ per gHZ for CPU and specific VM was only on for 20 min a day, then charge will be prorated based on the fraction (20/1440), where 1440 is total minutes in day. <br> Power on at Least Once: full chage is applied even if VM is switched on at least once for minimum duration of a minute.</td>
+</tr>
+<tr>
+<td>CPU</td>
+<td>Overage</td>
+<td>This rule is applicable only to allocation pool model, where guaranteed resources are some % of total available resources. In this case till guaranteed %, normal base rate will be applied. If usage goes beyond guaranteed %, the rate mentioned in overage will be applied.</td>
+<td>In allocation pool model for specific Org-VDC if allocated CPU is 10 gHZ and guaranteed is 50%, which is 5 gHZ, the normal base rate is 3$ per gHZ and overage base rate is 4$, then if usage is found to be 6.5 gHZ, then for 1.5 gHZ the overage rate of 4$ is applicable and below which normal base rate of 3$ will be applicable.</td>
+</tr>
+<tr>
+<td>CPU</td>
+<td>Base Rate</td>
+<td>The service provider may want to charge differently based on the volume of resources consumed.</td>
+<td>If usage is under 2 vCPUs, then default Base Rate $4 per vCPU will be applied for whole usage. <br> If usage is greater than 2 vCPU, then Base Rate $6 per vCPU will be applied for whole usage.</td>
+</tr>
+<tr>
+<td>CPU</td>
+<td>Fixed Cost</td>
+<td>This price is applied to resource under consideration irrespective of resource metering. The difference between base rate and fixed cost is that base rate gets multiplied with resource metered quantity, if there is no resource consumption/allocation base rate will not be applied whereas fixed cost gets applied irrespective of metered resource. Fixed cost follows the charge period.</td>
+<td>If the per vCPU rate is $2 and a fixed cost of $10 is specified for a VM that has 4 vCPUs, charges will be computed as 4vCPUs*$2 + $10 = $18.</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>Sizing Policy</td>
+<td>There may be Service Providers that do not want to charge per vCPU or per GB RAM, instead they want standard pricing templates for charging their customers. <br> Sizing policies are predefined templates that are present in Cloud Director wherein you create a combo of vCPU and memory sizes and enter a rate against it.</td>
+<td>The price is based on VM Size instead of per CPU or Memory GB Charge individually.</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Storage Policies</td>
+<td>When this option is selected, admin can do a ‘differential’ pricing based on storage tiers as set in VCD, for specific Org-VDC.</td>
+<td>If the storage policies created in Cloud Director are Gold, Silver and Bronze tiers, a differential price of 4$, 3$ and 2$ per GB per month can be applied based on storage tiers.</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Default Rate</td>
+<td>When this opetion is selected, for all the datastore same base rate mentioned will be applicable irrespective of storage tiers.</td>
+<td>Default rate would be charging the same price per GB per month, without consideration for any storage tiers.</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Base Rate Slab</td>
+<td>The service provider may want to charge differently based on the storage consumed by the VM. So, in storage also, we can charge based on the slab of consumption. Many Service providers provide a discounted rate if the consumption by VMs is higher.</td>
+<td>If you want to charge a VM consuming 100GB of storage at a lower rate ($1 per month) compared to a VM consuming 50GB of storage that is charged at $1.5 per GB per month. In such a case, base rates will be configured as “greater than or equal to:50GB”, “base rate:1”, “default base rate:1.5”. In such a case, a VM having 150GB of storage will be charged $150 a month and a VM having 30GB of storage will be charged $45 a month.</td>
+</tr>
+<tr>
+<td>Network</td>
+<td>Transmite Rate (Bandwidth)</td>
+<td>Conservative – In this this case the Service Providers charge for the average bandwidth consumed by the customer. This is more in favour of the customer and less in that of the Service Provider. <br> Aggressive – Here, the Service Provider charges the whole usage at the peak bandwidth usage. This is more in favour of the Service Provider and less in that of the customer. <br> Moderate – In this case, the Service Provider would charge at the 95th Percentile value of the bandwidth.</td>
+<td>Conservative - the consumption rate is $10 per GBPS. If the average bandwidth usage is 5GBPS. But, the peak bandwidth used is 8GBPS. In this case, the tenant will be charged $50 and not $80. <br> Aggressive - the same scenario as conservative, but in this case, the tenant will be charged $80 and not $50. <br> Moderate - the user has had 100 usage samples of Bandwidths 1 to 100 GBPS each respectively. In this case, the peak bandwidth is 100 GBPS and average bandwidth is 50 GBPS. But, in a moderate pricing mechanism, the charge would be calculated on the basis of 95th percentile i.e. with respect to 95 GBPS.</td>
+</tr>
+<tr>
+<td>Netwok</td>
+<td>Receive Rate (Bandwidth)</td>
+<td>Same as network transmit rate approaches, but charge based on receive instead.</td>
+<td>Same as network transmit rate examples, but charge based on receive instead.</td>
+</tr>
+<tr>
+<td>Network (Advanced)</td>
+<td>Edge Services: Apart from the basic data transfer, there are additional value added services offered in VMware Cloud Director in combination with NSX. <br> All the network services associated with specific edge such as HA, DHCP, IPV6, IP Sec, Load Balancer, NAT, SSL VPN, L2 VPN, Firewall, Static Routing, BGP Routing, OSPF Routing are considered for charging based on these services are ‘Enabled’ or not.</td>
+<td>IP Count: These are the unique IP counts available on the external network of the Org-VDC. Pricing can be performed based on the count of these IPs. <br> Edge Gateway Sizes: Chargeback understands the size of the edge gateway (Compact, Large, Extra Large and Quad Large) and differential price can be assigned based on the edge size. <br> NSXT Services: Chargeback now allows you to price for NSXT services like Firewall Charges (per firewall rule count), L2VPN charges (per L2VPN count), Load Balancer Charges (per load balancer count).</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>When admin selects policy type as Pay-as-you-go, pricing occurs at the VM level, and admin can choose to charge CPU based on either GHz or vCPU count. For each allocation model in VCD admin can define specific rules based on which chargeback can happen, it can be based on resource allocation, usage or reservation (guaranteed resource) or max of two entities (usage vs allocation, usage vs reservation). The details of which value will be considered in computation based on this set rule is described in Table 2.1 below. A specific price can be applied with different priodicity such as hourly, daily, and monthly.</p>
+<h4 id=table-21>
+Table 2.1
+<a class=anchor href=#table-21>#</a>
 </h4>
-<p>A specific price can be applied with different periodicity such as Hourly, Daily and Monthly. The base rate and fixed cost mentioned will get applied based on this frequency.</p>
-<h4 id=charge-based-on>
-Charge Based on
-<a class=anchor href=#charge-based-on>#</a>
-</h4>
-<p>For each allocation model in VCD admin can define specific rules based on which chargeback can happen, it can be based on resource allocation, usage or reservation (guaranteed resource) or max of two entities (usage vs allocation, usage vs reservation). The details of which value will be considered in computation based on this set rule is described in the below table.</p>
-<p>Table 1.1</p>
 <table>
 <thead>
 <tr>
@@ -373,87 +450,13 @@ Charge Based on
 </tr>
 </tbody>
 </table>
-<h4 id=default-base-rate>
-Default Base Rate
-<a class=anchor href=#default-base-rate>#</a>
+<h4 id=additional-considerations>
+Additional Considerations
+<a class=anchor href=#additional-considerations>#</a>
 </h4>
-<p>Specific the rate or price at which you would like to charge the resource under consideration, this value will be multiplied accordingly with resource metered value to arrive at final charge to tenant in the bill generated.</p>
-<h4 id=chage-based-on-power-state>
-Chage Based on Power State
-<a class=anchor href=#chage-based-on-power-state>#</a>
-</h4>
-<p>This rule is applicable for PAYG type of polices, where charging is done at virtual machine level and chargeback can be done based on three available options: Always, Only when powered-on, Powered-on at least once.</p>
-<ul>
-<li>Always: do not consider VM uptime, charge irrespective of that</li>
-<li>Only when powered-on: Charge will be prorated based on uptime
-<ul>
-<li>Example: if daily charge is 10$ per gHZ for CPU and specific VM was only 20 min a day, then charge will be prorated based on the fraction (20/1440), where 1440 is total minutes in day.</li>
-</ul>
-</li>
-<li>Power-on at Least Once: In this case full charge is applied even if VM is switched on at least once for minimum duration of minute.</li>
-</ul>
-<h4 id=charge-overage>
-Charge Overage
-<a class=anchor href=#charge-overage>#</a>
-</h4>
-<p>This rule is applicable only to allocation pool model, where guaranteed resources are some % of total available resources. In this case till guaranteed %, normal base rate will be applied. If usage goes beyond guaranteed %, the rate mentioned in overage will be applied (for the delta usage which is higher than guaranteed).</p>
-<ul>
-<li>Example: in allocation pool model for specific Org-VDC if allocated CPU is 10 gHZ and guaranteed is 50%, which is 5 gHZ, the normal base rate is 3$ per gHZ and overage base rate is 4$, then if usage is found to be 6.5 gHZ, then for 1.5 gHZ the overage rate of 4$ is applicable and below which normal base rate of 3$ will be applicable.</li>
-</ul>
-<h4 id=cpu-base-rate-slab>
-CPU Base Rate Slab
-<a class=anchor href=#cpu-base-rate-slab>#</a>
-</h4>
-<p>The service provider may want to charge differently based on the volume of resources consumed.</p>
-<ul>
-<li>Example: If usage is under 2 vCPUs, then default Base Rate $4 per vCPU will be applied for whole usage. If usage is greater than 2 vCPU, then Base Rate $6 per vCPU will be applied for whole usage.</li>
-</ul>
-<h4 id=fixed-cost>
-Fixed Cost
-<a class=anchor href=#fixed-cost>#</a>
-</h4>
-<p>This price is applied to resource under consideration irrespective of resource metering. The difference between base rate and fixed cost is that base rate gets multiplied with resource metered quantity, if there is no resource consumption/allocation base rate will not be applied whereas fixed cost gets applied irrespective of metered resource. Fixed cost follows the charge period.</p>
-<ul>
-<li>Example: charge period = If the per vCPU rate is $2 and a fixed cost of $10 is specified for a VM that has 4 vCPUs, charges will be computed as 4vCPUs*$2 + $10 = $18</li>
-</ul>
-<h3 id=memory-rate>
-Memory Rate
-<a class=anchor href=#memory-rate>#</a>
-</h3>
-<p>Please refer to the “CPU rate” section, as all the fields and rules are similar in nature except that resource under consideration will be memory metered in MBs.</p>
-<h3 id=price-based-on-sizing-policy>
-Price Based on Sizing Policy
-<a class=anchor href=#price-based-on-sizing-policy>#</a>
-</h3>
-<p>There may be Service Providers that do not want to charge per vCPU or per GB RAM, instead they want standard pricing templates for charging their customers (similar to the concept in AWS where they have Small, Medium, Large, T2 Small, R2 Large etc.)</p>
-<p>Sizing policies are predefined templates that are present in Cloud Director wherein you create a combo of vCPU and memory sizes and enter a rate against it.</p>
-<p>In this, the price is based on VM Size instead of per CPU or Memory GB Charge individually.</p>
-<h3 id=storage-rate>
-Storage Rate
-<a class=anchor href=#storage-rate>#</a>
-</h3>
-<h4 id=charge-storaged-based-on>
-Charge Storaged Based on
-<a class=anchor href=#charge-storaged-based-on>#</a>
-</h4>
-<p>Admin has two options here, Storage policies and Default rate.. When ‘storage polices’ option is selected, admin can do a ‘differential’ pricing based on storage tiers as set in VCD, for specific Org-VDC. When ‘Default rate’ is selected, for all the datastore same base rate mentioned will be applicable irrespective of storage tiers (Default Rate is a legacy option and will be deprecated soon).</p>
-<ul>
-<li>Example: if the storage policies created in Cloud Director are Gold, Silver and Bronze tiers, a differential price of 4$, 3$ and 2$ per GB per month can be applied based on storage tiers.</li>
-</ul>
-<p>Storage charges are not only applicable at the Org-VDC and VM level. But, they are also applicable for independent disks, media files, vApp templates.</p>
-<p>Charge Based on: VMs can be charged based on configured storage by selecting ‘Limit’ as an option or based on the actual storage consumed by them based on ‘Usage’ as the option in pricing policy.</p>
-<h4 id=storage-base-rate-slab>
-Storage Base Rate Slab
-<a class=anchor href=#storage-base-rate-slab>#</a>
-</h4>
-<p>The service provider may want to charge differently based on the storage consumed by the VM. So, in Storage also, we can charge based on the slab of consumption. Many Service providers provide a discounted rate if the consumption by VMs is higher.</p>
-<ul>
-<li>Example: If you want to charge a VM consuming 100GB of storage at a lower rate ($1 per month) compared to a VM consuming 50GB of storage that is charged at $1.5 per GB per month. In such a case, base rates will be configured as “greater than or equal to:50GB”, “base rate:1”, “default base rate:1.5”. In such a case, a VM having 150GB of storage will be charged $150 a month and a VM having 30GB of storage will be charged $45 a month.</li>
-</ul>
-<p><img src=/images/vta-detailed-design/vta-detailed-design05.png alt="Graphical user interface, application Description automatically generated"></p>
-<h4 id=price-settings>
-Price Settings
-<a class=anchor href=#price-settings>#</a>
+<h4 id=storage>
+Storage
+<a class=anchor href=#storage>#</a>
 </h4>
 <p>There are two types of Storage Pricing Policy Settings</p>
 <ol>
@@ -461,93 +464,14 @@ Price Settings
 <li>Aggregate storage charges from VMs, media, vApp templates and independent disks for PAYG Org-VDCs – When the provider doesn’t want to charge the overheads to the users.</li>
 </ol>
 <p>Please refer to the “CPU rate” section for other configuration parameters and rules, as all the fields and rules are similar in nature except that resource under consideration will be storage metered in GBs.</p>
-<h3 id=network-rate>
-Network Rate
-<a class=anchor href=#network-rate>#</a>
-</h3>
-<p>Tenant app charges network only at edge gateway level and not at the individual VM level.</p>
-<p>Tenant App can charge for Edge gateways that are backed either by NSXV or NSXT. The same pricing rate card fields are used for charging either of these networks. The details of which metrics will be used in each case are given in the metrics table towards the end of this document.</p>
-<h4 id=external-network-transmit>
-External Network Transmit
-<a class=anchor href=#external-network-transmit>#</a>
-</h4>
-<p>Tenant app captures the egress data from edge gateway which in turn is associated with specific Org-VDC. Admin can apply a specific base rate ‘per mb’ of data transfer. The data is measured per edge gateway. All the traffic going through the network is charged here regardless of whether it’s going through the internet or not.</p>
-<h4 id=external-network-receive>
-External Network Receive
-<a class=anchor href=#external-network-receive>#</a>
-</h4>
-<p>Tenant app captures the ingress data from edge gateway which in turn is associated with specific Org-VDC. Admin can apply a specific base rate ‘per mb’ of data transfer. The data is measured per edge gateway. All the traffic going through the network is charged here regardless of whether it’s going through the internet or not.</p>
-<h4 id=network-transmit-rate-bandwidth>
-Network Transmit Rate (Bandwidth)
-<a class=anchor href=#network-transmit-rate-bandwidth>#</a>
-</h4>
-<p>There are 3 ways of charging bandwidth here.</p>
-<ol>
-<li>Conservative – In this this case the Service Providers charge for the average bandwidth consumed by the customer. This is more in favour of the customer and less in that of the Service Provider.</li>
-<li>Aggressive – Here, the Service Provider charges the whole usage at the peak bandwidth usage. This is more in favour of the Service Provider and less in that of the Customer
-<ul>
-<li>Example: The consumption rate is $10 per GBPS. If the average bandwidth usage is 5GBPS. But, the peak bandwidth used is 8GBPS. In this case, the tenant be charged $80 and not $50.</li>
-</ul>
-</li>
-<li>Moderate – In this case, the Service Provider would charge at the 95th Percentile value of the bandwidth.
-<ul>
-<li>Example: The user has had 100 usage samples of Bandwidths 1 to 100 GBPS each respectively. In this case, the peak bandwidth is 100 GBPS and average bandwidth is 50 GBPS. But, in a moderate pricing mechanism, the charge would be calculated on the basis of 95th percentile i.e. with respect to 95 GBPS.</li>
-</ul>
-</li>
-</ol>
-<h4 id=network-receive-rate-bandwidth>
-Network Receive Rate (Bandwidth)
-<a class=anchor href=#network-receive-rate-bandwidth>#</a>
-</h4>
-<p>There are 3 ways of charging bandwidth here.</p>
-<ol>
-<li>Conservative – In this this case the Service Providers charge for the average bandwidth consumed by the customer. This is more in favour of the customer and less in that of the Service Provider.
-<ul>
-<li>Example: You have a 10 GBPS line and the rate is $10 per GBPS. But your average bandwidth usage is 5GBPS. Here you’ll be charged $50.</li>
-</ul>
-</li>
-<li>Aggressive – Here, the Service Provider charges the whole usage at the peak bandwidth usage. This is more in favour of the Service Provider and less in that of the Customer.
-<ul>
-<li>Example: The consumption rate is $10 per GBPS. If the average bandwidth usage is 5GBPS. But, the peak bandwidth used is 8GBPS. In this case, the tenant be charged $80 and not $50.</li>
-</ul>
-</li>
-<li>Moderate – In this case, the Service Provider would charge at the 95th Percentile value of the bandwidth.
-<ul>
-<li>Example: The user has had 100 usage samples of bandwidths 1 to 100 GBPS each respectively. In this case, the peak bandwidth is 100 GBPS and average bandwidth is 50 GBPS. But, in a moderate pricing mechanism, the charge would be calculated on the basis of 95th percentile i.e. with respect to 95 GBPS.</li>
-</ul>
-</li>
-</ol>
-<h4 id=advanced-network-rate>
-Advanced Network Rate
-<a class=anchor href=#advanced-network-rate>#</a>
-</h4>
-<h5 id=edge-services>
-Edge Services
-<a class=anchor href=#edge-services>#</a>
-</h5>
-<p>Apart from the basic data transfer, there are additional value added services offered in Cloud Director in combination with NSX.</p>
-<p>All the network services associated with specific edge such as HA, DHCP, IPV6, IP Sec, Load Balancer, NAT, SSL VPN, L2 VPN, Firewall, Static Routing, BGP Routing, OSPF Routing are considered for charging based on these services are ‘Enabled’ or not. If services are enabled for specific day and base rate is applied for that service, then that particular service gets charged for that specific day. If the service is disabled on any day then base rate will not get applied.</p>
-<h5 id=ip-count>
-IP Count
-<a class=anchor href=#ip-count>#</a>
-</h5>
-<p>These are the unique IP counts available on the external network of the Org-VDC. Pricing can be performed based on the count of these IPs.</p>
-<h5 id=edge-gateway-sizes>
-Edge Gateway Sizes
-<a class=anchor href=#edge-gateway-sizes>#</a>
-</h5>
-<p>Tenant app understands the size of the edge gateway (Compact, Large, Extra Large and Quad Large) and differential price can be assigned based on the edge size.</p>
-<h5 id=nsxt-services>
-NSXT Services
-<a class=anchor href=#nsxt-services>#</a>
-</h5>
-<p>Tenant app now allows you to price for NSXT services like Firewall Charges (per firewall rule count), L2VPN charges (per L2VPN count), Load Balancer Charges (per load balancer count).</p>
+<p>Below is a screenshot for Storage Rate Base Slab.</p>
+<p><img src=/images/vta-detailed-design/vta-detailed-design05.png alt="Graphical user interface, application Description automatically generated"></p>
 <h3 id=guest-os-rate>
 Guest OS Rate
 <a class=anchor href=#guest-os-rate>#</a>
 </h3>
 <p>Guest OS for a specific VM can be charged to apply based on licensing costs. The Guest OS name should be mentioned as displayed in the VCD for specific VM.</p>
-<p>In future, Guest OS name will be a dropdown in tenant app policy creation for the admin to select from the available list.</p>
+<p>In future, Guest OS name will be a dropdown in chargeback policy creation for the admin to select from the available list.</p>
 <h3 id=cloud-director-availability>
 Cloud Director Availability
 <a class=anchor href=#cloud-director-availability>#</a>
@@ -568,14 +492,14 @@ vCenter Tag Rate
 <a class=anchor href=#vcenter-tag-rate>#</a>
 </h3>
 <p>If a VM is tagged with specific key (tag category) and value (tag value) in vCenter then this key-value can be specified to charge a VM or bunch of VMs differentially. Any VM having the specific tag will get this charge applied based on charge period.</p>
-<p>vCenter tag based charges that are added can be individually saved or obtained based on a setting ‘meteringTagDetailedMetricsEnabled’. When this setting is enabled, you can see each of the charges added here in this vCenter tag based section as an individual metric in vROps and hence in Tenant app as well.</p>
+<p>vCenter tag based charges that are added can be individually saved or obtained based on a setting ‘meteringTagDetailedMetricsEnabled’. When this setting is enabled, you can see each of the charges added here in this vCenter tag based section as an individual metric in Aria Operations and hence in chargeback as well.</p>
 <h4 id=how-to-use-the-confige-file>
 How to Use the Confige File
 <a class=anchor href=#how-to-use-the-confige-file>#</a>
 </h4>
-<p>In EACH NODE within the vROps cluster should be performed the following steps:</p>
+<p>In EACH NODE within the Aria Operations cluster should be performed the following steps:</p>
 <ol>
-<li>Connect the vROps node via SSH.</li>
+<li>Connect the Aria Operations node via SSH.</li>
 <li>Open and add/edit appropriate configuration in &ldquo;$ALIVE_BASE/user/conf/analytics/advanced.properties&rdquo; file.</li>
 <li>Restart the analytics service via &ldquo;service vmware-vcops restart analytics&rdquo; command.</li>
 </ol>
@@ -608,7 +532,7 @@ How to Use the Confige File
 </table>
 <p>These can be used when you want to apply additional charge for the applications running on the VM.</p>
 <ul>
-<li>Example: You want to charge additional $10 if there is an SQL server installed (across all VMs). In this case you can set a tag like “SQL Server = True” for these VMs in vCenter. Then, in Tenant App’s Pricing Policy, add a tag “SQL Server” with the value “True” and a rate of “$10” per month. This would apply an additional charge of $10 per month for all the VMs with the tag “SQL Server = True”.</li>
+<li>Example: You want to charge additional $10 if there is an SQL server installed (across all VMs). In this case you can set a tag like “SQL Server = True” for these VMs in vCenter. Then, in Chargeback’s Pricing Policy, add a tag “SQL Server” with the value “True” and a rate of “$10” per month. This would apply an additional charge of $10 per month for all the VMs with the tag “SQL Server = True”.</li>
 </ul>
 <h4 id=vcenter-tag-alternative-pricing-policy>
 vCenter Tag Alternative Pricing Policy
@@ -616,7 +540,7 @@ vCenter Tag Alternative Pricing Policy
 </h4>
 <p>Within vCenter Tag rate, there is an ability to configure ‘Alternate Pricing Policy’, that allows the user to configure an additional charge for each vCPU that may have value added services enabled.</p>
 <ul>
-<li>Example: For all VMs that have SQL server, you want to charge a different rate per vCPU per month. Say, a VM is charged at $1 per vcpu per month and you want to charge the SQL enabled VMs at $2 per vcpu per month. Here, you can create an alternate pricing policy like ‘SQL Server pricing policy’ that charges $2 per vCPU and $2 per GB RAM. In Tenant App Pricing Policy, you can apply a condition that if ‘SQL Server’ tag = ‘True’ then the Alternate pricing policy should be ‘SQL server pricing policy’</li>
+<li>Example: For all VMs that have SQL server, you want to charge a different rate per vCPU per month. Say, a VM is charged at $1 per vcpu per month and you want to charge the SQL enabled VMs at $2 per vcpu per month. Here, you can create an alternate pricing policy like ‘SQL Server pricing policy’ that charges $2 per vCPU and $2 per GB RAM. In Chargeback Pricing Policy, you can apply a condition that if ‘SQL Server’ tag = ‘True’ then the Alternate pricing policy should be ‘SQL server pricing policy’</li>
 </ul>
 <h3 id=vcd-metadata-rate>
 VCD Metadata Rate
@@ -624,9 +548,9 @@ VCD Metadata Rate
 </h3>
 <p>Very similar to VM Tags (as defined in the vCenter), admin can make use of VCD specific tags which are known as VCD Metadata. Objects with which specific metadata is associated will get the charge based on pricing attached to it in VCD metadata rate section of pricing policy.</p>
 <p>These can be used when you want to apply additional charge for the applications running on the VM.</p>
-<p>Metadata based charges that are added can be individually saved or obtained based on a setting ‘meteringTagDetailedMetricsEnabled’. When this setting is enabled, you can see each of the charges added here in this metadata based section as an individual metric in vROps and hence in Tenant app as well. &ldquo;ref to section above&rdquo;.</p>
+<p>Metadata based charges that are added can be individually saved or obtained based on a setting ‘meteringTagDetailedMetricsEnabled’. When this setting is enabled, you can see each of the charges added here in this metadata based section as an individual metric in Aria Operations and hence in chargeback as well. &ldquo;ref to section above&rdquo;.</p>
 <ul>
-<li>Example: You want to charge additional $10 if there is an SQL server installed (across all VMs). In this case you can use a VCD metadata like “SQL Server = True” for these VMs in VCD. Then, in Tenant App pricing policy, add the metadata tag “SQL Server” with the value “True” and a rate of “$10” per month. This would apply an additional charge of $10 per month for all the VMs with the tag “SQL Server = True”.</li>
+<li>Example: You want to charge additional $10 if there is an SQL server installed (across all VMs). In this case you can use a VCD metadata like “SQL Server = True” for these VMs in VCD. Then, in Chargeback pricing policy, add the metadata tag “SQL Server” with the value “True” and a rate of “$10” per month. This would apply an additional charge of $10 per month for all the VMs with the tag “SQL Server = True”.</li>
 </ul>
 <h4 id=vcd-alternative-pricing-policy>
 VCD Alternative Pricing Policy
@@ -634,7 +558,7 @@ VCD Alternative Pricing Policy
 </h4>
 <p>Within VCD Metadata, there is an ability to configure ‘Alternate Pricing Policy’, that allows the user to configure an additional charge for each vCPU that may have value added services enabled.</p>
 <ul>
-<li>Example: For all VMs that have SQL server, you want to charge a different rate per vCPU per month. Say, a VM is charged at $1 per vcpu per month and you want to charge the SQL enabled VMs at $2 per vcpu per month. Here, you can create an alternate pricing policy like ‘SQL Server pricing policy’ that charges $2 per vCPU and $2 per GB RAM. In Tenant App Pricing Policy, you can apply a condition that if ‘SQL Server’ tag = ‘True’ then the Alternate pricing policy should be ‘SQL server pricing policy’.</li>
+<li>Example: For all VMs that have SQL server, you want to charge a different rate per vCPU per month. Say, a VM is charged at $1 per vcpu per month and you want to charge the SQL enabled VMs at $2 per vcpu per month. Here, you can create an alternate pricing policy like ‘SQL Server pricing policy’ that charges $2 per vCPU and $2 per GB RAM. In Chargeback Pricing Policy, you can apply a condition that if ‘SQL Server’ tag = ‘True’ then the Alternate pricing policy should be ‘SQL server pricing policy’.</li>
 </ul>
 <p>Note: This mechanism can effectively be used when charging for FLEX Org-VDCs</p>
 <h3 id=one-time-fixed-cost>
@@ -644,7 +568,7 @@ One Time Fixed Cost
 <p>One time fixed cost is a charge levied by the Service Providers for the events (service or resource provisioning) that happen at a point in time (not regularly or periodically).</p>
 <ul>
 <li>Example: The charge of a new VM creation can be added as a ‘one time fixed cost’.
-Or, the Service Provider may address a support ticket that can be charged additionally, every time there’s a ticket that is addressed. This can also be configured with tags i.e. whenever you address a service request, you can add the tag (or VCD metadata)‘SR addressed’, the value ‘true’ on the VM. In Tenant App, if you have configured the Pricing Policy to add a ‘one time fixed cost’ when ‘SR Addressed’ = ‘True’ and one time fixed cost = ‘$50’, then the VM will get an additional ‘one time fixed cost’ of ‘$50’ in the bill. This one time fixed cost will be added every time the VM gets a tag ‘SR Addressed’ = ‘True’.</li>
+Or, the Service Provider may address a support ticket that can be charged additionally, every time there’s a ticket that is addressed. This can also be configured with tags i.e. whenever you address a service request, you can add the tag (or VCD metadata)‘SR addressed’, the value ‘true’ on the VM. In Chargeback, if you have configured the Pricing Policy to add a ‘one time fixed cost’ when ‘SR Addressed’ = ‘True’ and one time fixed cost = ‘$50’, then the VM will get an additional ‘one time fixed cost’ of ‘$50’ in the bill. This one time fixed cost will be added every time the VM gets a tag ‘SR Addressed’ = ‘True’.</li>
 </ul>
 <p>Note: In the above example, if the Service Provider intends to add ‘SR Addressed’ = ‘True’ cost every time an SR is addressed, then the recommended way is to set the tag ‘SR addressed =True’, leave it for a period of time (e.g. 2 hours) and then remove the tag.</p>
 <h3 id=rate-factors>
@@ -695,8 +619,8 @@ Reports and Bills
 </h2>
 <p>Once these rates are set using the billing policy, they can be applied to organization VDCs in two different ways.</p>
 <ol>
-<li>You can assign a pricing policy to an organization VDC once, and vROps starts automatically calculating price metrics for the given Org-VDC and its resources using the assigned pricing policy. Subsequently, either customized reports can be created in vROps containing usage and price metrics, or prebuilt reports can be accessed from Tenant App. The advantage of setting up reports is that they can be scheduled and exported to formats such as PDF and CSV. You can also generate reports for the tenants to view directly at their end and send an email notification when reports become available.</li>
-<li>You can generate an On-Demand Bill by selecting an organization VDC and a pricing policy. This calculates the prices of Org-VDC and associated resources as per the values of the Pricing Policy at that point in time and presents a Bill inside Tenant App. This bill can be also shared with tenants.</li>
+<li>You can assign a pricing policy to an organization VDC once, and Aria Operations starts automatically calculating price metrics for the given Org-VDC and its resources using the assigned pricing policy. Subsequently, either customized reports can be created in Aria Operations containing usage and price metrics, or prebuilt reports can be accessed from Chargeback. The advantage of setting up reports is that they can be scheduled and exported to formats such as PDF and CSV. You can also generate reports for the tenants to view directly at their end and send an email notification when reports become available.</li>
+<li>You can generate an On-Demand Bill by selecting an organization VDC and a pricing policy. This calculates the prices of Org-VDC and associated resources as per the values of the Pricing Policy at that point in time and presents a Bill inside Chargeback. This bill can be also shared with tenants.</li>
 <li>You can schedule bill generation, by selecting an Organization-VDC, a pricing policy and enable Schedule Bill setting. Then define the Recurrence (Monthly or Weekly), and detailed days of the billing period.</li>
 </ol>
 <p>Note: This bill is typically used by the Service Providers via an API to read the details and feed to their own billing systems</p>
@@ -705,12 +629,40 @@ Alerts
 <a class=anchor href=#alerts>#</a>
 </h2>
 <p>You can enable and select the type of alerts to be shared with the customer to view at their end. An email notification is also triggered to the tenants on the alerts enabled for them.</p>
-<h2 id=differences-between-tenant-app-and-chargeback-manager--usage-meter>
-Differences Between Tenant App and Chargeback Manager / Usage Meter
-<a class=anchor href=#differences-between-tenant-app-and-chargeback-manager--usage-meter>#</a>
+<h2 id=differences-between-chargeback-and-chargeback-manager--usage-meter>
+Differences Between Chargeback and Chargeback Manager / Usage Meter
+<a class=anchor href=#differences-between-chargeback-and-chargeback-manager--usage-meter>#</a>
 </h2>
-<p>vRealize Operations Tenant App today does not present rollups of usage in units of MB.hours, but in terms of $ cost. This can be worked around by setting a cost of $1/MB.hr. vRealize Operations has all the individual data points, which can be accessed through the Tenant App APIs. A detailed description of the metrics used for the bill creation and API usage examples can be found in the Appendix.</p>
+<p>VMware Chargeback today does not present rollups of usage in units of MB.hours, but in terms of $ cost. This can be worked around by setting a cost of $1/MB.hr. vRealize Operations has all the individual data points, which can be accessed through the Chargeback APIs. A detailed description of the metrics used for the bill creation and API usage examples can be found in the Appendix.</p>
 <p>However, the collection interval, collection methods and rollup methods of vRealize Operations differs from Chargeback Manager / Usage Meter.</p>
+<h2 id=design-decisions-for-deploying-vmware-chargeback>
+Design Decisions for deploying VMware Chargeback
+<a class=anchor href=#design-decisions-for-deploying-vmware-chargeback>#</a>
+</h2>
+<table>
+<thead>
+<tr>
+<th>Decision ID</th>
+<th>Design Decision</th>
+<th>Design Justification</th>
+<th>Design Implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VCPCB-001</td>
+<td>Deploy Chargeback at each physical location where Cloud Director is installed</td>
+<td>Access to Cloud Director and Aria Operations should be local</td>
+<td>Need Aria Operations deployed at the site for performance metrics for tenants</td>
+</tr>
+<tr>
+<td>VCPCB-002</td>
+<td>Deploy Aira Operations in each physical location where Cloud Director and Chargeback are installed</td>
+<td>Aria Operations will provide much more information to tenants via Chargeback, enhancing overall performance monitoring and resource utilitzation</td>
+<td>Need to deploy and maintain Aria Operations at each</td>
+</tr>
+</tbody>
+</table>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
