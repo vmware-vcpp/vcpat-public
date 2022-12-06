@@ -2,19 +2,23 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Cloud Infrastructure Certificate Management #  ">
+<meta name=description content="Cloud Infrastructure Certificate Management #  Starting with VMware Cloud Provider Lifecycle Manager 1.4, you can use the UI to manage the product certificates.
+With VMware Cloud Provider Lifecycle Manager, you can specify the following VMware Cloud Director certificates. Product certificates can be viewed, downloaded and replaced using VMware Cloud Provider Lifecycle Manager.
+Manage VMware Cloud Director certificates #  Procedure #   To access the VMware Cloud Provider Lifecycle Manager UI, navigate to https://vcplcmhost-name and login as vcplcm.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Cloud Infrastructure Certificate Management">
-<meta property="og:description" content="Cloud Infrastructure Certificate Management #  ">
+<meta property="og:description" content="Cloud Infrastructure Certificate Management #  Starting with VMware Cloud Provider Lifecycle Manager 1.4, you can use the UI to manage the product certificates.
+With VMware Cloud Provider Lifecycle Manager, you can specify the following VMware Cloud Director certificates. Product certificates can be viewed, downloaded and replaced using VMware Cloud Provider Lifecycle Manager.
+Manage VMware Cloud Director certificates #  Procedure #   To access the VMware Cloud Provider Lifecycle Manager UI, navigate to https://vcplcmhost-name and login as vcplcm.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/cert-management/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2022-12-05T18:32:47+05:30">
+<meta property="article:modified_time" content="2022-12-06T18:14:08+05:30">
 <title>Cloud Infrastructure Certificate Management | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.482ff84bb8079ff4472ea6e91aeaf0053f84bbe7ea6fbfc409b28248cf73cec5.js integrity="sha256-SC/4S7gHn/RHLqbpGurwBT+Eu+fqb7/ECbKCSM9zzsU=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.434e806e83964d658d5d74134dd2a5df61e42b4df03943b0d1429d7b791afef8.js integrity="sha256-Q06AboOWTWWNXXQTTdKl32HkK03wOUOw0UKde3ka/vg=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -135,6 +139,119 @@ VMware Cloud Solutions
 Cloud Infrastructure Certificate Management
 <a class=anchor href=#cloud-infrastructure-certificate-management>#</a>
 </h1>
+<p>Starting with VMware Cloud Provider Lifecycle Manager 1.4, you can use the UI to manage the
+product certificates.</p>
+<p>With VMware Cloud Provider Lifecycle Manager, you can specify the following VMware Cloud
+Director certificates.
+Product certificates can be viewed, downloaded and replaced using VMware Cloud Provider Lifecycle Manager.</p>
+<h2 id=manage-vmware-cloud-director-certificates>
+Manage VMware Cloud Director certificates
+<a class=anchor href=#manage-vmware-cloud-director-certificates>#</a>
+</h2>
+<h3 id=procedure>
+Procedure
+<a class=anchor href=#procedure>#</a>
+</h3>
+<ol>
+<li>To access the VMware Cloud Provider Lifecycle Manager UI, navigate to https://vcplcmhost-name and login as <strong>vcplcm</strong>.</li>
+<li>In the top navigation bar, click <strong>Environments</strong>.</li>
+<li>In the product card, from the <strong>Actions</strong> drop down menu, select <strong>Manage Certificate</strong>.</li>
+</ol>
+<p><img src=/images/Cloud-Infrastructure-CPLCM-Implementation/vcd-manage-cert-2.jpg alt=vcd-cert-2></p>
+<p>The <strong>Manage certificate in VCD product</strong> window opens.</p>
+<ol start=4>
+<li>Update a certificate configuration.
+<ul>
+<li>To update a specific certificate, under the certificate name, click <strong>Replace Certificate</strong>.</li>
+<li>To update multiple certificates simultaneously, on the top of the <strong>Manage certificate in
+VCD product</strong> window, click <strong>Replace Certificates</strong> and provide the certificates
+information. To complete the update, click <strong>OK</strong>.</li>
+</ul>
+</li>
+</ol>
+<p><img src=/images/Cloud-Infrastructure-CPLCM-Implementation/vcd-manage-cert-3.jpg alt=vcd-cert-3></p>
+<p><img src=/images/Cloud-Infrastructure-CPLCM-Implementation/vcd-manage-cert-5.jpg alt=vcd-cert-4></p>
+<h2 id=manage-usage-meter-certificates>
+Manage Usage Meter certificates
+<a class=anchor href=#manage-usage-meter-certificates>#</a>
+</h2>
+<h3 id=procedure-1>
+Procedure
+<a class=anchor href=#procedure-1>#</a>
+</h3>
+<ol>
+<li>To access the VMware Cloud Provider Lifecycle Manager UI, navigate to https://vcplcmhost-name and login as <strong>vcplcm</strong>.</li>
+<li>In the top navigation bar, click <strong>Environments</strong>.</li>
+<li>In the product card, from the <strong>Actions</strong> drop down menu, select <strong>Manage Certificate</strong>.</li>
+</ol>
+<p><img src=/images/Cloud-Infrastructure-CPLCM-Implementation/um-manage-cert-1.jpg alt=um-cert-1></p>
+<p>The <strong>Manage certificate in Usage Meter product</strong> window opens.</p>
+<ol start=4>
+<li>Update a certificate configuration.
+<ul>
+<li>To update a specific certificate, under the certificate name, click <strong>Replace Certificate</strong>.</li>
+<li>To update multiple certificates simultaneously, on the top of the <strong>Manage certificate in
+Usage Meter product</strong> window, click <strong>Replace Certificates</strong> and provide the certificates
+information. To complete the update, click <strong>OK</strong>.</li>
+</ul>
+</li>
+</ol>
+<p><img src=/images/Cloud-Infrastructure-CPLCM-Implementation/um-manage-cert-2.jpg alt=um-cert-2></p>
+<p><img src=/images/Cloud-Infrastructure-CPLCM-Implementation/um-manage-cert3.jpg alt=um-cert-3></p>
+<h2 id=manage-chargeback-certificates>
+Manage Chargeback certificates
+<a class=anchor href=#manage-chargeback-certificates>#</a>
+</h2>
+<h3 id=procedure-2>
+Procedure
+<a class=anchor href=#procedure-2>#</a>
+</h3>
+<ol>
+<li>To access the VMware Cloud Provider Lifecycle Manager UI, navigate to https://vcplcmhost-name and login as <strong>vcplcm</strong>.</li>
+<li>In the top navigation bar, click <strong>Environments</strong>.</li>
+<li>In the product card, from the <strong>Actions</strong> drop down menu, select <strong>Manage Certificate</strong>.</li>
+</ol>
+<p><img src=/images/Cloud-Infrastructure-CPLCM-Implementation/charg-manage-cert-1.jpg alt=charg-cert-1></p>
+<p>The <strong>Manage certificate in Chargeback product</strong> window opens.</p>
+<ol start=4>
+<li>Update a certificate configuration.
+<ul>
+<li>To update a specific certificate, under the certificate name, click <strong>Replace Certificate</strong>.</li>
+<li>To update multiple certificates simultaneously, on the top of the <strong>Manage certificate in
+Chargeback product</strong> window, click <strong>Replace Certificates</strong> and provide the certificates
+information. To complete the update, click <strong>OK</strong>.</li>
+</ul>
+</li>
+</ol>
+<p><img src=/images/Cloud-Infrastructure-CPLCM-Implementation/charg-manage-cert-2.jpg alt=charg-cert-2></p>
+<p><img src=/images/Cloud-Infrastructure-CPLCM-Implementation/charg-manage-cert-3.jpg alt=charg-cert-3></p>
+<h2 id=manage-rabbitmq-certificates>
+Manage RabbitMQ certificates
+<a class=anchor href=#manage-rabbitmq-certificates>#</a>
+</h2>
+<h3 id=procedure-3>
+Procedure
+<a class=anchor href=#procedure-3>#</a>
+</h3>
+<ol>
+<li>To access the VMware Cloud Provider Lifecycle Manager UI, navigate to https://vcplcmhost-name and login as <strong>vcplcm</strong>.</li>
+<li>In the top navigation bar, click <strong>Environments</strong>.</li>
+<li>In the product card, from the <strong>Actions</strong> drop down menu, select <strong>Manage Certificate</strong>.</li>
+</ol>
+<p><img src=/images/Cloud-Infrastructure-CPLCM-Implementation/rmq-manage-cert-1.jpg alt=rmq-cert-1></p>
+<p>The <strong>Manage certificate in RabbitMQ product</strong> window opens.</p>
+<ol start=4>
+<li>Update a certificate configuration.
+<ul>
+<li>To update a specific certificate, under the certificate name, click <strong>Replace Certificate</strong>.</li>
+<li>To update multiple certificates simultaneously, on the top of the <strong>Manage certificate in
+RabbitMQ product</strong> window, click <strong>Replace Certificates</strong> and provide the certificates
+information. To complete the update, click <strong>OK</strong>.</li>
+</ul>
+</li>
+</ol>
+<p><img src=/images/Cloud-Infrastructure-CPLCM-Implementation/rmq-manage-cert-2.jpg alt=rmq-cert-2></p>
+<p><img src=/images/Cloud-Infrastructure-CPLCM-Implementation/rmq-manage-cert-3.jpg alt=rmq-cert-3></p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
