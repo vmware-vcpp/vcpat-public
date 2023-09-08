@@ -14,7 +14,7 @@ A VMware validated solution is a technical validated implementation that is buil
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.947fbf6872a6f95e6b2b2c85a4a81cd58ced0d93caa302c0caad4dafb64b198b.js integrity="sha256-lH+/aHKm+V5rKyyFpKgc1YztDZPKowLAyq1Nr7ZLGYs=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.4ed47ca43bab3aadc26d91f60fbf2568a12e0ac2a57560ff47193fe97b64d902.js integrity="sha256-TtR8pDurOq3CbZH2D78laKEuCsKldWD/Rxk/6Xtk2QI=" crossorigin=anonymous></script>
 <link rel=alternate type=application/rss+xml href=http://vcpat.cloudhappens.io/docs/cloud-infrastructure/index.xml title="VMware Cloud Provider Architecture Toolkit">
 </head>
 <body dir=ltr>
@@ -143,8 +143,8 @@ About Cloud Infrastructure
 Automation for This Design in VMware Cloud Foundation
 <a class=anchor href=#automation-for-this-design-in-vmware-cloud-foundation>#</a>
 </h2>
-<p>The implementation tasks for some design decisions are automated by SDDC Manager. You must perform the implementation manually for the rest of the design decisions as noted in the design implication.
-To provide a fast and efficient path to automating the Cloud Infrastructure implementation, this document provides Microsoft PowerShell cmdlets as code-based alternatives to completing certain procedures in each SDDC component&rsquo;s user interface. You can directly reuse the PowerShell commands by replacing the provided sample values with values from your VMware Cloud Foundation Planning and Preparation Workbook. Additonal automation is provided using Postman collections for API automation and Terraform workflows for VMware Cloud Director automation.</p>
+<p>The implementation tasks for some design decisions are automated by VMware Cloud Provider Lifecycle Manager(VCPLCM). You must perform the implementation manually for the rest of the design decisions as noted in the design implication.
+To provide a fast and efficient path to automating the Cloud Infrastructure implementation, this document provides Microsoft PowerShell cmdlets as code-based alternatives to completing certain procedures in each VCPLCM component&rsquo;s user interface. You can directly reuse the PowerShell commands by replacing the provided sample values with values from your VMware Cloud Foundation Planning and Preparation Workbook. Additonal automation is provided using Postman collections for API automation and Terraform workflows for VMware Cloud Director automation.</p>
 <h2 id=intended-audience>
 Intended Audience
 <a class=anchor href=#intended-audience>#</a>
@@ -168,6 +168,16 @@ Software Components in Cloud Infrastructure
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>5.0</td>
+<td>Products part of VMware Cloud Foundation</td>
+<td>See <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/5.0/rn/vmware-cloud-foundation-50-release-notes/index.html>VMware Cloud Foundation 5.0 Release Notes</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Solution-added products</td>
+<td><ul><li>VMware Cloud Director x.x.x</li><li>VMware vCloud Usage Meter x.x</li><li>VMware Chargeback (Formerly vRealize Operations Tenant App) x.x</li><li>RabbitMQ x.x</li><li>VMware Cloud Provider Lifecycle Manager x.x </li></ul></td>
+</tr>
 <tr>
 <td>4.5</td>
 <td>Products part of VMware Cloud Foundation</td>
