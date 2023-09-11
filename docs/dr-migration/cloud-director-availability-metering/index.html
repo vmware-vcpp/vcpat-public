@@ -10,13 +10,13 @@ Prerequisites #   vCloud Usage Meter can connect to VMware Cloud Director Availa
 Prerequisites #   vCloud Usage Meter can connect to VMware Cloud Director Availability.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/cloud-director-availability-metering/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-09-08T14:03:41+05:30">
+<meta property="article:modified_time" content="2023-09-11T16:48:06+03:00">
 <title>Cloud Director Availability Metering | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.4ed47ca43bab3aadc26d91f60fbf2568a12e0ac2a57560ff47193fe97b64d902.js integrity="sha256-TtR8pDurOq3CbZH2D78laKEuCsKldWD/Rxk/6Xtk2QI=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.7efcbb6f97989c006376c9393cd20c851455969f96bce590c91b04d502328dde.js integrity="sha256-fvy7b5eYnABjdsk5PNIMhRRVlp+WvOWQyRsE1QIyjd4=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -168,12 +168,11 @@ Metered cases
 <a class=anchor href=#metered-cases>#</a>
 </h2>
 <ul>
-<li>VMware Cloud Director Availability vCenter Cloud-to-vCenter Cloud Protections</li>
-<li>VMware Cloud Director Availability vCenter Cloud-to-vCenter Cloud Migrations</li>
-<li>VMware Cloud Director Availability vCenter Cloud-to-vCenter Protections</li>
-<li>VMware Cloud Director Availability vCenter Cloud-to-vCenter Migrations</li>
-<li>VMware Cloud Director Availability vCenter-to-vCenter Cloud Protections</li>
-<li>VMware Cloud Director Availability vCenter-to-vCenter Cloud Migrations</li>
+<li>Cloud-to-Cloud migrations and protections, where the registered VMware Cloud Director Availability is the destination. vCenter-to-Cloud migrations and protections, where the registered VMware Cloud Director Availability is the destination. (This case also includes vApp template migrations and protections which are metered like standard vApp/VM migrations and protections. Please note the metering is done per VM and not per template.)</li>
+<li>Cloud-to-vCenter migrations and protections, where the registered VMware Cloud Director Availability is the source.</li>
+<li>vCenter Cloud-to-vCenter Cloud migrations and protections, where the registered VMware Cloud Director Availability is the destination.</li>
+<li>vCenter-to-vCenter Cloud migrations and protections, where the registered VMware Cloud Director Availability is the destination.</li>
+<li>vCenter Cloud-to-vCenter migrations and protections, where the registered VMware Cloud Director Availability is the source.</li>
 </ul>
 <h2 id=reporting>
 Reporting

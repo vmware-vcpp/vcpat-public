@@ -10,13 +10,13 @@ Cloud Replication Management Appliance #  The Cloud Replication Management appli
 Cloud Replication Management Appliance #  The Cloud Replication Management appliance is responsible for the communication with VMware Cloud Director. Based on this communication, it discovers resources (OrgVCD, storage policies, datastores, networks, etc.) managed by VMware Cloud Director and used by the tenants. This information is required for discovering vApps/VMs that can be replicated/migrated or suitable destination locations for incoming replications/migrations.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/logical-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-09-08T14:03:41+05:30">
+<meta property="article:modified_time" content="2023-09-11T16:48:06+03:00">
 <title>DR and Migration Logical Design | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.4ed47ca43bab3aadc26d91f60fbf2568a12e0ac2a57560ff47193fe97b64d902.js integrity="sha256-TtR8pDurOq3CbZH2D78laKEuCsKldWD/Rxk/6Xtk2QI=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.7efcbb6f97989c006376c9393cd20c851455969f96bce590c91b04d502328dde.js integrity="sha256-fvy7b5eYnABjdsk5PNIMhRRVlp+WvOWQyRsE1QIyjd4=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -176,7 +176,7 @@ Cloud Replicator is the only component that can scale out as the number of prote
 Cloud Tunnel
 <a class=anchor href=#cloud-tunnel>#</a>
 </h3>
-<p>The Cloud Tunnel appliance is the single-entry point to the VMware Cloud Director Availability instance in the cloud. Its role is to handle and forward the incoming management and replication traffic. It is the only VMware Cloud Director Availability appliance that needs a dedicated Internet-accessible endpoint.</p>
+<p>The Cloud Tunnel appliance is the single-entry point to the VMware Cloud Director Availability instance in the cloud. Its role is to handle and forward the incoming management and replication traffic. It is the only VMware Cloud Director Availability appliance that needs a dedicated Internet-accessible endpoint. A second Cloud Tunnel appliance can be deployed to maintain high availability and load balancing.</p>
 <h2 id=logical-design-for-product-deployment>
 Logical Design For Product Deployment
 <a class=anchor href=#logical-design-for-product-deployment>#</a>

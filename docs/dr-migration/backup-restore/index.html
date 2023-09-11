@@ -12,13 +12,13 @@ The backup archive contains the following information from each appliance in the
  Configuration files Public certificate Keystore Database dump  The backup does not contain:">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/backup-restore/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-09-08T14:03:41+05:30">
+<meta property="article:modified_time" content="2023-09-11T16:48:06+03:00">
 <title>DR and Migration Backup and Restore | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.4ed47ca43bab3aadc26d91f60fbf2568a12e0ac2a57560ff47193fe97b64d902.js integrity="sha256-TtR8pDurOq3CbZH2D78laKEuCsKldWD/Rxk/6Xtk2QI=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.7efcbb6f97989c006376c9393cd20c851455969f96bce590c91b04d502328dde.js integrity="sha256-fvy7b5eYnABjdsk5PNIMhRRVlp+WvOWQyRsE1QIyjd4=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -160,22 +160,46 @@ DR and Migration Backup and Restore
 </ul>
 <p>The backups are encrypted and password protected. They can be downloaded from the VMware Cloud Director Availability UI or API and stored outside of the VMware Cloud Director Availability
 appliances.</p>
-<h2 id=generate-a-backup-archive>
-Generate a Backup Archive
-<a class=anchor href=#generate-a-backup-archive>#</a>
+<h2 id=automated-backup-generation>
+Automated Backup Generation
+<a class=anchor href=#automated-backup-generation>#</a>
+</h2>
+<p>Follow these steps from the Cloud Replication Manager appliance to schedule the backups of all the VMware Cloud Director Availability appliances:</p>
+<ol>
+<li>Log in to the VMware Cloud Director Availability UI at <a href=https://Appliance-IP-Address/ui/admin>https://Appliance-IP-Address/ui/admin</a>.</li>
+<li>Navigate to the <strong>Backup Archives</strong> menu.</li>
+<li>Select <strong>Scheduled backup archives</strong>.</li>
+<li>Click <strong>CONFIGURE SCHEDULE</strong>.</li>
+<li>Enter the remote server details and select the authentication.</li>
+</ol>
+<p><img src=/images/dr-migration/detailed-design/lifecycle-mgmt/vcda-automated-backup-server-auth.png alt="Generate a backup of all VMware Cloud Director Availability appliances"></p>
+<ol start=6>
+<li>Click <strong>TEST CONNECTION</strong>.</li>
+<li>Accept the thumbprint and you will see a message that the connection is successful.</li>
+<li>Configure the backup interval, retention settings, and optionally a delayed start. Enter the password that will be used to encrypt the archive.</li>
+</ol>
+<p><img src=/images/dr-migration/detailed-design/lifecycle-mgmt/vcda-automated-backup-settings.png alt="Generate a backup of all VMware Cloud Director Availability appliances"></p>
+<ol start=9>
+<li>Finalize the wizard. You will start seeing the archives being generated according to the schedule. It can be always modified or stopped.</li>
+</ol>
+<p><img src=/images/dr-migration/detailed-design/lifecycle-mgmt/vcda-configured-automated-backup.png alt="Generate a backup of all VMware Cloud Director Availability appliances"></p>
+<h2 id=manual-backup-generation>
+Manual Backup Generation
+<a class=anchor href=#manual-backup-generation>#</a>
 </h2>
 <p>Follow these steps from the Cloud Replication Manager appliance to back up all appliances:</p>
 <ol>
 <li>Log in to the VMware Cloud Director Availability UI at <a href=https://Appliance-IP-Address/ui/admin>https://Appliance-IP-Address/ui/admin</a>.</li>
 <li>Navigate to the <strong>Backup Archives</strong> menu.</li>
+<li>Select <strong>Manual backup archives</strong>.</li>
 <li>Click <strong>GENERATE NEW</strong>.</li>
 <li>The backup window pops-up. There you need to enter a password and click the <strong>GENERATE</strong> button.</li>
 </ol>
-<p><img src=/images/dr-migration/detailed-design/lifecycle-mgmt/vcda-generate-backup.png alt="Generate a backup of all VMware Cloud Director Availability appliances"></p>
-<ol start=5>
+<p><img src=/images/dr-migration/detailed-design/lifecycle-mgmt/vcda-generate-manual-backup.png alt="Generate a backup of all VMware Cloud Director Availability appliances"></p>
+<ol start=6>
 <li>Shortly, the backup archive will be ready and can be downloaded by clicking the download button.</li>
 </ol>
-<p><img src=/images/dr-migration/detailed-design/lifecycle-mgmt/vcda-backup-generated-download.png alt="Download the backup archive of all VMware Cloud Director Availability appliances"></p>
+<p><img src=/images/dr-migration/detailed-design/lifecycle-mgmt/vcda-manual-backup-download.png alt="Download the backup archive of all VMware Cloud Director Availability appliances"></p>
 <p>Note: If you perform backups per appliance, you can follow the same steps in the UI of each VMware Cloud Director Availability appliance.</p>
 <h2 id=restore-a-backup>
 Restore a Backup
@@ -198,7 +222,7 @@ Restore a Backup
 <li>Click <strong>RESTORE</strong>.</li>
 <li>Select the correct .enc file for the component that is being restored, enter the password specified during the backup archive creation, and click <strong>RESTORE</strong>. If you have selected a wrong backup for another component, you will see the <strong>The appliance role does not match the one in the backup archive.</strong> error message.</li>
 </ol>
-<p><img src=/images/dr-migration/detailed-design/lifecycle-mgmt/vcda-restore-backup.png alt="Restore a backup of a VMware Cloud Director Availability appliance"></p>
+<p><img src=/images/dr-migration/detailed-design/lifecycle-mgmt/vcda-backup-restore.png alt="Restore a backup of a VMware Cloud Director Availability appliance"></p>
 <ol start=6>
 <li>When the process is completed, you will be able to access the VMware Cloud Director Availability appliance that you have just restored.</li>
 </ol>
