@@ -2,19 +2,19 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Add the VMware Cloud Director Availability Instance to Usage Meter #  Prerequisites #   vCloud Usage Meter can connect to VMware Cloud Director Availability. You have the root credentials for the VMware Cloud Director Availability appliance. The VMware Cloud Director Availability certificate is FIPS compliant.  Procedure #   In the main menu bar of the vCloud Usage Meter Web interface, click Products. In the left navigation pane, click VMware Cloud Director Availability.">
+<meta name=description content="Add the VMware Cloud Director Availability Instance to Usage Meter #  Prerequisites #   vCloud Usage Meter can connect to VMware Cloud Director Availability. You have the credentials for the VMware Cloud Director Availability root or another user with sufficient privileges.  Procedure #   In the main menu bar of the vCloud Usage Meter Web interface, click Products. In the left pane, navigate to Migration & Recovery > Cloud Director Availability.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Add the VMware Cloud Director Availability Instance to Usage Meter">
-<meta property="og:description" content="Add the VMware Cloud Director Availability Instance to Usage Meter #  Prerequisites #   vCloud Usage Meter can connect to VMware Cloud Director Availability. You have the root credentials for the VMware Cloud Director Availability appliance. The VMware Cloud Director Availability certificate is FIPS compliant.  Procedure #   In the main menu bar of the vCloud Usage Meter Web interface, click Products. In the left navigation pane, click VMware Cloud Director Availability.">
+<meta property="og:description" content="Add the VMware Cloud Director Availability Instance to Usage Meter #  Prerequisites #   vCloud Usage Meter can connect to VMware Cloud Director Availability. You have the credentials for the VMware Cloud Director Availability root or another user with sufficient privileges.  Procedure #   In the main menu bar of the vCloud Usage Meter Web interface, click Products. In the left pane, navigate to Migration & Recovery > Cloud Director Availability.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/attach-um-to-vcda/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-09-11T16:52:19+03:00">
+<meta property="article:modified_time" content="2023-09-11T17:31:53+03:00">
 <title>Add the VMware Cloud Director Availability Instance to Usage Meter | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.782790a8c26b3d7835dba060f76f8cd5ad3c65013486b01f387814bdc8203c64.js integrity="sha256-eCeQqMJrPXg126Bg92+M1a08ZQE0hrAfOHgUvcggPGQ=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.03afdd554b525fd3c234fc211cba5dfe0273dc38cadf7f18209c8cb4ebeeefb4.js integrity="sha256-A6/dVUtSX9PCNPwhHLpd/gJz3DjK338YIJyMtOvu77Q=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -142,8 +142,7 @@ Prerequisites
 </h2>
 <ul>
 <li>vCloud Usage Meter can connect to VMware Cloud Director Availability.</li>
-<li>You have the root credentials for the VMware Cloud Director Availability appliance.</li>
-<li>The VMware Cloud Director Availability certificate is FIPS compliant.</li>
+<li>You have the credentials for the VMware Cloud Director Availability root or another user with sufficient privileges.</li>
 </ul>
 <h2 id=procedure>
 Procedure
@@ -151,11 +150,36 @@ Procedure
 </h2>
 <ol>
 <li>In the main menu bar of the vCloud Usage Meter Web interface, click Products.</li>
-<li>In the left navigation pane, click VMware Cloud Director Availability.</li>
-<li>On the VMware Cloud Director Availability page, click the Add.</li>
-<li>In the Endpoint text box, enter the host name or IP address of the VMware Cloud Director Availability Cloud Replication Management Appliance.</li>
-<li>In the Username and Password text boxes, enter the credentials of a VMware Cloud Director Availability root user.</li>
-<li>Click Add.</li>
+<li>In the left pane, navigate to Migration & Recovery > Cloud Director Availability.</li>
+<li>On the Cloud Director Availability page, click Add.</li>
+<li>In the Endpoint text box, enter the host name or IP address of the VMware Cloud Director Availability instance.</li>
+<li>From the Autentication provider radio button, select one of the authenitcation mechanisms.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Authentication mechanism</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cloud Director Availability</td>
+<td>Select if you use a Cloud Director Replication Management Appliance or a vCenter Replication Management Appliance. Requires the root user account credentials of the VMware Cloud Director Availability appliance.</td>
+</tr>
+<tr>
+<td>vSphere SSO</td>
+<td>Select if you use the vCenter Replication Management Appliance. Requires vSphere SSO credentials. The user must be a member of the VrMonitoringAdministrators SSO group in vSphere.</td>
+</tr>
+<tr>
+<td>Cloud Director</td>
+<td>Select if you use the Cloud Director Replication Management Appliance. The user must have a provider account with the VCDA_READ_RIGHT role assigned in VMware Cloud Director.</td>
+</tr>
+</tbody>
+</table>
+<ol start=6>
+<li>In the Username and Password text boxes, enter the credentials of the selected VMware Cloud Director Availability authentication provider.</li>
+<li>Click <strong>Add</strong>.</li>
 </ol>
 </article>
 <footer class=book-footer>

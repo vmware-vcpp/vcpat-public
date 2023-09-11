@@ -2,7 +2,7 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="About DR and Migration #  The DR and Migration validated solution provides detailed design, implementation, configuration, and operation guidance on how to properly utilize VMware Cloud Director Availability. A VMware validated solution is a technical validated implementation that is built and tested by VMware and VMware cloud providers to help customers resolve common business use cases. VMware validated solutions are cost-effective, performant, reliable, and secure. Each solution contains a detailed design, implementation, and operational guidance.">
+<meta name=description content="About DR and Migration #  The DR and Migration validated solution provides detailed design, implementation, configuration, and operation guidance on how to properly utilize VMware Cloud Director Availability for VMware Cloud Director and VMware vSphere Clouds. A VMware validated solution is a technical validated implementation that is built and tested by VMware and VMware cloud providers to help customers resolve common business use cases. VMware validated solutions are cost-effective, performant, reliable, and secure.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="DR and Migration">
 <meta property="og:description" content>
@@ -13,7 +13,7 @@
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.782790a8c26b3d7835dba060f76f8cd5ad3c65013486b01f387814bdc8203c64.js integrity="sha256-eCeQqMJrPXg126Bg92+M1a08ZQE0hrAfOHgUvcggPGQ=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.03afdd554b525fd3c234fc211cba5dfe0273dc38cadf7f18209c8cb4ebeeefb4.js integrity="sha256-A6/dVUtSX9PCNPwhHLpd/gJz3DjK338YIJyMtOvu77Q=" crossorigin=anonymous></script>
 <link rel=alternate type=application/rss+xml href=http://vcpat.cloudhappens.io/docs/dr-migration/index.xml title="VMware Cloud Provider Architecture Toolkit">
 </head>
 <body dir=ltr>
@@ -165,15 +165,14 @@ VMware Cloud Solutions
 About DR and Migration
 <a class=anchor href=#about-dr-and-migration>#</a>
 </h1>
-<p>The DR and Migration validated solution provides detailed design, implementation, configuration, and operation guidance on how to properly utilize VMware Cloud Director Availability.
-A VMware validated solution is a technical validated implementation that is built and tested by VMware and VMware cloud providers to help customers resolve common business use cases. VMware validated solutions are cost-effective, performant, reliable, and secure. Each solution contains a detailed design, implementation, and operational guidance.
-to migrate workloads to the cloud, they may use the Migration workflow to simplify the process. When a “New Migration” is configured, VMware Cloud Director Availability starts replication of the vApp/VM from the source to the destination.</p>
+<p>The DR and Migration validated solution provides detailed design, implementation, configuration, and operation guidance on how to properly utilize VMware Cloud Director Availability for VMware Cloud Director and VMware vSphere Clouds.
+A VMware validated solution is a technical validated implementation that is built and tested by VMware and VMware cloud providers to help customers resolve common business use cases. VMware validated solutions are cost-effective, performant, reliable, and secure. Each solution contains a detailed design, implementation, and operational guidance.</p>
 <h2 id=automation-for-this-design-in-vmware-cloud-foundation>
 Automation for This Design in VMware Cloud Foundation
 <a class=anchor href=#automation-for-this-design-in-vmware-cloud-foundation>#</a>
 </h2>
 <p>The implementation tasks for some design decisions are automated by SDDC Manager. You must perform the implementation manually for the rest of the design decisions as noted in the design implication.
-Currently, there are no automation options for the deployment and configuration of VMware Cloud Director Availability, so the process needs to be performed manually.</p>
+There is a <a href=https://registry.terraform.io/providers/vmware/vcda/latest/docs>Terraform Provider</a> available for the configuration of VMware Cloud Director Availability appliances. All other steps, such as deployment and maintenance, need to be performed manually.</p>
 <h2 id=intended-audience>
 Intended Audience
 <a class=anchor href=#intended-audience>#</a>

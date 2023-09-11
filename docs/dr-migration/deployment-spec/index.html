@@ -12,13 +12,13 @@ Deployment Model #  You consider the deployment model according to the design ob
 A VMware Cloud Director Availability instance is required in each VMware Cloud Foundation instance that is intended to be utilized for the DR and migration services offered to tenants.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/deployment-spec/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-09-11T16:52:19+03:00">
+<meta property="article:modified_time" content="2023-09-11T17:31:53+03:00">
 <title>DR and Migration Deployment Specification | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.782790a8c26b3d7835dba060f76f8cd5ad3c65013486b01f387814bdc8203c64.js integrity="sha256-eCeQqMJrPXg126Bg92+M1a08ZQE0hrAfOHgUvcggPGQ=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.03afdd554b525fd3c234fc211cba5dfe0273dc38cadf7f18209c8cb4ebeeefb4.js integrity="sha256-A6/dVUtSX9PCNPwhHLpd/gJz3DjK338YIJyMtOvu77Q=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -146,7 +146,7 @@ Deployment Model
 <a class=anchor href=#deployment-model>#</a>
 </h2>
 <p>You consider the deployment model according to the design objectives and scale of your DR and migration services.</p>
-<p>A VMware Cloud Director Availability instance is required in each VMware Cloud Foundation instance that is intended to be utilized for the DR and migration services offered to tenants. You deploy the VMware Cloud Director Availability Cloud Replication Management and Cloud Tunnel appliances in the management domain and the Cloud Replicator(s) in the Workload domain(s).</p>
+<p>A VMware Cloud Director Availability instance is required in each VMware Cloud Foundation instance that is intended to be utilized for the DR and migration services offered to tenants. You deploy the VMware Cloud Director Availability Cloud Replication Management and Cloud Tunnel appliances(s) in the management domain and the Cloud Replicator(s) in the Workload domain(s).</p>
 <h3 id=design-decisions-on-site-recovery-manager-deployment>
 Design Decisions on Site Recovery Manager​ Deployment
 <a class=anchor href=#design-decisions-on-site-recovery-manager-deployment>#</a>
@@ -220,6 +220,11 @@ Scalability
 </h3>
 <p>To scale-out VMware Cloud Director Availability, you can deploy an additional Cloud Replicator every time the active replication numbers are close to the maximums.</p>
 <p>For optimal performance, deploy the Cloud Replicators on different hosts if possible.</p>
+<h3 id=high-availability>
+High Availability
+<a class=anchor href=#high-availability>#</a>
+</h3>
+<p>For high availability and load balancing purposes, a second Cloud Tunnel appliance can be deployed. Additionally, an external load balancer is required. For example, NSX Advanced Load Balancer.</p>
 <h2 id=replication-technology-and-flow>
 Replication Technology and Flow
 <a class=anchor href=#replication-technology-and-flow>#</a>
