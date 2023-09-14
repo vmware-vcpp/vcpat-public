@@ -2,7 +2,7 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="About Networking and Security #  The Networking and Security validated solution offers a complete design, implementation, and operation guidance of utilizing VMware NSX within the VMware Cloud Director platform for cloud automation services. The VMware validated solution is a thoroughly designed and tested implementation that helps customers address common business use cases. It is created and tested by VMware and its partners to ensure it is efficient, reliable, and secure.">
+<meta name=description content="About Networking and Security #  The Networking and Security validated solution provides comprehensive guidance on how to use VMware NSX (formerly VMware NSX-T Data Center) with the VMware Cloud Director platform for cloud automation services. This includes design, implementation, and operation recommendations. The VMware validated solution is a thoroughly designed and tested implementation that helps customers address common business use cases. It is created and tested by VMware and its partners to ensure it is efficient, reliable, and secure.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Networking and Security">
 <meta property="og:description" content>
@@ -13,7 +13,7 @@
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.c575520b975278173abd9a625447ca7992108476b61f36e74a05f8cb6ae9f9b7.js integrity="sha256-xXVSC5dSeBc6vZpiVEfKeZIQhHa2HzbnSgX4y2rp+bc=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.a51ae7579cb7c84c6464c3f6ad900e06ab05193d63e083f9b5d4c5ecc7e7c584.js integrity="sha256-pRrnV5y3yExkZMP2rZAOBqsFGT1j4IP5tdTF7MfnxYQ=" crossorigin=anonymous></script>
 <link rel=alternate type=application/rss+xml href=http://vcpat.cloudhappens.io/docs/networking-security/index.xml title="VMware Cloud Provider Architecture Toolkit">
 </head>
 <body dir=ltr>
@@ -136,19 +136,19 @@ VMware Cloud Solutions
 About Networking and Security
 <a class=anchor href=#about-networking-and-security>#</a>
 </h1>
-<p>The Networking and Security validated solution offers a complete design, implementation, and operation guidance of utilizing VMware NSX within the VMware Cloud Director platform for cloud automation services.
+<p>The Networking and Security validated solution provides comprehensive guidance on how to use VMware NSX (formerly VMware NSX-T Data Center) with the VMware Cloud Director platform for cloud automation services. This includes design, implementation, and operation recommendations.
 The VMware validated solution is a thoroughly designed and tested implementation that helps customers address common business use cases. It is created and tested by VMware and its partners to ensure it is efficient, reliable, and secure. Each solution comes with detailed guidance on design, implementation, and operation to ensure successful use.</p>
 <h2 id=automation-for-this-design-in-vmware-cloud-foundation>
 Automation for This Design in VMware Cloud Foundation
 <a class=anchor href=#automation-for-this-design-in-vmware-cloud-foundation>#</a>
 </h2>
-<p>The implementation tasks for some design decisions are automated by SDDC Manager. You must perform the implementation manually for the rest of the design decisions as noted in the design implication.
-To provide a fast and efficient path to automating the Networking and Security implementation, this document provides Microsoft PowerShell cmdlets as code-based alternatives to completing certain procedures in each SDDC component&rsquo;s user interface. You can directly reuse the PowerShell commands by replacing the provided sample values with values from your VMware Cloud Foundation Planning and Preparation Workbook.</p>
+<p>VMware Cloud Foundation SDDC Manager automates the prerequisite implementation tasks for this design. As noted in the design implications, you must perform the implementation steps manually for the rest of the design decisions.
+Nevertheless, this document also offers Terraform procedures (<a href=https://github.com/vmware/terraform-provider-nsxt>NSX</a> ) as code-based alternatives to completing specific procedures to provide a fast and efficient path to automating the VMware NSX for VMware Cloud Director implementation.</p>
 <h2 id=intended-audience>
 Intended Audience
 <a class=anchor href=#intended-audience>#</a>
 </h2>
-<p>The Networking and Security documentation is intended for cloud provider architects and administrators who are familiar with and want to use VMware software and a {VVS for CP topic} for VMware Cloud Foundation.</p>
+<p>This documentation is intended for cloud provider architects and administrators who are familiar with and want to use VMware software and a Networking and Security validated solution for VMware Cloud Director.</p>
 <h2 id=support-matrix>
 Support Matrix
 <a class=anchor href=#support-matrix>#</a>
@@ -248,11 +248,19 @@ Supported VMware Cloud Foundation Deployment
 <tbody>
 <tr>
 <td>Management domain</td>
-<td><ul><li>Automated deployment using VMware Cloud Builder.</li><li>Availability of overlay-backed or VLAN-backed NSX segments in NSX-T Data Center for traffic in the same VMware Cloud Foundation instance and between VMware Cloud Foundation instances not required.</li></ul><br>See the following VMware Cloud Foundation Documentation:<br><ul><li>For information on deploying the management domain, see VMware Cloud Foundation Getting Started Guide and VMware Cloud Foundation Deployment Guide.</li><li>For information on designing the management domain, see VMware Cloud Foundation Design Guide for the Management Domain.</li></ul></td>
+<td>* Automated deployment using VMware Cloud Builder.<br>* Availability of overlay-backed or VLAN-backed NSX segments in NSX-T Data Center for traffic in the same VMware Cloud Foundation instance and between VMware Cloud Foundation instances not required.<br><br>See the following <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html>VMware Cloud Foundation Documentation</a>:<br><br>* For information on deploying the management domain, see VMware Cloud Foundation Getting Started Guide and VMware Cloud Foundation Deployment Guide.<br>* For information on designing the management domain, see VMware Cloud Foundation Design Guide for the Management Domain.</td>
 </tr>
 <tr>
-<td>(Optional) One or more virtual infrastructure workload domains</td>
-<td><ul><li>Automated deployment using VMware Cloud Builder.</li></ul><br>See the following VMware Cloud Foundation Documentation:<br><ul><li>For information on deploying the management domain, see VMware Cloud Foundation Getting Started Guide and VMware Cloud Foundation Deployment Guide.</li><li>For information on designing the management domain, see VMware Cloud Foundation Design Guide for the Management Domain.</li></ul></td>
+<td>One or more virtual infrastructure workload domains</td>
+<td>* Automated deployment using VMware Cloud Builder.<br><br>See the following <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html>VMware Cloud Foundation Documentation</a>:<br><br>* For information on deploying the management domain, see VMware Cloud Foundation Getting Started Guide and VMware Cloud Foundation Deployment Guide.<br>* For information on designing the management domain, see VMware Cloud Foundation Design Guide for the Management Domain.</td>
+</tr>
+<tr>
+<td>NSX Edge cluster</td>
+<td>* Automated deployment using SDDC Manager<br><br>See the following <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html>VMware Cloud Foundation Documentation</a>:<br><br>* For information on deploying the NSX Edge cluster, see VMware Cloud Foundation Getting Started Guide and VMware Cloud Foundation Operations and Administration Guide.<br>* For information on designing the NSX Edge cluster, see VMware Cloud Foundation Design Guide for a Virtual Infrastructure Workload Domain.</td>
+</tr>
+<tr>
+<td>VMware Cloud Director</td>
+<td>* Deployed via VMware Cloud Provider Lifecycle Manager<br><br>See the <a href=../cloud-infrastructure/implementation>Cloud Infrastructure Implementation</a> for more information. <br></td>
 </tr>
 </tbody>
 </table>
@@ -260,7 +268,7 @@ Supported VMware Cloud Foundation Deployment
 Overview of Networking and Security
 <a class=anchor href=#overview-of-networking-and-security>#</a>
 </h2>
-<p>By applying the Networking and Security validated solution, you implement {describe outcome}.</p>
+<p>By implementing the validated Networking and Security solution, you can make full use of VMware Cloud Director&rsquo;s networking automation services.</p>
 <h6 id=implementation-overview-of-networking-and-security>
 Implementation Overview of Networking and Security
 <a class=anchor href=#implementation-overview-of-networking-and-security>#</a>
