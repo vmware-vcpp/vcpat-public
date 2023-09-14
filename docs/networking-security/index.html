@@ -13,7 +13,7 @@
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.a51ae7579cb7c84c6464c3f6ad900e06ab05193d63e083f9b5d4c5ecc7e7c584.js integrity="sha256-pRrnV5y3yExkZMP2rZAOBqsFGT1j4IP5tdTF7MfnxYQ=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.6d0eb3bcfb55ce8082a4015b3da7be0c217b1e57ac66515194cf76d719a8075b.js integrity="sha256-bQ6zvPtVzoCCpAFbPae+DCF7HlesZlFRlM921xmoB1s=" crossorigin=anonymous></script>
 <link rel=alternate type=application/rss+xml href=http://vcpat.cloudhappens.io/docs/networking-security/index.xml title="VMware Cloud Provider Architecture Toolkit">
 </head>
 <body dir=ltr>
@@ -143,7 +143,7 @@ Automation for This Design in VMware Cloud Foundation
 <a class=anchor href=#automation-for-this-design-in-vmware-cloud-foundation>#</a>
 </h2>
 <p>VMware Cloud Foundation SDDC Manager automates the prerequisite implementation tasks for this design. As noted in the design implications, you must perform the implementation steps manually for the rest of the design decisions.
-Nevertheless, this document also offers Terraform procedures (<a href=https://github.com/vmware/terraform-provider-nsxt>NSX</a> ) as code-based alternatives to completing specific procedures to provide a fast and efficient path to automating the VMware NSX for VMware Cloud Director implementation.</p>
+Nevertheless, this document also offers Terraform procedures (<a href="https://customerconnect.vmware.com/en/downloads/details?downloadGroup=NSX-4110-TERRAFORM&productId=1324">VMware NSX Terraform Provider</a>) as code-based alternatives to completing specific procedures to provide a fast and efficient path to automating the VMware NSX for VMware Cloud Director implementation.</p>
 <h2 id=intended-audience>
 Intended Audience
 <a class=anchor href=#intended-audience>#</a>
@@ -241,26 +241,26 @@ Supported VMware Cloud Foundation Deployment
 <table>
 <thead>
 <tr>
-<th>Workload Domain</th>
+<th>Workload Domain / Component</th>
 <th>Deployment Details</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Management domain</td>
-<td>* Automated deployment using VMware Cloud Builder.<br>* Availability of overlay-backed or VLAN-backed NSX segments in NSX-T Data Center for traffic in the same VMware Cloud Foundation instance and between VMware Cloud Foundation instances not required.<br><br>See the following <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html>VMware Cloud Foundation Documentation</a>:<br><br>* For information on deploying the management domain, see VMware Cloud Foundation Getting Started Guide and VMware Cloud Foundation Deployment Guide.<br>* For information on designing the management domain, see VMware Cloud Foundation Design Guide for the Management Domain.</td>
+<td><ul><li>Automated deployment using VMware Cloud Builder.</li><li>Availability of overlay-backed or VLAN-backed NSX segments in NSX-T Data Center for traffic in the same VMware Cloud Foundation instance and between VMware Cloud Foundation instances not required.</li></ul><br>See the following <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html>VMware Cloud Foundation</a> Documentation:<br><ul><li>For information on deploying the management domain, see <em>VMware Cloud Foundation Getting Started Guide</em> and <em>VMware Cloud Foundation Deployment Guide</em>.</li><li>For information on designing the management domain, see <em>VMware Cloud Foundation Design Guide for the Management Domain</em>.</li></ul></td>
 </tr>
 <tr>
 <td>One or more virtual infrastructure workload domains</td>
-<td>* Automated deployment using VMware Cloud Builder.<br><br>See the following <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html>VMware Cloud Foundation Documentation</a>:<br><br>* For information on deploying the management domain, see VMware Cloud Foundation Getting Started Guide and VMware Cloud Foundation Deployment Guide.<br>* For information on designing the management domain, see VMware Cloud Foundation Design Guide for the Management Domain.</td>
+<td><ul><li>Automated deployment using SDDC Manager</li></ul><br>See the following <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html>VMware Cloud Foundation</a> Documentation:<br><ul><li>For information on deploying the VI workload domains, see <em>Getting Started with VMware Cloud Foundation</em> and <em>VMware Cloud Foundation Operations and Administration Guide</em>.</li><li>For information on designing a VI workload domain, see <em>VMware Cloud Foundation Design Guide for a Virtual Infrastructure Workload Domain</em>.</li></ul></td>
 </tr>
 <tr>
 <td>NSX Edge cluster</td>
-<td>* Automated deployment using SDDC Manager<br><br>See the following <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html>VMware Cloud Foundation Documentation</a>:<br><br>* For information on deploying the NSX Edge cluster, see VMware Cloud Foundation Getting Started Guide and VMware Cloud Foundation Operations and Administration Guide.<br>* For information on designing the NSX Edge cluster, see VMware Cloud Foundation Design Guide for a Virtual Infrastructure Workload Domain.</td>
+<td><ul><li>Automated deployment using SDDC Manager</li></ul><br>See the following <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html>VMware Cloud Foundation</a> Documentation:<br><ul><li>For information on deploying the NSX Edge cluster, see <em>VMware Cloud Foundation Getting Started Guide</em> and <em>VMware Cloud Foundation Operations and Administration Guide</em>.</li><li>For information on designing the NSX Edge cluster, see <em>VMware Cloud Foundation Design Guide for a Virtual Infrastructure Workload Domain</em>.</li></ul></td>
 </tr>
 <tr>
-<td>VMware Cloud Director</td>
-<td>* Deployed via VMware Cloud Provider Lifecycle Manager<br><br>See the <a href=../cloud-infrastructure/implementation>Cloud Infrastructure Implementation</a> for more information. <br></td>
+<td>Advanced Load Balancing</td>
+<td><ul><li>Manual deployment using Advanced Load Balancing for VMware Cloud Foundation VMware Validated Solution</li></ul><br>See the following <a href=https://core.vmware.com/vmware-validated-solutions>VMware Validated Solutions</a> Documentation:<br><ul><li>For detailed design, implementation, configuration, and operation guidance on the use of NSX Advanced Load Balancer as a Load Balancing solution for workloads on VMware Cloud Foundation, see <em>Advanced Load Balancing for VMware Cloud Foundation</em>.</li></ul></td>
 </tr>
 </tbody>
 </table>
@@ -282,12 +282,12 @@ Implementation Overview of Networking and Security
 </thead>
 <tbody>
 <tr>
-<td>1. Stage one description</td>
-<td>Long form description of stage</td>
+<td>1. Requirements</td>
+<td>Validate whether the VMware Cloud Foundation environment is in place and VMware Cloud Director is already deployed.</td>
 </tr>
 <tr>
-<td>2. Stage two description</td>
-<td><ol><li>Step 1 description</li><li>Step 2 description</li><li>Step 3 description</li><li>Step 4 description</li></ul></td>
+<td>2. Configure VMware Cloud Director Infrastructure Resources</td>
+<td><ol><li>Register a vCenter Server to VMware Cloud Director</li><li>Register an NSX Manager Instance with VMware Cloud Director</li><li>Optional - Configure NSX Manager Segment Profile Templates</li></ul></td>
 </tr>
 <tr>
 <td>3. Stage three description</td>
@@ -309,20 +309,11 @@ Update History
 </thead>
 <tbody>
 <tr>
-<td>1. 31 MAY 2022</td>
-<td>Long form description of revision</td>
-</tr>
-<tr>
-<td>2. 28 APR 2022</td>
-<td><ol><li>Revision 1 description</li><li>Revision 2 description</li><li>Revision 3 description</li><li>Revision 4 description</li></ul></td>
-</tr>
-<tr>
-<td>3. 29 MAR 2022</td>
-<td><ol><li>Revision 1 description</li><li>Revision 2 description</li><li>Revision 3 description</li></ul></td>
+<td>1. 14 SEP 2023</td>
+<td>Initial document release.</td>
 </tr>
 </tbody>
 </table>
-<p>Welcome! Here you can find suggestions on how to plan, set up and operate your networking and security services, either in a <strong>self-service</strong> mode, or via <strong>managed services</strong>.</p>
 <h2 id=configuring-vmware-cloud-director-service-for-load-balancing-as-a-service>
 Configuring VMware Cloud Director service for Load Balancing as a Service
 <a class=anchor href=#configuring-vmware-cloud-director-service-for-load-balancing-as-a-service>#</a>
