@@ -10,13 +10,13 @@
    Objective Description     Main Objective Provide enterprise-grade validated VMware Cloud Director infrastructure on VMware Cloud Foundation deployed by VMware Cloud Provider Lifecycle Manager   VMware Cloud Foundation Architecture Support vSAN Ready Nodes Standard">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-09-18T16:31:30-04:00">
+<meta property="article:modified_time" content="2023-09-19T13:38:08+05:30">
 <title>Cloud Infrastructure Design Objectives | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.691306ea9132befb7c2dc4b4c06ac8a94fa716b926d05c2defdc8912444d69e9.js integrity="sha256-aRMG6pEyvvt8LcS0wGrIqU+nFrkm0Fwt79yJEkRNaek=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.25782a2135996b30e23580553fc6ecd6cffd5d582e0a9f8e56961f334d11ef7d.js integrity="sha256-JXgqITWZazDiNYBVP8bs1s/9XVguCp+OVpYfM00R730=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -153,11 +153,11 @@ Cloud Infrastructure Design Objectives
 </tr>
 <tr>
 <td>VMware Cloud Foundation Architecture Support</td>
-<td>vSAN Ready Nodes <br><li>Standard<br> <ul><li>Single VMware Cloud Foundation Instance</ul><br> <li> VxRail Nodes Standard<br> <ul><li> Single VMware Cloud Foundation Instance </li></td>
+<td>vSAN Ready Nodes <br><li>Standard<br> <ul><li>Single or multiple VMware Cloud Foundation instances with multiple availibility zones.</ul><br> <li> VxRail Nodes Standard<br> <ul><li> Single VMware Cloud Foundation Instance </li></td>
 </tr>
 <tr>
 <td>Scope of Implementation</td>
-<td><strong>VMware Cloud Provider Lifecycle Manager</strong><br> <li> Appliance based deployment<br> <li>Configuration of NFS share for VMware Cloud Provider Lifecycle Manager<br> <ul> <li> vSAN FS – 100GB Size</ul><br> <strong>VMware Cloud Director</strong><br> <li> 5 Node Deployment (1 Primary + 2 Standby +2 Application)<br> <li> Single Site<br> <li> Appliance Based <br> <li> Large sized cell deployment<br> <br> Configuration of NFS for VMware Cloud Director<br> <li>vSAN File System <br> Configuration of NSX for VMware Cloud Director<br> <li> Deploy and configure NSX-T Data Center for VMware Cloud Director<br> <br> <strong>Usage Meter</strong><br> <li>Appliance deployment<br> <br> <strong>vRealize Operations Manager Tenant App</strong><br> <li>Appliance based deplioyment<br> <li><em>Node details to be updated</em> <br> <strong>Note:</strong> As a part of pre-requisites vRealize Operations needs to be deployed and pre-configured for vROPS TA to use.VMware Cloud Provider Lifecycle Manager doesn&rsquo;t support deployment of vRealize Operations Manager.<br> <br> <strong>RabbitMQ</strong><br> <li> Linux based deployment<br> <li> 2 Node Deployment <br></td>
+<td><strong>VMware Cloud Provider Lifecycle Manager</strong><br> <li> Appliance based deployment<br> <li>Configuration of NFS share for VMware Cloud Provider Lifecycle Manager<br> <ul> <li> vSAN FS – 100GB Size</ul><br> <strong>VMware Cloud Director</strong><br> <li> 5 Node Deployment (1 Primary + 2 Standby +2 Application)<br> <li> Single Site<br> <li> Appliance Based <br> <li> Large sized cell deployment<br> <br> Configuration of NFS for VMware Cloud Director<br> <li>vSAN File System <br> Configuration of NSX for VMware Cloud Director<br> <li> Deploy and configure NSX for VMware Cloud Director<br> <br> <strong>Usage Meter</strong><br> <li>Appliance deployment<br> <br> <strong>Chargeback</strong><br> <li>Appliance based deplioyment<br> <li><em>Node details to be updated</em> <br> <br> <strong>RabbitMQ</strong><br> <li> Linux based deployment<br> <li> 2 Node Deployment <br></td>
 </tr>
 <tr>
 <td>Workload Domain Type Support</td>
@@ -169,11 +169,11 @@ Cloud Infrastructure Design Objectives
 </tr>
 <tr>
 <td>Cloud Type</td>
-<td>Private Cloud</td>
+<td>Public Cloud</td>
 </tr>
 <tr>
 <td>Tenancy</td>
-<td>Multi-Tenant</td>
+<td>Single Tenant & Multi-Tenant</td>
 </tr>
 <tr>
 <td>Load Balancing</td>
