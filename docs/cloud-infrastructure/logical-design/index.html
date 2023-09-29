@@ -16,13 +16,13 @@ VMware VMware Cloud Director
 VMware VMware Cloud Director is VMware’s flagship cloud services platform for Cloud Providers. It is a pervasive cloud infrastructure control plane for cloud providers’ service-delivery needs, and the management entity for a global VMware cloud estate.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/logical-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-09-29T16:15:47+05:30">
+<meta property="article:modified_time" content="2023-09-29T16:42:48+05:30">
 <title>Cloud Infrastructure Logical Design | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.9f8569b5ce6848bee98188b0e146d7a4bc4232cba2393bcf144b1f869b69e47c.js integrity="sha256-n4Vptc5oSL7pgYiw4UbXpLxCMsuiOTvPFEsfhptp5Hw=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.5d899249693b8aa4f548efa1b90b8aa16ecc0a1e2f7b938056a2bc7942d193bc.js integrity="sha256-XYmSSWk7iqT1SO+huQuKoW7MCh4ve5OAVqK8eULRk7w=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -151,8 +151,8 @@ Cloud Infrastructure Logical Design
 <p>VMware VMware Cloud Director is VMware’s flagship cloud services platform for Cloud Providers. It is a pervasive cloud infrastructure control plane for cloud providers’ service-delivery needs, and the management entity for a global VMware cloud estate. VMware Cloud Director allows seamless provisioning and consumption of cloud computing resources and services to geographically distributed lines of business and IT teams in an API-driven approach</p>
 <p><em>VMware vCloud Usage Meter</em></p>
 <p>VMware vCloud Usage Meter is a virtual appliance that collects usage data VMware products that are added for metering. The collected data is sent to vCloud Usage Insight, which aggregates the data and sends it to the VMware Commerce Portal. In that portal, the aggregated usage data automatically populates each month the partner&rsquo;s MBO if automatic reporting is selected.</p>
-<p><em>VMware vRealize Tenant App for VMware Cloud Director</em></p>
-<p>VMware vRealize Tenant App for VMware Cloud Director is used for metering the infrastructure services provided by a service provider to their tenants. Further, it provides options to configure different models for pricing the metered infrastructure.</p>
+<p><em>Chargeback for VMware Cloud Director</em></p>
+<p>Chargeback for VMware Cloud Director is used for metering the infrastructure services provided by a service provider to their tenants. Further, it provides options to configure different models for pricing the metered infrastructure.</p>
 <p><em>RabbitMQ</em></p>
 <p>RabbitMQ is an open source distributed message broker. It facilitates the efficient delivery of messages in complex routing scenarios. Initially built around the popular AMQP protocol, it’s also highly compatible with existing technologies, while its capabilities can be expanded through plug-ins enabled on the server. RabbitMQ brokers can be distributed and configured to be reliable in case of network or server failure.</p>
 <h2 id=cloud-infrastructure-architecture-for-vmware-cloud-foundation>
@@ -161,11 +161,12 @@ Cloud Infrastructure Architecture for VMware Cloud Foundation
 </h2>
 <p>Description comment</p>
 <p><em>VMware VMware Cloud Director</em></p>
-<p>VCD diagram here</p>
+<p><img src=/images/vcplcm-detailed-design/vcd-hld.png alt="Workflow Execution"></p>
+<p><img src=/images/vcplcm-detailed-design/vcd-lld.png alt="Workflow Execution"></p>
 <p><em>VMware vCloud Usage Meter</em></p>
 <p>UM diagram here</p>
-<p><em>VMware vRealize Tenant App for VMware Cloud Director</em></p>
-<p>Tenant App diagram here</p>
+<p><em>Chargeback for VMware Cloud Director</em></p>
+<p>Chargeback diagram here</p>
 <p><em>RabbitMQ</em></p>
 <p>RabbitMQ diagram here</p>
 <br>
@@ -214,7 +215,7 @@ Logical Design For Product Deployment Using VMware Cloud Provider Lifecycle Mana
 <p>RabbitMQ</p>
 </li>
 <li>
-<p>vRealize Operations Manager Tenant App</p>
+<p>Chargeback</p>
 </li>
 </ul>
 <p>Most of the components will be deployed in the management domain except for tenant & development workloads.</p>
@@ -230,6 +231,7 @@ VMware Cloud Provider Lifecycle Manager Architecture
 <p>VMware Cloud Provider Lifecycle Manager needs access to a repository (mounted NFS or locally) which contains OVA files, upgrade packages, etc.</p>
 <p>The Below diagram represents the high-level architecture of VMware Cloud Provider Lifecycle Manager</p>
 <p><img src=/images/vcplcm-detailed-design/image2.jpeg alt="cplcm Architecture"></p>
+<p><img src=/images/vcplcm-detailed-design/cplcm-hld.jpeg alt="cplcm Architecture"></p>
 <h2 id=workflow-execution-process-of-vmware-cloud-provider-lifecycle-manager>
 Workflow Execution Process Of VMware Cloud Provider Lifecycle Manager
 <a class=anchor href=#workflow-execution-process-of-vmware-cloud-provider-lifecycle-manager>#</a>

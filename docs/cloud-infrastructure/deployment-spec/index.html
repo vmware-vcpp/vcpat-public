@@ -2,19 +2,19 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Cloud Infrastructure Deployment Specification #     Component Version Size Resources Optional Components that can be deployed by VMware Cloud Provider Lifecycle Manager     VMware Cloud Director 10.4 Virtual appliance Extra Large Configuration 1 Primary (Large) 2 Standby cells (Large) 2 Application Cells (Large) Each Primary Cell RAM: 32 GB CPU: 24 Storage: 202 GB (increased root partition to 50 GB for logs, increased PostgreSQL database disk to 150 GB) Each Standby Cell RAM: 32 GB CPU: 24 Storage: 202 GB (increased root partition to 50 GB for logs, increased PostgreSQL database disk to 150 GB) Each Application Cell RAM: 8 GB CPU: 8 Storage: 132 GB (increased root partition to 50 GB for logs) •	Usage Meter">
+<meta name=description content="Cloud Infrastructure Deployment Specification #     Component Version Size Resources Optional Components that can be deployed by VMware Cloud Provider Lifecycle Manager     VMware Cloud Director 10.5 Virtual appliance Extra Large Configuration 1 Primary (Large) 2 Standby cells (Large) 2 Application Cells (Large) Each Primary Cell RAM: 32 GB CPU: 24 Storage: 202 GB (increased root partition to 50 GB for logs, increased PostgreSQL database disk to 150 GB) Each Standby Cell RAM: 32 GB CPU: 24 Storage: 202 GB (increased root partition to 50 GB for logs, increased PostgreSQL database disk to 150 GB) Each Application Cell RAM: 8 GB CPU: 8 Storage: 132 GB (increased root partition to 50 GB for logs) •	Usage Meter">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Cloud Infrastructure Deployment Specification">
-<meta property="og:description" content="Cloud Infrastructure Deployment Specification #     Component Version Size Resources Optional Components that can be deployed by VMware Cloud Provider Lifecycle Manager     VMware Cloud Director 10.4 Virtual appliance Extra Large Configuration 1 Primary (Large) 2 Standby cells (Large) 2 Application Cells (Large) Each Primary Cell RAM: 32 GB CPU: 24 Storage: 202 GB (increased root partition to 50 GB for logs, increased PostgreSQL database disk to 150 GB) Each Standby Cell RAM: 32 GB CPU: 24 Storage: 202 GB (increased root partition to 50 GB for logs, increased PostgreSQL database disk to 150 GB) Each Application Cell RAM: 8 GB CPU: 8 Storage: 132 GB (increased root partition to 50 GB for logs) •	Usage Meter">
+<meta property="og:description" content="Cloud Infrastructure Deployment Specification #     Component Version Size Resources Optional Components that can be deployed by VMware Cloud Provider Lifecycle Manager     VMware Cloud Director 10.5 Virtual appliance Extra Large Configuration 1 Primary (Large) 2 Standby cells (Large) 2 Application Cells (Large) Each Primary Cell RAM: 32 GB CPU: 24 Storage: 202 GB (increased root partition to 50 GB for logs, increased PostgreSQL database disk to 150 GB) Each Standby Cell RAM: 32 GB CPU: 24 Storage: 202 GB (increased root partition to 50 GB for logs, increased PostgreSQL database disk to 150 GB) Each Application Cell RAM: 8 GB CPU: 8 Storage: 132 GB (increased root partition to 50 GB for logs) •	Usage Meter">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/deployment-spec/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-09-29T16:15:47+05:30">
+<meta property="article:modified_time" content="2023-09-29T16:42:48+05:30">
 <title>Cloud Infrastructure Deployment Specification | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.9f8569b5ce6848bee98188b0e146d7a4bc4232cba2393bcf144b1f869b69e47c.js integrity="sha256-n4Vptc5oSL7pgYiw4UbXpLxCMsuiOTvPFEsfhptp5Hw=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.5d899249693b8aa4f548efa1b90b8aa16ecc0a1e2f7b938056a2bc7942d193bc.js integrity="sha256-XYmSSWk7iqT1SO+huQuKoW7MCh4ve5OAVqK8eULRk7w=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -149,7 +149,7 @@ Cloud Infrastructure Deployment Specification
 <tbody>
 <tr>
 <td>VMware Cloud Director</td>
-<td>10.4</td>
+<td>10.5</td>
 <td><strong>Virtual appliance Extra Large Configuration</strong> <br> 1 Primary (Large) 2 Standby cells (Large) 2 Application Cells (Large)</td>
 <td><strong>Each Primary Cell</strong> <br> RAM: 32 GB <br> CPU: 24 <br> Storage: 202 GB (increased root partition to 50 GB for logs, increased PostgreSQL database disk to 150 GB) <br> <strong>Each Standby Cell</strong> RAM: 32 GB <br> CPU: 24 <br> Storage: 202 GB (increased root partition to 50 GB for logs, increased PostgreSQL database disk to 150 GB) <br> <strong>Each Application Cell</strong> RAM: 8 GB <br> CPU: 8 <br> Storage: 132 GB (increased root partition to 50 GB for logs)</td>
 <td>• Usage Meter<br> • RabbitMQ<br> • Chargeback</td>
@@ -198,7 +198,7 @@ Cloud Infrastructure Deployment Specification
 </tr>
 <tr>
 <td>VMware Cloud Provider Lifecycle Manager</td>
-<td>1.4</td>
+<td>1.5</td>
 <td>N/A</td>
 <td>RAM: 8 GB <br> CPU: 2 <br> Storage: 89GB (Maximum Size -1.42TB)</td>
 <td></td>
