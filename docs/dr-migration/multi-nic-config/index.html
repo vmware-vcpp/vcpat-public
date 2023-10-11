@@ -14,13 +14,13 @@ There are a few main reasons that lead to this design:
   Port forwarding is not possible">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/multi-nic-config/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-10-11T15:18:09+03:00">
+<meta property="article:modified_time" content="2023-10-11T18:05:44+03:00">
 <title>VMware Cloud Director Availability Multi-NIC Configuration | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.dbd9a9fe6f500955ac116c3e844ebcc65780ed1265e76e22a1fb4efb424db1bd.js integrity="sha256-29mp/m9QCVWsEWw+hE68xleA7RJl524ioftO+0JNsb0=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.2d2d0f5ef09057ab85c5e0395793703969bb2a7be9da2efa8c6bec7b3fb1cba1.js integrity="sha256-LS0PXvCQV6uFxeA5V5NwOWm7Knvp2i76jGvsez+xy6E=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -210,6 +210,33 @@ Cloud Tunnel
 <a class=anchor href=#cloud-tunnel>#</a>
 </h3>
 <p>It is essential to know that only one of the Cloud Tunnel interfaces can be used for communication with the rest of the VMware Cloud Director Availability appliances in the local site. For pairing purposes all the interfaces of the tunnel appliance can be used.</p>
+<p>There are two ways to configure the purpose of each interface – through the UI or CLI.</p>
+<h4 id=ui>
+UI
+<a class=anchor href=#ui>#</a>
+</h4>
+<ol>
+<li>
+<p>Set IP addresses to all interfaces and configure the static routes.</p>
+</li>
+<li>
+<p>Login as root to the Cloud Tunnel UI at <a href=https://tunnel_ip_address/ui/admin>https://tunnel_ip_address/ui/admin</a>.</p>
+</li>
+<li>
+<p>Navigate to <strong>Settings</strong> > <strong>Traffic Control</strong> and click <strong>Edit</strong>.</p>
+</li>
+<li>
+<p>Pick the correct interface for communicating with the other VMware Cloud Director Availability appliances – Cloud Director Replication Management and Cloud Replicator(s).</p>
+</li>
+</ol>
+<p><img src=/images/dr-migration/operations/multi-nic-config/tunnel-multi-nic-configuration.png alt="Cloud Tunnel Multi-NIC Configuration"></p>
+<ol start=5>
+<li>Click Apply.</li>
+</ol>
+<h4 id=cli>
+CLI
+<a class=anchor href=#cli>#</a>
+</h4>
 <p>To reconfigure the Cloud Tunnel, you need to:</p>
 <ol>
 <li>
@@ -433,6 +460,44 @@ Cloud Replicator(s)
 <a class=anchor href=#cloud-replicators>#</a>
 </h3>
 <p>The idea behind having multiple interfaces for the Cloud Replicator is to optimize replication traffic flow. When the Cloud Replicator has more than one NIC, one of the interfaces should be able to communicate with the rest of the VMware Cloud Director Availability appliances and the other one should be in the same Layer 2 broadcast domain as the ESXi vmkernel interface. The Cloud Replicator can&rsquo;t use one interface to communicate with the Cloud Tunnel and another interface to communicate with the Cloud Replication Manager.</p>
+<p>There are two ways to configure the purpose of each interface – through the UI or CLI.</p>
+<h4 id=ui-1>
+UI
+<a class=anchor href=#ui-1>#</a>
+</h4>
+<ol>
+<li>
+<p>Set IP addresses to all interfaces and configure the static routes.</p>
+</li>
+<li>
+<p>Login as root to the Cloud Replicator UI at <a href=https://replicator_ip_address/ui/admin>https://replicator_ip_address/ui/admin</a>.</p>
+</li>
+<li>
+<p>Navigate to <strong>Settings</strong> > <strong>Traffic Control</strong> and click <strong>Edit</strong>.</p>
+</li>
+<li>
+<p>Pick the correct interface for communicating with the other VMware Cloud Director Availability appliances and with the ESXi hosts:</p>
+</li>
+</ol>
+<p><img src=/images/dr-migration/operations/multi-nic-config/replicator-multi-nic-configuration.png alt="Cloud Tunnel Multi-NIC Configuration"></p>
+<ul>
+<li>
+<p>Management Address – used for management traffic between the VMware Cloud Director Availability appliances</p>
+</li>
+<li>
+<p>NFC Address – used for communicating with the ESXi hosts</p>
+</li>
+<li>
+<p>LWD Address – used for receiving the incoming replication traffic from the Cloud Tunnel</p>
+</li>
+</ul>
+<ol start=5>
+<li>Click Apply.</li>
+</ol>
+<h4 id=cli-1>
+CLI
+<a class=anchor href=#cli-1>#</a>
+</h4>
 <ol>
 <li>
 <p>Set IP addresses to all interfaces and configure the static routes.</p>

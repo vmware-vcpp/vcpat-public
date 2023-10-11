@@ -14,13 +14,13 @@ This guidance provides a prescriptive path for deploying VMware Cloud Director A
 Prerequisites #  Here is a high-level list of the requirements to deploy VMware Cloud Director Availability.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/dr-migration/implementation/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-10-11T15:18:09+03:00">
+<meta property="article:modified_time" content="2023-10-11T18:05:44+03:00">
 <title>DR and Migration Implementation | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.dbd9a9fe6f500955ac116c3e844ebcc65780ed1265e76e22a1fb4efb424db1bd.js integrity="sha256-29mp/m9QCVWsEWw+hE68xleA7RJl524ioftO+0JNsb0=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.2d2d0f5ef09057ab85c5e0395793703969bb2a7be9da2efa8c6bec7b3fb1cba1.js integrity="sha256-LS0PXvCQV6uFxeA5V5NwOWm7Knvp2i76jGvsez+xy6E=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -161,25 +161,46 @@ Prerequisites
 <p>SSO admin credentials. If not available, then a user with the following privileges:</p>
 </li>
 </ol>
-<pre tabindex=0><code>   &quot;Cryptographer.ManageKeys&quot;,
-   &quot;Cryptographer.RegisterHost&quot;,
-   &quot;Datastore.Config&quot;,
-   &quot;Extension.Register&quot;,
-   &quot;Extension.Unregister&quot;,
-   &quot;Extension.Update&quot;,
-   &quot;Global.DisableMethods&quot;,
-   &quot;Global.EnableMethods&quot;,
-   &quot;Host.Config.Connection&quot;,
-   &quot;Host.Hbr.HbrManagement&quot;,
-   &quot;VirtualMachine.Inventory.Register&quot;,
-   &quot;VirtualMachine.Inventory.Unregister&quot;,
-   &quot;VirtualMachine.Interact.PowerOff&quot;,
-   &quot;VirtualMachine.Interact.PowerOn&quot;,
-   &quot;VirtualMachine.State.CreateSnapshot&quot;,
-   &quot;VirtualMachine.State.RemoveSnapshot&quot;,
-   &quot;VirtualMachine.Hbr.ConfigureReplication&quot;,
-   &quot;VirtualMachine.Hbr.ReplicaManagement&quot;,
-   &quot;VirtualMachine.Hbr.MonitorReplication&quot;
+<pre tabindex=0><code>Cryptographic operations:
+  * Cryptographic operations.Manage keys
+  * Cryptographic operations.Register host
+Datastore privileges:
+  * Datastore.Browse
+  * Datastore.Configure datastore
+  * Datastore.Low level file operations
+Extension privileges:
+  * Extension.Register extension
+  * Extension.Unregister extension
+  * Extension.Update extension
+Global privileges:
+  * Global.Disable methods
+  * Global.Enable methods
+Host configuration privileges:
+  * Host.Configuration.Connection
+Profile-driven storage privileges:
+  * Profile-driven storage.Profile-driven storage view
+Resource privileges:
+  * Resource.Assign virtual machine to resource pool
+Storage views privileges:
+  * StorageViews.View
+Virtual machine configuration privileges:
+  * Virtual machine.Configuration.Add existing disk
+  * Virtual machine.Configuration.Change Settings
+  * Virtual machine.Configuration.Remove disk
+Virtual machine inventory privileges:
+  * Virtual machine.Inventory.Register
+  * Virtual machine.Inventory.Unregister
+Virtual machine interaction:
+  * Virtual machine.Interaction.Power Off
+  * Virtual machine.Interaction.Power On
+Virtual machine state privileges:
+  * Virtual machine.Snapshot management.Create snapshot
+  * Virtual machine.Snapshot management.Remove snapshot
+HBR privileges:
+  * Host.Hbr.HbrManagement
+  * VirtualMachine.Hbr.ConfigureReplication
+  * VirtualMachine.Hbr.ReplicaManagement
+  * VirtualMachine.Hbr.MonitorReplication
 </code></pre><ol start=4>
 <li>
 <p>Routing and Firewall Ports in place</p>
