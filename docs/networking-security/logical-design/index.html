@@ -2,23 +2,21 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Networking and Security Logical Design for VMware Cloud Director #  Networking and Security Design for VMware Cloud Foundation #  VMware NSX provides networking services for infrastructure management components and workloads in VMware Cloud Foundation such as load balancing, routing and virtual networking. [Read more]
-Network Design for VMware Cloud Director #  The VMware Cloud Director appliances are conneted ot an NSX Segments.
-Network Segment #  The network segment design consists of characteristics and decisions for placement of the VMware Cloud Director in the VMware Cloud Foundation Management domain.">
+<meta name=description content="Networking and Security Design for VMware Cloud Director on VMware Cloud Foundation #  Network Design for VMware Cloud Foundation #  VMware NSX provides networking services for infrastructure management components and workloads in VMware Cloud Foundation such as load balancing, routing and virtual networking. [Read more]
+Network Design for VMware Cloud Director #  For secure access to the UI and API of VMware Cloud Director, the Primary and Secondary Cells are placed on cross-instance NSX segments.">
 <meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="Networking and Security Logical Design for VMware Cloud Director">
-<meta property="og:description" content="Networking and Security Logical Design for VMware Cloud Director #  Networking and Security Design for VMware Cloud Foundation #  VMware NSX provides networking services for infrastructure management components and workloads in VMware Cloud Foundation such as load balancing, routing and virtual networking. [Read more]
-Network Design for VMware Cloud Director #  The VMware Cloud Director appliances are conneted ot an NSX Segments.
-Network Segment #  The network segment design consists of characteristics and decisions for placement of the VMware Cloud Director in the VMware Cloud Foundation Management domain.">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Networking and Security Design for VMware Cloud Director on VMware Cloud Foundation">
+<meta property="og:description" content="Networking and Security Design for VMware Cloud Director on VMware Cloud Foundation #  Network Design for VMware Cloud Foundation #  VMware NSX provides networking services for infrastructure management components and workloads in VMware Cloud Foundation such as load balancing, routing and virtual networking. [Read more]
+Network Design for VMware Cloud Director #  For secure access to the UI and API of VMware Cloud Director, the Primary and Secondary Cells are placed on cross-instance NSX segments.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/networking-security/logical-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-10-12T15:08:46+03:00">
-<title>Networking and Security Logical Design for VMware Cloud Director | VMware Cloud Provider Architecture Toolkit</title>
+<meta property="article:modified_time" content="2023-10-12T15:21:28+03:00">
+<title>Networking and Security Design for VMware Cloud Director on VMware Cloud Foundation | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.81ada79c03c8100014ce2884d04f5244dd2faaf33b3946fa301cf088a9c73ae2.js integrity="sha256-ga2nnAPIEAAUziiE0E9SRN0vqvM7OUb6MBzwiKnHOuI=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.f5485077f169defbb5d90aeba1e71b3626eccbecb177a9abf63422f96c852ab3.js integrity="sha256-9UhQd/Fp3vu12QrroecbNibsy+yxd6mr9jQi+WyFKrM=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -140,31 +138,58 @@ VMware Cloud Solutions
 <label for=menu-control>
 <img src=/svg/menu.svg class=book-icon alt=Menu>
 </label>
-<strong>Networking and Security Logical Design for VMware Cloud Director</strong>
+<strong>Networking and Security Design for VMware Cloud Director on VMware Cloud Foundation</strong>
 <label for=toc-control>
 </label>
 </div>
 </header>
-<article class=markdown><h1 id=networking-and-security-logical-design-for-vmware-cloud-director>
-Networking and Security Logical Design for VMware Cloud Director
-<a class=anchor href=#networking-and-security-logical-design-for-vmware-cloud-director>#</a>
+<article class=markdown><h1 id=networking-and-security-design-for-vmware-cloud-director-on-vmware-cloud-foundation>
+Networking and Security Design for VMware Cloud Director on VMware Cloud Foundation
+<a class=anchor href=#networking-and-security-design-for-vmware-cloud-director-on-vmware-cloud-foundation>#</a>
 </h1>
-<h2 id=networking-and-security-design-for-vmware-cloud-foundation>
-Networking and Security Design for VMware Cloud Foundation
-<a class=anchor href=#networking-and-security-design-for-vmware-cloud-foundation>#</a>
+<h2 id=network-design-for-vmware-cloud-foundation>
+Network Design for VMware Cloud Foundation
+<a class=anchor href=#network-design-for-vmware-cloud-foundation>#</a>
 </h2>
 <p>VMware NSX provides networking services for infrastructure management components and workloads in VMware Cloud Foundation such as load balancing, routing and virtual networking. <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/5.0/vcf-design/GUID-A7EFAC2B-4C36-4D54-A199-F448E7C3890E.html>[Read more]</a></p>
 <h2 id=network-design-for-vmware-cloud-director>
 Network Design for VMware Cloud Director
 <a class=anchor href=#network-design-for-vmware-cloud-director>#</a>
 </h2>
-<p>The VMware Cloud Director appliances are conneted ot an NSX Segments.</p>
+<p>For secure access to the UI and API of VMware Cloud Director, the Primary and Secondary Cells are placed on cross-instance NSX segments.</p>
 <h3 id=network-segment>
 Network Segment
 <a class=anchor href=#network-segment>#</a>
 </h3>
-<p>The network segment design consists of characteristics and decisions for placement of the VMware Cloud Director in the VMware Cloud Foundation Management domain.
-This validated solution places the VMware Cloud Director within a Management and DMZ overlay segments of the VMware Cloud Foundation instance. This ensures connectivity and close proximity to vCenter Server and NSX Management cluster.</p>
+<p>The network segment design consists of characteristics and decisions for placement of the VMware Cloud Director in the VMware Cloud Foundation Management domain.</p>
+<p>This validated solution uses an implementation of the VMware Cloud Foundation application virtual networks feature in the management domain provided by NSX. The application virtual networks in the management domain can be either overlay-backed NSX segments or VLAN-backed NSX segments.</p>
+<p><b>NSX Segment Types</b></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Overlay-backed NSX segment</td>
+<td>The routing to the VMware Cloud Foundation VLAN-backed management network segment and other networks can use dynamic routing protocols or static routing.</td>
+</tr>
+<tr>
+<td>Routed access to the VLAN-backed management network segment is provided through an NSX Tier-1 and Tier-0 gateways.</td>
+<td></td>
+</tr>
+<tr>
+<td>Recommended option to facilitate scale out to a multi instance design supporting disaster recovery.</td>
+<td></td>
+</tr>
+<tr>
+<td>VLAN-backed NSX segment</td>
+<td>Two unique VLANs, network subnets, and vCenter Server portgroups are required.</td>
+</tr>
+</tbody>
+</table>
 <p><img src=/images/vcplcm-detailed-design/image4.jpg alt="Logical design"></p>
 <p><strong>Reg.Mgmt and X.Reg.Mgmt</strong></p>
 <ul>
