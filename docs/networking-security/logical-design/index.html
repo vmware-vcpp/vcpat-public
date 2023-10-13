@@ -10,13 +10,13 @@ Network Design for VMware Cloud Director #  For secure access to the UI and API 
 Network Design for VMware Cloud Director #  For secure access to the UI and API of VMware Cloud Director, the Primary and Secondary Cells are placed on cross-instance NSX segments.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/networking-security/logical-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-10-13T16:22:18+03:00">
+<meta property="article:modified_time" content="2023-10-13T16:47:33+03:00">
 <title>Networking and Security Design for VMware Cloud Director on VMware Cloud Foundation | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.fb19a79032e9d385d0e31b17bd7a82b12220d759b251d49d95bc524f94e4d877.js integrity="sha256-+xmnkDLp04XQ4xsXvXqCsSIg11myUdSdlbxST5Tk2Hc=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.1e54b811da6864803eb5d77bba41eb075285dae30a555e101a605583f80f163e.js integrity="sha256-HlS4EdpoZIA+tdd7ukHrB1KF2uMKVV4QGmBVg/gPFj4=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -157,10 +157,12 @@ Network Design for VMware Cloud Director
 <a class=anchor href=#network-design-for-vmware-cloud-director>#</a>
 </h2>
 <p>For secure access to the UI and API of VMware Cloud Director, the Primary and Secondary Cells are placed on cross-instance NSX segments.</p>
-<h3 id=network-segments>
+<p><strong>Network Design of VMware CLoud Director Deployment on Overlay-Backed NSX Segments</strong></p>
+<p><img src=/images/networking-security/01-logical-design.png alt="Logical design"></p>
+<h2 id=network-segments>
 Network Segments
 <a class=anchor href=#network-segments>#</a>
-</h3>
+</h2>
 <p>The network segment design consists of characteristics and decisions for placement of the VMware Cloud Director in the VMware Cloud Foundation Management domain.</p>
 <p>This validated solution uses an implementation of the VMware Cloud Foundation application virtual networks feature in the management domain provided by NSX. The application virtual networks in the management domain can be either overlay-backed NSX segments or VLAN-backed NSX segments.</p>
 <table>
@@ -181,34 +183,37 @@ Network Segments
 </tr>
 </tbody>
 </table>
-<p>Network Design of VMware CLoud Director Deployment on Overlay-Backed NSX Segments</p>
-<p><img src=/images/networking-security/01-logical-design.png alt="Logical design"></p>
-<p><strong>Reg.Mgmt and X.Reg.Mgmt</strong></p>
-<ul>
-<li>
-<p>These are overlay Segments</p>
-</li>
-<li>
-<p>Existing Reg. Mgmt is used for a secondary interface for VCD cells, vSAN FS, Usage meter, vRealize Operations</p>
-<p>Manager Tenant App and VMware Cloud provider Lifecycle Manager</p>
-</li>
-<li>
-<p>Cross region X.Reg.Mgmt is utilized for RabbitMQ nodes and load balancer.</p>
-</li>
-</ul>
-<p><strong>VCD DMZ</strong></p>
-<ul>
-<li>
-<p>VCD DMZ network has been added to separate the internet traffic. It is routed via a separate Tier-1 gateway and connected to existing Tier-0.</p>
-</li>
-<li>
-<p>VCD Cells have the primary (eth0) interface connected to this network with NSX-T load balancer in its own Tier-1 gateway.</p>
-</li>
-</ul>
-<br>
-<h2 id=vmware-cloud-provider-lifecycle-manager-firewall-ports>
-VMware Cloud Provider Lifecycle Manager Firewall Ports
-<a class=anchor href=#vmware-cloud-provider-lifecycle-manager-firewall-ports>#</a>
+<h3 id=design-decisions-on-the-network-segment-for-vmware-cloud-director>
+Design Decisions on the Network Segment for VMware Cloud Director
+<a class=anchor href=#design-decisions-on-the-network-segment-for-vmware-cloud-director>#</a>
+</h3>
+<p>| Decision ID | Design Decision | Design Justification | Design Implication |
+|&mdash;&mdash;&mdash; |&mdash;&mdash;&mdash;- |
+| VCF-VCD-NET-001 | Place the VMware Cloud Director cell nodes on NSX overlay segments. | Provides a consistent deployment model for management applications and a potential to extend to a second VMware Cloud Foundation instance for disaster recovery. | VMware NSX is required to support this networking configuration. |
+| VCF-VCD-NET-002 | Create separate overlay segments for VMware Cloud Director management and production traffic. | Enhance security by separating different traffic types on different networks. | More logical networking objects for management exist. |</p>
+<h2 id=logical-routing>
+Logical Routing
+<a class=anchor href=#logical-routing>#</a>
+</h2>
+<h2 id=ip-addressing>
+IP Addressing
+<a class=anchor href=#ip-addressing>#</a>
+</h2>
+<h2 id=name-resolution>
+Name Resolution
+<a class=anchor href=#name-resolution>#</a>
+</h2>
+<h2 id=load-balancing>
+Load Balancing
+<a class=anchor href=#load-balancing>#</a>
+</h2>
+<h2 id=time-synchronization>
+Time Synchronization
+<a class=anchor href=#time-synchronization>#</a>
+</h2>
+<h2 id=vmware-cloud-director-firewall-ports>
+VMware Cloud Director Firewall Ports
+<a class=anchor href=#vmware-cloud-director-firewall-ports>#</a>
 </h2>
 <p>The below table provides a list of ports used by VMware Cloud Provider Lifecycle Manager for product and integration communication.</p>
 <table>
