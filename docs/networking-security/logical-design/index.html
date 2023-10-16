@@ -10,13 +10,13 @@ Network Design for VMware Cloud Director #  For secure access to the UI and API 
 Network Design for VMware Cloud Director #  For secure access to the UI and API of VMware Cloud Director, the Primary and Secondary Cells are placed on cross-instance NSX segments.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/networking-security/logical-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-10-16T13:10:24+03:00">
+<meta property="article:modified_time" content="2023-10-16T13:53:57+03:00">
 <title>Networking and Security Design for VMware Cloud Director on VMware Cloud Foundation | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.002f494c8b10c0bcde5f4bc8e6f98576eead474f08cef56506132ad877a4843a.js integrity="sha256-AC9JTIsQwLzeX0vI5vmFdu6tR08IzvVlBhMq2HekhDo=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.13d4b74f79949d38a9fb258a08ce08b4ad85093589d14e84628c6b81f0869b52.js integrity="sha256-E9S3T3mUnTip+yWKCM4ItK2FCTWJ0U6EYoxrgfCGm1I=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -183,7 +183,7 @@ Network Segments
 </tr>
 </tbody>
 </table>
-<p><strong>Design Decisions on the Network Segment for VMware Cloud Director</strong></p>
+<p><strong>Design Decisions on Network Segmentr</strong></p>
 <table>
 <thead>
 <tr>
@@ -213,7 +213,7 @@ Logical Routing
 <a class=anchor href=#logical-routing>#</a>
 </h2>
 <p>Use separate Tier-1 Gateways to enable more granular security control for the different types of traffic in the VMware Cloud Director instances.</p>
-<p><strong>Design Decisions on the Logical Routing for VMware Cloud Director</strong></p>
+<p><strong>Design Decisions on Logical Routing</strong></p>
 <table>
 <thead>
 <tr>
@@ -237,7 +237,7 @@ IP Addressing
 <a class=anchor href=#ip-addressing>#</a>
 </h2>
 <p>Allocate statically assigned IP addresses and host names to the VMware Cloud Director cell and the load balancer from their corresponding management and dmz networks.</p>
-<p><strong>Design Decisions on the IP Addressing for VMware Cloud Director</strong></p>
+<p><strong>Design Decisions on IP Addressing</strong></p>
 <table>
 <thead>
 <tr>
@@ -250,7 +250,7 @@ IP Addressing
 <tbody>
 <tr>
 <td>VCF-VCD-NET-004</td>
-<td>Allocate statically assigned IP addresses to the VMware Cloud Director cells from their corresponding management and dmz networks. Allocate statically assigned IP address for the dmz load balancer virtual service.</td>
+<td><ul><li>Allocate statically assigned IP addresses to the VMware Cloud Director cells from their corresponding management and dmz networks.</li><li>Allocate statically assigned IP address for the dmz load balancer virtual service.</li><ul></td>
 <td>Using statically assigned IP addresses ensures deployment stability and makes it simpler to maintain and easier to track.</td>
 <td>Requires precise IP address management.</td>
 </tr>
@@ -261,7 +261,7 @@ Name Resolution
 <a class=anchor href=#name-resolution>#</a>
 </h2>
 <p>Name resolution provides the translation between an IP address and a fully qualified domain name (FQDN), which makes it easier to remember and connect to components across the SDDC. The IP address of each VMware Cloud Director cell and the dmz load balancer VIP must have a valid internal DNS forward (A) and reverse (PTR) record.</p>
-<p><strong>Design Decisions on the Name Resolutuion for VMware Cloud Director</strong></p>
+<p><strong>Design Decisions on Name Resolutuion</strong></p>
 <table>
 <thead>
 <tr>
@@ -290,91 +290,37 @@ Name Resolution
 Load Balancing
 <a class=anchor href=#load-balancing>#</a>
 </h2>
+<p>VMware Cloud Director' server group deployment requires a load balancer to manage the connections to the VMware Cloud Director services. This validated solution uses load-balancing services provided by NSX Advanced Load Balancer in the management domain. <a href=./vcd-lbaas-implementation>[Read more]</a></p>
 <h2 id=time-synchronization>
 Time Synchronization
 <a class=anchor href=#time-synchronization>#</a>
 </h2>
-<h2 id=vmware-cloud-director-firewall-ports>
-VMware Cloud Director Firewall Ports
-<a class=anchor href=#vmware-cloud-director-firewall-ports>#</a>
-</h2>
-<p>The below table provides a list of ports used by VMware Cloud Provider Lifecycle Manager for product and integration communication.</p>
+<p>The system time for the VMware Cloud Director cells, along with dependencies and integrations, must be synchronized and must use the same timezone.</p>
+<p><strong>Design Decisions on Time Synchronization</strong></p>
 <table>
 <thead>
 <tr>
-<th>Port</th>
-<th>Protocol</th>
-<th>Direction</th>
-<th>Target</th>
-<th>Description</th>
+<th>Decision ID</th>
+<th>Design Decision</th>
+<th>Design Justification</th>
+<th>Design Implication</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>9443</td>
-<td>TCP</td>
-<td>Inbound / Outbound</td>
-<td>Management network</td>
-<td>Port used for VMware Cloud Provider Lifecycle Manager REST API.</td>
-</tr>
-<tr>
-<td>22</td>
-<td>TCP</td>
-<td>Inbound / Outbound</td>
-<td>Management network</td>
-<td>SSH connection to the VMware Cloud Provider Lifecycle Manager machine to configure and set up deployment binaries.</td>
-</tr>
-<tr>
-<td>22</td>
-<td>TCP</td>
-<td>Outbound</td>
-<td>Deployed products (VCD, RMQ, vROPS TA, UM)</td>
-<td>SSH used to configure deployed products.</td>
-</tr>
-<tr>
-<td>53</td>
-<td>TCP/UDP</td>
-<td>Inbound / Outbound</td>
-<td>DNS Server</td>
-<td>DNS will be used to resolve IPs and hostnames and validate corresponding records for requested deployments.<br> <br> The DNS server provided in the payload will be used for validation purposes.</td>
-</tr>
-<tr>
-<td>123</td>
-<td>UDP</td>
-<td>Outbound</td>
-<td>NTP server</td>
-<td>Configure NTP server to ensure time is in sync.</td>
-</tr>
-<tr>
-<td>443</td>
-<td>TCP</td>
-<td>Outbound</td>
-<td>vCenter (Mgmt and resource)<br> NSX Manager<br> VCD (cells and load balancer)<br> vROPS<br> vROPS Tenant App<br> Usage Meter</td>
-<td>HTTPS traffic to access and configure deployed products as well as validate infrastructure components.</td>
-</tr>
-<tr>
-<td>5671 *</td>
-<td>TCP, UDP</td>
-<td>Outbound</td>
-<td>RabbitMQ</td>
-<td>AMQP port used for RabbitMQ AMQP service. This port can be customized; thus, the corresponding port must be accessible.</td>
-</tr>
-<tr>
-<td>15671 *</td>
-<td>TCP</td>
-<td>Outbound</td>
-<td>RabbitMQ Management Interface</td>
-<td>Management port used for RabbitMQ Management Interface. This port can be customized; thus, the corresponding port must be accessible.</td>
-</tr>
-<tr>
-<td></td>
-<td>ICMP</td>
-<td>Inbound / Outbound</td>
-<td>VCD cells<br> VCD cells<br> vROPS Tenant App<br> Usage Meter<br> RabbitMQ</td>
-<td>Ping is performed to check if deployed machines are running or existing prior to deployment.</td>
+<td>VCF-VCD-NET-007</td>
+<td>Configure NTP servers for each VMware Cloud DIrector cell.</td>
+<td><ul><li>Ensures that VMware Cloud Director has accurate time synchronization on which its services depend.</li><li>Assists in preventing time mismatch between the VMware Cloud Director and dependencies.</li></ul></td>
+<td><ul><li>NTP infrastructure services should be highly available in the environment.</li><li>Firewalls between the VMware Cloud Direcotr cells and the NTP servers must allow NTP traffic.</li><li>Must provide two or more NTP servers unless an NTP geographic load balancing is activated.</li></ul></td>
 </tr>
 </tbody>
 </table>
+<h2 id=vmware-cloud-director-security-requirements>
+VMware Cloud Director Security Requirements
+<a class=anchor href=#vmware-cloud-director-security-requirements>#</a>
+</h2>
+<p>VMware Cloud Director operations require a secure network environment. Connect all VMware Cloud Director servers to a secured and monitored network.
+For information on the network ports and protocols used by VMware Cloud Director, see <a href=https://ports.vmware.com/home/VMware-Cloud-Director>[VMware Ports and Protocols.]</a></p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
