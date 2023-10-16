@@ -10,13 +10,13 @@ Network Design for VMware Cloud Director #  For secure access to the UI and API 
 Network Design for VMware Cloud Director #  For secure access to the UI and API of VMware Cloud Director, the Primary and Secondary Cells are placed on cross-instance NSX segments.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/networking-security/logical-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-10-16T12:09:27+03:00">
+<meta property="article:modified_time" content="2023-10-16T13:10:24+03:00">
 <title>Networking and Security Design for VMware Cloud Director on VMware Cloud Foundation | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.58054b8ffbab66129e1e24f722725efd3ed94cbb66aebf46d9149b8e4e5147c8.js integrity="sha256-WAVLj/urZhKeHiT3InJe/T7ZTLtmrr9G2RSbjk5RR8g=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.002f494c8b10c0bcde5f4bc8e6f98576eead474f08cef56506132ad877a4843a.js integrity="sha256-AC9JTIsQwLzeX0vI5vmFdu6tR08IzvVlBhMq2HekhDo=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -196,13 +196,13 @@ Network Segments
 <tbody>
 <tr>
 <td>VCF-VCD-NET-001</td>
-<td>Place the VMware Cloud Director cell nodes on NSX overlay segments.</td>
+<td>Place the VMware Cloud Director cells on NSX overlay segments.</td>
 <td>Provides a consistent deployment model for management applications and a potential to extend to a second VMware Cloud Foundation instance for disaster recovery.</td>
 <td>VMware NSX is required to support this networking configuration.</td>
 </tr>
 <tr>
 <td>VCF-VCD-NET-002</td>
-<td>Create separate overlay segments for VMware Cloud Director management and production traffic.</td>
+<td>Create separate overlay segments for VMware Cloud Director management and dmz (public web access) traffic.</td>
 <td>Enhance security by separating different traffic types on different networks.</td>
 <td>More logical networking objects for management exist.</td>
 </tr>
@@ -226,7 +226,7 @@ Logical Routing
 <tbody>
 <tr>
 <td>VCF-VCD-NET-003</td>
-<td>Create individual Tier-1 Gateway for the VMware Cloud Director management and production traffic.</td>
+<td>Create individual Tier-1 Gateway for the VMware Cloud Director management and dmz traffic.</td>
 <td>Provide well-defined traffic separation and adaptable security controls.</td>
 <td>More logical networking objects for management exist.</td>
 </tr>
@@ -236,10 +236,56 @@ Logical Routing
 IP Addressing
 <a class=anchor href=#ip-addressing>#</a>
 </h2>
+<p>Allocate statically assigned IP addresses and host names to the VMware Cloud Director cell and the load balancer from their corresponding management and dmz networks.</p>
+<p><strong>Design Decisions on the IP Addressing for VMware Cloud Director</strong></p>
+<table>
+<thead>
+<tr>
+<th>Decision ID</th>
+<th>Design Decision</th>
+<th>Design Justification</th>
+<th>Design Implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VCF-VCD-NET-004</td>
+<td>Allocate statically assigned IP addresses to the VMware Cloud Director cells from their corresponding management and dmz networks. Allocate statically assigned IP address for the dmz load balancer virtual service.</td>
+<td>Using statically assigned IP addresses ensures deployment stability and makes it simpler to maintain and easier to track.</td>
+<td>Requires precise IP address management.</td>
+</tr>
+</tbody>
+</table>
 <h2 id=name-resolution>
 Name Resolution
 <a class=anchor href=#name-resolution>#</a>
 </h2>
+<p>Name resolution provides the translation between an IP address and a fully qualified domain name (FQDN), which makes it easier to remember and connect to components across the SDDC. The IP address of each VMware Cloud Director cell and the dmz load balancer VIP must have a valid internal DNS forward (A) and reverse (PTR) record.</p>
+<p><strong>Design Decisions on the Name Resolutuion for VMware Cloud Director</strong></p>
+<table>
+<thead>
+<tr>
+<th>Decision ID</th>
+<th>Design Decision</th>
+<th>Design Justification</th>
+<th>Design Implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VCF-VCD-NET-005</td>
+<td>Configure DNS servers for VMware Cloud Director infrastructure.</td>
+<td>Ensures that VMware Cloud Director has accurate name resolution on which its services depend.</td>
+<td><ul><li>DNS infrastructure services should be highly available in the environment.</li><li>Firewalls between the VMware Cloud Director cells and the DNS servers must allow DNS traffic.</li><li>Must provide two or more DNS servers unless a DNS geographic load balancing is activated.</li></ul></td>
+</tr>
+<tr>
+<td>VCF-VCD-NET-006</td>
+<td>Configure forward and reverse DNS records for each VMware Cloud Director cell IP management and dmz interfaces' IP addresses and for the dmz (web access) load balancer virtual service IP address.</td>
+<td>VMware Cloud Director is accessible using a fully qualified domain name instead of IP addresses only.</td>
+<td><ul><li>Must provide individual DNS records for each VMware Cloud Director cell and the NSX Advanced Load Balancer Virtual Service.</li><li>Firewalls between the VMware Cloud Director cells and the DNS servers must allow DNS traffic.</li></ul></td>
+</tr>
+</tbody>
+</table>
 <h2 id=load-balancing>
 Load Balancing
 <a class=anchor href=#load-balancing>#</a>
