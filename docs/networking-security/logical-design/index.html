@@ -10,13 +10,13 @@ Network Design for VMware Cloud Director #  For secure access to the UI and API 
 Network Design for VMware Cloud Director #  For secure access to the UI and API of VMware Cloud Director, the Primary and Secondary Cells are placed on cross-instance NSX segments.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/networking-security/logical-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-10-13T16:53:21+03:00">
+<meta property="article:modified_time" content="2023-10-16T09:47:35+03:00">
 <title>Networking and Security Design for VMware Cloud Director on VMware Cloud Foundation | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.d9cd7c8bca3ba2a495ddf01db541a1a59c89fe54ac368eaa12f6998124a5b05a.js integrity="sha256-2c18i8o7oqSV3fAdtUGhpZyJ/lSsNo6qEvaZgSSlsFo=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.28191c5a0790ed313ab950f46962b62e3ad336d2ec7852f4a836f25eaf8af061.js integrity="sha256-KBkcWgeQ7TE6uVD0aWK2LjrTNtLseFL0qDbyXq+K8GE=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -183,10 +183,7 @@ Network Segments
 </tr>
 </tbody>
 </table>
-<h3 id=design-decisions-on-the-network-segment-for-vmware-cloud-director>
-Design Decisions on the Network Segment for VMware Cloud Director
-<a class=anchor href=#design-decisions-on-the-network-segment-for-vmware-cloud-director>#</a>
-</h3>
+<p><b>Design Decisions on the Network Segment</b></p>
 <table>
 <thead>
 <tr>
@@ -215,6 +212,26 @@ Design Decisions on the Network Segment for VMware Cloud Director
 Logical Routing
 <a class=anchor href=#logical-routing>#</a>
 </h2>
+<p>Use separate Tier-1 Gateways to enable more granular security control for the different types of traffic in the VMware Cloud Director instances.</p>
+<p><b>Design Decisions on the Logical Routing</b></p>
+<table>
+<thead>
+<tr>
+<th>Decision ID</th>
+<th>Design Decision</th>
+<th>Design Justification</th>
+<th>Design Implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VCF-VCD-NET-003</td>
+<td>Create individual Tier-1 Gateway for the VMware Cloud Director management and production traffic.</td>
+<td>Provide well-defined traffic separation and adaptable security controls.</td>
+<td>More logical networking objects for management exist.</td>
+</tr>
+</tbody>
+</table>
 <h2 id=ip-addressing>
 IP Addressing
 <a class=anchor href=#ip-addressing>#</a>
