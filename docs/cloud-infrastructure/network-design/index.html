@@ -10,13 +10,13 @@ VMware NSX provides networking services for infrastructure management components
 VMware NSX provides networking services for infrastructure management components and workloads in VMware Cloud Foundation such as load balancing, routing and virtual networking.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/network-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-10-23T11:24:41+03:00">
+<meta property="article:modified_time" content="2023-10-23T11:44:58+03:00">
 <title>Cloud Infrastructure Network Design | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.6e661d8c30043acad0570d2aac894058c2869246edc9f398c372fe57f9414c88.js integrity="sha256-bmYdjDAEOsrQVw0qrIlAWMKGkkbtyfOYw3L+V/lBTIg=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.b781d20ee24454425fcbf7b636399458bc7e688d30701038796502ce7bf70987.js integrity="sha256-t4HSDuJEVEJfy/e2NjmUWLx+aI0wcBA4eWUCznv3CYc=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -166,7 +166,7 @@ Network Segments
 </table>
 <p><strong>Network Design of Cloud Infrastructure deployment</strong></p>
 <p><img src=/images/networking-security/01-ci-network-logical-design.png alt="Logical design"></p>
-<p><strong>Design Decisions on Network Segmentr</strong></p>
+<p><strong>Design Decisions on Network Segment</strong></p>
 <table>
 <thead>
 <tr>
@@ -178,13 +178,13 @@ Network Segments
 </thead>
 <tbody>
 <tr>
-<td><code>VCF-VCD-NET-001</code></td>
+<td>VCF-VCD-NET-001</td>
 <td>Place the Cloud Infrastructure components on NSX overlay segments.</td>
 <td>Provides a consistent deployment model for management applications and a potential to extend to a second VMware Cloud Foundation instance for disaster recovery.</td>
 <td>VMware NSX is required to support this networking configuration.</td>
 </tr>
 <tr>
-<td><code>VCF-VCD-NET-002</code></td>
+<td>VCF-VCD-NET-002</td>
 <td>Create separate overlay segments for the Management and DMZ (public web access) traffic.</td>
 <td>Enhance security by separating different traffic types on different networks.</td>
 <td>More logical networking objects for management exist.</td>
@@ -233,7 +233,7 @@ IP Addressing
 <tbody>
 <tr>
 <td>VCF-VCD-NET-004</td>
-<td><ul><li>Allocate statically assigned IP addresses to the Cloud Infrastructure components from their corresponding Management and DMZ networks.</li><li>Allocate statically assigned IP address for the DMZ load balancer virtual service.</li><ul></td>
+<td><ul><li>Allocate statically assigned IP addresses to the Cloud Infrastructure components from their corresponding Management and DMZ networks.</li><li>Allocate statically assigned IP addresses for the DMZ load balancer virtual service.</li><ul></td>
 <td>Using statically assigned IP addresses ensures deployment stability and makes it simpler to maintain and easier to track.</td>
 <td>Requires precise IP address management.</td>
 </tr>
@@ -244,7 +244,7 @@ Name Resolution
 <a class=anchor href=#name-resolution>#</a>
 </h2>
 <p>Name resolution provides the translation between an IP address and a fully qualified domain name (FQDN), which makes it easier to remember and connect to components across the SDDC. The IP address of each Cloud Infrastructure component and the DMZ load balancer VIP must have a valid internal DNS forward (A) and reverse (PTR) record.</p>
-<p><strong>Design Decisions on Name Resolutuion</strong></p>
+<p><strong>Design Decisions on Name Resolution</strong></p>
 <table>
 <thead>
 <tr>
@@ -298,9 +298,9 @@ Time Synchronization
 </tr>
 </tbody>
 </table>
-<h2 id=cloud-infrastructure-components-security-requirements>
-Cloud Infrastructure components Security Requirements
-<a class=anchor href=#cloud-infrastructure-components-security-requirements>#</a>
+<h2 id=cloud-infrastructure-security-requirements>
+Cloud Infrastructure Security Requirements
+<a class=anchor href=#cloud-infrastructure-security-requirements>#</a>
 </h2>
 <p>Cloud Infrastructure operations require a secure network environment. Connect all Cloud Infrastructure components to a secured and monitored network.</p>
 <p>Use the reference table below to discover up-to-date information on the network ports and protocols used by the Cloud Infrastructure components.</p>
