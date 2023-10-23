@@ -10,13 +10,13 @@ VMware NSX provides networking services for infrastructure management components
 VMware NSX provides networking services for infrastructure management components and workloads in VMware Cloud Foundation such as load balancing, routing and virtual networking.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/network-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-10-23T10:39:27+03:00">
+<meta property="article:modified_time" content="2023-10-23T11:24:41+03:00">
 <title>Cloud Infrastructure Network Design | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.40ee6876e9c76687612cf9c31414a68e3dabf28b25ca83c5847407caa6fd6e0d.js integrity="sha256-QO5odunHZodhLPnDFBSmjj2r8oslyoPFhHQHyqb9bg0=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.6e661d8c30043acad0570d2aac894058c2869246edc9f398c372fe57f9414c88.js integrity="sha256-bmYdjDAEOsrQVw0qrIlAWMKGkkbtyfOYw3L+V/lBTIg=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -140,15 +140,11 @@ Cloud Infrastructure Network Design
 </h1>
 <p>The network design for the Cloud Infrastructure validated solution covers logical networking and security design decisions for VMware Cloud Director and the supporting infrastructure, private cloud services, and external solutions, such as Usage Meter, VMware Chargeback, RabbitMQ, and VMware Cloud Provider Lifecycle Manager deployed on top of а VMware Cloud Foundation.</p>
 <p>VMware NSX provides networking services for infrastructure management components and workloads in VMware Cloud Foundation such as load balancing, routing and virtual networking. <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/5.0/vcf-design/GUID-A7EFAC2B-4C36-4D54-A199-F448E7C3890E.html>[Read more]</a></p>
-<p>In VMware Cloud Foundation, the Cloud Infrastructure components are placed on pre-defined NSX segments (known as application virtual networks or AVNs) for dynamic routing and load balancing.</p>
-<p><strong>Network Design of Cloud Infrastructure deployment on Overlay-Backed NSX Segments</strong></p>
-<p><img src=/images/networking-security/01-ci-network-logical-design.png alt="Logical design"></p>
 <h2 id=network-segments>
 Network Segments
 <a class=anchor href=#network-segments>#</a>
 </h2>
-<p>NSX segments provide flexibility for workload placement by removing the dependence on traditional physical data center networks. This approach also improves the management applications' security and mobility, reducing the integration effort with the existing customer network.
-The network segment design consists of characteristics and decisions for placement of the Cloud Infrastructure components in the VMware Cloud Foundation management domain.</p>
+<p>In VMware Cloud Foundation, the Cloud Infrastructure components are placed on pre-defined NSX segments (known as application virtual networks or AVNs) for dynamic routing and load balancing. NSX segments provide flexibility for workload placement by removing the dependence on traditional physical data center networks. This approach also improves the management applications' security and mobility, reducing the integration effort with the existing customer network.</p>
 <p>This validated solution uses an implementation of the VMware Cloud Foundation application virtual networks feature in the management domain provided by NSX. The application virtual networks in the management domain can be either overlay-backed NSX segments or VLAN-backed NSX segments.</p>
 <table>
 <thead>
@@ -168,6 +164,8 @@ The network segment design consists of characteristics and decisions for placeme
 </tr>
 </tbody>
 </table>
+<p><strong>Network Design of Cloud Infrastructure deployment</strong></p>
+<p><img src=/images/networking-security/01-ci-network-logical-design.png alt="Logical design"></p>
 <p><strong>Design Decisions on Network Segmentr</strong></p>
 <table>
 <thead>
@@ -180,13 +178,13 @@ The network segment design consists of characteristics and decisions for placeme
 </thead>
 <tbody>
 <tr>
-<td>VCF-VCD-NET-001</td>
+<td><code>VCF-VCD-NET-001</code></td>
 <td>Place the Cloud Infrastructure components on NSX overlay segments.</td>
 <td>Provides a consistent deployment model for management applications and a potential to extend to a second VMware Cloud Foundation instance for disaster recovery.</td>
 <td>VMware NSX is required to support this networking configuration.</td>
 </tr>
 <tr>
-<td>VCF-VCD-NET-002</td>
+<td><code>VCF-VCD-NET-002</code></td>
 <td>Create separate overlay segments for the Management and DMZ (public web access) traffic.</td>
 <td>Enhance security by separating different traffic types on different networks.</td>
 <td>More logical networking objects for management exist.</td>
@@ -305,21 +303,30 @@ Cloud Infrastructure components Security Requirements
 <a class=anchor href=#cloud-infrastructure-components-security-requirements>#</a>
 </h2>
 <p>Cloud Infrastructure operations require a secure network environment. Connect all Cloud Infrastructure components to a secured and monitored network.</p>
-<h3 id=vmware-cloud-director-firewall-ports>
-VMware Cloud Director Firewall Ports
-<a class=anchor href=#vmware-cloud-director-firewall-ports>#</a>
-</h3>
-<p>For information on the network ports and protocols used by VMware Cloud Director, see <a href=https://ports.vmware.com/home/VMware-Cloud-Director>[VMware Ports and Protocols.]</a></p>
-<h3 id=vmware-cloud-provider-lifecycle-manager-firewall-ports>
-VMware Cloud Provider Lifecycle Manager Firewall Ports
-<a class=anchor href=#vmware-cloud-provider-lifecycle-manager-firewall-ports>#</a>
-</h3>
-<p>For information on the network ports and protocols used by VMware Cloud Provider Lifecycle Manager, see <a href=https://ports.esp.vmware.com/home/VMware-Cloud-Provider-Lifecycle-Manager>[VMware Ports and Protocols.]</a></p>
-<h3 id=vcloud-usage-meter-firewall-ports>
-vCloud Usage Meter Firewall Ports
-<a class=anchor href=#vcloud-usage-meter-firewall-ports>#</a>
-</h3>
-<p>For information on the network ports and protocols used by vCloud Usage Meter, see <a href=https://ports.esp.vmware.com/home/vCloud-Usage-Meter>[VMware Ports and Protocols.]</a></p>
+<p>Use the reference table below to discover up-to-date information on the network ports and protocols used by the Cloud Infrastructure components.</p>
+<p><strong>VMware Cloud Infrastructure Ports and Protocols</strong></p>
+<table>
+<thead>
+<tr>
+<th>Cloud Infrastructure component</th>
+<th>VMware Ports and Protocols</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VMware Cloud Director</td>
+<td><a href=https://ports.vmware.com/home/VMware-Cloud-Director>[ VMware Cloud Director Ports and Protocols.]</a></td>
+</tr>
+<tr>
+<td>VMware Cloud Provider Lifecycle Manager</td>
+<td><a href=https://ports.esp.vmware.com/home/VMware-Cloud-Provider-Lifecycle-Manager>[ VMware Cloud Provider Lifecycle Manager Ports and Protocols.]</a></td>
+</tr>
+<tr>
+<td>vCloud Usage Meter</td>
+<td><a href=https://ports.esp.vmware.com/home/vCloud-Usage-Meter>[ VvCloud Usage Meter Ports and Protocols.]</a></td>
+</tr>
+</tbody>
+</table>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
