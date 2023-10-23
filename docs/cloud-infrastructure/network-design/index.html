@@ -2,21 +2,21 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Cloud Infrastructure Network Design #  Network Design for VMware Cloud Foundation #  VMware NSX provides networking services for infrastructure management components and workloads in VMware Cloud Foundation such as load balancing, routing and virtual networking. [Read more]
-Network Design for VMware Cloud Director #  For secure access to the UI and API of VMware Cloud Director, the Primary and Secondary Cells are placed on cross-instance NSX segments.">
+<meta name=description content="Cloud Infrastructure Network Design #  The network design for the Cloud Infrastructure validated solution covers logical networking and security design decisions for VMware Cloud Director and the supporting infrastructure, private cloud services, and external solutions, such as Usage Meter, VMware Chargeback, RabbitMQ, and VMware Cloud Provider Lifecycle Manager deployed on top of а VMware Cloud Foundation.
+VMware NSX provides networking services for infrastructure management components and workloads in VMware Cloud Foundation such as load balancing, routing and virtual networking.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Cloud Infrastructure Network Design">
-<meta property="og:description" content="Cloud Infrastructure Network Design #  Network Design for VMware Cloud Foundation #  VMware NSX provides networking services for infrastructure management components and workloads in VMware Cloud Foundation such as load balancing, routing and virtual networking. [Read more]
-Network Design for VMware Cloud Director #  For secure access to the UI and API of VMware Cloud Director, the Primary and Secondary Cells are placed on cross-instance NSX segments.">
+<meta property="og:description" content="Cloud Infrastructure Network Design #  The network design for the Cloud Infrastructure validated solution covers logical networking and security design decisions for VMware Cloud Director and the supporting infrastructure, private cloud services, and external solutions, such as Usage Meter, VMware Chargeback, RabbitMQ, and VMware Cloud Provider Lifecycle Manager deployed on top of а VMware Cloud Foundation.
+VMware NSX provides networking services for infrastructure management components and workloads in VMware Cloud Foundation such as load balancing, routing and virtual networking.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/network-design/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-10-20T16:17:42+03:00">
+<meta property="article:modified_time" content="2023-10-23T10:39:27+03:00">
 <title>Cloud Infrastructure Network Design | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.a971ff6ff8e1968057e93dc4455a18e5200687dfa6a1ec1b903b83fe9ffab009.js integrity="sha256-qXH/b/jhloBX6T3ERVoY5SAGh9+moewbkDuD/p/6sAk=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.40ee6876e9c76687612cf9c31414a68e3dabf28b25ca83c5847407caa6fd6e0d.js integrity="sha256-QO5odunHZodhLPnDFBSmjj2r8oslyoPFhHQHyqb9bg0=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -138,23 +138,17 @@ VMware Cloud Solutions
 Cloud Infrastructure Network Design
 <a class=anchor href=#cloud-infrastructure-network-design>#</a>
 </h1>
-<h2 id=network-design-for-vmware-cloud-foundation>
-Network Design for VMware Cloud Foundation
-<a class=anchor href=#network-design-for-vmware-cloud-foundation>#</a>
-</h2>
+<p>The network design for the Cloud Infrastructure validated solution covers logical networking and security design decisions for VMware Cloud Director and the supporting infrastructure, private cloud services, and external solutions, such as Usage Meter, VMware Chargeback, RabbitMQ, and VMware Cloud Provider Lifecycle Manager deployed on top of а VMware Cloud Foundation.</p>
 <p>VMware NSX provides networking services for infrastructure management components and workloads in VMware Cloud Foundation such as load balancing, routing and virtual networking. <a href=https://docs.vmware.com/en/VMware-Cloud-Foundation/5.0/vcf-design/GUID-A7EFAC2B-4C36-4D54-A199-F448E7C3890E.html>[Read more]</a></p>
-<h2 id=network-design-for-vmware-cloud-director>
-Network Design for VMware Cloud Director
-<a class=anchor href=#network-design-for-vmware-cloud-director>#</a>
-</h2>
-<p>For secure access to the UI and API of VMware Cloud Director, the Primary and Secondary Cells are placed on cross-instance NSX segments.</p>
-<p><strong>Network Design of VMware CLoud Director Deployment on Overlay-Backed NSX Segments</strong></p>
+<p>In VMware Cloud Foundation, the Cloud Infrastructure components are placed on pre-defined NSX segments (known as application virtual networks or AVNs) for dynamic routing and load balancing.</p>
+<p><strong>Network Design of Cloud Infrastructure deployment on Overlay-Backed NSX Segments</strong></p>
 <p><img src=/images/networking-security/01-ci-network-logical-design.png alt="Logical design"></p>
 <h2 id=network-segments>
 Network Segments
 <a class=anchor href=#network-segments>#</a>
 </h2>
-<p>The network segment design consists of characteristics and decisions for placement of the VMware Cloud Director in the VMware Cloud Foundation Management domain.</p>
+<p>NSX segments provide flexibility for workload placement by removing the dependence on traditional physical data center networks. This approach also improves the management applications' security and mobility, reducing the integration effort with the existing customer network.
+The network segment design consists of characteristics and decisions for placement of the Cloud Infrastructure components in the VMware Cloud Foundation management domain.</p>
 <p>This validated solution uses an implementation of the VMware Cloud Foundation application virtual networks feature in the management domain provided by NSX. The application virtual networks in the management domain can be either overlay-backed NSX segments or VLAN-backed NSX segments.</p>
 <table>
 <thead>
@@ -187,13 +181,13 @@ Network Segments
 <tbody>
 <tr>
 <td>VCF-VCD-NET-001</td>
-<td>Place the VMware Cloud Director cells on NSX overlay segments.</td>
+<td>Place the Cloud Infrastructure components on NSX overlay segments.</td>
 <td>Provides a consistent deployment model for management applications and a potential to extend to a second VMware Cloud Foundation instance for disaster recovery.</td>
 <td>VMware NSX is required to support this networking configuration.</td>
 </tr>
 <tr>
 <td>VCF-VCD-NET-002</td>
-<td>Create separate overlay segments for VMware Cloud Director management and dmz (public web access) traffic.</td>
+<td>Create separate overlay segments for the Management and DMZ (public web access) traffic.</td>
 <td>Enhance security by separating different traffic types on different networks.</td>
 <td>More logical networking objects for management exist.</td>
 </tr>
@@ -203,7 +197,7 @@ Network Segments
 Logical Routing
 <a class=anchor href=#logical-routing>#</a>
 </h2>
-<p>Use separate Tier-1 Gateways to enable more granular security control for the different types of traffic in the VMware Cloud Director instances.</p>
+<p>Use separate Tier-1 Gateways to enable more granular security control for the different Cloud Infrastructure components traffic types.</p>
 <p><strong>Design Decisions on Logical Routing</strong></p>
 <table>
 <thead>
@@ -217,7 +211,7 @@ Logical Routing
 <tbody>
 <tr>
 <td>VCF-VCD-NET-003</td>
-<td>Create individual Tier-1 Gateway for the VMware Cloud Director management and dmz traffic.</td>
+<td>Create individual Tier-1 Gateway for the Management and DMZ traffic.</td>
 <td>Provide well-defined traffic separation and adaptable security controls.</td>
 <td>More logical networking objects for management exist.</td>
 </tr>
@@ -227,7 +221,7 @@ Logical Routing
 IP Addressing
 <a class=anchor href=#ip-addressing>#</a>
 </h2>
-<p>Allocate statically assigned IP addresses and host names to the VMware Cloud Director cell and the load balancer from their corresponding management and dmz networks.</p>
+<p>Allocate statically assigned IP addresses and host names to the Cloud Infrastructure components and the load balancer services from their corresponding Management and DMZ networks.</p>
 <p><strong>Design Decisions on IP Addressing</strong></p>
 <table>
 <thead>
@@ -241,7 +235,7 @@ IP Addressing
 <tbody>
 <tr>
 <td>VCF-VCD-NET-004</td>
-<td><ul><li>Allocate statically assigned IP addresses to the VMware Cloud Director cells from their corresponding management and dmz networks.</li><li>Allocate statically assigned IP address for the dmz load balancer virtual service.</li><ul></td>
+<td><ul><li>Allocate statically assigned IP addresses to the Cloud Infrastructure components from their corresponding Management and DMZ networks.</li><li>Allocate statically assigned IP address for the DMZ load balancer virtual service.</li><ul></td>
 <td>Using statically assigned IP addresses ensures deployment stability and makes it simpler to maintain and easier to track.</td>
 <td>Requires precise IP address management.</td>
 </tr>
@@ -251,7 +245,7 @@ IP Addressing
 Name Resolution
 <a class=anchor href=#name-resolution>#</a>
 </h2>
-<p>Name resolution provides the translation between an IP address and a fully qualified domain name (FQDN), which makes it easier to remember and connect to components across the SDDC. The IP address of each VMware Cloud Director cell and the dmz load balancer VIP must have a valid internal DNS forward (A) and reverse (PTR) record.</p>
+<p>Name resolution provides the translation between an IP address and a fully qualified domain name (FQDN), which makes it easier to remember and connect to components across the SDDC. The IP address of each Cloud Infrastructure component and the DMZ load balancer VIP must have a valid internal DNS forward (A) and reverse (PTR) record.</p>
 <p><strong>Design Decisions on Name Resolutuion</strong></p>
 <table>
 <thead>
@@ -265,15 +259,15 @@ Name Resolution
 <tbody>
 <tr>
 <td>VCF-VCD-NET-005</td>
-<td>Configure DNS servers for VMware Cloud Director infrastructure.</td>
-<td>Ensures that VMware Cloud Director has accurate name resolution on which its services depend.</td>
-<td><ul><li>DNS infrastructure services should be highly available in the environment.</li><li>Firewalls between the VMware Cloud Director cells and the DNS servers must allow DNS traffic.</li><li>Must provide two or more DNS servers unless a DNS geographic load balancing is activated.</li></ul></td>
+<td>Configure DNS servers for Cloud Infrastructure components.</td>
+<td>Ensures that all Cloud Infrastructure components have accurate name resolution on which its services depend.</td>
+<td><ul><li>DNS infrastructure services should be highly available in the environment.</li><li>Firewalls between the Cloud Infrastructure components and the DNS servers must allow DNS traffic.</li><li>Must provide two or more DNS servers unless a DNS geographic load balancing is activated.</li></ul></td>
 </tr>
 <tr>
 <td>VCF-VCD-NET-006</td>
-<td>Configure forward and reverse DNS records for each VMware Cloud Director cell IP management and dmz interfaces' IP addresses and for the dmz (web access) load balancer virtual service IP address.</td>
-<td>VMware Cloud Director is accessible using a fully qualified domain name instead of IP addresses only.</td>
-<td><ul><li>Must provide individual DNS records for each VMware Cloud Director cell and the NSX Advanced Load Balancer Virtual Service.</li><li>Firewalls between the VMware Cloud Director cells and the DNS servers must allow DNS traffic.</li></ul></td>
+<td>Configure forward and reverse DNS records for each Cloud Infrastructure component IP Management and DMZ interfaces' IP addresses and for the DMZ (web access) load balancer virtual service IP address.</td>
+<td>Cloud Infrastructure components are accessible using a fully qualified domain name instead of IP addresses only.</td>
+<td><ul><li>Must provide individual DNS records for each Cloud Infrastructure component and the NSX Advanced Load Balancer Virtual Services.</li><li>Firewalls between the Cloud Infrastructure components and the DNS servers must allow DNS traffic.</li></ul></td>
 </tr>
 </tbody>
 </table>
@@ -286,7 +280,7 @@ Load Balancing
 Time Synchronization
 <a class=anchor href=#time-synchronization>#</a>
 </h2>
-<p>The system time for the VMware Cloud Director cells, along with dependencies and integrations, must be synchronized and must use the same timezone.</p>
+<p>The system time for the Cloud Infrastructure components, along with dependencies and integrations, must be synchronized and must use the same timezone.</p>
 <p><strong>Design Decisions on Time Synchronization</strong></p>
 <table>
 <thead>
@@ -300,99 +294,32 @@ Time Synchronization
 <tbody>
 <tr>
 <td>VCF-VCD-NET-007</td>
-<td>Configure NTP servers for each VMware Cloud DIrector cell.</td>
-<td><ul><li>Ensures that VMware Cloud Director has accurate time synchronization on which its services depend.</li><li>Assists in preventing time mismatch between the VMware Cloud Director and dependencies.</li></ul></td>
-<td><ul><li>NTP infrastructure services should be highly available in the environment.</li><li>Firewalls between the VMware Cloud Direcotr cells and the NTP servers must allow NTP traffic.</li><li>Must provide two or more NTP servers unless an NTP geographic load balancing is activated.</li></ul></td>
+<td>Configure NTP servers for each Cloud Infrastructure component.</td>
+<td><ul><li>Ensures that Cloud Infrastructure components has accurate time synchronization on which its services depend.</li><li>Assists in preventing time mismatch between the Cloud Infrastructure components and dependencies.</li></ul></td>
+<td><ul><li>NTP infrastructure services should be highly available in the environment.</li><li>Firewalls between the Cloud Infrastructure components and the NTP servers must allow NTP traffic.</li><li>Must provide two or more NTP servers unless an NTP geographic load balancing is activated.</li></ul></td>
 </tr>
 </tbody>
 </table>
-<h2 id=vmware-cloud-director-security-requirements>
-VMware Cloud Director Security Requirements
-<a class=anchor href=#vmware-cloud-director-security-requirements>#</a>
+<h2 id=cloud-infrastructure-components-security-requirements>
+Cloud Infrastructure components Security Requirements
+<a class=anchor href=#cloud-infrastructure-components-security-requirements>#</a>
 </h2>
-<p>VMware Cloud Director operations require a secure network environment. Connect all VMware Cloud Director servers to a secured and monitored network.
-For information on the network ports and protocols used by VMware Cloud Director, see <a href=https://ports.vmware.com/home/VMware-Cloud-Director>[VMware Ports and Protocols.]</a></p>
-<h2 id=vmware-cloud-provider-lifecycle-manager-firewall-ports>
+<p>Cloud Infrastructure operations require a secure network environment. Connect all Cloud Infrastructure components to a secured and monitored network.</p>
+<h3 id=vmware-cloud-director-firewall-ports>
+VMware Cloud Director Firewall Ports
+<a class=anchor href=#vmware-cloud-director-firewall-ports>#</a>
+</h3>
+<p>For information on the network ports and protocols used by VMware Cloud Director, see <a href=https://ports.vmware.com/home/VMware-Cloud-Director>[VMware Ports and Protocols.]</a></p>
+<h3 id=vmware-cloud-provider-lifecycle-manager-firewall-ports>
 VMware Cloud Provider Lifecycle Manager Firewall Ports
 <a class=anchor href=#vmware-cloud-provider-lifecycle-manager-firewall-ports>#</a>
-</h2>
-<p>The below table provides a list of ports used by VMware Cloud Provider Lifecycle Manager for product and integration communication.</p>
-<table>
-<thead>
-<tr>
-<th>Port</th>
-<th>Protocol</th>
-<th>Direction</th>
-<th>Target</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>9443</td>
-<td>TCP</td>
-<td>Inbound / Outbound</td>
-<td>Management network</td>
-<td>Port used for VMware Cloud Provider Lifecycle Manager REST API.</td>
-</tr>
-<tr>
-<td>22</td>
-<td>TCP</td>
-<td>Inbound / Outbound</td>
-<td>Management network</td>
-<td>SSH connection to the VMware Cloud Provider Lifecycle Manager machine to configure and set up deployment binaries.</td>
-</tr>
-<tr>
-<td>22</td>
-<td>TCP</td>
-<td>Outbound</td>
-<td>Deployed products (VCD, RMQ, vROPS TA, UM)</td>
-<td>SSH used to configure deployed products.</td>
-</tr>
-<tr>
-<td>53</td>
-<td>TCP/UDP</td>
-<td>Inbound / Outbound</td>
-<td>DNS Server</td>
-<td>DNS will be used to resolve IPs and hostnames and validate corresponding records for requested deployments.<br> <br> The DNS server provided in the payload will be used for validation purposes.</td>
-</tr>
-<tr>
-<td>123</td>
-<td>UDP</td>
-<td>Outbound</td>
-<td>NTP server</td>
-<td>Configure NTP server to ensure time is in sync.</td>
-</tr>
-<tr>
-<td>443</td>
-<td>TCP</td>
-<td>Outbound</td>
-<td>vCenter (Mgmt and resource)<br> NSX Manager<br> VCD (cells and load balancer)<br> vROPS<br> vROPS Tenant App<br> Usage Meter</td>
-<td>HTTPS traffic to access and configure deployed products as well as validate infrastructure components.</td>
-</tr>
-<tr>
-<td>5671 *</td>
-<td>TCP, UDP</td>
-<td>Outbound</td>
-<td>RabbitMQ</td>
-<td>AMQP port used for RabbitMQ AMQP service. This port can be customized; thus, the corresponding port must be accessible.</td>
-</tr>
-<tr>
-<td>15671 *</td>
-<td>TCP</td>
-<td>Outbound</td>
-<td>RabbitMQ Management Interface</td>
-<td>Management port used for RabbitMQ Management Interface. This port can be customized; thus, the corresponding port must be accessible.</td>
-</tr>
-<tr>
-<td></td>
-<td>ICMP</td>
-<td>Inbound / Outbound</td>
-<td>VCD cells<br> VCD cells<br> vROPS Tenant App<br> Usage Meter<br> RabbitMQ</td>
-<td>Ping is performed to check if deployed machines are running or existing prior to deployment.</td>
-</tr>
-</tbody>
-</table>
+</h3>
+<p>For information on the network ports and protocols used by VMware Cloud Provider Lifecycle Manager, see <a href=https://ports.esp.vmware.com/home/VMware-Cloud-Provider-Lifecycle-Manager>[VMware Ports and Protocols.]</a></p>
+<h3 id=vcloud-usage-meter-firewall-ports>
+vCloud Usage Meter Firewall Ports
+<a class=anchor href=#vcloud-usage-meter-firewall-ports>#</a>
+</h3>
+<p>For information on the network ports and protocols used by vCloud Usage Meter, see <a href=https://ports.esp.vmware.com/home/vCloud-Usage-Meter>[VMware Ports and Protocols.]</a></p>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
