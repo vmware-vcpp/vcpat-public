@@ -1,0 +1,281 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="NSX Manager Instance with VMware Cloud Director #  VMware NSX can provide network resources to VMware Cloud Director (VCD) by registering the NSX Manager in VCD Infrastructure Resource.
+Prerequisites #   Verify the VMware Cloud Director system requirements and supported versions of VMware NSX, VMware Product Interoperability Matrixes   Procedure #   From the top navigation bar, under Resources, click Infrastructure Resources. In the left pane, click NSX-T Managers and click Add.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Cloud Infrastructure Networking and Security Implementation">
+<meta property="og:description" content="NSX Manager Instance with VMware Cloud Director #  VMware NSX can provide network resources to VMware Cloud Director (VCD) by registering the NSX Manager in VCD Infrastructure Resource.
+Prerequisites #   Verify the VMware Cloud Director system requirements and supported versions of VMware NSX, VMware Product Interoperability Matrixes   Procedure #   From the top navigation bar, under Resources, click Infrastructure Resources. In the left pane, click NSX-T Managers and click Add.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/implementation-networking/"><meta property="article:section" content="docs">
+<meta property="article:modified_time" content="2023-10-30T11:14:03+02:00">
+<title>Cloud Infrastructure Networking and Security Implementation | VMware Cloud Provider Architecture Toolkit</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.dd31c41009a48117f17ea4072c529cf02db06fdb60dafa024ae1ac55f1849b50.js integrity="sha256-3THEEAmkgRfxfqQHLFKc8C2wb9tg2voCSuGsVfGEm1A=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>VMware Cloud Provider Architecture Toolkit</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li><a href=/feedback/><em>Feedback</em></a></li>
+</ul>
+<h2 id=draft-validated-solutions>
+Draft Validated Solutions:
+<a class=anchor href=#draft-validated-solutions>#</a>
+</h2>
+<ul>
+<li><a href=/docs/cloud-infrastructure/><strong>Cloud Infrastructure</strong></a>
+<ul>
+<li><a href=/docs/cloud-infrastructure/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/cloud-infrastructure/design/>Design Objectives</a></li>
+<li><a href=/docs/cloud-infrastructure/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/cloud-infrastructure/implementation/>Implementation</a></li>
+<li><a href=/docs/cloud-infrastructure/operations/>Operational Guidance</a></li>
+<li><a href=/docs/cloud-infrastructure/design-decisions/>Design Decisions</a></li>
+<li><a href=/docs/cloud-infrastructure/solution-interop/>Solution Interoperability</a></li>
+<li><a href=/docs/cloud-infrastructure/appendix/>Appendix</a></li>
+</ul>
+</li>
+<li><a href=/docs/dr-migration/><strong>DR and Migration</strong></a>
+<ul>
+<li><a href=/docs/dr-migration/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/dr-migration/design/>Design Objectives</a></li>
+<li><a href=/docs/dr-migration/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/dr-migration/implementation/>Implementation</a></li>
+<li><a href=/docs/dr-migration/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/developer-ready-cloud/><strong>Developer Ready Cloud</strong></a>
+<ul>
+<li><a href=/docs/developer-ready-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/developer-ready-cloud/design/>Design Objectives</a></li>
+<li><a href=/docs/developer-ready-cloud/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/developer-ready-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/developer-ready-cloud/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+<li><a href=/docs/sovereign-cloud/><strong>Sovereign Cloud</strong></a>
+<ul>
+<li><a href=/docs/sovereign-cloud/planning/>Planning and Preparation</a></li>
+<li><a href=/docs/sovereign-cloud/design/>Design Objectives</a></li>
+<li><a href=/docs/sovereign-cloud/detailed-design/>Detailed Design</a></li>
+<li><a href=/docs/sovereign-cloud/implementation/>Implementation</a></li>
+<li><a href=/docs/sovereign-cloud/operations/>Operational Guidance</a></li>
+</ul>
+</li>
+</ul>
+<h2 id=toolkit-documents>
+Toolkit Documents:
+<a class=anchor href=#toolkit-documents>#</a>
+</h2>
+<ul>
+<li><strong>VMware Cloud Provider Lifecycle Manager</strong></li>
+<li><a href=/docs/cloud-director/><strong>VMware Cloud Director</strong></a>
+<ul>
+<li>Automation</li>
+<li>Branding & Themes</li>
+<li>Extensibility</li>
+<li><a href=/docs/cloud-director/identity-access/>Identity & Access</a></li>
+<li>Multi-site</li>
+<li>Networking</li>
+<li>Scale</li>
+<li>Security</li>
+</ul>
+</li>
+<li><strong>VMware Cloud Director service</strong>
+<ul>
+<li><a href=/docs/cloud-director-service/implementation/>Implementation</a></li>
+</ul>
+</li>
+<li><strong>VMware Cloud Director Availability</strong></li>
+<li><strong>VMware vCloud Usage Meter</strong></li>
+<li><strong>VMware Cloud Director Container Service Extension</strong></li>
+<li><strong>VMware Cloud Director Oject Storage Extension</strong></li>
+<li><strong>VMware Cloud Director Application Launchpad</strong>
+<br></li>
+</ul>
+<ul>
+<li>
+<a href=https://cloudsolutions.vmware.com target=_blank rel=noopener>
+VMware Cloud Solutions
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Cloud Infrastructure Networking and Security Implementation</strong>
+<label for=toc-control>
+</label>
+</div>
+</header>
+<article class=markdown><h1 id=nsx-manager-instance-with-vmware-cloud-director>
+NSX Manager Instance with VMware Cloud Director
+<a class=anchor href=#nsx-manager-instance-with-vmware-cloud-director>#</a>
+</h1>
+<p>VMware NSX can provide network resources to VMware Cloud Director (VCD) by registering the NSX Manager in VCD Infrastructure Resource.</p>
+<h2 id=prerequisites>
+Prerequisites
+<a class=anchor href=#prerequisites>#</a>
+</h2>
+<ul>
+<li>Verify the VMware Cloud Director system requirements and supported versions of VMware NSX, <a href=https://interopmatrix.vmware.com/Interoperability>VMware Product Interoperability Matrixes </a></li>
+</ul>
+<h2 id=procedure>
+Procedure
+<a class=anchor href=#procedure>#</a>
+</h2>
+<ol>
+<li>From the top navigation bar, under <strong>Resources</strong>, click <strong>Infrastructure Resources</strong>.</li>
+<li>In the left pane, click <strong>NSX-T Managers</strong> and click <strong>Add</strong>.</li>
+<li>If you have a multisite VMware Cloud Director deployment, from the <strong>Site</strong> drop-don menu, select the site to which you want to add this NSX Manager instance.</li>
+<li>Enter a name and, optionally, a description for the NSX Manager instance in VMware Cloud Director.</li>
+<li>Enter the URL of the NSX Manager instance. For example, <em><strong>https://FQDN_or_IP_address</strong></em>.</li>
+<li>Enter the network provider scope.</li>
+<li>If you are registering Global NSX Manager, select <strong>Global Manager</strong>. In the case of NSX Federated deploymentFor global NSX Manager instances, the scope is automatically set to <strong>Global</strong>.</li>
+<li>Enter the user name and password of the NSX Manager <strong>administrator</strong> account.</li>
+<li>Click <strong>Save</strong>. If the endpoint does not have a trusted certificate, on the <strong>Trust Certificate</strong> window confirm if you trust the endpoint. To add the endpoint to the centralized certificate storage area and continue, click <strong>Trust</strong>.</li>
+</ol>
+<h2 id=nsx-api-rate-limits-in-vmware-cloud-director>
+NSX API Rate Limits in VMware Cloud Director
+<a class=anchor href=#nsx-api-rate-limits-in-vmware-cloud-director>#</a>
+</h2>
+<p>When you use the NSX API to manage the networking resources of VMware Cloud Director, there are some limitations to consider. The NSX API service has three settings that control the rate of incoming API requests. While it is possible to configure these rate limits using the <code>/api/v1/node/services/http</code> API, it is not recommended. Instead, design your API client to deal with situations where limits are exceeded gracefully.</p>
+<table>
+<thead>
+<tr>
+<th>Limit Type</th>
+<th>Description</th>
+<th>Default Limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Per-client rate limit</td>
+<td>If a client makes more requests than this limit in one second, the API server refuses to service the request and returns an <code>HTTP 429 Too Many Requests</code> Error</td>
+<td>100 requests per second</td>
+</tr>
+<tr>
+<td>Per-client concurrency limit</td>
+<td>This is the maximum number of outstanding requests that a client can have. For example, a client can open multiple connections to NSX and submit operations on each connection. When this limit is exceeded, the server returns a <code>429 Too Many Requests</code> error to the client</td>
+<td>40 concurrent requests</td>
+</tr>
+<tr>
+<td>An overall maximum number of concurrent requests</td>
+<td>This is the maximum number of API requests that can be in process on the server. If the server is at this limit, additional requests are refused and the HTTP error <code>503 Service Unavailable</code> returns to the client</td>
+<td>199 concurrent requests</td>
+</tr>
+</tbody>
+</table>
+<h1 id=nsx-manager-segment-profile-templates>
+NSX Manager Segment Profile Templates
+<a class=anchor href=#nsx-manager-segment-profile-templates>#</a>
+</h1>
+<p>A segment profile template is a set of NSX segment profiles created in NSX Manager and used by the VMware Cloud Director. In VMware Cloud Director, segment profile templates can be applied to organization VDC networks and vApp networks upon their creation or as an update. Depending on the environment&rsquo;s needs, segment profile templates are applied at different levels.</p>
+<p>Global segment profile template can be applied to all new organization VDC networks or vApp networks within a specific site. Segment profile templates can be set per organization VDC network and vApp network at the organization VDC level. These VDC segment profile templates would override any global default segment profile templates. A specific segment profile template can be applied when a new organization VDC network is created or updated.</p>
+<h2 id=create-a-segment-profile-template>
+Create a Segment Profile Template
+<a class=anchor href=#create-a-segment-profile-template>#</a>
+</h2>
+<h2 id=prerequisites-1>
+Prerequisites
+<a class=anchor href=#prerequisites-1>#</a>
+</h2>
+<p>Verify that you have created segment profiles in NSX Manager.</p>
+<h2 id=procedure-1>
+Procedure
+<a class=anchor href=#procedure-1>#</a>
+</h2>
+<ol>
+<li>From the top navigation bar, under <strong>Resources</strong>, click <strong>Infrastructure Resources</strong>.</li>
+<li>Under <strong>NSX-T</strong>, click <strong>Segment Profile Templates</strong>.</li>
+<li>Select the <strong>Templates</strong> tab and click <strong>New</strong>.</li>
+<li>If you are managing a multisite environment, from the drop-down menu, select a site in which to create the new segment profile template.</li>
+<li>Enter a name and, optionally, a description, for the new template.</li>
+<li>From the list, select the NSX Manager instance with the segment profiles that you want to use as a source for this template.</li>
+<li>Select a segment profile from each type to add to the template.</li>
+<li>If you don&rsquo;t select a segment profile for a given type, the NSX Manager default is included in the template.</li>
+<li>Review the <strong>Ready to Complete</strong> page, and click <strong>Finish</strong>.</li>
+</ol>
+<h2 id=set-a-global-default-segment-profiles-template>
+Set a Global Default Segment Profiles Template
+<a class=anchor href=#set-a-global-default-segment-profiles-template>#</a>
+</h2>
+<p>You can set global default segment profiles to be applied to all VDC networks and all vApp networks in a VMware Cloud Director environment upon their creation. The global default segment profile templates apply to a network if you don&rsquo;t configure custom segment profiles at the time of the network creation and if you haven&rsquo;t set a default segment profile template for the organization VDC in which you are creating the network.</p>
+<h2 id=prerequisites-2>
+Prerequisites
+<a class=anchor href=#prerequisites-2>#</a>
+</h2>
+<p>Verify that you created segment profile template in VMware CLoud Director.</p>
+<h2 id=procedure-2>
+Procedure
+<a class=anchor href=#procedure-2>#</a>
+</h2>
+<ol>
+<li>From the top navigation bar, under <strong>Resources</strong>, click <strong>Infrastructure Resources</strong>.</li>
+<li>Under <strong>NSX-T</strong>, click <strong>Segment Profile Templates</strong>.</li>
+<li>Click the <strong>Global Default</strong> tab.</li>
+<li>If you are managing a multisite environment, select the site for which you want to set a global template.</li>
+<li>Click <strong>Edit</strong>.</li>
+<li>To set a default template for VDC networks, select a template from the drop-down menu.</li>
+<li>To set a default template for vApp networks, select a template from the drop-down menu.</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<h1 id=cloud-rerource-networking>
+Cloud Rerource Networking
+<a class=anchor href=#cloud-rerource-networking>#</a>
+</h1>
+<h2 id=configure-ip-spaces>
+Configure IP Spaces
+<a class=anchor href=#configure-ip-spaces>#</a>
+</h2>
+<h2 id=configure-provider-gateways>
+Configure Provider Gateways
+<a class=anchor href=#configure-provider-gateways>#</a>
+</h2>
+<h2 id=configure-external-networks>
+Configure External Networks
+<a class=anchor href=#configure-external-networks>#</a>
+</h2>
+<h2 id=configure-network-pools>
+Configure Network Pools
+<a class=anchor href=#configure-network-pools>#</a>
+</h2>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+</main>
+</body>
+</html>
