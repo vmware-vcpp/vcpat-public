@@ -10,13 +10,13 @@ Prerequisites #   Verify the VMware Cloud Director system requirements and suppo
 Prerequisites #   Verify the VMware Cloud Director system requirements and supported versions of VMware NSX, VMware Product Interoperability Matrixes   Procedure #   From the top navigation bar, under Resources, click Infrastructure Resources. In the left pane, click NSX-T Managers and click Add.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/implementation-networking/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-10-30T15:01:04+02:00">
+<meta property="article:modified_time" content="2023-10-30T15:07:57+02:00">
 <title>Cloud Infrastructure Networking and Security Implementation | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.fdf5fd141d4406126428bccf0b7f3de16fb2d8a3c7d46ca14cc16a60dc02db03.js integrity="sha256-/fX9FB1EBhJkKLzPC3894W+y2KPH1GyhTMFqYNwC2wM=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.cfb9714847208b017c03d52f4de190240b125bb03443717a61bb68522c0753be.js integrity="sha256-z7lxSEcgiwF8A9UvTeGQJAsSW7A0Q3F6YbtoUiwHU74=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -158,8 +158,7 @@ Procedure
 <li>Enter the URL of the NSX Manager instance. For example, <em><strong>https://FQDN_or_IP_address</strong></em>.</li>
 <li>Enter the network provider scope.</li>
 <li>If you are registering Global NSX Manager, select <strong>Global Manager</strong>. In the case of NSX Federated deploymentFor global NSX Manager instances, the scope is automatically set to <strong>Global</strong>.</li>
-<li>Enter the user name and password of the NSX Manager <strong>administrator</strong> account.</li>
-<li>Click <strong>Save</strong>.</li>
+<li>Enter the user name and password of the NSX Manager <strong>administrator</strong> account and <strong>Save</strong>.</li>
 </ol>
 <blockquote>
 <p>If the endpoint does not have a trusted certificate, on the <strong>Trust Certificate</strong> window confirm if you trust the endpoint. To add the endpoint to the centralized certificate storage area and continue, click <strong>Trust</strong>.</p>
@@ -213,7 +212,7 @@ Procedure
 <ol>
 <li>From the top navigation bar, under <strong>Resources</strong>, click <strong>Infrastructure Resources</strong>.</li>
 <li>Under <strong>NSX-T</strong>, click <strong>Segment Profile Templates</strong>.</li>
-<li>Select the <strong>Templates</strong> tab and click <strong>New</strong>.</li>
+<li>Select the <strong>Templates</strong> tab.</li>
 <li>If you are managing a multisite environment, from the drop-down menu, select a site in which to create the new segment profile template.</li>
 <li>Enter a name and, optionally, a description, for the new template.</li>
 <li>From the list, select the NSX Manager instance with the segment profiles that you want to use as a source for this template.</li>
@@ -283,21 +282,21 @@ Procedure
 </h2>
 <ol>
 <li>From the top navigation bar, select <strong>Resources</strong> and click <strong>Cloud Resources</strong>.</li>
-<li>In the left pane, click <strong>IP Spaces</strong> and click <strong>New</strong>.</li>
+<li>In the left pane, select <strong>IP Spaces</strong></li>
 <li>If you are using a multisite deployment, select a site where to create the IP space from the drop-down list.</li>
-<li>Select the IP Space type and click <strong>Next</strong>. In the case of Private IP Space, also select organization.</li>
-<li>Enter a name and, optionally, a description for the new IP space, and click <strong>Next</strong>.</li>
-<li>(Optional) On the Network Topology page, you can configure IP Space features to help enable north-south traffic. Click <strong>Next</strong>.</li>
+<li>Select the IP Space type. In the case of Private IP Space, also select organization.</li>
+<li>Enter a name and, optionally, a description for the new IP space.</li>
+<li>(Optional) On the Network Topology page, you can configure IP Space features to help enable north-south traffic.</li>
 <li>To define the IP space scope, enter up to five IP ranges and prefixes.
 The internal scope of an IP space is a list of CIDR notations that defines the exact span of IP adresses in which all ranges and blocks must be contained in. The internal scope of the IP space is used to define default NAT rules and BGP prefixes.
 You can use either IPv4 or IPv6.</li>
 <li>(Optional) Enter a CIDR notation for the external scope for the IP space.
-The external scope defines the total span of IP addresses to which the IP space has access, for example the internet or a WAN. The external scope of the IP space is used to define default NAT rules and BGP prefixes. Click <strong>Next</strong>.</li>
-<li>(Optional) Enter IP ranges for the IP space and click <strong>Next</strong>.</li>
-<li>(Optional) Enter IP prefixes for the IP space and click <strong>Next</strong>.</li>
+The external scope defines the total span of IP addresses to which the IP space has access, for example the internet or a WAN. The external scope of the IP space is used to define default NAT rules and BGP prefixes.</li>
+<li>(Optional) Enter IP ranges for the IP space.</li>
+<li>(Optional) Enter IP prefixes for the IP space.</li>
 <li>If you entered at least one floating IP address in the IP Ranges page, enter a number of floating IP addresses to allocate individually or select the <strong>Unlimited</strong> checkbox.</li>
-<li>If you entered at least one IP prefix in the IP Prefixes page, enter a number of IP prefixes, or select the Unlimited checkbox, and click <strong>Next</strong>.</li>
-<li>Review the Ready to Complete page, and click Finish.</li>
+<li>If you entered at least one IP prefix in the IP Prefixes page, enter a number of IP prefixes, or select the Unlimited checkbox.</li>
+<li>Review the Ready to Complete page, and click <strong>Finish</strong>.</li>
 </ol>
 <h2 id=terraform-procedure>
 Terraform Procedure
