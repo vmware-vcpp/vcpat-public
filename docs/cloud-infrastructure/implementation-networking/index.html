@@ -2,21 +2,21 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Procedure #   Register NSX Manager Instance with VMware Cloud Director  Register NSX Manager Instance with VMware Cloud Director #  VMware NSX can provide network resources to VMware Cloud Director (VCD) by registering the NSX Manager in VCD Infrastructure Resource.
+<meta name=description content="Procedure #   Register NSX Manager Instance with VMware Cloud Director (Optional) Create Segment Profile Templates (Optional) Configure Segment Profiles Templates Global Default Configure IP Spaces Configure Provider Gateways Configure External Networks Configure Network Pools  Register NSX Manager Instance with VMware Cloud Director #  VMware NSX can provide network resources to VMware Cloud Director (VCD) by registering the NSX Manager in VCD Infrastructure Resource.
 Prerequisites #   Verify the VMware Cloud Director system requirements and supported versions of VMware NSX, VMware Product Interoperability Matrixes   Procedure #   From the top navigation bar, under Resources, click Infrastructure Resources.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Cloud Infrastructure Networking and Security Implementation">
-<meta property="og:description" content="Procedure #   Register NSX Manager Instance with VMware Cloud Director  Register NSX Manager Instance with VMware Cloud Director #  VMware NSX can provide network resources to VMware Cloud Director (VCD) by registering the NSX Manager in VCD Infrastructure Resource.
+<meta property="og:description" content="Procedure #   Register NSX Manager Instance with VMware Cloud Director (Optional) Create Segment Profile Templates (Optional) Configure Segment Profiles Templates Global Default Configure IP Spaces Configure Provider Gateways Configure External Networks Configure Network Pools  Register NSX Manager Instance with VMware Cloud Director #  VMware NSX can provide network resources to VMware Cloud Director (VCD) by registering the NSX Manager in VCD Infrastructure Resource.
 Prerequisites #   Verify the VMware Cloud Director system requirements and supported versions of VMware NSX, VMware Product Interoperability Matrixes   Procedure #   From the top navigation bar, under Resources, click Infrastructure Resources.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/implementation-networking/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-11-01T08:36:48+02:00">
+<meta property="article:modified_time" content="2023-11-01T08:52:28+02:00">
 <title>Cloud Infrastructure Networking and Security Implementation | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.dafac9ef405a9a51632c18a2edb71f7d98ac9be2fbbd65d96981e00d440210f4.js integrity="sha256-2vrJ70BamlFjLBii7bcffZism+L7vWXZaYHgDUQCEPQ=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.842bbcaa96a465f1ee2b49cb43abc550e0bfd109862432943e8b5ec52de5cbb9.js integrity="sha256-hCu8qpakZfHuK0nLQ6vFUOC/0QmGJDKUPotexS3ly7k=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -140,23 +140,29 @@ Procedure
 </h1>
 <ul>
 <li><a href=#Register-NSX-Manager-Instance-with-VMware-Cloud-Director>Register NSX Manager Instance with VMware Cloud Director</a></li>
+<li><a href=#optional-create-segment-profile-templates>(Optional) Create Segment Profile Templates</a></li>
+<li><a href=#optional-configure-segment-profiles-templates-global-default>(Optional) Configure Segment Profiles Templates Global Default</a></li>
+<li><a href=#configure-ip-spaces>Configure IP Spaces</a></li>
+<li><a href=#configure-provider-gateways>Configure Provider Gateways</a></li>
+<li><a href=#configure-external-networks>Configure External Networks</a></li>
+<li><a href=#configure-network-pools>Configure Network Pools</a></li>
 </ul>
 <h2 id=register-nsx-manager-instance-with-vmware-cloud-director>
 Register NSX Manager Instance with VMware Cloud Director
 <a class=anchor href=#register-nsx-manager-instance-with-vmware-cloud-director>#</a>
 </h2>
 <p>VMware NSX can provide network resources to VMware Cloud Director (VCD) by registering the NSX Manager in VCD Infrastructure Resource.</p>
-<h2 id=prerequisites>
+<h3 id=prerequisites>
 Prerequisites
 <a class=anchor href=#prerequisites>#</a>
-</h2>
+</h3>
 <ul>
 <li>Verify the VMware Cloud Director system requirements and supported versions of VMware NSX, <a href=https://interopmatrix.vmware.com/Interoperability>VMware Product Interoperability Matrixes </a></li>
 </ul>
-<h2 id=procedure-1>
+<h3 id=procedure-1>
 Procedure
 <a class=anchor href=#procedure-1>#</a>
-</h2>
+</h3>
 <ol>
 <li>From the top navigation bar, under <strong>Resources</strong>, click <strong>Infrastructure Resources</strong>.</li>
 <li>In the left pane, click <strong>NSX-T Managers</strong> and click <strong>Add</strong>.</li>
@@ -170,10 +176,10 @@ Procedure
 <blockquote>
 <p>If the endpoint does not have a trusted certificate, on the <strong>Trust Certificate</strong> window confirm if you trust the endpoint. To add the endpoint to the centralized certificate storage area and continue, click <strong>Trust</strong>.</p>
 </blockquote>
-<h2 id=nsx-api-rate-limits-in-vmware-cloud-director>
+<h3 id=nsx-api-rate-limits-in-vmware-cloud-director>
 NSX API Rate Limits in VMware Cloud Director
 <a class=anchor href=#nsx-api-rate-limits-in-vmware-cloud-director>#</a>
-</h2>
+</h3>
 <p>When you use the NSX API to manage the networking resources of VMware Cloud Director, there are some limitations to consider. The NSX API service has three settings that control the rate of incoming API requests. While it is possible to configure these rate limits using the <code>/api/v1/node/services/http</code> API, it is not recommended. Instead, design your API client to deal with situations where limits are exceeded gracefully.</p>
 <table>
 <thead>
@@ -201,21 +207,21 @@ NSX API Rate Limits in VMware Cloud Director
 </tr>
 </tbody>
 </table>
-<h1 id=create-segment-profile-templates-optional>
-Create Segment Profile Templates (Optional)
-<a class=anchor href=#create-segment-profile-templates-optional>#</a>
-</h1>
+<h2 id=optional-create-segment-profile-templates>
+(Optional) Create Segment Profile Templates
+<a class=anchor href=#optional-create-segment-profile-templates>#</a>
+</h2>
 <p>A segment profile template is a set of NSX segment profiles created in NSX Manager and used by the VMware Cloud Director. In VMware Cloud Director, segment profile templates can be applied to organization VDC networks and vApp networks upon their creation or as an update. Depending on the environment&rsquo;s needs, segment profile templates are applied at different levels.</p>
 <p>Global segment profile template can be applied to all new organization VDC networks or vApp networks within a specific site. Segment profile templates can be set per organization VDC network and vApp network at the organization VDC level. These VDC segment profile templates would override any global default segment profile templates. A specific segment profile template can be applied when a new organization VDC network is created or updated.</p>
-<h2 id=prerequisites-1>
+<h3 id=prerequisites-1>
 Prerequisites
 <a class=anchor href=#prerequisites-1>#</a>
-</h2>
+</h3>
 <p>Verify that you have created segment profiles in NSX Manager.</p>
-<h2 id=procedure-2>
+<h3 id=procedure-2>
 Procedure
 <a class=anchor href=#procedure-2>#</a>
-</h2>
+</h3>
 <ol>
 <li>From the top navigation bar, under <strong>Resources</strong>, click <strong>Infrastructure Resources</strong>.</li>
 <li>Under <strong>NSX-T</strong>, click <strong>Segment Profile Templates</strong>.</li>
@@ -227,20 +233,20 @@ Procedure
 <li>If you don&rsquo;t select a segment profile for a given type, the NSX Manager default is included in the template.</li>
 <li>Review the <strong>Ready to Complete</strong> page, and click <strong>Finish</strong>.</li>
 </ol>
-<h1 id=configure-segment-profiles-templates-global-default-optional>
-Configure Segment Profiles Templates Global Default (Optional)
-<a class=anchor href=#configure-segment-profiles-templates-global-default-optional>#</a>
-</h1>
+<h2 id=optional-configure-segment-profiles-templates-global-default>
+(Optional) Configure Segment Profiles Templates Global Default
+<a class=anchor href=#optional-configure-segment-profiles-templates-global-default>#</a>
+</h2>
 <p>You can set global default segment profiles to be applied to all VDC networks and all vApp networks in a VMware Cloud Director environment upon their creation. The global default segment profile templates apply to a network if you don&rsquo;t configure custom segment profiles at the time of the network creation and if you haven&rsquo;t set a default segment profile template for the organization VDC in which you are creating the network.</p>
-<h2 id=prerequisites-2>
+<h3 id=prerequisites-2>
 Prerequisites
 <a class=anchor href=#prerequisites-2>#</a>
-</h2>
+</h3>
 <p>Verify that you created segment profile template in VMware CLoud Director.</p>
-<h2 id=procedure-3>
+<h3 id=procedure-3>
 Procedure
 <a class=anchor href=#procedure-3>#</a>
-</h2>
+</h3>
 <ol>
 <li>From the top navigation bar, under <strong>Resources</strong>, click <strong>Infrastructure Resources</strong>.</li>
 <li>Under <strong>NSX-T</strong>, click <strong>Segment Profile Templates</strong>.</li>
@@ -251,10 +257,10 @@ Procedure
 <li>To set a default template for vApp networks, select a template from the drop-down menu.</li>
 <li>Click <strong>Save</strong>.</li>
 </ol>
-<h1 id=configure-ip-spaces>
+<h2 id=configure-ip-spaces>
 Configure IP Spaces
 <a class=anchor href=#configure-ip-spaces>#</a>
-</h1>
+</h2>
 <p>IP Spaces provides a structured approach to allocating public and private IP addresses by preventing overlapping IP addresses across Organizations and organization VDCs in VMware Cloud Director. An IP space consists of a set of defined non-overlapping IP ranges and small CIDR blocks that are reserved and used during the consumption aspect of the IP space life cycle. An IP space can be either IPv4 or IPv6, but not both. A service provider, can create public, shared, or private IP spaces and assign them to provider gateways by creating IP space uplinks. There are three types of IP Spaces the can be created in VCD.</p>
 <table>
 <thead>
@@ -278,15 +284,15 @@ Configure IP Spaces
 </tr>
 </tbody>
 </table>
-<h2 id=prerequisites-3>
+<h3 id=prerequisites-3>
 Prerequisites
 <a class=anchor href=#prerequisites-3>#</a>
-</h2>
+</h3>
 <p>To create Public or Shared IP Space verify that your role includes the <strong>System IP Spaces:View</strong> and <strong>System IP Spaces:Manage</strong> rights.</p>
-<h2 id=procedure-4>
+<h3 id=procedure-4>
 Procedure
 <a class=anchor href=#procedure-4>#</a>
-</h2>
+</h3>
 <ol>
 <li>From the top navigation bar, select <strong>Resources</strong> and click <strong>Cloud Resources</strong>.</li>
 <li>In the left pane, select <strong>IP Spaces</strong></li>
@@ -313,10 +319,10 @@ Procedure
 <li>If you entered at least one IP prefix in the IP Prefixes page, enter a number of IP prefixes, or select the Unlimited checkbox.</li>
 <li>Review the Ready to Complete page, and click <strong>Finish</strong>.</li>
 </ol>
-<h2 id=terraform-procedure>
+<h3 id=terraform-procedure>
 Terraform Procedure
 <a class=anchor href=#terraform-procedure>#</a>
-</h2>
+</h3>
 <ol>
 <li>Configure Terraform resource, using the example below. The <code>type</code> can be <code>PUBLIC</code>, <code>SHARED_SERVICES</code>, or <code>PRIVATE</code>. In the case of Private IP Spaces, the organization ID must also be specified using the argument: <code>org_id = data.vcd_org.org1.id</code></li>
 </ol>
@@ -358,18 +364,18 @@ Terraform Procedure
 <li>Apply the Terraform plan.</li>
 </ol>
 <pre tabindex=0><code>terraform apply tfplan
-</code></pre><h1 id=configure-provider-gateways>
+</code></pre><h2 id=configure-provider-gateways>
 Configure Provider Gateways
 <a class=anchor href=#configure-provider-gateways>#</a>
-</h1>
-<h1 id=configure-external-networks>
+</h2>
+<h2 id=configure-external-networks>
 Configure External Networks
 <a class=anchor href=#configure-external-networks>#</a>
-</h1>
-<h1 id=configure-network-pools>
+</h2>
+<h2 id=configure-network-pools>
 Configure Network Pools
 <a class=anchor href=#configure-network-pools>#</a>
-</h1>
+</h2>
 </article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
