@@ -2,21 +2,21 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Procedure #   Register NSX Manager Instance with VMware Cloud Director (Optional) Create Segment Profile Templates (Optional) Configure Segment Profiles Templates Global Default Configure IP Spaces Configure Provider Gateways Configure External Networks Configure Network Pools  Register NSX Manager Instance with VMware Cloud Director #  VMware NSX can provide network resources to VMware Cloud Director (VCD) by registering the NSX Manager in VCD Infrastructure Resource.
-Prerequisites #   Verify the VMware Cloud Director system requirements and supported versions of VMware NSX, VMware Product Interoperability Matrixes   Procedure #   From the top navigation bar, under Resources, click Infrastructure Resources.">
+<meta name=description content="Cloud Infrastructure Networking Implementation #  VMware Cloud Director (VCD) uses vSphere distributed switches, vSphere port groups, and VMware NSX to support virtual machine networking. This section provides information about adding resources to VMware Cloud Director to create and manage NSX-backed organization virtual data center networks.
+To configure NSX-backed organization virtual data center networks in VMware Cloud Director, the service provider can use the VCD UI or API calls. There is also VMware Cloud Director Terraform Provider and PowerShell scripts available.">
 <meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="Cloud Infrastructure Networking and Security Implementation">
-<meta property="og:description" content="Procedure #   Register NSX Manager Instance with VMware Cloud Director (Optional) Create Segment Profile Templates (Optional) Configure Segment Profiles Templates Global Default Configure IP Spaces Configure Provider Gateways Configure External Networks Configure Network Pools  Register NSX Manager Instance with VMware Cloud Director #  VMware NSX can provide network resources to VMware Cloud Director (VCD) by registering the NSX Manager in VCD Infrastructure Resource.
-Prerequisites #   Verify the VMware Cloud Director system requirements and supported versions of VMware NSX, VMware Product Interoperability Matrixes   Procedure #   From the top navigation bar, under Resources, click Infrastructure Resources.">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Cloud Infrastructure Networking Implementation">
+<meta property="og:description" content="Cloud Infrastructure Networking Implementation #  VMware Cloud Director (VCD) uses vSphere distributed switches, vSphere port groups, and VMware NSX to support virtual machine networking. This section provides information about adding resources to VMware Cloud Director to create and manage NSX-backed organization virtual data center networks.
+To configure NSX-backed organization virtual data center networks in VMware Cloud Director, the service provider can use the VCD UI or API calls. There is also VMware Cloud Director Terraform Provider and PowerShell scripts available.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/implementation-networking/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-11-01T08:52:28+02:00">
-<title>Cloud Infrastructure Networking and Security Implementation | VMware Cloud Provider Architecture Toolkit</title>
+<meta property="article:modified_time" content="2023-11-01T10:40:21+02:00">
+<title>Cloud Infrastructure Networking Implementation | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.842bbcaa96a465f1ee2b49cb43abc550e0bfd109862432943e8b5ec52de5cbb9.js integrity="sha256-hCu8qpakZfHuK0nLQ6vFUOC/0QmGJDKUPotexS3ly7k=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.bb97b65c12e1c8c2d38c24d989ad92cb5625d78e1dc52bd2388803dcab2d5048.js integrity="sha256-u5e2XBLhyMLTjCTZia2Sy1Yl144dxSvSOIgD3KstUEg=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -129,15 +129,23 @@ VMware Cloud Solutions
 <label for=menu-control>
 <img src=/svg/menu.svg class=book-icon alt=Menu>
 </label>
-<strong>Cloud Infrastructure Networking and Security Implementation</strong>
+<strong>Cloud Infrastructure Networking Implementation</strong>
 <label for=toc-control>
 </label>
 </div>
 </header>
-<article class=markdown><h1 id=procedure>
+<article class=markdown><h1 id=cloud-infrastructure-networking-implementation>
+Cloud Infrastructure Networking Implementation
+<a class=anchor href=#cloud-infrastructure-networking-implementation>#</a>
+</h1>
+<p>VMware Cloud Director (VCD) uses vSphere distributed switches, vSphere port groups, and VMware NSX to support virtual machine networking.
+This section provides information about adding resources to VMware Cloud Director to create and manage NSX-backed organization virtual data center networks.</p>
+<p>To configure NSX-backed organization virtual data center networks in VMware Cloud Director, the service provider can use the VCD UI or API calls. There is also VMware Cloud Director Terraform Provider and PowerShell scripts available.
+This guide provides a Terrafrom example script whenever such a Terrafrom resource is available.</p>
+<h2 id=procedure>
 Procedure
 <a class=anchor href=#procedure>#</a>
-</h1>
+</h2>
 <ul>
 <li><a href=#Register-NSX-Manager-Instance-with-VMware-Cloud-Director>Register NSX Manager Instance with VMware Cloud Director</a></li>
 <li><a href=#optional-create-segment-profile-templates>(Optional) Create Segment Profile Templates</a></li>
@@ -288,7 +296,7 @@ Configure IP Spaces
 Prerequisites
 <a class=anchor href=#prerequisites-3>#</a>
 </h3>
-<p>To create Public or Shared IP Space verify that your role includes the <strong>System IP Spaces:View</strong> and <strong>System IP Spaces:Manage</strong> rights.</p>
+<p>For Public or Shared IP Space verify that your role includes the <strong>System IP Spaces:View</strong> and <strong>System IP Spaces:Manage</strong> rights. For Private IP Space, verify that your role includes the <strong>Private IP Spaces:View</strong> and <strong>Private IP Spaces:Manage</strong> rights.</p>
 <h3 id=procedure-4>
 Procedure
 <a class=anchor href=#procedure-4>#</a>
