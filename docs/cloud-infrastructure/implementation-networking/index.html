@@ -10,13 +10,13 @@ To configure NSX-backed organization virtual data center networks in VMware Clou
 To configure NSX-backed organization virtual data center networks in VMware Cloud Director, the service provider can use the VCD UI or API calls. There is also VMware Cloud Director Terraform Provider and PowerShell scripts available.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://vcpat.cloudhappens.io/docs/cloud-infrastructure/implementation-networking/"><meta property="article:section" content="docs">
-<meta property="article:modified_time" content="2023-11-01T10:40:21+02:00">
+<meta property="article:modified_time" content="2023-11-01T10:56:09+02:00">
 <title>Cloud Infrastructure Networking Implementation | VMware Cloud Provider Architecture Toolkit</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css integrity="sha256-gsXb0jRHzuC0wqo+0Izglh+qQOH6Nw7uT4yfAuDUa18=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.bb97b65c12e1c8c2d38c24d989ad92cb5625d78e1dc52bd2388803dcab2d5048.js integrity="sha256-u5e2XBLhyMLTjCTZia2Sy1Yl144dxSvSOIgD3KstUEg=" crossorigin=anonymous></script>
+<script defer src=/en.search.min.85e6c49d0dd87cfd7c7834de706f290871f095742f0f874709b32998a98d528d.js integrity="sha256-hebEnQ3YfP18eDTecG8pCHHwlXQvD4dHCbMpmKmNUo0=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -138,10 +138,9 @@ VMware Cloud Solutions
 Cloud Infrastructure Networking Implementation
 <a class=anchor href=#cloud-infrastructure-networking-implementation>#</a>
 </h1>
-<p>VMware Cloud Director (VCD) uses vSphere distributed switches, vSphere port groups, and VMware NSX to support virtual machine networking.
-This section provides information about adding resources to VMware Cloud Director to create and manage NSX-backed organization virtual data center networks.</p>
-<p>To configure NSX-backed organization virtual data center networks in VMware Cloud Director, the service provider can use the VCD UI or API calls. There is also VMware Cloud Director Terraform Provider and PowerShell scripts available.
-This guide provides a Terrafrom example script whenever such a Terrafrom resource is available.</p>
+<p>VMware Cloud Director (VCD) uses vSphere distributed switches, vSphere port groups, and VMware NSX to support virtual machine networking. This section provides information about adding resources to VMware Cloud Director to create and manage NSX-backed organization virtual data center networks.</p>
+<p>To configure NSX-backed organization virtual data center networks in VMware Cloud Director, the service provider can use the VCD UI or API calls. There is also <a href=https://registry.terraform.io/providers/vmware/vcd/latest/docs>VMware Cloud Director Terraform Provider</a> and PowerShell scripts available.</p>
+<p>This guide provides a Terrafrom example script whenever such a Terrafrom resource is available.</p>
 <h2 id=procedure>
 Procedure
 <a class=anchor href=#procedure>#</a>
@@ -308,19 +307,17 @@ Procedure
 <li>Select the IP Space type. In the case of Private IP Space, also select organization.</li>
 <li>Enter a name and, optionally, a description for the new IP space.</li>
 <li>(Optional) On the Network Topology page, you can configure IP Space features to help enable north-south traffic.</li>
-<li>To define the IP space scope, enter up to five IP ranges and prefixes.</li>
-</ol>
+<li>To define the IP space scope, enter up to five IP ranges and prefixes.
 <ul>
 <li>The internal scope of an IP space is a list of CIDR notations that defines the exact span of IP adresses in which all ranges and blocks must be contained in. The internal scope of the IP space is used to define default NAT rules and BGP prefixes.</li>
 <li>You can use either IPv4 or IPv6.</li>
 </ul>
-<ol start=7>
-<li>(Optional) Enter a CIDR notation for the external scope for the IP space.</li>
-</ol>
+</li>
+<li>(Optional) Enter a CIDR notation for the external scope for the IP space.
 <ul>
 <li>The external scope defines the total span of IP addresses to which the IP space has access, for example the internet or a WAN. The external scope of the IP space is used to define default NAT rules and BGP prefixes.</li>
 </ul>
-<ol start=8>
+</li>
 <li>(Optional) Enter IP ranges for the IP space.</li>
 <li>(Optional) Enter IP prefixes for the IP space.</li>
 <li>If you entered at least one floating IP address in the IP Ranges page, enter a number of floating IP addresses to allocate individually or select the <strong>Unlimited</strong> checkbox.</li>
